@@ -9,7 +9,7 @@ IP→ Progettato per funzionare a commutazione di pacchetto in modalità connec
 identifica Host e router tramite indirizzi di lunghezza fissa, raggruppandoli in reti IP.
 ****
 
-![Screenshot 2024-10-01 at 16.49.03.png](/Screenshot_2024-10-01_at_16.49.03.png)
+![Screenshot 2024-10-01 at 16.49.03.png](/img/Screenshot_2024-10-01_at_16.49.03.png)
 
 **Version**→ indica il formato dell’intestazione, attualmetne 4
 
@@ -22,8 +22,20 @@ identifica Host e router tramite indirizzi di lunghezza fissa, raggruppandoli in
 **Identification →** valore intero che identifica univocamente il datagramma (pacchetto).
 
 **Flag →** 
+### Funzioni
 
-![Se non posso frammentare il pacchetto lo distruggo. ]( /Screenshot_2024-10-02_at_13.39.55.png)
+| Funzione            | Descrizione                                                                 |
+|---------------------|-----------------------------------------------------------------------------|
+| `Version`           | Indica il formato dell’intestazione, attualmente 4                           |
+| `IHL`               | IP header length, lunghezza dell’intestazione                                |
+| `Type of service`   | Tipo di servizio richiesto, usato anche come sorta di priorità               |
+| `Total length`      | Lunghezza totale del datagramma                                             |
+| `Identification`    | Valore intero che identifica univocamente il datagramma (pacchetto)          |
+| `Flag`              | Vari flag utilizzati per il controllo della frammentazione dei pacchetti     |
+
+---
+
+![Se non posso frammentare il pacchetto lo distruggo. ](/img/Screenshot_2024-10-02_at_13.39.55.png)
 
 Se non posso frammentare il pacchetto lo distruggo. 
 
@@ -42,7 +54,7 @@ Grazie alla numerazione tramite offset permette di rinumerare facilmente i segme
 
 **Riassemblamento** 
 
-![Screenshot 2024-10-02 at 13.55.55.png](/Screenshot_2024-10-02_at_13.55.55.png)
+![Screenshot 2024-10-02 at 13.55.55.png](/img/Screenshot_2024-10-02_at_13.55.55.png)
 
 **Time to travel (TTL)→** max numero nodi attraversabili
 
@@ -77,7 +89,7 @@ Ogni Network IP viene implementata con una tecnologia specifica, per esempio :
 
 I calcolatori di una network IP devono potersi scambiare pacchetti in modo diretto tra di loro. 
 
-![Screenshot 2024-10-04 at 11.35.42.png](/Screenshot_2024-10-04_at_11.35.42.png)
+![Screenshot 2024-10-04 at 11.35.42.png](/img/Screenshot_2024-10-04_at_11.35.42.png)
 
 > **La tecnologia IP è agnostica rispetto alla tecnologia
 con cui sono realizzate le network**
@@ -96,7 +108,7 @@ Ogni nodo ha una base di dati che contiene la lista degli ip che può raggiunger
 
 I collegamenti fra router vengono visti come network 
 
-![Screenshot 2024-10-04 at 11.45.55.png](/Screenshot_2024-10-04_at_11.45.55.png)
+![Screenshot 2024-10-04 at 11.45.55.png](/img/Screenshot_2024-10-04_at_11.45.55.png)
 
 ### Invio pacchetto
 
@@ -113,7 +125,7 @@ Due parti :
 
 Per entrambi vengono usati bit contigui.
 
-![Screenshot 2024-10-04 at 11.59.51.png](/Screenshot_2024-10-04_at_11.59.51.png)
+![Screenshot 2024-10-04 at 11.59.51.png](/img/Screenshot_2024-10-04_at_11.59.51.png)
 
 000000 e 111111 sono due numeri speciali e non possono essere usati come Host id
 
@@ -143,7 +155,7 @@ Ogni nodo, che sia un host o un router, possiede una tabella di instradamento ch
 4. **Interface**: Definisce l'interfaccia di rete attraverso cui inviare il pacchetto e da cui eseguire richieste ARP, se necessario.
 5. **Metric**: Rappresenta il costo del percorso, aiutando a scegliere il percorso migliore quando esistono più opzioni di instradamento.
 
-![Screenshot 2024-10-23 at 13.43.14.png](/Screenshot_2024-10-23_at_13.43.14.png)
+![Screenshot 2024-10-23 at 13.43.14.png](/img/Screenshot_2024-10-23_at_13.43.14.png)
 
 ### Table look-up
 
@@ -154,9 +166,9 @@ Per selezionare la riga corretta vengono fatti 2 passaggi:
 
 la riga numero 1 è quella di default, perchè AND è sempre 0.0.0.0
 
-![Screenshot 2024-10-23 at 14.00.17.png](/Screenshot_2024-10-23_at_14.00.17.png)
+![Screenshot 2024-10-23 at 14.00.17.png](/img/Screenshot_2024-10-23_at_14.00.17.png)
 
-![Screenshot 2024-10-23 at 14.35.26.png](/Screenshot_2024-10-23_at_14.35.26.png)
+![Screenshot 2024-10-23 at 14.35.26.png](/img/Screenshot_2024-10-23_at_14.35.26.png)
 
 il router ha lo stesso net-id mio e come ultimo numero ha 254, ma più generalmente il numero massimo di host-id. 
 
@@ -164,11 +176,11 @@ Qual’è la configurazione minima dell’interfaccia IP?
 
 numero ip e netmask
 
-![Screenshot 2024-10-24 at 10.33.53.png](/Screenshot_2024-10-24_at_10.33.53.png)
+![Screenshot 2024-10-24 at 10.33.53.png](/img/Screenshot_2024-10-24_at_10.33.53.png)
 
 settando delle netmask apposite posso creare una aggregazione di righe (aggregazione di rotte). nel caso di r2 è comodo perchè ho solo due instradazioni possibili e posso ottimizzare gli AND da fare. Si può fare solo se sono righe contigue.
 
-![Screenshot 2024-10-24 at 10.36.31.png](/Screenshot_2024-10-24_at_10.36.31.png)
+![Screenshot 2024-10-24 at 10.36.31.png](/img/Screenshot_2024-10-24_at_10.36.31.png)
 
 Le righe delle tabelle di route vanno ordinate, per dare precedenza alle route più specifiche.
 
@@ -196,14 +208,14 @@ dal punto di vista architetturale è in linea ai soliti protocolli (OSI).
 
 ### Statefull packet inspection
 
-<img src="./049_statefull_packet_inspection.png" alt="Diagramma di rete" width="500"/>
+<img src="./img/049_statefull_packet_inspection.png" alt="Diagramma di rete" width="500"/>
 
 Utilizzano informazioni prese dagli header di livello superiore (es : numero di porta utilizzata ecc...) 
 Questa operazione "viola" l'idea del protocollo iso-osi.
 
 ### Application layer gateway (proxy)
 
-<img src="./050_application_layer_gateway.png" alt="Diagramma di rete" width="500"/>
+<img src="./img/050_application_layer_gateway.png" alt="Diagramma di rete" width="500"/>
 
 Da più funzionalità possibili ma è anche il più dispendioso di tutti perchè controlla tutto il pacchetto (livello 3 e 4).
 Posso anche decidere di fare passare solo determinati protocolli 
@@ -212,6 +224,81 @@ Posso anche decidere di fare passare solo determinati protocolli
 #### Firewall
 
 Protegge interno da esterno ed esterno da interno. Solitamente è una combinazione di packet filter, statefull packet inspection, e ALG.
+
+
+#### Nat
+
+Gateway che filtra pacchetti, statefull packet inspection tra due network, e modifica i pacchetti modificando gli indirizzi.
+È un concetto, ma ci sono molte implementazioni diverse. 
+
+<img src="./img/Screenshot 2024-10-30 at 17.29.58_nat.png" alt="Diagramma di rete" width="500"/>
+
+Il nat permette anche di modificare il verso dei pacchetti, permettendo a quelli che sono dentro di parlare all'esterno, mentre quelli all'esterno possono parlare solo se hanno ricevuto una richiesta.
+Oggi è concepito come uno strumento di protezione, ma inizialmente è nato perchè stavano finendo i numeri IP. Infatti tutti quelli che stanno alla sinistra del NAT possono essere visti come lo stesso numero IP.
+NAPT -> traduce anche i nueri di porta.
+Esistono degli **indirizzi privati**, che vengono utilizzati storicamente solo per essere attribuiti all'interno dei NAT.
+
+| Tipo di Indirizzo | Descrizione |
+|-------------------|-------------|
+| Pubblico          | Utilizzato per comunicare su Internet |
+| Privato           | Utilizzato all'interno di una rete locale |
+
+
+
+## Instradamento nelle reti a pacchetto e in Internet
+
+Scelta del percorso = scegliere il nodo successivo sapendo che esiste una connessione 
+Tutte le metodologie di instradamento si devono adattare a modifiche della rete in due modi:
+
+- dinamici -> percosi aggionrati periodicamente per sopportare anche cambiamenti repentini
+- statico -> i percorsi vengono aggiornati e nel breve periodo non cambiano
+
+### Algoritmi di instradamento 
+I nodi di commutazione per applicare l’algoritmo possono utilizzare informazioni predisposte localente tipicamente sotto forma di tabelle
+
+
+#### Senza tabella:
+
+##### Flooding (broadcast)
+Pro:
+
+- ogni nodo ritrasmette tutte le porte in uscita ogni pacchetto ricevuto
+- Praticamente non c'è elaborazione
+- il primo che arriva -> strada più breve
+
+Contro:
+I pacchetti proliferano in maniera esponenziale.
+Soluzioni :
+
+- fare si che i pacchetti non ritornano da dove sono venuti
+- aggiungere TTl
+
+##### Random 
+Poco usato perchè poco efficiente.
+
+##### Deflection Routing (hot potato)
+Il pacchetto viene inviato all aporta con meno pacchetti in fila da inviare. 
+Per reti con spazio e risorse limitate.
+Problemi: possibili pacchetti che girano all'infinito e potrebbero non arrivare in ordine 
+
+
+#### Con tabella 
+instradamento principalmente statico  
+Linee di ingresso -> funzione di instradamento -> linee di uscita 
+
+Il pacchetto viene prima memorizzato interamente nel nodo e quindi ritrasmesso nella direzione opportuna
+In generale dovrebbe esistere una base dati per il confronto che è la tabella di instradamento
+
+##### Shortest path routing
+Ogni nodo ha una lunghezza, difficoltà per attraversare due punti.
+
+
+<br>
+
+---
+
+<br>
+
 
 
 
