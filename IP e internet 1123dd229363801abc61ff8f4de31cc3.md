@@ -291,6 +291,12 @@ In generale dovrebbe esistere una base dati per il confronto che è la tabella d
 
 ##### Shortest path routing
 Ogni nodo ha una lunghezza, difficoltà per attraversare due punti.
+Per implementare il routing shortest path verso una qualunque destinazione devono utilizzare:
+
+- Uno o più **protocolli** di routing per scambiarsi informazioni ed apprendere la topologia della rete
+- Uno o più **algoritmi** per il calcolo degli SP sulla base delle informazioni ottenute
+
+<img src="./img/tabella_routing_esempio_1.png" alt="Diagramma di rete" width="500"/>
 
 
 <br>
