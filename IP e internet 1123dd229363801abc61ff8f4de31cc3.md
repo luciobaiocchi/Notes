@@ -298,7 +298,36 @@ Per implementare il routing shortest path verso una qualunque destinazione devon
 
 <img src="./img/tabella_routing_esempio_1.png" alt="Diagramma di rete" width="500"/>
 
+Il problema di questi algormitmi è che il tempo di convergenza è generalmente pari al numero dei nodi della rete e non è particolarmente conveniente.
+Se la rete è grande ci vuole troppo tempo, c'è la possibilità che la rete cambi prima del tempo di convergenza. Non si possono mandare sempre messaggi con distance
+vector, per una questione di prestazioni e vengono mandati periodicamente.
 
+###### Cosa succede se la rete si modifica?
+
+<img src="./img/Screenshot_2024-11-25_at_21.19.17.png" alt="Bouncing effect" width="500"/>
+
+- **bouncing effect** la convinzione che un certo router per inviare pacchetti a un altro deve mandarli a lui e poi farseli rispedire indietro.
+- **convergenza lenta** la possibilità che anche in una rete con 3 nodi ci si mettano anche 20/30 scambi di distance vector
+- **count to infinity** nel caso di tre router collegati in fila A--B--C. 
+
+SOLUZIONI  (temporanee): 
+
+- Decidere una distanza massima, che se raggiunta viene considerata infinito
+- Triggered update -> un nodo deve inviare immediatamente notifiche ai vicini nel caso di modifiche di rete.
+ma considerando il ritardo di propagazione non c'è comunque la certezza che le informazioni arrivino in tempo
+- Split horizon ->  nodo A dice a B tutti i nodi che raggiunge senza passare da B
+
+ma queste soluzioni non sono complete, nel caso di reti circolari ci sono comunque ancora errori
+
+### Routing link state
+L'idea è che ogni nodo conosca il grafo della rete e calcola le tabelle di routing in modo ottimale.
+Sembra più difficile ma si è verificato molto più efficacie. 
+
+1.  HELLO PACKET Il router scopre i vicini 
+2.  ECHO PACKET invio per stimare la distanza
+3.  in seguito ogni odo costituisce i LINK STATE PACKET, e li invia nella rete, questi pacchetti contengono la lista dei suoi vicini e le lunghezze dei collegamenti da raggiungere
+
+I pacchetti vengono diffusi nella rete attraverso il Flooding
 <br>
 
 ---
