@@ -327,7 +327,44 @@ Sembra più difficile ma si è verificato molto più efficacie.
 2.  ECHO PACKET invio per stimare la distanza
 3.  in seguito ogni odo costituisce i LINK STATE PACKET, e li invia nella rete, questi pacchetti contengono la lista dei suoi vicini e le lunghezze dei collegamenti da raggiungere
 
-I pacchetti vengono diffusi nella rete attraverso il Flooding
+I pacchetti vengono diffusi nella rete attraverso il Flooding. 
+
+### Cosa sono i nodi
+ 
+i nodi di commutazione vengono chiamati router, e si dividono in macro famiglie:
+
+- SOHO (small office and home) 100 mbs, utilizzo casalingo
+- Router di accesso, molte porte non velocissime, raccoglie gli abitanti di una certa zona 
+- Router di acceso collegati con campus router. Medie dimensioni, non troppe porte ma molta velocità
+- backbone router, router con poche porte con velocità ancora più elevata e garanzie di affidabilità
+
+#### Ruolo router
+- routing
+    -  Scambio informazioni
+    - elaborazione locale
+    - popolaizone tabelle routing 
+- forwarding
+    - ip 
+    - table lookup 
+    - header update
+- Switch
+    - trasferimento datagramma da input a output
+- trasmissione
+    - Trasmissione usando il mezzo fisico 
+
+##### Tabella routing e forwarding
+
+La routing table è usata dai router per determinare il percorso ottimale verso una destinazione, memorizzando informazioni come reti, metriche e next-hop per ciascun possibile percorso. È il risultato di algoritmi di routing (es. OSPF, BGP).
+
+La forwarding table (o forwarding information base, FIB) è una versione ottimizzata della routing table, usata direttamente per inoltrare i pacchetti. Contiene solo le informazioni necessarie per decidere il next-hop e agisce più velocemente, spesso mantenuta in hardware.
+
+**RIB** = routing information base, insieme di tutte le informazioni che riguardano il routing e a cui bisogna credere.
+Possono essere configurate manaualmente, staticamente o attraverso determinati algoritmi o protocolli. la politica con cui vengon inserite le informazioni nella rib possono essere variabili.
+
+dopo il rib si applica il route selection process, per selezionare le route migliori 
+
+**FIB** in seguito si compila la route forwarding table che contiene le informazioni filtrate e ottimizzate 
+
 <br>
 
 ---
