@@ -306,6 +306,7 @@ vector, per una questione di prestazioni e vengono mandati periodicamente.
 
 <img src="./img/Screenshot_2024-11-25_at_21.19.17.png" alt="Bouncing effect" width="500"/>
 
+
 - **bouncing effect** la convinzione che un certo router per inviare pacchetti a un altro deve mandarli a lui e poi farseli rispedire indietro.
 - **convergenza lenta** la possibilità che anche in una rete con 3 nodi ci si mettano anche 20/30 scambi di distance vector
 - **count to infinity** nel caso di tre router collegati in fila A--B--C. 
@@ -364,6 +365,41 @@ Possono essere configurate manaualmente, staticamente o attraverso determinati a
 dopo il rib si applica il route selection process, per selezionare le route migliori 
 
 **FIB** in seguito si compila la route forwarding table che contiene le informazioni filtrate e ottimizzate 
+
+##### Internet moderna 
+Insieme di sottoninsiemi (autonomus sistem), ordinati con un numero identificativo. 
+Si assume che valgano solo i nodi che fanno parlare un sottoinsieme con l'esterno, e in questo modo si semplifica il grafo della rete.
+Si scompone anche il problema all'interno (intra Domain) dell'autonomus sistem e all'esterno di esso(inter Domain).
+
+**autonomus sistem** insieme di router che utilizzano stesso protocollo di comunicazione. Oggi viene usata una terminologia più precisa:
+Oggi un AS è:
+- Un insieme di prefissi di rete IP (network IP definite secondo
+la logica CIDR)
+- Gestito in modo unitario e con una ben definita politica di routing
+- Questo significa che chi gestisce l’AS ha definito in modo chiaro al suo interno come raggiungere le network IP
+
+Un AS importa le informazioni di routing da solo determinati AS certificati.
+RADb -> database contenente le politiche di routing 
+
+##### ISP
+internet service provider. Una associazione che fornisce servizi di connnettività, web e mail hosting, registrazione e noleggio di indirizzi IP. Può essere a fini di lucro o no e coperativa o no. Tipocamente un ISP è un AS.
+
+**Internet region** una porzione di internet contenuta in una determinata area. 
+
+Tipologie di ISP:
+- Tier 1 ISP (più grandi tipo tim, collegato a internet globale)
+- Tier 2 ISP (più piccoli che passano per tier 1 per andare a internet globale)
+- Tier 3 o local ISP (vengono aiutati da livello 1 o 2 comprando servizi)
+
+**PEERING** collegamento tra ISP, con lo scopo di scambiare servizi
+**POP** punto di collegamento tra ISP. Localizzaot nelle grandi città
+**Internet Exchange Point (IX o IXP)**
+- Infrastrutture attraverso le quali gli ISP possono stabilire
+relazioni di peering
+- L’IXP è costruito per permettere l’interconnessione diretta degli AS senza utilizzare reti di terze parti
+- L’IXP fornisce soluzioni di connettività con specifiche garanzie di qualità (disponibilità elevata, sicurezza fisica, banda garantita ecc.)
+
+
 
 <br>
 
