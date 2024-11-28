@@ -1,5 +1,65 @@
 # Appunti reti
 
+- [Appunti reti](#appunti-reti)
+  - [IP e internet](#ip-e-internet)
+    - [Composizione Indirizzo IP](#composizione-indirizzo-ip)
+    - [Funzioni](#funzioni)
+  - [Instradamento IP](#instradamento-ip)
+    - [Network IP → componente elementare](#network-ip--componente-elementare)
+    - [Invio pacchetto](#invio-pacchetto)
+    - [Semantica indirizzo IP](#semantica-indirizzo-ip)
+  - [Instradamento](#instradamento)
+    - [Diretto](#diretto)
+    - [Indiretto](#indiretto)
+    - [Tabella di instradamento](#tabella-di-instradamento)
+    - [Table look-up](#table-look-up)
+    - [Intervalli di indirizzi](#intervalli-di-indirizzi)
+    - [Supernetting](#supernetting)
+  - [Metodologie di filtraggio dei datagrammi](#metodologie-di-filtraggio-dei-datagrammi)
+    - [Packet filter](#packet-filter)
+        - [Come si fa?](#come-si-fa)
+        - [Che vantaggio ha ?](#che-vantaggio-ha-)
+    - [Statefull packet inspection](#statefull-packet-inspection)
+    - [Application layer gateway (proxy)](#application-layer-gateway-proxy)
+      - [Firewall](#firewall)
+      - [Nat](#nat)
+  - [Instradamento nelle reti a pacchetto e in Internet](#instradamento-nelle-reti-a-pacchetto-e-in-internet)
+    - [Algoritmi di instradamento](#algoritmi-di-instradamento)
+      - [Senza tabella:](#senza-tabella)
+        - [Flooding (broadcast)](#flooding-broadcast)
+        - [Random](#random)
+        - [Deflection Routing (hot potato)](#deflection-routing-hot-potato)
+      - [Con tabella](#con-tabella)
+        - [Shortest path routing](#shortest-path-routing)
+          - [Cosa succede se la rete si modifica?](#cosa-succede-se-la-rete-si-modifica)
+    - [Routing link state](#routing-link-state)
+    - [Cosa sono i nodi](#cosa-sono-i-nodi)
+      - [Ruolo router](#ruolo-router)
+        - [Tabella routing e forwarding](#tabella-routing-e-forwarding)
+  - [Internet moderna](#internet-moderna)
+    - [ISP internet service provider](#isp-internet-service-provider)
+      - [IGP](#igp)
+      - [RIP come funziona](#rip-come-funziona)
+      - [OSPF (Open Shortest Path First)](#ospf-open-shortest-path-first)
+        - [Caratteristiche principali di OSPF:](#caratteristiche-principali-di-ospf)
+        - [Componenti chiave:](#componenti-chiave)
+        - [Utilizzi principali:](#utilizzi-principali)
+        - [Configurazione iniziale](#configurazione-iniziale)
+    - [Pacchetti HELLO](#pacchetti-hello)
+      - [Campi dei Pacchetti HELLO](#campi-dei-pacchetti-hello)
+    - [EXCHANGE protocol](#exchange-protocol)
+    - [Flooding Protocol](#flooding-protocol)
+      - [Modalità di Flooding](#modalità-di-flooding)
+    - [Exterior Gateway Protocols (EGP)](#exterior-gateway-protocols-egp)
+    - [Protocolli EGP per Internet](#protocolli-egp-per-internet)
+- [primo anno](#primo-anno)
+  - [Broadcast livello 2](#broadcast-livello-2)
+  - [1. DHCP (Dynamic Host Configuration Protocol)](#1-dhcp-dynamic-host-configuration-protocol)
+    - [2. ARP (Address Resolution Protocol)](#2-arp-address-resolution-protocol)
+      - [Differenze Chiave](#differenze-chiave)
+    - [Livelli iso-osi](#livelli-iso-osi)
+
+
 ## IP e internet
 
 ### Composizione Indirizzo IP
@@ -549,6 +609,24 @@ La diffusione dei LSA (Link-State Advertisements) a tutti i router della rete av
 Questa procedura assicura che tutti i router abbiano una visione aggiornata e coerente della topologia della rete.
 
 
+### Exterior Gateway Protocols (EGP)
+
+I protocolli di tipo EGP sono diversi da quelli di tipo IGP. Le principali differenze e caratteristiche includono:
+
+- **Ottimizzazione dei Percorsi**: All'interno di un AS (Autonomous System) si persegue l'ottimizzazione dei percorsi.
+- **Politiche di Instradamento**: Nel routing tra diversi AS, si deve tener conto delle politiche di instradamento:
+  - Ogni AS vuole mantenere autonomia e indipendenza dagli altri.
+  - Alcuni AS non permettono ad altri AS di instradare il traffico attraverso le loro reti.
+  - In alcuni casi, bisogna operare secondo accordi internazionali.
+
+### Protocolli EGP per Internet
+
+Per Internet sono stati definiti due protocolli di tipo EGP:
+
+- **Exterior Gateway Protocol (EGP)**
+- **Border Gateway Protocol (BGP)**
+
+
 <br>
 
 ---
@@ -560,16 +638,16 @@ Questa procedura assicura che tutti i router abbiano una visione aggiornata e co
 
 
 
+# primo anno
 
-
-### Broadcast livello 2
+## Broadcast livello 2
 In informatica, un broadcast di livello 2 si riferisce a una trasmissione dati all'interno del livello Data Link (Livello 2) del modello OSI, che coinvolge tutti i dispositivi collegati nella stessa rete locale (LAN).
 
 In pratica, il broadcast di livello 2 invia un messaggio a tutti i dispositivi connessi a un segmento di rete, senza una destinazione specifica. Il messaggio viene inviato all'indirizzo MAC di broadcast (FF:FF:FF:FF:FF:FF), che tutti i dispositivi all'interno della rete ascoltano e ricevono. Un esempio comune è l'uso del broadcast per la risoluzione dell'indirizzo IP tramite ARP (Address Resolution Protocol), in cui un dispositivo chiede a tutti i dispositivi della rete se possiedono un determinato indirizzo IP.
 
 I broadcast di livello 2 sono limitati alla rete locale e non vengono inoltrati dai router a meno che non siano configurati in modo specifico per farlo, mantenendo il traffico di broadcast contenuto all'interno di una singola LAN.
 
-### 1. DHCP (Dynamic Host Configuration Protocol)
+## 1. DHCP (Dynamic Host Configuration Protocol)
 
 - **Funzione**: Il DHCP si occupa di assegnare automaticamente gli indirizzi IP ai dispositivi connessi a una rete.
 - **Come funziona**: Quando un dispositivo si collega a una rete, invia una richiesta di DHCP. Il server DHCP risponde con un indirizzo IP disponibile, una subnet mask, un gateway, e altre configurazioni di rete (come i DNS).
