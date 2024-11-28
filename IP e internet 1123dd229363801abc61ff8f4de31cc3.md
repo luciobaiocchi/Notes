@@ -52,6 +52,11 @@
       - [Modalità di Flooding](#modalità-di-flooding)
     - [Exterior Gateway Protocols (EGP)](#exterior-gateway-protocols-egp)
     - [Protocolli EGP per Internet](#protocolli-egp-per-internet)
+      - [EGP](#egp)
+      - [Limiti di EGP](#limiti-di-egp)
+    - [BGP: Border Gateway Protocol](#bgp-border-gateway-protocol)
+      - [Caratteristiche principali di BGP:](#caratteristiche-principali-di-bgp)
+        - [Attributi](#attributi)
 - [primo anno](#primo-anno)
   - [Broadcast livello 2](#broadcast-livello-2)
   - [1. DHCP (Dynamic Host Configuration Protocol)](#1-dhcp-dynamic-host-configuration-protocol)
@@ -621,12 +626,70 @@ I protocolli di tipo EGP sono diversi da quelli di tipo IGP. Le principali diffe
 
 ### Protocolli EGP per Internet
 
-Per Internet sono stati definiti due protocolli di tipo EGP:
+Due protocolli EGP per Internet:
 
 - **Exterior Gateway Protocol (EGP)**
 - **Border Gateway Protocol (BGP)**
 
+#### EGP
 
+- **Primo protocollo di routing tra AS** (anni '80, RFC 827).
+- **Funzionalità principali**:
+  1. **Neighbor Acquisition**: Verifica accordi per diventare vicini.
+  2. **Neighbor Reachability**: Monitora connessioni con i vicini.
+  3. **Network Reachability**: Scambia informazioni sulle reti raggiungibili.
+
+
+EGP è simile a un protocollo di tipo distance vector, con le seguenti caratteristiche:
+
+- Le informazioni inviate ai vicini sono sostanzialmente informazioni di raggiungibilità.
+- Non sono specificate le regole per definire le distanze.
+- La distanza minima può non essere il criterio migliore da seguire.
+
+Queste caratteristiche rendono EGP un protocollo semplice ma limitato rispetto ai protocolli più moderni come BGP.
+
+#### Limiti di EGP
+
+- Progettato per topologie specifiche (es. ARPAnet).
+- Funziona bene per topologie ad albero, non per reti a maglia complessa.
+- Convergenza lenta e instabilità.
+- Adattamento lento alle modifiche della topologia.
+- Nessun meccanismo di sicurezza: vulnerabile a annunci falsi e guasti dei router.
+
+### BGP: Border Gateway Protocol
+
+BGP è stato concepito come sostituto di EGP e oggi è in uso la versione 4 (RFC 1771). I router BGP si scambiano informazioni attraverso connessioni TCP (porta 179) chiamate sessioni BGP.
+
+#### Caratteristiche principali di BGP:
+
+- **Connessioni Affidabili**: Le comunicazioni sono affidabili grazie all'uso di TCP, con funzionalità di controllo degli errori demandate allo strato di trasporto.
+  
+- **Tipi di Sessioni BGP**:
+  - **eBGP (External BGP)**: Sessioni instaurate tra router BGP appartenenti ad AS diversi.
+  - **iBGP (Internal BGP)**: Sessioni instaurate tra router BGP appartenenti allo stesso AS.
+- **Informazioni Scambiate**: Le informazioni riguardano la raggiungibilità di reti IP secondo lo schema classless (CIDR).
+
+Queste caratteristiche rendono BGP un protocollo robusto e scalabile per il routing tra diversi AS. Utilizza un path vector, un'evoluzione del distance vector, nel vettore dei percorsi si elencano tutti gli AS da attraversare per raggiungere una destinazione per evitare percorsi ciclici. Quando un router riceve un path e c'è già lui dentro lo scarta, evitando di creare cicli.
+
+##### Attributi
+A ciascun path vector vengono associati degli attributi
+Gli attributi BGP possono essere classificati in diverse categorie:
+
+- **Well-known**: Riconoscibili da tutte le implementazioni BGP e devono essere inoltrati assieme al path vector (dopo un eventuale aggiornamento).
+  - **Mandatory**: Devono essere presenti nel path vector.
+  - **Discretionary**: Possono anche non essere indicati.
+- **Optional**: Possono non essere riconosciuti da alcuni router.
+  - **Transitive**: Devono essere inoltrati anche se non riconosciuti.
+  - **Non-transitive**: Devono essere ignorati se non riconosciuti.
+- **Partial**: Attributi optional-transitive che sono stati ritrasmessi senza modifiche da un router perché non riconosciuti. Indicano se un determinato path vector è stato riconosciuto o meno da tutti i router attraversati.
+
+Queste categorie aiutano a gestire come gli attributi vengono trattati e propagati attraverso la rete BGP.
+
+
+<div style="text-align: center;">
+  <img src="./img/Screenshot_2024-11-28_at_14.31.58.png
+" alt="Diagramma di rete" width="400"/>
+</div>
 <br>
 
 ---
