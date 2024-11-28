@@ -366,7 +366,7 @@ dopo il rib si applica il route selection process, per selezionare le route migl
 
 **FIB** in seguito si compila la route forwarding table che contiene le informazioni filtrate e ottimizzate 
 
-##### Internet moderna 
+## Internet moderna 
 Insieme di sottoninsiemi (autonomus sistem), ordinati con un numero identificativo. 
 Si assume che valgano solo i nodi che fanno parlare un sottoinsieme con l'esterno, e in questo modo si semplifica il grafo della rete.
 Si scompone anche il problema all'interno (intra Domain) dell'autonomus sistem e all'esterno di esso(inter Domain).
@@ -381,8 +381,8 @@ la logica CIDR)
 Un AS importa le informazioni di routing da solo determinati AS certificati.
 RADb -> database contenente le politiche di routing 
 
-##### ISP
-internet service provider. Una associazione che fornisce servizi di connnettività, web e mail hosting, registrazione e noleggio di indirizzi IP. Può essere a fini di lucro o no e coperativa o no. Tipocamente un ISP è un AS.
+### ISP internet service provider
+Una associazione che fornisce servizi di connnettività, web e mail hosting, registrazione e noleggio di indirizzi IP. Può essere a fini di lucro o no e coperativa o no. Tipocamente un ISP è un AS.
 
 **Internet region** una porzione di internet contenuta in una determinata area. 
 
@@ -392,13 +392,161 @@ Tipologie di ISP:
 - Tier 3 o local ISP (vengono aiutati da livello 1 o 2 comprando servizi)
 
 **PEERING** collegamento tra ISP, con lo scopo di scambiare servizi
-**POP** punto di collegamento tra ISP. Localizzaot nelle grandi città
+**POP** Nelle reti, un PoP (Point of Presence) è un punto di accesso fisico che consente la connessione a una rete, come un ISP (Internet Service Provider) o una rete aziendale. 
 **Internet Exchange Point (IX o IXP)**
 - Infrastrutture attraverso le quali gli ISP possono stabilire
 relazioni di peering
 - L’IXP è costruito per permettere l’interconnessione diretta degli AS senza utilizzare reti di terze parti
 - L’IXP fornisce soluzioni di connettività con specifiche garanzie di qualità (disponibilità elevata, sicurezza fisica, banda garantita ecc.)
 
+
+
+#### IGP
+
+Un IGP **(Interior Gateway Protocol)** è un protocollo di routing utilizzato per instradare il traffico all’interno di un’unica rete autonoma, chiamata AS (Autonomous System). È progettato per gestire la comunicazione tra router appartenenti alla stessa organizzazione o dominio amministrativo.
+
+Esempi di IGP:
+- OSPF (Open Shortest Path First), basato sullo stato dei collegamenti (link-state).
+- RIP (Routing Information Protocol), basato sulla distanza (distance-vector).
+    Il RIP (Routing Information Protocol) è un protocollo di routing dinamico basato sull’approccio distance-vector, progettato per reti IP di piccole dimensioni. È uno dei protocolli di routing più semplici ed è stato ampiamente utilizzato in passato, anche se oggi è meno comune a causa delle sue limitazioni.
+- EIGRP (Enhanced Interior Gateway Routing Protocol), un protocollo ibrido.
+
+L’IGP si differenzia dai EGP (Exterior Gateway Protocols), come BGP, che gestiscono il routing tra AS differenti.
+
+
+#### RIP come funziona
+
+1.	**Metriche del percorso:**
+•	Utilizza il conteggio dei salti (hop count) come metrica per determinare il percorso migliore.
+•	Ogni router aggiunge un salto alla distanza e il limite massimo è di 15 salti (il 16° indica che la destinazione è irraggiungibile).
+2.	**Scambio di informazioni:**
+•	Ogni router invia periodicamente (default: ogni 30 secondi) la propria tabella di routing ai router adiacenti tramite messaggi broadcast o multicast.
+•	I router aggiornano le proprie tabelle di routing basandosi sulle informazioni ricevute, selezionando il percorso con il minor numero di salti.
+3.	**Aggiornamenti periodici:**
+•	RIP invia aggiornamenti anche se non ci sono cambiamenti nella rete, il che può causare overhead.
+4.	**Meccanismi di stabilità:**
+•	Split horizon: Evita di pubblicizzare un percorso indietro verso il router da cui è stato appreso.
+•	Hold-down timer: Impedisce aggiornamenti troppo frequenti per evitare instabilità.
+•	Poison reverse: Annuncia che un percorso non è più raggiungibile, impostando la metrica a 16.
+
+**Versioni di RIP:**
+
+•	**RIP v1:** Supporta solo subnet classful (senza subnet mask).
+•	**RIP v2:** Aggiunge supporto per reti classless (CIDR), autenticazione e multicast.
+
+**Limiti di RIP:**
+
+•	Scalabilità ridotta (massimo 15 salti).
+•	Lento nel convergere rispetto a protocolli più moderni come OSPF o EIGRP.
+•	Overhead causato dagli aggiornamenti periodici.
+
+Utilizzo attuale:
+
+RIP è ormai superato da protocolli più efficienti e scalabili, ma viene ancora usato in reti semplici o per scopi didattici.
+
+#### OSPF (Open Shortest Path First) 
+
+È un protocollo di routing dinamico utilizzato nei sistemi autonomi per instradare i pacchetti all’interno di una rete. È uno dei più comuni (tra gli IGP), progettati per operare all’interno di una singola organizzazione o rete.
+
+##### Caratteristiche principali di OSPF:
+
+1. **<details><summary> Protocollo di routing a stato di collegamento (Link-State): </summary>**
+    Un protocollo di routing a stato di collegamento crea una mappa completa della rete, condividendo informazioni sui collegamenti tra i router tramite pacchetti LSA. Ogni router calcola il percorso migliore verso ogni destinazione utilizzando un algoritmo come Dijkstra. Questo approccio garantisce una convergenza rapida, aggiornamenti selettivi e maggiore efficienza, rendendolo ideale per reti complesse. Esempi comuni sono OSPF e IS-IS.
+    </details> OSPF utilizza un approccio basato su mappature dettagliate della rete. Ogni router crea una rappresentazione della topologia completa e calcola i percorsi migliori utilizzando l’algoritmo di Dijkstra.
+
+2.	**Routing senza classe:**
+Supporta subnet di dimensioni variabili grazie all’uso del VLSM (Variable Length Subnet Mask), permettendo un uso efficiente degli indirizzi IP.
+3.	**Scalabilità:**
+Può gestire reti grandi suddividendole in aree gerarchiche, riducendo il carico di elaborazione e la dimensione delle tabelle di routing.
+4.	**Convergenza rapida:**
+Rispetto ai protocolli basati su vettore di distanza (come RIP), OSPF converge rapidamente in caso di cambiamenti nella rete.
+5.	**Metriche basate sulla larghezza di banda:**
+Determina il percorso migliore in base alla capacità di throughput dei collegamenti, non al numero di hop.
+6.	**Aggiornamenti efficienti:**
+Invia aggiornamenti solo quando ci sono cambiamenti, anziché inviare l’intera tabella di routing periodicamente.
+
+
+##### Componenti chiave:
+
+- **Router ID:** Identificatore univoco per ogni router nella rete OSPF.
+    **Router catalogati come:**
+    - **Internal Router:** router interni a ciascuna area
+    - **Area Border Router:** router che scambiano informazioni con
+    altre aree
+    - **Backbone Router:** router che si interfacciano con il backbone
+    - **AS Boundary Router:** router che scambiano informazioni con
+    altri AS usando un protocollo EGP
+- **Designated Router (DR):** Router eletto per centralizzare la distribuzione delle informazioni di stato dei collegamenti.
+- **Backup Designated Router (BDR):** Router eletto per assumere il ruolo di DR in caso di fallimento del DR.
+- **Area:** Una rete OSPF può essere divisa in aree per migliorare la scalabilità e l’efficienza. Tutte le aree devono essere connesse all’Area 0 (area backbone).
+- **Hello Packets:** Pacchetti inviati periodicamente per stabilire e mantenere le adiacenze tra i router.
+- **LSA (Link-State Advertisement):** Messaggi che trasportano informazioni sulla topologia della rete.
+- **Database LSDB (Link-State Database):** Contiene le informazioni sulla topologia dell’intera rete OSPF.
+
+
+<div style="text-align: center;">
+  <img src="./img/Screenshot_2024-11-28_at_09.49.29.png" alt="Diagramma di rete" width="400"/>
+</div>
+
+
+
+##### Utilizzi principali:
+
+- Grandi reti aziendali: Dove è richiesta scalabilità e convergenza rapida.
+- Provider di servizi Internet: Per gestione reti interne.
+- Ambienti misti: Dove si vogliono integrare diverse sottoreti con requisiti complessi.
+
+OSPF è standardizzato dall’IETF (Internet Engineering Task Force) come parte della famiglia di protocolli TCP/IP ed è definito nell’RFC 2328.
+
+
+##### Configurazione iniziale
+ogni router ha un proprio Router-id. Come eleggere un router designato? inizialmente tutti i router si scambiano i propri vicini e vengono scartati quelli che hanno priorità 0. Viene designato tra i restanti quello con il numero più alto e diventa DR, quello subito dopo diventa il backup router BDR. Il DR diventa adiacente a tutti e diventa il punto di riferimento centrale  per la distribuzione delle informazioni di stato dei collegamenti (Link-State Advertisements, LSA) all'interno di una rete broadcast multi-access, come una rete Ethernet.
+
+<div style="text-align: center;">
+  <img src="./img/Screenshot_2024-11-28_at_10.11.50.png
+" alt="Diagramma di rete" width="400"/>
+</div>
+
+### Pacchetti HELLO
+
+I pacchetti HELLO sono inviati sulle interfacce periodicamente secondo quanto specificato dal parametro `HelloInterval`. Questi pacchetti permettono di:
+
+- **Scoprire i propri vicini**: Includono una lista di tutti i vicini (Neighbor) dai quali è stato ricevuto un pacchetto HELLO recente (cioè non più vecchio di `RouterDeadInterval`). Questo permette di conoscere se per ciascun vicino è presente un collegamento bidirezionale e se esso è ancora attivo.
+
+#### Campi dei Pacchetti HELLO
+
+- **Router Priority, Designated Router e Backup Designated Router**: Utilizzati per l’elezione di DR e BDR.
+- **Network Mask**: Indica la maschera relativa all’interfaccia del router (l’indirizzo è nell’header IP).
+- **Options**: Indica se si supportano funzionalità opzionali.
+
+### EXCHANGE protocol 
+Sincronizzazione dei Link State Database
+
+Una volta stabilite le adiacenze, i router adiacenti devono sincronizzare i rispettivi Link State Database (LSDB). La procedura è asimmetrica e prevede i seguenti passaggi:
+
+1. **Stabilire Master e Slave**: Si determina quale router sarà il master e quale sarà lo slave.
+2. **Invio dei Database Description (DD) Packets**: 
+   - Il master invia pacchetti DD (Type = 2) con l'elenco dei LSA del proprio database (tipo, età, router generatore, numero di sequenza).
+3. **Risposta dello Slave**: Lo slave risponde con l'elenco dei LSA del suo database.
+4. **Confronto delle Informazioni**: Entrambi i router confrontano le informazioni ottenute con quelle in proprio possesso.
+5. **Richiesta di LSA Meno Recenti**: Se un router ha LSA meno recenti, richiede i LSA aggiornati con un pacchetto Link State Request (Type = 3).
+
+Questa procedura garantisce che entrambi i router abbiano una visione coerente della topologia della rete.
+
+### Flooding Protocol
+
+La diffusione dei LSA (Link-State Advertisements) a tutti i router della rete avviene tramite l'invio di pacchetti Link State Update (Type = 4) nei seguenti casi:
+
+- Cambiamento nello stato di un collegamento
+- Ricezione di una Link State Request
+- Periodicamente (ogni 30 minuti)
+
+#### Modalità di Flooding
+
+- **Flooding Efficiente**: Utilizza i numeri di sequenza dei LSA per garantire che tutti i router vedano gli aggiornamenti.
+- **Affidabilità**: Gli aggiornamenti vengono inviati ripetutamente finché non viene confermata la loro ricezione dai nodi adiacenti tramite il pacchetto Link State Acknowledgment (Type = 5).
+
+Questa procedura assicura che tutti i router abbiano una visione aggiornata e coerente della topologia della rete.
 
 
 <br>
