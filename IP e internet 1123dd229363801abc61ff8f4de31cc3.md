@@ -57,6 +57,10 @@
     - [BGP: Border Gateway Protocol](#bgp-border-gateway-protocol)
       - [Caratteristiche principali di BGP:](#caratteristiche-principali-di-bgp)
         - [Attributi](#attributi)
+  - [Commutazione di etichetta: MPLS](#commutazione-di-etichetta-mpls)
+    - [Label Switching](#label-switching)
+    - [label stacking](#label-stacking)
+    - [label allocation](#label-allocation)
   - [Reti Overlay](#reti-overlay)
     - [Header](#header)
     - [VXLAN](#vxlan)
@@ -66,16 +70,16 @@
         - [IPsec](#ipsec)
   - [Strato fisico](#strato-fisico)
     - [Attenuazione](#attenuazione)
-      - [Rame](#rame)
+    - [Rame](#rame)
       - [Coppie Intrecciate (Twisted Pair)](#coppie-intrecciate-twisted-pair)
         - [Tipologie](#tipologie)
         - [Miglioramenti](#miglioramenti)
         - [Categorie (dalla Cat. 1 alla Cat. 7):](#categorie-dalla-cat-1-alla-cat-7)
       - [Cavo Coassiale](#cavo-coassiale)
         - [Multiplazione a divisione di frequenza (FDM):](#multiplazione-a-divisione-di-frequenza-fdm)
-      - [Comunicazioni Radio](#comunicazioni-radio)
-      - [Sistemi Satellitari](#sistemi-satellitari)
-      - [Sistemi Cellulari](#sistemi-cellulari)
+    - [Comunicazioni Radio](#comunicazioni-radio)
+    - [Sistemi Satellitari](#sistemi-satellitari)
+    - [Sistemi Cellulari](#sistemi-cellulari)
       - [Considerazioni](#considerazioni)
 - [primo anno](#primo-anno)
   - [Broadcast livello 2](#broadcast-livello-2)
@@ -705,16 +709,76 @@ Gli attributi BGP possono essere classificati in diverse categorie:
 
 Queste categorie aiutano a gestire come gli attributi vengono trattati e propagati attraverso la rete BGP.
 
+<div style="text-align: center;"><img src=".imgScreenshot_2024-11-28_at_14.31.58.png" alt="Diagramma di rete" width="400"></div>
 
-<div style="text-align: center;">
-  <img src="./img/Screenshot_2024-11-28_at_14.31.58.png
-" alt="Diagramma di rete" width="400"/>
-</div>
+## Commutazione di etichetta: MPLS
+
+**Router**
+
+- Instrada i datagrammi IP
+  - Longest prefix match
+  - Shortest path routing
+- Spesso implementa funzioni addizionali
+  - packet filtering, QoS etc.
+- Supporta interfacce (piano dati) e protocolli (piano di controllo) di tipo diverso
+
+**Switch**
+
+- Instradamento semplice in funzione di indirizzi statici
+- Funzionalità limitate all’instradamento delle trame
+- Supporto per un numero limitato di interfacce e di protocolli
+- Considerando il traffico smaltito il rapporto costo/prestazioni in uno switch è migliore che in un router
+
+**LER label edge router**
+
+- router normale che però può attaccare una label
+
+### Label Switching
+
+Il label switching è una tecnica usata nelle reti (come in MPLS, Multi-Protocol Label Switching) per instradare i dati in modo più veloce rispetto ai metodi tradizionali basati sugli indirizzi IP.
+
+Ecco come funziona in modo semplice:
+
+1. Etichetta (Label):
+
+   - Quando un pacchetto entra nella rete, gli viene assegnata una “etichetta” (un numero breve) che identifica il percorso che deve seguire.
+
+2. Switching basato sull’etichetta:
+
+   - Ogni router (o switch) della rete non guarda l’indirizzo IP del pacchetto, ma legge solo l’etichetta.
+   - In base all’etichetta, il router sa subito dove inoltrare il pacchetto, senza dover fare calcoli complicati.
+
+3. Riassegnazione dell’etichetta:
+
+   - Durante il percorso, ogni router può sostituire l’etichetta del pacchetto con una nuova, per aggiornare le istruzioni sul percorso successivo.
+
+4. Rimozione dell’etichetta:
+
+   - Alla fine del percorso, l’ultima etichetta viene rimossa e il pacchetto continua verso la sua destinazione usando il metodo tradizionale (indirizzo IP).
+
+Vantaggi:
+
+- Velocità: Gli switch lavorano più velocemente perché analizzano solo etichette, non indirizzi complessi.
+- Efficienza: Si possono creare percorsi ottimizzati per migliorare le prestazioni della rete.
+- Flessibilità: Funziona con molti protocolli (non solo IP).
+
+In pratica, il label switching semplifica e velocizza il trasferimento dei dati nella rete!
+
+### label stacking
+
+innestare domini MPLS, simile al concetto di routing gerarchico
+
+- push label, quando si entra nel dominio si aggiunge etichetta
+- pull label, si toglie etichetta quando esce dal dominio
+
+### label allocation
+chi decide le label? decide sempre il router a valle (il primo router)
 
 
 ## Reti Overlay
 
 Obiettivo della virtualizzazione
+
 - Realizzare topologie o funzionalità sull’infrastruttura esistente
 diverse da quelle native
 - In generale si parla di reti “overlay”
@@ -857,7 +921,7 @@ La capacità dei collegament raddoppia ogni circa 18 mesi
 Misura del degrado del segnale attraverso il mezzo trasmissivo, si misura in dB/km.
 Se l'attenuazione è bassa posso creare collegamenti più lunghi, altrimenti no.
 
-#### Rame
+### Rame
 
 $$A_{dB} = 10 \cdot \log_{10} \left( \frac{P_T}{P_R} \right) = \alpha \sqrt{f_{MHz}} L$$
 
@@ -906,7 +970,7 @@ $$A_{dB} = 10 \cdot \log_{10} \left( \frac{P_T}{P_R} \right) = \alpha \sqrt{f_{M
 
 - Tecnica per inviare più segnali tramite lo stesso canale.
 
-#### Comunicazioni Radio
+### Comunicazioni Radio
 
 - **Vantaggi**:
   - Adatto per la mobilità.
@@ -917,13 +981,13 @@ $$A_{dB} = 10 \cdot \log_{10} \left( \frac{P_T}{P_R} \right) = \alpha \sqrt{f_{M
   - Attenuazione delle onde elettromagnetiche: cresce con la distanza e la frequenza.
   - Propagazione: dipende dalla frequenza (onda di terra, ionosferica o diretta).
 
-#### Sistemi Satellitari
+### Sistemi Satellitari
 
 - **1960-1970**: Intelsat, satelliti in orbita geostazionaria (GEO).
 - **Anni '90**: Satelliti sofisticati, con stazioni a terra economiche.
 - **Oggi**: Costellazioni di satelliti in orbita bassa (LEO) e media (MEO).
 
-#### Sistemi Cellulari
+### Sistemi Cellulari
 
 - **Funzionalità**:
   - Servizi telefonici mobili.
@@ -940,7 +1004,12 @@ $$A_{dB} = 10 \cdot \log_{10} \left( \frac{P_T}{P_R} \right) = \alpha \sqrt{f_{M
 - **Problemi**:
   - Banda limitata.
   - Vulnerabilità ai disturbi atmosferici e attacchi.
-  - 
+  
+
+
+
+
+
 <br>
 
 ---
