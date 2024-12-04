@@ -61,6 +61,22 @@
     - [Header](#header)
     - [VXLAN](#vxlan)
     - [Reti private](#reti-private)
+      - [Roda warrior](#roda-warrior)
+      - [VPN rete a rete](#vpn-rete-a-rete)
+        - [IPsec](#ipsec)
+  - [Strato fisico](#strato-fisico)
+    - [Attenuazione](#attenuazione)
+      - [Rame](#rame)
+      - [Coppie Intrecciate (Twisted Pair)](#coppie-intrecciate-twisted-pair)
+        - [Tipologie](#tipologie)
+        - [Miglioramenti](#miglioramenti)
+        - [Categorie (dalla Cat. 1 alla Cat. 7):](#categorie-dalla-cat-1-alla-cat-7)
+      - [Cavo Coassiale](#cavo-coassiale)
+        - [Multiplazione a divisione di frequenza (FDM):](#multiplazione-a-divisione-di-frequenza-fdm)
+      - [Comunicazioni Radio](#comunicazioni-radio)
+      - [Sistemi Satellitari](#sistemi-satellitari)
+      - [Sistemi Cellulari](#sistemi-cellulari)
+      - [Considerazioni](#considerazioni)
 - [primo anno](#primo-anno)
   - [Broadcast livello 2](#broadcast-livello-2)
   - [1. DHCP (Dynamic Host Configuration Protocol)](#1-dhcp-dynamic-host-configuration-protocol)
@@ -766,7 +782,9 @@ La VXLAN utilizza dispositivi VTEP per incapsulare i frame Ethernet Layer 2 in p
 Aziende e/o enti di dimensioni medio/grandi in genere hanno necessità di interconnettere in maniera **sicura** sedi sparse sul territorio e distanti tra loro
 
 Soluzione tradizionale: utilizzo di linee dedicate da affittare direttamente presso gli operatori (reti private)
+
 - Implica costi di acquisto e di gestione dedicati
+- Le normative non lo permettono
   
 Alternativa: utilizzo di una rete in “overlay” attraverso
 reti pubbliche (reti private virtuali - VPN)
@@ -774,6 +792,155 @@ reti pubbliche (reti private virtuali - VPN)
 informativo criptato) incapsulati in pacchetti tradizionali - diverse tecnologie disponibili
 - Diversi protocolli di tunnelling
   - livello 2: PPTP, L2TP ・livello 3: IPsec
+  
+#### Roda warrior
+
+Una VPN Roadwarrior è una configurazione VPN per utenti che si connettono da luoghi remoti e variabili, come lavoratori in viaggio o in smart working. Offre una connessione sicura attraverso protocolli di tunneling e crittografia, permettendo l’accesso remoto a risorse aziendali o personali tramite dispositivi come laptop, smartphone o tablet.
+
+Funzionamento:
+L’utente utilizza un client VPN per connettersi al server VPN, autenticandosi con credenziali o 2FA. Il server crea un tunnel sicuro per instradare il traffico verso le risorse della rete privata.
+
+Vantaggi:
+- Flessibilità: Accesso da qualsiasi luogo con Internet.
+- Sicurezza: Protezione dei dati sensibili.
+- Accesso centralizzato: Risorse aziendali disponibili in modo sicuro.
+
+TOPOLOGIA : a stella
+
+#### VPN rete a rete
+
+Se ho molti host co-localizzati il rodawarrior è inefficiente
+
+- N host richiedono N tunnel
+
+Si crea un tunnel cifrato su rete pubblica fra due LAN o fra due network IP
+
+- Su rete pubblica i pacchetti vengono cifrati
+- Su rete pubblica l’indirizzamento reale può essere
+mascherato
+
+Viene utilizzato
+
+##### IPsec
+
+IPsec (Internet Protocol Security) è un insieme di protocolli utilizzati per garantire la sicurezza delle comunicazioni su reti IP. Fornisce cifratura, autenticazione e integrità dei dati, rendendolo ideale per proteggere le connessioni VPN.
+
+Utilizzo nelle VPN Site-to-Site (Net-to-Net):
+
+In una VPN Site-to-Site, IPsec viene utilizzato per creare un tunnel sicuro tra due reti geograficamente separate. Questo consente ai dispositivi di entrambe le reti di comunicare come se fossero nella stessa rete locale.
+
+1. Fasi principali:
+
+    - Autenticazione dei peer: Le reti si autenticano tramite certificati digitali o chiavi pre-condivise (Pre-Shared Keys - PSK).
+    - Creazione del tunnel: IPsec stabilisce un tunnel cifrato tra i gateway delle reti.
+    - Scambio dei dati: I pacchetti vengono cifrati e autenticati durante il transito per proteggerli.
+
+2. Protocolli utilizzati:
+
+   - IKE(Internet Key Exchange): autentica interlocutore negoziazione algoritmi e chiavi crittografiche
+   - AH (Authentication Header): Garantisce integrità e autenticità dei pacchetti.
+   - ESP (Encapsulating Security Payload): Cifra i dati per garantirne la riservatezza.
+
+Vantaggi:
+
+- Sicurezza robusta per le comunicazioni aziendali.
+- Trasparenza per gli utenti, che non devono configurare nulla sui dispositivi finali.
+
+È una soluzione comune per collegare filiali o data center tramite una rete pubblica come Internet.
+
+## Strato fisico
+
+La capacità dei collegament raddoppia ogni circa 18 mesi
+
+### Attenuazione
+
+Misura del degrado del segnale attraverso il mezzo trasmissivo, si misura in dB/km.
+Se l'attenuazione è bassa posso creare collegamenti più lunghi, altrimenti no.
+
+#### Rame
+
+$$A_{dB} = 10 \cdot \log_{10} \left( \frac{P_T}{P_R} \right) = \alpha \sqrt{f_{MHz}} L$$
+
+- L'attenuazione cresce esponenzialmente con la lunghezzadel collegamento
+- Esponenzialmente con la radfice della frequenza del segnale
+
+#### Coppie Intrecciate (Twisted Pair)
+
+##### Tipologie
+
+1. **Shielded Twisted Pair (STP)**:
+
+- Ogni coppia è avvolta in uno schermo conduttore.
+- Costo maggiore e necessità di mettere lo schermo a massa.
+
+1. **Unshielded Twisted Pair (UTP)**:
+
+- Più economici e facili da installare.
+
+##### Miglioramenti
+
+- Aumento del diametro dei conduttori e miglioramento della qualità del dielettrico.
+- Miglioramento della regolarità e infittimento del passo di avvolgimento.
+
+##### Categorie (dalla Cat. 1 alla Cat. 7):
+
+- **Cat. 1**: Rete telefonica e ISDN.
+- **Cat. 3**: Rete fino a 16 MHz, Ethernet a 10 Mbit/s.
+- **Cat. 5**: Frequenze fino a 100 MHz, Ethernet a 100 Mbit/s.
+- **Cat. 5e**: Fino a 200 MHz, Fast e Gigabit Ethernet.
+- **Cat. 6**: Frequenze fino a 250 MHz.
+- **Cat. 6a**: Fino a 500 MHz.
+- **Cat. 7**: Fino a 600 MHz, 4 STP in un cavo.
+- **Cat. 7a**: Fino a 1 GHz.
+
+#### Cavo Coassiale
+
+- **D**: Diametro cavità conduttore esterno.
+- **d**: Diametro conduttore interno.
+- La qualità del cavo migliora con l’aumento di D (costo e prestazioni).
+- **Cavo coassiale normalizzato**:
+  - Diametro interno: 2.6 mm, esterno: 9.5 mm.
+  - Attenuazione a 1 MHz = 2.35 dB/km.
+
+##### Multiplazione a divisione di frequenza (FDM):
+
+- Tecnica per inviare più segnali tramite lo stesso canale.
+
+#### Comunicazioni Radio
+
+- **Vantaggi**:
+  - Adatto per la mobilità.
+  - Facilita i servizi di diffusione (broadcasting).
+
+- **Problemi**:
+  - Lo spettro radio è limitato.
+  - Attenuazione delle onde elettromagnetiche: cresce con la distanza e la frequenza.
+  - Propagazione: dipende dalla frequenza (onda di terra, ionosferica o diretta).
+
+#### Sistemi Satellitari
+
+- **1960-1970**: Intelsat, satelliti in orbita geostazionaria (GEO).
+- **Anni '90**: Satelliti sofisticati, con stazioni a terra economiche.
+- **Oggi**: Costellazioni di satelliti in orbita bassa (LEO) e media (MEO).
+
+#### Sistemi Cellulari
+
+- **Funzionalità**:
+  - Servizi telefonici mobili.
+  - Potenza di trasmissione bassa, ma alta efficienza nel riutilizzo delle frequenze (celle non adiacenti).
+  
+- **Tecnologie**:
+  - **ETACS** (900 MHz, analogico).
+  - **GSM** (digitale, copertura mondiale).
+  - **Generazioni successive** (multimediali, roaming, hand-over).
+
+#### Considerazioni
+
+- **Reti radio**: Economiche per territori vasti e poco popolati.
+- **Problemi**:
+  - Banda limitata.
+  - Vulnerabilità ai disturbi atmosferici e attacchi.
+  - 
 <br>
 
 ---
