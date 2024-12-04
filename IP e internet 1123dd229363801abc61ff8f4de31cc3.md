@@ -57,6 +57,10 @@
     - [BGP: Border Gateway Protocol](#bgp-border-gateway-protocol)
       - [Caratteristiche principali di BGP:](#caratteristiche-principali-di-bgp)
         - [Attributi](#attributi)
+  - [Reti Overlay](#reti-overlay)
+    - [Header](#header)
+    - [VXLAN](#vxlan)
+    - [Reti private](#reti-private)
 - [primo anno](#primo-anno)
   - [Broadcast livello 2](#broadcast-livello-2)
   - [1. DHCP (Dynamic Host Configuration Protocol)](#1-dhcp-dynamic-host-configuration-protocol)
@@ -690,6 +694,86 @@ Queste categorie aiutano a gestire come gli attributi vengono trattati e propaga
   <img src="./img/Screenshot_2024-11-28_at_14.31.58.png
 " alt="Diagramma di rete" width="400"/>
 </div>
+
+
+## Reti Overlay
+
+Obiettivo della virtualizzazione
+- Realizzare topologie o funzionalità sull’infrastruttura esistente
+diverse da quelle native
+- In generale si parla di reti “overlay”
+
+**Un tunnel GRE** (Generic Routing Encapsulation) è un protocollo di tunneling usato per incapsulare una varietà di protocolli di rete all’interno di una connessione IP.
+
+- Sovrapposte logicamente all’infrastruttura fisica per realizzare funzionalità diverse da quelle normalmente fornite dalla stessa
+Un tunnel GRE (Generic Routing Encapsulation) è un protocollo di tunneling usato per incapsulare una varietà di protocolli di rete all’interno di una connessione IP.
+
+Come funziona:
+
+1. Encapsulaamento: I dati originali (pacchetti) vengono racchiusi in un nuovo header GRE.
+2. Trasporto: Il pacchetto incapsulato viene inviato attraverso una rete IP.
+3. Decapsulamento: Il router di destinazione rimuove l’header GRE e consegna il pacchetto originale.
+
+Caratteristiche principali:
+
+- Flessibilità: Supporta diversi protocolli (IPv4, IPv6, MPLS).
+- Indipendenza: Funziona sopra un’infrastruttura IP senza modifiche.
+- Overhead: Aggiunge un piccolo sovraccarico ai pacchetti per includere l’header GRE.
+
+Utilizzi comuni:
+
+- Creazione di VPN semplici (ma senza crittografia).
+- Collegamento di reti separate (ad esempio, reti aziendali remote).
+- Trasporto di protocolli che non possono essere instradati direttamente su IP.
+
+Se viene modificata la rete fisica non c'è modifica nella rete logica. 
+
+### Header 
+**L’header GRE** è una struttura di dati utilizzata per incapsulare pacchetti all’interno di un tunnel GRE. Serve a fornire le informazioni necessarie per gestire il pacchetto incapsulato durante il suo transito attraverso la rete.
+
+Struttura dell’header GRE (base)
+
+L’header base di GRE è lungo 4 byte (32 bit) e contiene i seguenti campi principali:
+1. Flags e Version (16 bit):
+   - C (Checksum Present): Indica se un checksum è incluso (1 = presente).
+   - K (Key Present): Indica se un campo di chiave è presente per identificare il tunnel.
+   - S (Sequence Number Present): Indica se un numero di sequenza è incluso.
+   - Version: Solitamente impostato a 0 per GRE standard.
+2. Protocol Type (16 bit):
+   - Specifica il tipo di protocollo incapsulato (es. 0x0800 per IPv4, 0x86DD per IPv6).
+
+Header GRE opzionale
+
+A seconda delle impostazioni, possono essere aggiunti altri campi:
+- Checksum (32 bit): Per verificare l’integrità del pacchetto.
+- Key (32 bit): Per identificare il tunnel o la sessione.
+- Sequence Number (32 bit): Per garantire l’ordine dei pacchetti.
+
+Funzionamento
+
+1. Il router sorgente aggiunge un header GRE al pacchetto originale.
+2. Il pacchetto incapsulato viene inviato attraverso il tunnel GRE.
+3. Il router di destinazione legge l’header GRE, estrae il pacchetto originale e lo consegna alla rete di destinazione.
+
+GRE è semplice e flessibile, ma non offre crittografia o meccanismi di sicurezza avanzati. Per proteggere i dati, può essere combinato con protocolli come IPsec.
+
+### VXLAN
+La VXLAN (Virtual Extensible LAN) è una tecnologia di rete che estende reti Layer 2 (L2) su infrastrutture Layer 3 (L3) usando tunneling. Incapsula i frame Ethernet L2 in pacchetti UDP L3, permettendo di creare fino a 16 milioni di reti virtuali grazie al VNI (identificatore a 24 bit), superando il limite di 4096 VLAN.
+
+La VXLAN utilizza dispositivi VTEP per incapsulare i frame Ethernet Layer 2 in pacchetti UDP Layer 3. Ogni VTEP collega una rete virtuale (L2) alla rete fisica (L3). I pacchetti incapsulati viaggiano attraverso la rete Layer 3 e vengono de-incapsulati dal VTEP di destinazione per consegnarli alla rete virtuale corretta, identificata dal VNI.
+
+### Reti private 
+Aziende e/o enti di dimensioni medio/grandi in genere hanno necessità di interconnettere in maniera **sicura** sedi sparse sul territorio e distanti tra loro
+
+Soluzione tradizionale: utilizzo di linee dedicate da affittare direttamente presso gli operatori (reti private)
+- Implica costi di acquisto e di gestione dedicati
+  
+Alternativa: utilizzo di una rete in “overlay” attraverso
+reti pubbliche (reti private virtuali - VPN)
+- flusso punto-punto di pacchetti autenticati (con contenuto
+informativo criptato) incapsulati in pacchetti tradizionali - diverse tecnologie disponibili
+- Diversi protocolli di tunnelling
+  - livello 2: PPTP, L2TP ・livello 3: IPsec
 <br>
 
 ---
