@@ -81,12 +81,18 @@
     - [Sistemi Satellitari](#sistemi-satellitari)
     - [Sistemi Cellulari](#sistemi-cellulari)
       - [Considerazioni](#considerazioni)
-- [primo anno](#primo-anno)
-  - [Broadcast livello 2](#broadcast-livello-2)
-  - [1. DHCP (Dynamic Host Configuration Protocol)](#1-dhcp-dynamic-host-configuration-protocol)
-    - [2. ARP (Address Resolution Protocol)](#2-arp-address-resolution-protocol)
-      - [Differenze Chiave](#differenze-chiave)
-    - [Livelli iso-osi](#livelli-iso-osi)
+  - [Funzionalità e prestazioni](#funzionalità-e-prestazioni)
+    - [Prestazioni](#prestazioni)
+      - [Richieste perdute](#richieste-perdute)
+      - [Utenti e servizi](#utenti-e-servizi)
+        - [PDU (protocoll data unit)](#pdu-protocoll-data-unit)
+      - [Frequenza di servizio](#frequenza-di-servizio)
+        - [esempio](#esempio)
+      - [Traffico](#traffico)
+    - [Prestazioni Ideali per un Protocollo Data Link](#prestazioni-ideali-per-un-protocollo-data-link)
+    - [Capacità Effettiva $(C\_e)$](#capacità-effettiva-c_e)
+    - [Valutazione efficienza](#valutazione-efficienza)
+  - [Reti commutate: il sistema a coda con singolo servitore](#reti-commutate-il-sistema-a-coda-con-singolo-servitore)
 
 
 ## IP e internet
@@ -709,7 +715,7 @@ Gli attributi BGP possono essere classificati in diverse categorie:
 
 Queste categorie aiutano a gestire come gli attributi vengono trattati e propagati attraverso la rete BGP.
 
-<div style="text-align: center;"><img src=".imgScreenshot_2024-11-28_at_14.31.58.png" alt="Diagramma di rete" width="400"></div>
+<div style="text-align: center;"><img src="./img/Screenshot_2024-11-28_at_14.31.58.png" alt="Diagramma di rete" width="400"></div>
 
 ## Commutazione di etichetta: MPLS
 
@@ -1005,67 +1011,146 @@ $$A_{dB} = 10 \cdot \log_{10} \left( \frac{P_T}{P_R} \right) = \alpha \sqrt{f_{M
   - Banda limitata.
   - Vulnerabilità ai disturbi atmosferici e attacchi.
   
+## Funzionalità e prestazioni
 
+I protocolli devono garantire :
 
+- funzionalità
+- prestazioni
+  
+### Prestazioni
 
+Un sistema deve smaltire il lavoro offerto dall'esterno.
 
+$$richieste\ in\ arrivo \rightarrow k(t) = numero\ di\ richieste\ da\ elaborare\rightarrow richieste\ soddisfatte$$
 
-<br>
+<div style="text-align: center;"><img src="./img/Screenshot_2024-12-06_at_09.16.13.png
+" alt="Diagramma di rete" width="400"></div>
 
----
+- Frequenza media richieste offerte
 
-<br>
+$$\lambda = \lim_{t \to \infty} \frac{a(t)}{t}$$
 
+- Frequenza media richieste smaltite
 
+$$\lambda_s = \lim_{t \to \infty} \frac{p(t)}{t}$$
 
+- Se il sistema in oggetto non produce lavoro ma lo
+riceve solamente dall’esterno
 
+$$\lambda_s \le \lambda$$
 
+#### Richieste perdute
 
-# primo anno
+$$se\ \lambda_s = \lambda\  \rightarrow\  s(t) = a(t)$$
 
-## Broadcast livello 2
-In informatica, un broadcast di livello 2 si riferisce a una trasmissione dati all'interno del livello Data Link (Livello 2) del modello OSI, che coinvolge tutti i dispositivi collegati nella stessa rete locale (LAN).
+- tutte richieste accettate prima o poi soddisfatte
 
-In pratica, il broadcast di livello 2 invia un messaggio a tutti i dispositivi connessi a un segmento di rete, senza una destinazione specifica. Il messaggio viene inviato all'indirizzo MAC di broadcast (FF:FF:FF:FF:FF:FF), che tutti i dispositivi all'interno della rete ascoltano e ricevono. Un esempio comune è l'uso del broadcast per la risoluzione dell'indirizzo IP tramite ARP (Address Resolution Protocol), in cui un dispositivo chiede a tutti i dispositivi della rete se possiedono un determinato indirizzo IP.
+$$se\ \lambda_s < \lambda\  \rightarrow\  r(t) = a(t) - s(t)$$
 
-I broadcast di livello 2 sono limitati alla rete locale e non vengono inoltrati dai router a meno che non siano configurati in modo specifico per farlo, mantenendo il traffico di broadcast contenuto all'interno di una singola LAN.
+- r(t) rappresenta le richieste non accettate e perdute dal sistema.
+quindi :
 
-## 1. DHCP (Dynamic Host Configuration Protocol)
+$$(frequenza\ rifiutate\ o\ perdute)\ \lambda_p = \lim_{t \to \infty} \frac{r(t)}{t}$$
+$$\lambda = \lambda_s + \lambda_p$$
 
-- **Funzione**: Il DHCP si occupa di assegnare automaticamente gli indirizzi IP ai dispositivi connessi a una rete.
-- **Come funziona**: Quando un dispositivo si collega a una rete, invia una richiesta di DHCP. Il server DHCP risponde con un indirizzo IP disponibile, una subnet mask, un gateway, e altre configurazioni di rete (come i DNS).
-Livello del modello OSI: Lavora a livello Applicazione (Livello 7).
-- **Obiettivo**: Assicurare che ogni dispositivo connesso alla rete ottenga un indirizzo IP unico e una configurazione di rete corretta senza la necessità di configurazioni manuali.
+#### Utenti e servizi
 
-### 2. ARP (Address Resolution Protocol)
+In una rete non ha senso considerare unicamente il bit rate del canale, perchè l'unità di servizio è il pacchetto e non il bit, perciò si considera come **risultato utile** il tempo per completare la consegna di un intero pacchetto.
 
-- **Funzione**: ARP è utilizzato per tradurre un indirizzo IP in un indirizzo MAC (fisico) in una LAN.
-- **Come funziona**: Quando un dispositivo conosce l’indirizzo IP di un altro dispositivo nella rete locale ma non il suo indirizzo MAC, invia una richiesta ARP in broadcast. Il dispositivo destinatario risponde con il proprio indirizzo MAC, permettendo così la comunicazione a livello di collegamento dati.
-Livello del modello OSI: Lavora a livello Collegamento Dati (Livello 2) ma può anche interagire con il Livello di Rete (Livello 3).
-- **Obiettivo**: Consentire la comunicazione tra dispositivi in una rete locale traducendo indirizzi IP in indirizzi MAC, necessari per l’instradamento dei pacchetti a livello di collegamento dati.
+$$\theta \rightarrow PDU=tempo\ richiesto\ da\ un\ generico\ cliente$$
 
-#### Differenze Chiave
+$$\bar\theta = \frac{L}{C}$$
 
-- **Funzione**: DHCP assegna indirizzi IP e configurazioni di rete, mentre ARP traduce indirizzi IP in indirizzi MAC.
-- **Livello OSI**: DHCP opera a livello Applicazione, mentre ARP opera a livello Collegamento Dati.
-- **Ambito di utilizzo**: DHCP è usato per l'assegnazione iniziale della configurazione di rete; ARP è usato per risolvere indirizzi IP in MAC all'interno della stessa rete locale.
-In sintesi, DHCP fornisce gli indirizzi IP, mentre ARP permette di individuare l'indirizzo MAC associato a un IP specifico per comunicare nella LAN.
+- L = lunghezza pacchetto in bit
+- C = capacità canale in bit per sec
 
-### Livelli iso-osi
-Il modello **ISO/OSI** è uno standard di riferimento per la comunicazione di rete che organizza le funzioni di rete in 7 livelli distinti, ognuno dei quali ha un ruolo specifico nel processo di trasmissione e ricezione dei dati. Ecco una panoramica dei livelli:
+##### PDU (protocoll data unit)
 
-1. **Livello Fisico**: Definisce le caratteristiche fisiche della trasmissione (cavi, frequenze, segnali elettrici) e il modo in cui i dati sono trasmessi fisicamente tra dispositivi.
+- Servizio **aleatorio**
+  - Si fa riferimento in prima battuta al tempo medio
+- Servizio **deterministico**
+  - Tempo di servizio costante ed uguale al suo valore medio
 
-2. **Livello Collegamento Dati**: Gestisce la comunicazione tra due dispositivi collegati direttamente, organizzando i dati in frame e garantendo che non ci siano errori di trasmissione tra i nodi.
+#### Frequenza di servizio
 
-3. **Livello Rete**: Gestisce l'instradamento dei pacchetti di dati attraverso la rete, trovando il percorso migliore tra mittente e destinatario. Utilizza indirizzi IP.
+$$\mu = \frac{1}{\bar \theta}$$
 
-4. **Livello Trasporto**: Fornisce la consegna affidabile dei dati, segmentandoli e garantendo il loro corretto ordine di arrivo. Include protocolli come TCP e UDP.
+La frequenza media di servizio è ovviamente legata
+alla presenza di utenti del sistema
 
-5. **Livello Sessione**: Gestisce l’inizio, la gestione e la terminazione delle sessioni di comunicazione tra applicazioni, mantenendo aperta una connessione per lo scambio continuo di dati.
+- Se non vi sono richieste di servizio $\rightarrow$ frequenza di servizio è nulla
 
-6. **Livello Presentazione**: Si occupa della formattazione e della traduzione dei dati per renderli comprensibili all'applicazione, ad esempio, codificando e decodificando i dati (come la crittografia).
+- Se vi sono richieste di servizio il parametro da
+indicazione di quanto velocemente esse vengono
+soddisfatte
 
-7. **Livello Applicazione**: È il livello più alto e interagisce direttamente con il software applicativo. Include protocolli come HTTP, FTP e SMTP, che permettono all’utente di accedere ai servizi di rete.
+##### esempio
 
-In sintesi, ogni livello del modello OSI è responsabile di una parte specifica della comunicazione, e tutti insieme permettono la trasmissione ordinata e affidabile dei dati tra dispositivi diversi.
+se $\bar\theta =0.5s$ allora il servitore può smatltire al massimo $\mu = 2\ pacchetti/s$
+$$\lambda^{max}_s = \mu$$
+
+Un utente spende mediamente in coda il tempo del servizio + il tempo di attesa
+
+$$\bar\delta = \bar \theta + \bar T_A$$
+
+#### Traffico
+
+Le prestazioni del sistema che fornisce il servizio
+dipendono:
+
+- Dalla numerosità degli arrivi, (utenti per secondo)
+- Dalla durata del servizio (utenti al secondo) o il tempo medio di servizio(secondi)
+
+**Traffico** = numero medio di utenti presenti nel sistema
+
+$$A =\lambda \bar\delta$$
+$A_0 =\lambda \bar\delta \rightarrow$ Traffico offerto
+$A_s =\lambda_s \bar\delta \rightarrow$ Traffico smaltito
+$A_p  =\lambda_p \bar\delta\rightarrow$ Traffico perduto
+
+<div style="text-align: center;"><img src="./img/Screenshot_2024-12-09_at_11.26.20.png" alt="Diagramma di rete" width="400">
+</div>
+
+<div style="text-align: center;"><img src="./img/Screenshot_2024-12-09_at_11.28.58.png
+" alt="Diagramma di rete" width="400"></div>
+
+### Prestazioni Ideali per un Protocollo Data Link
+
+Le prestazioni ideali per un protocollo data link sono determinate dalla capacità massima teorica del canale. Poiché il protocollo invia i bit dello strato 3 sul canale, la sua capacità massima teorica è la velocità del canale \( C \).
+
+- **Capacità Massima Teorica**: La velocità del canale \( C \).
+
+Questa capacità rappresenta il limite superiore delle prestazioni che il protocollo può raggiungere in condizioni ideali.
+
+Tempo medio di servizio $\rightarrow \bar\theta =\frac{L}{C} = \frac{1}{\mu}$
+
+Se richiede maggiore tempo allora $\rightarrow \bar\theta_e =\frac{L}{C_e} = \frac{1}{\mu}$
+
+### Capacità Effettiva $(C_e)$
+
+La capacità effettiva di un protocollo data link dipende dal protocollo stesso e dalle condizioni operative. Se le funzionalità richieste o una situazione non ideale richiedono più tempo per ogni PDU (Protocol Data Unit), parte della capacità risulta inutilizzabile per i dati degli utenti. I fattori che possono ridurre la capacità effettiva includono:
+
+- **PCI Necessarie per la Segnalazione**: Overhead dovuto alle informazioni di controllo.
+- **Errori di Trasmissione**: Necessità di correggere errori.
+- **Ritrasmissioni**: Pacchetti persi o danneggiati che devono essere ritrasmessi.
+- **Tempi Morti Legati alle Dinamiche del Protocollo**: Attese dovute al funzionamento del protocollo.
+- **Tempi Morti in Attesa di Accedere al Canale**: Attese per ottenere l'accesso al canale di comunicazione.
+
+Questi fattori riducono la capacità effettiva rispetto alla capacità massima teorica del canale.
+Il traffico si misura con una unità di misura fittizia detta E (*Erlang*).
+
+### Valutazione efficienza
+
+Per valutare l'efficienza di un protocollo data link, si fa riferimento alla PDU (Protocol Data Unit). Si confrontano:
+
+- Tempo per inviare i soli dati d'utente **SDU**
+- Tempo totale per inviare la **PDU**
+
+L'efficienza è data dal rapporto tra queste due quantità $\eta = \frac{T_u}{T_0} = \frac{\bar\theta}{\bar\theta_e}$.
+
+## Reti commutate: il sistema a coda con singolo servitore
+<div style="text-align: center;"><img src="./img/Screenshot_2024-12-09_at_11.59.08.png
+" alt="Diagramma di rete" width="400"></div>
+
+****
