@@ -93,6 +93,37 @@
     - [Capacità Effettiva $(C\_e)$](#capacità-effettiva-c_e)
     - [Valutazione efficienza](#valutazione-efficienza)
   - [Reti commutate: il sistema a coda con singolo servitore](#reti-commutate-il-sistema-a-coda-con-singolo-servitore)
+    - [Ipotesi semplificative](#ipotesi-semplificative)
+    - [Utilizzazione](#utilizzazione)
+    - [Miglioramento prestazioni](#miglioramento-prestazioni)
+  - [Reti Local Area Network (LAN)](#reti-local-area-network-lan)
+    - [Caratteristiche principali delle LAN](#caratteristiche-principali-delle-lan)
+    - [Scelte progettuali delle LAN](#scelte-progettuali-delle-lan)
+      - [Mezzo trasmissivo](#mezzo-trasmissivo)
+      - [Topologie](#topologie)
+    - [Accesso multiplo](#accesso-multiplo)
+    - [Protocolli ad Accesso Casuale](#protocolli-ad-accesso-casuale)
+    - [Differenze tra accesso multiplo e casuale](#differenze-tra-accesso-multiplo-e-casuale)
+    - [Protocolli Medium Acces Control (MAC)](#protocolli-medium-acces-control-mac)
+    - [Prestazioni e parametri chiave delle LAN](#prestazioni-e-parametri-chiave-delle-lan)
+    - [Propagazione reale nella topologia bus](#propagazione-reale-nella-topologia-bus)
+    - [Efficienza del MAC ideale](#efficienza-del-mac-ideale)
+    - [Traffico smaltito dalla LAN](#traffico-smaltito-dalla-lan)
+    - [Efficienza delle LAN](#efficienza-delle-lan)
+  - [Protocollo a contesa: ALOHA](#protocollo-a-contesa-aloha)
+    - [Prestazioni di ALOHA](#prestazioni-di-aloha)
+    - [Throughput di ALOHA](#throughput-di-aloha)
+    - [Slotted ALOHA](#slotted-aloha)
+    - [Algoritmi di back-off](#algoritmi-di-back-off)
+    - [Stabilità del sistema](#stabilità-del-sistema)
+    - [Derivati del protocollo ALOHA](#derivati-del-protocollo-aloha)
+  - [CSMA (Carrier Sensing Multiple Access)](#csma-carrier-sensing-multiple-access)
+    - [Principi di funzionamento](#principi-di-funzionamento)
+    - [Gestione delle collisioni](#gestione-delle-collisioni)
+    - [Algoritmo di back-off](#algoritmo-di-back-off)
+    - [Versione slotted del CSMA:](#versione-slotted-del-csma)
+    - [CSMA/CD (Carrier Sensing Multiple Access with Collision Detection)](#csmacd-carrier-sensing-multiple-access-with-collision-detection)
+    - [Codifica di Manchester](#codifica-di-manchester)
 
 
 ## IP e internet
@@ -108,15 +139,16 @@ identifica Host e router tramite indirizzi di lunghezza fissa, raggruppandoli in
 
 **Version**→ indica il formato dell’intestazione, attualmetne 4
 
-**IHL** **→** ip header length, lunghezzza dell’intestazione. 
+**IHL** **→** ip header length, lunghezzza dell’intestazione.
 
 **Type of service →**  tipo di servizio richiesto, usato anche come sorta di priorità
 
-**Total length →** lunghezza totale del datagramma 
+**Total length →** lunghezza totale del datagramma
 
 **Identification →** valore intero che identifica univocamente il datagramma (pacchetto).
 
-**Flag →** 
+**Flag →**
+
 ### Funzioni
 
 | Funzione            | Descrizione                                                                 |
@@ -394,8 +426,7 @@ Per implementare il routing shortest path verso una qualunque destinazione devon
 <img src="./img/tabella_routing_esempio_1.png" alt="Diagramma di rete" width="500"/>
 
 Il problema di questi algormitmi è che il tempo di convergenza è generalmente pari al numero dei nodi della rete e non è particolarmente conveniente.
-Se la rete è grande ci vuole troppo tempo, c'è la possibilità che la rete cambi prima del tempo di convergenza. Non si possono mandare sempre messaggi con distance
-vector, per una questione di prestazioni e vengono mandati periodicamente.
+Se la rete è grande ci vuole troppo tempo, c'è la possibilità che la rete cambi prima del tempo di convergenza. Non si possono mandare sempre messaggi con **distance vector**, per una questione di prestazioni e vengono mandati periodicamente.
 
 ###### Cosa succede se la rete si modifica?
 
@@ -406,63 +437,66 @@ vector, per una questione di prestazioni e vengono mandati periodicamente.
 - **convergenza lenta** la possibilità che anche in una rete con 3 nodi ci si mettano anche 20/30 scambi di distance vector
 - **count to infinity** nel caso di tre router collegati in fila A--B--C. 
 
-SOLUZIONI  (temporanee): 
+SOLUZIONI  (temporanee):
 
-- Decidere una distanza massima, che se raggiunta viene considerata infinito
-- Triggered update -> un nodo deve inviare immediatamente notifiche ai vicini nel caso di modifiche di rete.
+- **Decidere una distanza massima**, che se raggiunta viene considerata infinito
+- **Triggered update** -> un nodo deve inviare immediatamente notifiche ai vicini nel caso di modifiche di rete.
 ma considerando il ritardo di propagazione non c'è comunque la certezza che le informazioni arrivino in tempo
-- Split horizon ->  nodo A dice a B tutti i nodi che raggiunge senza passare da B
+- **Split horizon** ->  nodo A dice a B tutti i nodi che raggiunge senza passare da B
 
 ma queste soluzioni non sono complete, nel caso di reti circolari ci sono comunque ancora errori
 
 ### Routing link state
+
 L'idea è che ogni nodo conosca il grafo della rete e calcola le tabelle di routing in modo ottimale.
-Sembra più difficile ma si è verificato molto più efficacie. 
+Sembra più difficile ma si è verificato molto più efficacie.
 
-1.  HELLO PACKET Il router scopre i vicini 
-2.  ECHO PACKET invio per stimare la distanza
-3.  in seguito ogni odo costituisce i LINK STATE PACKET, e li invia nella rete, questi pacchetti contengono la lista dei suoi vicini e le lunghezze dei collegamenti da raggiungere
+1. **HELLO PACKET** Il router scopre i vicini
+2. **ECHO PACKET** invio per stimare la distanza
+3. In seguito ogni nodo costituisce i **LINK STATE PACKET**, e li invia nella rete, questi pacchetti contengono la lista dei suoi vicini e le lunghezze dei collegamenti da raggiungere
 
-I pacchetti vengono diffusi nella rete attraverso il Flooding. 
+I pacchetti vengono diffusi nella rete attraverso il Flooding.
 
 ### Cosa sono i nodi
- 
+
 i nodi di commutazione vengono chiamati router, e si dividono in macro famiglie:
 
-- SOHO (small office and home) 100 mbs, utilizzo casalingo
-- Router di accesso, molte porte non velocissime, raccoglie gli abitanti di una certa zona 
-- Router di acceso collegati con campus router. Medie dimensioni, non troppe porte ma molta velocità
-- backbone router, router con poche porte con velocità ancora più elevata e garanzie di affidabilità
+- **SOHO** (small office and home) 100 mbs, utilizzo casalingo
+- **Router di accesso**, molte porte non velocissime, raccoglie gli abitanti di una certa zona
+- **Enterprise/campus router** collegati con campus router. Medie dimensioni, non troppe porte ma molta velocità
+- **Backbone router**, router con poche porte con velocità ancora più elevata e garanzie di affidabilità
 
 #### Ruolo router
+
 - routing
-    -  Scambio informazioni
-    - elaborazione locale
-    - popolaizone tabelle routing 
+  - Scambio informazioni
+  - elaborazione locale
+  - popolaizone tabelle routing
 - forwarding
-    - ip 
-    - table lookup 
-    - header update
+  - ip
+  - table lookup
+  - header update
 - Switch
-    - trasferimento datagramma da input a output
+  - trasferimento datagramma da input a output
 - trasmissione
-    - Trasmissione usando il mezzo fisico 
+  - Trasmissione usando il mezzo fisico
 
 ##### Tabella routing e forwarding
 
-La routing table è usata dai router per determinare il percorso ottimale verso una destinazione, memorizzando informazioni come reti, metriche e next-hop per ciascun possibile percorso. È il risultato di algoritmi di routing (es. OSPF, BGP).
+La **routing table** è usata dai router per determinare il percorso ottimale verso una destinazione, memorizzando informazioni come reti, metriche e next-hop per ciascun possibile percorso. È il risultato di algoritmi di routing (es. OSPF, BGP).
 
-La forwarding table (o forwarding information base, FIB) è una versione ottimizzata della routing table, usata direttamente per inoltrare i pacchetti. Contiene solo le informazioni necessarie per decidere il next-hop e agisce più velocemente, spesso mantenuta in hardware.
+La **forwarding table** (o forwarding information base, FIB) è una versione ottimizzata della routing table, usata direttamente per inoltrare i pacchetti. Contiene solo le informazioni necessarie per decidere il next-hop e agisce più velocemente, spesso mantenuta in hardware.
 
-**RIB** = routing information base, insieme di tutte le informazioni che riguardano il routing e a cui bisogna credere.
+**RIB (routing information base)**, insieme di tutte le informazioni che riguardano il routing e a cui bisogna credere.
 Possono essere configurate manaualmente, staticamente o attraverso determinati algoritmi o protocolli. la politica con cui vengon inserite le informazioni nella rib possono essere variabili.
 
-dopo il rib si applica il route selection process, per selezionare le route migliori 
+dopo il rib si applica il route selection process, per selezionare le route migliori
 
-**FIB** in seguito si compila la route forwarding table che contiene le informazioni filtrate e ottimizzate 
+**FIB (forwarding information base)** in seguito si compila la route forwarding table che contiene le informazioni filtrate e ottimizzate
 
-## Internet moderna 
-Insieme di sottoninsiemi (autonomus sistem), ordinati con un numero identificativo. 
+## Internet moderna
+
+Insieme di sottoninsiemi (autonomus sistem), ordinati con un numero identificativo.
 Si assume che valgano solo i nodi che fanno parlare un sottoinsieme con l'esterno, e in questo modo si semplifica il grafo della rete.
 Si scompone anche il problema all'interno (intra Domain) dell'autonomus sistem e all'esterno di esso(inter Domain).
 
@@ -527,7 +561,7 @@ L’IGP si differenzia dai EGP (Exterior Gateway Protocols), come BGP, che gesti
 **Versioni di RIP:**
 
 •	**RIP v1:** Supporta solo subnet classful (senza subnet mask).
-•	**RIP v2:** Aggiunge supporto per reti classless (CIDR), autenticazione e multicast.
+•	**RIP v2:** **Aggiunge supporto per reti classless (CIDR)**, autenticazione e multicast.
 
 **Limiti di RIP:**
 
@@ -1150,7 +1184,446 @@ Per valutare l'efficienza di un protocollo data link, si fa riferimento alla PDU
 L'efficienza è data dal rapporto tra queste due quantità $\eta = \frac{T_u}{T_0} = \frac{\bar\theta}{\bar\theta_e}$.
 
 ## Reti commutate: il sistema a coda con singolo servitore
+
+Una coda a singolo servitore è un modello di teoria delle code in cui i clienti arrivano a un sistema e vengono serviti da un unico servitore.
+
+- **Arrivi dei clienti:** Modellati spesso come un processo di Poisson, con intervalli di tempo tra gli arrivi distribuiti esponenzialmente.
+- **Servizio:** Il servitore serve i clienti uno alla volta, con tempi di servizio che possono seguire diverse distribuzioni di probabilità; frequentemente si assume una distribuzione esponenziale.
+- **Attesa in coda:** Se il servitore è occupato, i clienti attendono in coda.
+Parametri Principali
+- **Tasso di arrivo $(\lambda)$:** Numero medio di clienti che arrivano al sistema per unità di tempo.
+- **Tasso di servizio $(\mu)$:** Numero medio di clienti che il servitore può gestire per unità di tempo.
+- **Capacità della coda:** Numero massimo di clienti che possono attendere in coda.
+  
+**Misure di Performance Comuni**
+
+- Tempo medio di attesa in coda
+- Tempo medio di servizio
+- Numero medio di clienti in coda
+- Probabilità che un cliente debba attendere
+  
+Esempio Classico: Modello M/M/1
+Un esempio tipico è il modello M/M/1, utilizzato in reti di comunicazione, sistemi di elaborazione dati e servizi al cliente per analizzare e ottimizzare le prestazioni del sistema.
+
 <div style="text-align: center;"><img src="./img/Screenshot_2024-12-09_at_11.59.08.png
 " alt="Diagramma di rete" width="400"></div>
+
+Per una questione di semplicità si schematizza ogni collegamento in uscita come uno schema con un singolo servitore.
+
+<div style="text-align: center;"><img src="./img/Screenshot_2024-12-09_at_14.14.25.png
+" alt="Diagramma di rete" width="400"></div>
+
+### Ipotesi semplificative
+
+- Le perdite di pacchetti sono trascurabili
+- I pacchetti arrivano casualmente con distribuzione di Poisson
+  $$Pr\ \{k\ arrivals\ during\ t \} = P(k,t)=\frac{(\lambda T^k)}{k!} e^{\lambda T}$$
+- La dimensione dei pacchetti è casuale con distribuzione esponenziale uguale per tutti i pacchetti
+$$Pr \{\theta\le t\}=F_\theta(t)=1-e^{-\frac{t}{\bar\theta}}$$
+
+### Utilizzazione
+
+Il servitore alterna fasi di lavoro a fasi di pausa, Idealmente vorremmo il servitore sempre attivo (in pausa = spreco risorse).
+Il servitore è attivo solo se ci sono clenti che arrivano in modo casuale.  
+
+L'utilizzazione misura il tempo di lavoro del servitore e anche il numero medio di utenti serviti nel tempo.
+
+$$\rho=\frac{B(T)}{T}$$
+
+<div style="text-align: center;"><img src="./img/Screenshot_2024-12-09_at_14.28.36.png
+" alt="Diagramma di rete" width="400"></div>
+
+$\rho=\frac{\lambda}{\mu} \rightarrow$ confronta il ritmo di arrivo con quello di servizio
+\
+$\mu=\frac{1}{\bar\theta} \rightarrow$ frequenza di servizio, ci dice mediamente quanti pacchetti possono essere serviti.
+\
+$\lambda<\mu$ Non devono arrivare più pacchetti di quelli che possono essere serviti.
+\
+$\bar T_A = \bar\theta \frac{\rho}{1-\rho} \rightarrow$ tempo medio di attesa in coda.
+
+<div style="text-align: center;"><img src="./img/Screenshot_2024-12-10_at_10.03.32.png
+" alt="Diagramma di rete" width="500"></div>
+
+Con pochi pacchetti e lunghi si è più lenti che con molti pacchetti ma corti. Quindi è più conveniente avere pochi nodi ma con una potenza molto elevata piuttosto che molti nodi ma più lenti.
+
+### Miglioramento prestazioni
+
+dato che i pacchetti arrivano in modo casuale è buona norma utilizzare una lunghezz standar in modo tale da avere migliori prestazioni, Se un pacchetto è più corto si aggiunge il padding alla fine per farlo diventare di lunghezza standard.
+
+**Compromesso**
+In questo modo anche il tempo di attesa in coda è migliorato notevolmente ma aumenta il tempo medio di servizio.
+
+## Reti Local Area Network (LAN)
+
+Le **LAN** (Local Area Network) rappresentano un'infrastruttura di telecomunicazioni progettata per consentire la comunicazione tra dispositivi indipendenti in un’area geografica limitata. Queste reti sfruttano un canale condiviso ad alta velocità, garantendo tassi di errore contenuti.
+
+### Caratteristiche principali delle LAN
+
+1. **Area limitata**:
+   - Le LAN operano in un contesto geografico circoscritto, spesso privato, come uffici, abitazioni o campus.  
+   - Questo consente prestazioni elevate grazie alla vicinanza fisica tra i dispositivi.  
+
+2. **Canale fisico condiviso**:
+   - Un unico canale è utilizzato da tutti i dispositivi connessi.  
+   - Questa condivisione consente trasmissioni simultanee, ma richiede meccanismi per evitare collisioni.  
+
+3. **Trasmissioni broadcast**:
+   - La rete supporta comunicazioni "da uno a tutti".  
+   - Ogni dispositivo può trasmettere dati che tutti gli altri possono potenzialmente ricevere, a meno che non siano filtrati.  
+
+4. **Elevata bit rate e bassi tassi di errore**:
+   - Le LAN offrono velocità di trasmissione elevate con tassi di errore contenuti, grazie alle brevi distanze fisiche e alla qualità del canale.
+
+5. **Indipendenza**:
+   - I dispositivi nelle LAN non seguono un'architettura master-slave, operando invece come entità autonome.
+
+6. **Collisione**:
+    - Su di un mezzo condiviso esiste la possibilità che più utenti inviino informazioni contemporaneamente
+    - Interferenza – perturbazione o distruzione dell’informazione – perdita di trasparenza semantica
+
+### Scelte progettuali delle LAN
+
+#### Mezzo trasmissivo
+
+1. **Fibre ottiche**:  
+   - Offrono maggiore banda, minore interferenza e una maggiore affidabilità rispetto al rame.  
+   - Tuttavia, il costo di interconnessione e installazione può risultare più elevato, rallentandone l’adozione per le LAN.
+
+2. **Coppie intrecciate (twisted pairs)**:  
+   - Continuano a essere utilizzate per gli "ultimi metri" di connessione grazie al costo contenuto e alla semplicità di utilizzo.  
+
+3. **Mezzo radio**:  
+   - Negli anni recenti, le tecnologie wireless stanno guadagnando importanza per la flessibilità e i costi ridotti.  
+
+#### Topologie
+
+1. **Configurazioni comuni**:
+
+   - **Stella**: un nodo centrale collega tutti i dispositivi.  
+   - **Maglia**: garantisce alta ridondanza, con ogni nodo collegato a più nodi vicini.  
+   - **Gerarchica**: struttura a livelli, utile per ambienti complessi.  
+
+2. **Punto-multipunto**:
+   - Il canale è condiviso ma l’accesso viene **controllato in modo centralizzato** o distribuito per evitare fenomeni di **collisione**
+   - Utilizzato nelle prime LAN con mezzi condivisi, come bus bidirezionali o anelli.  
+   - Non adatto alle WAN per i limiti di distanza e interferenze.  
+
+### Accesso multiplo
+
+Le LAN utilizzano tecniche specifiche per gestire l’accesso al canale condiviso:
+
+1. **Canalizzazione**:  
+   - **FDMA** (Frequency Division Multiple Access): divisione delle risorse per frequenze.  
+   - **TDMA** (Time Division Multiple Access): divisione temporale del canale.  
+   - **CDMA** (Code Division Multiple Access): utilizzo di codici univoci per separare le comunicazioni.  
+
+2. **Accesso dinamico**: Basato sull'allocazione delle risorse in tempo reale.
+
+   - **Accesso ordinato**: Include meccanismi come il trasferimento di permessi o la prenotazione per evitare collisioni.
+   - **Accesso a contesa**: Ammettono collisioni
+  
+### Protocolli ad Accesso Casuale
+
+**Obiettivo:** Permettere ai dispositivi di trasmettere dati in modo casuale senza una pianificazione predefinita, gestendo le collisioni che possono verificarsi.
+
+**Tecniche:** Utilizzano meccanismi come CSMA/CD (Carrier Sense Multiple Access with Collision Detection) e CSMA/CA (Carrier Sense Multiple Access with Collision Avoidance) per rilevare e gestire le collisioni.
+
+**Esempi:** Reti Ethernet (CSMA/CD) e Wi-Fi (CSMA/CA) dove i dispositivi ascoltano il canale prima di trasmettere e gestiscono le collisioni se si verificano.
+
+### Differenze tra accesso multiplo e casuale
+
+- Accesso multiplo $\rightarrow$ divisione del canale per evitare le collisioni
+- Accesso casuale $\rightarrow$ gestione delle collisioni in un ambiente di accesso non pianificato, è un sottoninsieme dei MAC **$\curvearrowright$**
+
+Entrambi possono essere utilizzati insieme per ottimizzare l'efficienza e la flessibilità delle reti di comunicazione.
+
+### Protocolli Medium Acces Control (MAC)
+
+Ammettono collisioni perchè sono a contesa.
+
+- **CAP - Channel Access Procedure**
+  Insieme delle procedure che la stazione effettua per realizzare l'accesso al canale
+
+- **CRA - Collision Resolution Algorithm**
+  E' l'insieme delle procedure che la stazione effettua per rivelare ed eventualmente recuperare situazioni di collisione
+
+### Prestazioni e parametri chiave delle LAN
+
+La scelta dell’algoritmo di controllo e accesso è determinata da un compromesso tra **complessità** e **prestazioni**.  
+
+**Parametri chiave**:
+
+- $L$: lunghezza del pacchetto.  
+- $C$: velocità di trasmissione del canale.  
+- $D$: distanza massima tra due nodi della rete.  
+- $v$: velocità di propagazione del segnale (tipicamente vicino alla velocità della luce nell’aria).  
+- $\theta = L/c$ tempo trasmissione trama
+- $d/v$ tempo prop bit sulla LAN
+- $Cd/v$ massinmo numero di bit presenti contemporaneamente sulla LAN
+
+**LAN ideale**:
+
+- In un sistema senza collisioni e con coordinamento perfetto, tutte le richieste ($ A_0 $) vengono soddisfatte ($ A_s = A_0 $) fino alla saturazione del canale.
+
+<div style="text-align: center;"><img src="./img/Screenshot_2024-12-10_at_11.52.44.png
+" alt="Diagramma di rete" width="500"></div>
+
+### Propagazione reale nella topologia bus
+
+- Nella **topologia bus**, il tempo di attraversamento di una trama sulla LAN non è istantaneo.  
+  - **Tempi di trasmissione**:  
+    1. $ t $: il nodo **A** inizia la trasmissione.
+    2. $ t + L/C $: il nodo **A** completa la trasmissione.
+    3. $ t + d/v $: il nodo **B** riceve il primo bit.
+    4. $ t + L/C + d/v $: il nodo **B** riceve l’ultimo bit.
+
+<div style="text-align: center;"><img src="./img/Screenshot_2024-12-10_at_11.54.23.png
+" alt="Diagramma di rete" width="300"></div>
+
+### Efficienza del MAC ideale
+
+- Una trama impegna la **LAN** per un tempo $ T_0\ (tempo\ tot.\ per\ rinviare\ un\ messaggio) $, limitando l’uso totale del canale.  
+- Il canale può essere utilizzato al massimo per $ T $ secondi ogni $ T_0 $.  
+- **Formula dell’efficienza del MAC**:  
+  $$
+  \eta = \frac{T}{T_0} = \frac{L/C}{L/C + d/v} = \frac{1}{1 + a}
+  $$
+  - Dove $ a = Cd / vL $.  
+    - $ a $ rappresenta la **lunghezza della LAN** in termini di PDU.  
+- **Limite superiore**:  
+  L’efficienza pone un limite massimo al traffico che la LAN può smaltire ($ A_s $).  
+
+### Traffico smaltito dalla LAN
+
+- La quantità di traffico smaltito dipende dal rapporto $ A_0 $ (traffico offerto) e $ 1 / (1 + a) $:  
+  1. **Se $ A_0 < 1/(1+a) $**:  
+     - Tutte le trame in arrivo vengono trasmesse.  
+     - $ S = G = A_0 $.  
+  2. **Se $ A_0 \geq 1/(1+a) $**:  
+     - Il MAC non è in grado di trasmettere tutte le trame.  
+     - Una parte delle trame viene accodata.  
+     - $ A_s = h = 1/(1+a) $.  
+
+Questi limiti dipendono dalla **lunghezza della LAN** e dal comportamento del **canale di trasmissione**.
+
+<div style="text-align: center;"><img src="./img/Screenshot_2024-12-10_at_12.07.29.png
+" alt="Diagramma di rete" width="400"></div>
+
+### Efficienza delle LAN
+
+- **Determinanti delle prestazioni**:
+  - Il parametro **$a$** influenza direttamente le prestazioni della LAN.
+  - **Lunghezza del canale**: maggiore è la lunghezza in termini di trame, minore è il traffico massimo smaltibile (massimo throughput).
+  - I protocolli ad **accesso multiplo** sono efficienti se le distanze e le velocità di trasmissione sono limitate.
+
+## Protocollo a contesa: ALOHA
+
+**Origine**:  
+
+- Sviluppato nel 1970 per connettere università delle Hawaii utilizzando stazioni terrestri e un satellite geostazionario.
+
+**Modalità di funzionamento**:
+
+**CAP** (Channel Access Procedure):
+
+- Le stazioni trasmettono senza verificare la disponibilità del canale.
+- Il satellite ritrasmette i dati verso tutte le stazioni.
+- La stazione trasmittente riceve la propria trama come conferma di trasmissione riuscita.
+
+**CRA** (Collision Resolution Algorithm):
+
+- Collisioni avvengono quando più stazioni trasmettono contemporaneamente.
+- Il satellite scarta le trame danneggiate.
+- Le stazioni che rilevano una collisione avviano un **algoritmo di back-off**, ritrasmettendo in un momento scelto casualmente in un intervallo $ T_b $.
+
+### Prestazioni di ALOHA
+
+**Traffico generato**:
+
+- Gli arrivi di trame alle stazioni seguono un **processo di Poisson** con frequenza media $ \lambda $.
+- Tenendo conto delle ritrasmissioni, il traffico effettivo verso il satellite è $ \lambda_r > \lambda $.
+- Il traffico smaltito è pari al traffico offerto che viene trasmesso senza collidere $A_s = GP_0$
+- A causa di collisioni $\lambda_r \ge \lambda$
+**Intervallo di vulnerabilità**:
+
+<div style="text-align: center;"><img src="./img/Screenshot_2024-12-11_at_11.44.21.png
+" alt="Diagramma di rete" width="300"></div>
+
+- Definito come **$ T_v = 2T $**, rappresenta il periodo durante il quale una trasmissione può subire collisioni.
+- La trama considerata inizia in t0 e finisce in t0 + T
+- **Collisione** se il primo bit della trama considerata si sovrapponga all’ultimo bit di una trama precedente
+
+### Throughput di ALOHA
+
+**Calcolo**:
+
+- Probabilità di trasmissione senza collisioni:  
+  $$
+  P_0 = e^{-2G}
+  $$
+- Traffico smaltito ($ A_s $):  
+  $$
+  A_s = G \cdot e^{-2G}
+  $$
+
+**Massimo throughput**:
+
+Valore massimo:  
+    $$A_{Smax} = \frac{1}{2e} \approx 0.18 \quad \text{per } G = 0.5$$
+
+Ipotizzando di avere:
+
+- Trame uguali: Tutte le trame hanno una lunghezza $L$ , che richiede un tempo di trasmissione  $T$ .
+- Traffico offerto dalle applicazioni $A_0=\lambda_T$
+- Traffico offerto dal MAC $G=\lambda_rT$
+- $G$ molto piccola
+- Probabilità che trama non  collida $P_0$
+- Traffico smaltito $A_s = GP_0$
+
+<div style="text-align: center;"><img src="./img/Screenshot_2024-12-11_at_17.04.28.png
+" alt="Diagramma di rete" width="300"></div>
+
+### Slotted ALOHA
+
+**Miglioramento**:
+
+- Il tempo è diviso in **slot** di lunghezza $ T $ e si lavora in modo **sincrono**.
+- Le trame sono trasmesse in istanti predefiniti, riducendo **l’intervallo di vulnerabilità a $ T $**. Il satellite comunica tramite sequenze di sincronismo. 
+- Due trame si sovrappongono o completamente o non si sovrappongono
+
+**Calcolo**:
+
+- Probabilità di trasmissione senza collisioni:  
+  $$
+  P_0 = e^{-G}
+  $$
+- Traffico smaltito ($ A_s $):  
+  $$
+  A_s = G \cdot e^{-G}
+  $$
+
+**Massimo throughput**:
+
+- Valore massimo:  
+  $$
+  A_{Smax} = \frac{1}{e} \approx 0.36 \quad \text{per } G = 1
+  $$
+
+<div style="text-align: center;">
+<img src="./img/Alhoa_classico_vs_alhoa_slotted.png" alt="Diagramma di rete" width="300">
+<p>Confronto tra Aloha classico e Aloha slotted</p>
+</div>
+
+### Algoritmi di back-off
+
+**Aloha classico**:
+
+- Ritrasmissione casuale nell’intervallo $ [0, T_b] $, con $ T_b \gg T $ per minimizzare collisioni.
+
+**Aloha slotted**:
+Due approcci:
+
+1. Ritrasmissione in uno slot scelto casualmente in $[0, n_b - 1]$.
+
+   - Deterministico nell’intervallo  $n_bT$ .  
+   - Richiede un generatore casuale per scegliere lo slot.
+
+2. Ritrasmissione nel primo slot disponibile con probabilità $ p_b $.
+
+   - Si passa allo slot successivo con probabilità complementare.
+   - Si itera fino a che non si invia
+   - Più dinamico ed equo nel lungo termine.  
+   - Richiede il calcolo e gestione di probabilità.
+
+### Stabilità del sistema
+
+- **Equilibrio**: In condizioni stabili sarà $ A_0 = A_s $, se $ A_0 > A_{Smax} $, il sistema accumula traffico non smaltito, portando a instabilità.
+
+In un sistema Aloha, una stazione di **backlogged** (o semplicemente backlogged station) è una stazione che ha subito una collisione e, di conseguenza, ha pacchetti in attesa di ritrasmissione.
+
+- **Numero finito di stazioni**: Il traffico offerto $ A_0 $ dipende dal numero di stazioni attive ($ k = stazioni\ backlogged$) e dalle condizioni del sistema:
+  - in particolare se backlogged $\lambda_i = \lambda$ ($\lambda_i = frequenza\ media\ arrivo\ di\ ogni\ stazione$)
+
+- **Controlled Aloha o a back-off esponenziale**
+
+  - Per risolvere l'instabilità si pone $T_b = T_0$ e ogni volta si raddoppia $T_b$
+  - Quando si invia il messaggio si riporta $T_b = T_0$
+  - Nel caso slotted si può dimezzare $p_b$ a ogni collisione
+  - Causa problemi di **fairness** una stazione può venire tagliata fuori dalle trasmissioni.
+
+### Derivati del protocollo ALOHA
+
+- **Applicazioni**: Utilizzabile su qualsiasi mezzo trasmissivo e topologia ed è adatto per reti con alti ritardi di propagazione (es. satelliti).
+- **CSMA** (Carrier Sensing Multiple Access):
+  - Sfrutta la rilevazione di segnale sul canale prima della trasmissione.
+  - Prevede algoritmi di back-off in caso di collisione.
+
+## CSMA (Carrier Sensing Multiple Access)
+
+### Principi di funzionamento
+
+- **Carrier sensing**:  
+  - Ogni stazione prima di trasmettere rileva la presenza di segnali sul bus condiviso.  
+  - La trasmissione avviene solo se il bus risulta libero.  
+  - Se il bus è **occupato**, la stazione **aspetta la fine della trasmissione** in corso.  
+    - **Caso 1-persistent**: la stazione trasmette immediatamente dopo che il bus si libera.  
+    - **Caso non-persistent o 0-persistent**: la stazione attiva un algoritmo di back-off per evitare collisioni.  
+    - **Caso p-persistent**: la stazione trasmette con una probabilità $p$ e, in caso contrario, attiva l'algoritmo di back-off.  
+
+### Gestione delle collisioni
+
+- Durante la trasmissione, i dati inviati **possono collidere** con quelli di un’altra stazione per via del ritardo di propagazione non nullo tra le stazioni.  
+- Sul bus manca un meccanismo immediato per rilevare le collisioni è dunque necessario affidarsi a sistemi come gli **Acknowledgements (ACK)** per rilevare e gestire errori di trasmissione.  
+  
+### Algoritmo di back-off
+
+- Simile a quello utilizzato nel protocollo Aloha e richiede che il tempo di back-off ($T_b$) sia maggiore di due volte il tempo di propagazione ($2\tau$).  
+**Esempio**
+
+- Tempo di propagazione +  rempo per rilevare segnale$\rightarrow\ \tau$ A,Z due stazioni più distanti
+- A esegue carrier sensing a $t_a$ e Z fra $t_a$ e $t_a+\tau$ quindi non rileva niente e c'è collisione.
+- Intervallo di vulnerabilità = $2\tau$
+- Prestazioni migliori di Aloha quando $\tau/T<1$
+
+### Versione slotted del CSMA:
+
+- Utilizza uno **slot** temporale pari a $\tau$.  
+- L’**intervallo di vulnerabilità** si riduce da $2\tau$ a $\tau$.  
+- Nonostante ciò, permangono problemi di stabilità, tipici dei protocolli a contesa.  
+- Può essere adottato un algoritmo di back-off esponenziale per **migliorare** la **gestione** delle **collisioni**.
+
+<div style="text-align: center;">
+<img src="./img/CSMA.png" alt="Diagramma di rete" width="300">
+<p>CSMA</p>
+</div>
+
+### CSMA/CD (Carrier Sensing Multiple Access with Collision Detection)  
+
+Migliora il protocollo permettendo il rilevamento immediato delle collisioni e rappresenta lo standard de facto per le reti LAN grazie alla semplicità e robustezza del protocollo. 
+- **Collision Detection (CD):** Una stazione monitora il canale durante la trasmissione per rilevare variazioni di potenza (indicative di collisioni), il tutto è facilitato dall’uso della **codifica di Manchester**, che garantisce transizioni regolari del segnale.  
+- **In caso di collisione:** La stazione interrompe subito la trasmissione per evitare sprechi di banda ed invia una sequenza di bits chiamata **jamming signal** per avvisare le altre stazioni della collisione.  
+- **Vantaggi rispetto al CSMA:** In caso di collisione, il canale è inutilizzato solo per l’intervallo di vulnerabilità ($\tau$) e per il tempo di rilevamento della collisione e della sequenza di jamming ($T_{CD}$) mentre nel CSMA puro il canale restava inutilizzato per un tempo pari all’intera durata della trama ($T$). 
+
+<div style="text-align: center;">
+<img src="./img/CSMA-CD.png" alt="Diagramma di rete" width="300">
+<p>CSMA-CD</p>
+</div>
+
+### Codifica di Manchester
+
+- **Caratteristiche del segnale:**  
+  - **Bit “0” logico**:  Segnale basso per metà tempo del simbolo e alto per l’altra metà.  
+  - **Bit “1” logico**:  Segnale alto per metà tempo del simbolo e basso per l’altra metà.  
+- **Vantaggi:**  
+  - Ogni bit ha una transizione centrale che facilita:  
+    - **Sincronizzazione**: semplifica l’acquisizione del clock.  
+    - **Carrier sensing** e **collision detection**.  
+  - Simboli aggiuntivi (alto-alto e basso-basso) rappresentano segnali di non-dati.  
+- **Svantaggi:** La necessità di un clock al doppio della velocità di trasmissione: per 10 Mbit/s serve un clock a 20 MHz.   
+
+\
+\
+\
+\
 
 ****
