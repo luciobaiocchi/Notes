@@ -55,7 +55,7 @@
       - [EGP](#egp)
       - [Limiti di EGP](#limiti-di-egp)
     - [BGP: Border Gateway Protocol](#bgp-border-gateway-protocol)
-      - [Caratteristiche principali di BGP:](#caratteristiche-principali-di-bgp)
+      - [Caratteristiche principali di BGP](#caratteristiche-principali-di-bgp)
         - [Attributi](#attributi)
   - [Commutazione di etichetta: MPLS](#commutazione-di-etichetta-mpls)
     - [Label Switching](#label-switching)
@@ -124,6 +124,42 @@
     - [Versione slotted del CSMA:](#versione-slotted-del-csma)
     - [CSMA/CD (Carrier Sensing Multiple Access with Collision Detection)](#csmacd-carrier-sensing-multiple-access-with-collision-detection)
     - [Codifica di Manchester](#codifica-di-manchester)
+  - [Token Ring e IEEE 802.5  (tutto da skippare)](#token-ring-e-ieee-8025--tutto-da-skippare)
+    - [Token Ring](#token-ring)
+    - [Definizioni dei tempi principali nel Token Ring](#definizioni-dei-tempi-principali-nel-token-ring)
+    - [Rimozione delle trame nell’anello](#rimozione-delle-trame-nellanello)
+    - [Strategie di rigenerazione del token](#strategie-di-rigenerazione-del-token)
+    - [Monitor nel Token Ring](#monitor-nel-token-ring)
+    - [Sincronizzazione nel Token Ring](#sincronizzazione-nel-token-ring)
+    - [Token Bus](#token-bus)
+    - [Confronto tra protocolli a contesa e collision-free](#confronto-tra-protocolli-a-contesa-e-collision-free)
+  - [Progetto IEEE 802 (finer skip !!!)](#progetto-ieee-802-finer-skip-)
+  - [Rete Ethernet](#rete-ethernet)
+    - [Sviluppo e Standardizzazione](#sviluppo-e-standardizzazione)
+    - [Protocollo di Accesso: CSMA/CD](#protocollo-di-accesso-csmacd)
+    - [Slot Time](#slot-time)
+      - [Dimensione dello Slot Time](#dimensione-dello-slot-time)
+    - [Campi del Frame Ethernet/IEEE 802.3](#campi-del-frame-ethernetieee-8023)
+      - [**Preamble**](#preamble)
+      - [**SFD (Start Frame Delimiter)**](#sfd-start-frame-delimiter)
+      - [**Lunghezza / Tipo**](#lunghezza--tipo)
+      - [**Dati**](#dati)
+      - [**Pad**](#pad)
+      - [**Frame Checking Sequence (FCS)**](#frame-checking-sequence-fcs)
+      - [**Indirizzi**](#indirizzi)
+    - [Delimitazione trame](#delimitazione-trame)
+    - [Collision Domain e Broadcast Domain](#collision-domain-e-broadcast-domain)
+    - [Evoluzione dell'Ethernet](#evoluzione-dellethernet)
+      - [Ethernet Classica a *10 Mbit/s*](#ethernet-classica-a-10-mbits)
+      - [Fast Ethernet (IEEE 802.3u - *100 Mbit/s*)\*\*](#fast-ethernet-ieee-8023u---100-mbits)
+      - [Gigabit Ethernet (IEEE 802.3z - 1 Gbit/s)\*\*](#gigabit-ethernet-ieee-8023z---1-gbits)
+      - [10 Gigabit Ethernet (IEEE 802.3ae)](#10-gigabit-ethernet-ieee-8023ae)
+      - [Carrier Ethernet](#carrier-ethernet)
+    - [Cablaggio delle LAN Moderne](#cablaggio-delle-lan-moderne)
+  - [Wirless LAN (Wi-Fi)](#wirless-lan-wi-fi)
+    - [Standard IEEE 802.11](#standard-ieee-80211)
+    - [Architettura di rete 802.11](#architettura-di-rete-80211)
+    - [Problemi di accesso multiplo nelle WLAN](#problemi-di-accesso-multiplo-nelle-wlan)
 
 
 ## IP e internet
@@ -321,6 +357,7 @@ la soluzione è stata quella di utilizzare reti più piccole con indirizzi conse
 
 
 
+
 ## Metodologie di filtraggio dei datagrammi
 ### Packet filter
 I nodi di rete eseguono delle operazioni di tipo attivo sui dati, generalmente per scopi di filtraggio. Quindi in nodi assumono un ruolo attivo nell'instradamento.
@@ -352,11 +389,10 @@ Posso anche decidere di fare passare solo determinati protocolli
 
 Protegge interno da esterno ed esterno da interno. Solitamente è una combinazione di packet filter, statefull packet inspection, e ALG.
 
-
 #### Nat
 
 Gateway che filtra pacchetti, statefull packet inspection tra due network, e modifica i pacchetti modificando gli indirizzi.
-È un concetto, ma ci sono molte implementazioni diverse. 
+È un concetto, ma ci sono molte implementazioni diverse.
 
 <img src="./img/Screenshot 2024-10-30 at 17.29.58_nat.png" alt="Diagramma di rete" width="500"/>
 
@@ -370,8 +406,6 @@ Esistono degli **indirizzi privati**, che vengono utilizzati storicamente solo p
 | Pubblico          | Utilizzato per comunicare su Internet |
 | Privato           | Utilizzato all'interno di una rete locale |
 
-
-
 ## Instradamento nelle reti a pacchetto e in Internet
 
 Scelta del percorso = scegliere il nodo successivo sapendo che esiste una connessione 
@@ -380,7 +414,8 @@ Tutte le metodologie di instradamento si devono adattare a modifiche della rete 
 - dinamici -> percosi aggionrati periodicamente per sopportare anche cambiamenti repentini
 - statico -> i percorsi vengono aggiornati e nel breve periodo non cambiano
 
-### Algoritmi di instradamento 
+### Algoritmi di instradamento
+
 I nodi di commutazione per applicare l’algoritmo possono utilizzare informazioni predisposte localente tipicamente sotto forma di tabelle
 
 
@@ -724,7 +759,7 @@ Queste caratteristiche rendono EGP un protocollo semplice ma limitato rispetto a
 
 BGP è stato concepito come sostituto di EGP e oggi è in uso la versione 4 (RFC 1771). I router BGP si scambiano informazioni attraverso connessioni TCP (porta 179) chiamate sessioni BGP.
 
-#### Caratteristiche principali di BGP:
+#### Caratteristiche principali di BGP
 
 - **Connessioni Affidabili**: Le comunicazioni sono affidabili grazie all'uso di TCP, con funzionalità di controllo degli errori demandate allo strato di trasporto.
   
@@ -736,6 +771,7 @@ BGP è stato concepito come sostituto di EGP e oggi è in uso la versione 4 (RFC
 Queste caratteristiche rendono BGP un protocollo robusto e scalabile per il routing tra diversi AS. Utilizza un path vector, un'evoluzione del distance vector, nel vettore dei percorsi si elencano tutti gli AS da attraversare per raggiungere una destinazione per evitare percorsi ciclici. Quando un router riceve un path e c'è già lui dentro lo scarta, evitando di creare cicli.
 
 ##### Attributi
+
 A ciascun path vector vengono associati degli attributi
 Gli attributi BGP possono essere classificati in diverse categorie:
 
@@ -771,7 +807,15 @@ Queste categorie aiutano a gestire come gli attributi vengono trattati e propaga
 
 **LER label edge router**
 
-- router normale che però può attaccare una label
+- Router normale che però può attaccare una label
+  
+**LPSLabel Switch Path**
+
+- È un percorso logico preconfigurato che i pacchetti seguono attraverso la rete MPLS.
+
+**detti LSR, Label Switch Router**
+
+- 
 
 ### Label Switching
 
@@ -812,8 +856,8 @@ innestare domini MPLS, simile al concetto di routing gerarchico
 - pull label, si toglie etichetta quando esce dal dominio
 
 ### label allocation
-chi decide le label? decide sempre il router a valle (il primo router)
 
+chi decide le label? decide sempre il router a valle (il primo router)
 
 ## Reti Overlay
 
@@ -848,23 +892,28 @@ Utilizzi comuni:
 
 Se viene modificata la rete fisica non c'è modifica nella rete logica. 
 
-### Header 
+### Header
+
 **L’header GRE** è una struttura di dati utilizzata per incapsulare pacchetti all’interno di un tunnel GRE. Serve a fornire le informazioni necessarie per gestire il pacchetto incapsulato durante il suo transito attraverso la rete.
 
 Struttura dell’header GRE (base)
 
 L’header base di GRE è lungo 4 byte (32 bit) e contiene i seguenti campi principali:
+
 1. Flags e Version (16 bit):
+
    - C (Checksum Present): Indica se un checksum è incluso (1 = presente).
    - K (Key Present): Indica se un campo di chiave è presente per identificare il tunnel.
    - S (Sequence Number Present): Indica se un numero di sequenza è incluso.
    - Version: Solitamente impostato a 0 per GRE standard.
+
 2. Protocol Type (16 bit):
    - Specifica il tipo di protocollo incapsulato (es. 0x0800 per IPv4, 0x86DD per IPv6).
 
 Header GRE opzionale
 
 A seconda delle impostazioni, possono essere aggiunti altri campi:
+
 - Checksum (32 bit): Per verificare l’integrità del pacchetto.
 - Key (32 bit): Per identificare il tunnel o la sessione.
 - Sequence Number (32 bit): Per garantire l’ordine dei pacchetti.
@@ -878,11 +927,13 @@ Funzionamento
 GRE è semplice e flessibile, ma non offre crittografia o meccanismi di sicurezza avanzati. Per proteggere i dati, può essere combinato con protocolli come IPsec.
 
 ### VXLAN
+
 La VXLAN (Virtual Extensible LAN) è una tecnologia di rete che estende reti Layer 2 (L2) su infrastrutture Layer 3 (L3) usando tunneling. Incapsula i frame Ethernet L2 in pacchetti UDP L3, permettendo di creare fino a 16 milioni di reti virtuali grazie al VNI (identificatore a 24 bit), superando il limite di 4096 VLAN.
 
 La VXLAN utilizza dispositivi VTEP per incapsulare i frame Ethernet Layer 2 in pacchetti UDP Layer 3. Ogni VTEP collega una rete virtuale (L2) alla rete fisica (L3). I pacchetti incapsulati viaggiano attraverso la rete Layer 3 e vengono de-incapsulati dal VTEP di destinazione per consegnarli alla rete virtuale corretta, identificata dal VNI.
 
-### Reti private 
+### Reti private
+
 Aziende e/o enti di dimensioni medio/grandi in genere hanno necessità di interconnettere in maniera **sicura** sedi sparse sul territorio e distanti tra loro
 
 Soluzione tradizionale: utilizzo di linee dedicate da affittare direttamente presso gli operatori (reti private)
@@ -892,6 +943,7 @@ Soluzione tradizionale: utilizzo di linee dedicate da affittare direttamente pre
   
 Alternativa: utilizzo di una rete in “overlay” attraverso
 reti pubbliche (reti private virtuali - VPN)
+
 - flusso punto-punto di pacchetti autenticati (con contenuto
 informativo criptato) incapsulati in pacchetti tradizionali - diverse tecnologie disponibili
 - Diversi protocolli di tunnelling
@@ -905,6 +957,7 @@ Funzionamento:
 L’utente utilizza un client VPN per connettersi al server VPN, autenticandosi con credenziali o 2FA. Il server crea un tunnel sicuro per instradare il traffico verso le risorse della rete privata.
 
 Vantaggi:
+
 - Flessibilità: Accesso da qualsiasi luogo con Internet.
 - Sicurezza: Protezione dei dati sensibili.
 - Accesso centralizzato: Risorse aziendali disponibili in modo sicuro.
@@ -935,15 +988,15 @@ In una VPN Site-to-Site, IPsec viene utilizzato per creare un tunnel sicuro tra 
 
 1. Fasi principali:
 
-    - Autenticazione dei peer: Le reti si autenticano tramite certificati digitali o chiavi pre-condivise (Pre-Shared Keys - PSK).
-    - Creazione del tunnel: IPsec stabilisce un tunnel cifrato tra i gateway delle reti.
-    - Scambio dei dati: I pacchetti vengono cifrati e autenticati durante il transito per proteggerli.
+- Autenticazione dei peer: Le reti si autenticano tramite certificati digitali o chiavi pre-condivise (Pre-Shared Keys - PSK).
+- Creazione del tunnel: IPsec stabilisce un tunnel cifrato tra i gateway delle reti.
+- Scambio dei dati: I pacchetti vengono cifrati e autenticati durante il transito per proteggerli.
 
-2. Protocolli utilizzati:
+1. Protocolli utilizzati:
 
-   - IKE(Internet Key Exchange): autentica interlocutore negoziazione algoritmi e chiavi crittografiche
-   - AH (Authentication Header): Garantisce integrità e autenticità dei pacchetti.
-   - ESP (Encapsulating Security Payload): Cifra i dati per garantirne la riservatezza.
+- **IKE** (Internet Key Exchange): autentica interlocutore negoziazione algoritmi e chiavi crittografiche
+- **AH** (Authentication Header): Garantisce **integrità** e **autenticità** dei pacchetti.
+- **ESP** (Encapsulating Security Payload): **Cifra** i dati per garantirne la riservatezza.
 
 Vantaggi:
 
@@ -1597,21 +1650,33 @@ In un sistema Aloha, una stazione di **backlogged** (o semplicemente backlogged 
 <p>CSMA</p>
 </div>
 
-### CSMA/CD (Carrier Sensing Multiple Access with Collision Detection)  
+### CSMA/CD (Carrier Sensing Multiple Access with Collision Detection) 
 
 Migliora il protocollo permettendo il rilevamento immediato delle collisioni e rappresenta lo standard de facto per le reti LAN grazie alla semplicità e robustezza del protocollo. 
-- **Collision Detection (CD):** Una stazione monitora il canale durante la trasmissione per rilevare variazioni di potenza (indicative di collisioni), il tutto è facilitato dall’uso della **codifica di Manchester**, che garantisce transizioni regolari del segnale.  
-- **In caso di collisione:** La stazione interrompe subito la trasmissione per evitare sprechi di banda ed invia una sequenza di bits chiamata **jamming signal** per avvisare le altre stazioni della collisione.  
-- **Vantaggi rispetto al CSMA:** In caso di collisione, il canale è inutilizzato solo per l’intervallo di vulnerabilità ($\tau$) e per il tempo di rilevamento della collisione e della sequenza di jamming ($T_{CD}$) mentre nel CSMA puro il canale restava inutilizzato per un tempo pari all’intera durata della trama ($T$). 
 
 <div style="text-align: center;">
 <img src="./img/CSMA-CD.png" alt="Diagramma di rete" width="300">
 <p>CSMA-CD</p>
 </div>
 
+- **Collision Detection (CD):** Una stazione monitora il canale durante la trasmissione per rilevare variazioni di potenza (indicative di collisioni), il tutto è facilitato dall’uso della **codifica di Manchester**, che garantisce transizioni regolari del segnale.  
+- **In caso di collisione:** La stazione interrompe subito la trasmissione per evitare sprechi di banda ed invia una sequenza di bits chiamata **jamming signal** per avvisare le altre stazioni della collisione.  
+- **Vantaggi rispetto al CSMA:** In caso di collisione, il canale è inutilizzato solo per l’intervallo di vulnerabilità ($\tau$) e per il tempo di rilevamento della collisione e della sequenza di jamming ($T_{CD}$) mentre nel CSMA puro il canale restava inutilizzato per un tempo pari all’intera durata della trama ($T$). 
+
+<div style="text-align: center;">
+<img src="./img/CSMA_vs_CSMA-CD.png
+" alt="Diagramma di rete" width="300">
+<p>CSMA vs CSMA-CD</p>
+</div>
+
 ### Codifica di Manchester
 
-- **Caratteristiche del segnale:**  
+la codifica di Manchester è un metodo robusto e affidabile per rappresentare i dati, particolarmente adatto a scenari come il CSMA/CD in Ethernet.
+
+Dato che difficilimente due calcolatori trasmettono lo stesso messaggio, se ci sono collisioni ci si accorge facilmente grazie al fatto che il segnale nel tempo di clock non corrisponde ne a 0 ne 1. 
+
+- **Caratteristiche del segnale:**
+
   - **Bit “0” logico**:  Segnale basso per metà tempo del simbolo e alto per l’altra metà.  
   - **Bit “1” logico**:  Segnale alto per metà tempo del simbolo e basso per l’altra metà.  
 - **Vantaggi:**  
@@ -1619,11 +1684,374 @@ Migliora il protocollo permettendo il rilevamento immediato delle collisioni e r
     - **Sincronizzazione**: semplifica l’acquisizione del clock.  
     - **Carrier sensing** e **collision detection**.  
   - Simboli aggiuntivi (alto-alto e basso-basso) rappresentano segnali di non-dati.  
-- **Svantaggi:** La necessità di un clock al doppio della velocità di trasmissione: per 10 Mbit/s serve un clock a 20 MHz.   
+- **Svantaggi:** La necessità di un clock al doppio della velocità di trasmissione: per 10 Mbit/s serve un clock a 20 MHz.
+
+## Token Ring e IEEE 802.5  (tutto da skippare)
+
+### Token Ring
+
+HA topologia fisica a **stella**, ma logica ad **anello** ed è basato sul concetto di **token**, ovvero un diritto di trasmissione che circola lungo l’anello. Ogni stazione attende il passaggio di un token libero che una volta ricevuto permetterà alla stazione di aggiunge i dati da trasmettere per poi rilasciare il token una volta completata la trasmissione.  
+
+- bit rates: 4 Mbit/s (vecchie versioni), 16 Mbit/s
+  
+### Definizioni dei tempi principali nel Token Ring
+
+1. **Tempo di trasmissione ($T$)**: È il tempo necessario per trasmettere una trama di lunghezza massima e dipende dalla velocità di trasmissione della rete e dalla dimensione massima della trama consentita.  
+2. **Tempo di accesso ($T_{acc}$)**: È il tempo che una stazione deve attendere per vedere il token libero e quindi poter trasmettere. In presenza di $n$ stazioni al meglio la stazione attende solo il rilascio del token dalla stazione precedente al peggio: deve aspettare che tutte le $n-1$ stazioni utilizzino il token.  
+
+- Formula:
+
+$$
+T_{acc} = T_1 + T_2 \leq n \cdot T_{HT} + T_{lat}
+$$
+Dove:  
+
+- $T_1$: tempo per il rilascio del token dalla stazione corrente.  
+- $T_2$: tempo per il ritorno del token.
+
+3. **Tempo di latenza ($T_{lat}$)**: È il tempo impiegato da un bit per completare un giro completo dell'anello e dipende dalla lunghezza fisica dell'anello e dal ritardo introdotto dalle stazioni.
+4. **Tempo di detenzione del token ($T_{HT}$)**: È il tempo massimo durante il quale una stazione può trattenere il token per trasmettere dati ed è determinato dalla dimensione massima delle trame e dalle strategie di rigenerazione del token.  
+5. **Tempo di rotazione del token ($T_{RT}$)**: È il tempo impiegato dal token per compiere un giro completo dell’anello, include il tempo di detenzione ($T_{HT}$) delle $n$ stazioni e il tempo di latenza ($T_{lat}$):  
+
+$$
+T_{RT} = n \cdot T_{HT} + T_{lat}
+$$  
+
+### Rimozione delle trame nell’anello
+
+**Necessità di rimozione**: Ogni trama deve essere rimossa dall’anello una volta che è stata ricevuta per evitare congestione.  
+**Modalità di rimozione**:
+
+- **Diffusiva**: La trama viene rimossa dalla **stazione trasmittente** che libera anche il token, c'è la possibilità di aggiungere un **ACK** alla trama da parte della stazione ricevente.  
+
+- **Parzialmente diffusiva**: La trama viene rimossa dalla **stazione ricevente** che libera anche il token.  
+  Vantaggi:
+  - il token si libera più velocemente.  
+  
+  Svantaggi:  
+  - Cambiamento dell'ordine di trasmissione.  
+  - Aumento del tempo di latenza.  
+  - Maggiore aleatorietà nel tempo di accesso.
+  - Mancanza di verifica della corretta trasmissione.  
+  - Aumento del tempo di latenza a causa della necessità di leggere l'indirizzo del destinatario.  
+
+### Strategie di rigenerazione del token
+
+La rigenerazione del token nel Token Ring è il meccanismo attraverso cui la rete si autoregola per recuperare dalla perdita o corruzione del token, mantenendo il flusso ordinato e controllato delle trasmissioni. È un elemento fondamentale per:
+
+- **Prevenire stalli** (il token si blocca in un nodo non funzionante).
+- **Evitare conflitti** Rigenerare il token in modo controllato assicura che ci sia sempre un unico token valido.
+
+1. **Single Frame**: Il token viene rigenerato quando la stazione trasmittente ha ricevuto l’intera trama trasmessa.  
+2. **Single Token**: Il token viene rigenerato quando la stazione trasmittente ha ricevuto il token associato alla trama.  
+3. **Multiple Token**: Il token viene rigenerato subito dopo la trasmissione della trama, risulta efficiente solo quando $T_{lat}$ è maggiore del tempo di trasmissione ($T$).  
+
+<div style="text-align: center;">
+<img src="./img/rigenerazione_token.png
+" alt="Diagramma di rete" width="300">
+<p>rigenerazione token</p>
+</div>
+
+### Monitor nel Token Ring
+
+1. **Ruolo del monitor**: È responsabile della gestione delle emergenze causate da malfunzionamenti delle stazioni rimuovendo le trame errate o duplicate dall’anello.  
+2. **Problematiche gestite**:  
+   - **Trama non rimossa**: Se una stazione non rimuove una trama, che continua a circolare il monitor identifica la trama tramite un bit $M$ e la rimuove se necessario.  
+   - **Token perduto o duplicato**: In assenza di un token valido, il monitor genera un nuovo token in caso di token duplicato, il monitor elimina quello superfluo.  
+3. **Implementazione del bit $M$**: Per rimuoverla il Monitor dispone di un bit M nel campo token, che è sempre 0 quando un nuovo token viene generato e viene marcato a 1 dal monitor ogni volta che questo riceve.
+
+### Sincronizzazione nel Token Ring
+
+1. **Sincronizzazione asservita**: Ogni stazione si sincronizza con il segnale ricevuto e lo utilizza per ritrasmettere i dati.  
+2. **Buffer elastico**: Una stazione (spesso il monitor) gestisce un buffer elastico per mantenere il sincronismo.  
+3. **Problemi di latenza**: La ritrasmissione immediata di ogni bit aiuta a minimizzare il tempo di latenza ma potrebbe ritrasmettere errori.  
+
+### Token Bus
+
+1. **Principio di funzionamento**: Simula un anello logico su una topologia fisica a bus in questa topologia logica ogni stazione ha un predecessore e un successore logici.  
+2. **Gestione dinamica**: La stazione corrente effettua un **polling** per **invitare** le stazioni che vogliono entrare nella rete mentre coloro che vogliono **uscire** **comunicano** la loro intenzione al predecessore e al successore.  
+3. **Vantaggi rispetto al Token Ring**: Ciò migliora la flessibilità nella gestione delle stazioni ed è decisamente più adatto per applicazioni real-time grazie all’assenza di collisioni.  
+
+### Confronto tra protocolli a contesa e collision-free 
+
+1. **Protocolli a contesa** (es. CSMA):
+
+   - **Vantaggi**: Semplicità di implementazione e maggiore efficienza a basso traffico.  
+   - **Svantaggi**: Collisioni e aleatorietà nei tempi di trasmissione.  
+2. **Protocolli collision-free** (es. Token Ring, Token Bus):  
+   - **Vantaggi**: Determinismo nei tempi di consegna delle trame, non presentano problemi di stabilità ed utilizzo ottimizzato del canale ad alto traffico.  
+   - **Svantaggi**: Maggiore complessità ed esposizione ai guasti del monitor.
+
+## Progetto IEEE 802 (finer skip !!!)
+
+**Obiettivi:**  
+
+- Creato nel 1980 per definire standard per reti locali (LAN).  
+- Introduzione di una struttura gerarchica:  
+- **Strato 2 (Data Link Layer)** diviso in:  
+  - **LLC (Logical Link Control)**: indipendente dal mezzo fisico e dalla topologia.  
+  - **MAC (Medium Access Control)**: specifico per il mezzo e il protocollo di accesso.  
+
+**Standard principali:**  
+
+- **IEEE 802.3**: Basato su CSMA/CD, ispirato a Ethernet.
+- **IEEE 802.5**: Basato su Token Ring.  
+- **IEEE 802.11**: Wireless LAN (WLAN).  
+- **IEEE 802.15**: Personal Area Networks (Bluetooth).
+
+## Rete Ethernet
+
+Ethernet è una tecnologia di rete sviluppata inizialmente dalla Xerox nel 1976. Successivamente, un consorzio formato da Digital Equipment Corporation (DEC), Intel e Xerox ha contribuito al suo sviluppo.
+
+### Sviluppo e Standardizzazione
+
+- **1978**: Il consorzio sviluppa lo standard a 10 Mbit/s chiamato **DIX**.
+- **1983**: Il DIX diventa, con poche modifiche, lo standard **IEEE 802.3**.
+
+### Protocollo di Accesso: CSMA/CD
+
+- **CSMA/CD**: Carrier Sensing Multiple Access with Collision Detection.
+  - Limita, ma non elimina, la possibilità che due stazioni trasmettano contemporaneamente.
+  - Le collisioni possono verificarsi, risultando in perdita di trame (PDU di livello 2).
+  - Permette un utilizzo efficiente della banda disponibile.
+  - Non garantisce tempi di consegna certi per le trame (ritardo di accesso).
+
+### Slot Time
+
+- **Slot Time**: Tempo necessario per trasmettere:
+  - 512 bit in reti a 10 e 100 Mbit/s.
+  - 4096 bit in reti a 1 Gbit/s.
+- La trama deve avere una dimensione minima uguale allo slot time.
+- Lo slot time deve essere superiore alla somma:
+  - Del tempo di andata e ritorno del segnale.
+  - Del tempo necessario per rilevare la collisione e lanciare la sequenza di jamming.
+- **Sequenza di Jamming**: 33 bit.
+  - Deve essere abbastanza lunga da garantire il riconoscimento di una collisione nel circuito di CD.
+
+#### Dimensione dello Slot Time
+
+- Ogni trama di dimensione inferiore allo slot time viene scartata.
+- Impone il tempo di propagazione massimo.
+
+<div style="text-align: center;">
+<img src="./img/formato_frame_ethernet_e_IEEE802.3.png
+" alt="Diagramma di rete" width="300">
+<p>formato pacchetto ethernet</p>
+</div>
+
+### Campi del Frame Ethernet/IEEE 802.3
+
+#### **Preamble**
+
+- **Descrizione**: Sequenza di 7 byte uguali a `10101010`.
+- **Funzione**: Genera un'onda quadra a 10 MHz per 5,6 μs a 10 Mbps, sincronizzando il clock del ricevitore con quello del trasmettitore.
+
+#### **SFD (Start Frame Delimiter)**
+
+- **Descrizione**: Byte uguale a `10101011`.
+- **Funzione**: Indica l'inizio del frame.
+
+#### **Lunghezza / Tipo**
+
+- **In IEEE 802.3**:
+  - Specifica il numero di byte nel campo dati (valore da 0 a 1500).
+  - **Nota**: I primi 4 bit del campo sono sempre `0`.
+- **In Ethernet**:
+  - Indica il tipo di payload contenuto nel campo dati.
+  - **Nota**: Almeno uno dei primi 4 bit è diverso da `0`.
+
+#### **Dati**
+
+- Contiene il payload (messaggio pulito senza headere e controllo errore) proveniente dal livello superiore del modello OSI.
+
+#### **Pad**
+
+- **Descrizione**: Campo di riempimento.
+- **Funzione**: Se il frame (esclusi preambolo e delimiter) è più corto di 64 byte, viene riempito fino a raggiungere questa lunghezza.
+
+#### **Frame Checking Sequence (FCS)**
+
+- **Descrizione**: Campo per il controllo degli errori.
+- **Funzione**: Include un codice di ridondanza basato su un polinomio di grado 32 per rilevare errori.
+
+#### **Indirizzi**
+
+**Descrizione**: Identificatori univoci a livello mondiale di 48 bit (6 byte).
+
+- **Struttura**:
+  - I primi 3 byte identificano il produttore.
+  - Gli ultimi 3 byte numerano progressivamente le schede.
+- **Tipi di indirizzi**:
+  - **Unicast**: Indirizzo di un singolo destinatario, es. `00-60-b0-78-e8-fd`.
+  - **Multicast**: Indirizzo di gruppo (il primo bit è `1`).
+  - **Broadcast**: Invio a tutte le stazioni, es. `ff-ff-ff-ff-ff-ff`.
+
+### Delimitazione trame
+
+- No trame = no segnale
+- Preambolo di sincronismo = inizio
+- assenza segnale = termine frame
+- Due frae devono essere separati almeno da un Inter-Frame Gape (IFG)
+  - 96 tempi di bit
+  
+### Collision Domain e Broadcast Domain
+
+1. **Collision Domain:** Area in cui le stazioni possono collidere durante la trasmissione, leimensioni dipendono dalla velocità di trasmissione e dalla dimensione delle trame.
+2. **Broadcast Domain:** Insieme di stazioni che ricevono una trama con **Destination Address: ff-ff-ff-ff-ff-ff**, normalmente coincidente con una singola LAN.
+
+### Evoluzione dell'Ethernet
+
+#### Ethernet Classica a *10 Mbit/s*
+
+- **10base5 (Thick Wire):**
+  - Utilizza cavi coassiali spessi con segmenti lunghi fino a 500 metri, supportando un massimo di 100 stazioni.
+  - Le stazioni sono connesse mediante transceiver (collegati tramite "drop cable").
+  - Sebbene robusta, questa tecnologia richiedeva cavi rigidi e difficili da installare, rendendola meno pratica nei cablaggi moderni o in edifici.
+
+- **10base2 (Thin Wire):**
+  - Sfrutta un cavo coassiale più sottile e flessibile, consentendo segmenti di lunghezza massima di 180 metri e un massimo di 30 stazioni.
+  - Le stazioni sono collegate in serie (topologia "a catena") tramite connettori BNC e connettori a T.
+  - Richiede l'uso di terminatori per evitare riflessioni del segnale.
+
+- **10baseT (Twisted Pair):**
+  - Utilizza cavi **UTP** (Unshielded Twisted Pair) di categoria 3, con lunghezza massima di 100 metri per singolo collegamento.
+  - Ogni stazione è connessa a un hub tramite connettori RJ45, formando una topologia a stella.
+  - Gli hub funzionano da multiport repeater, permettendo una gestione più semplice rispetto alle soluzioni basate su cavo coassiale.
+
+- **10baseF (Fibra Ottica):**
+  - Impiega cavi in fibra ottica multimodo, consentendo connessioni fino a 2000 metri.
+  - È spesso utilizzata per cablaggi verticali, specialmente in edifici, ma il costo dei connettori e degli adattatori la rende una soluzione meno comune per gli utenti finali.
+
+#### Fast Ethernet (IEEE 802.3u - *100 Mbit/s*)**
+
+Introduce una maggiore velocità mantenendo la compatibilità con le reti Ethernet classiche. Offre diverse varianti:
+
+- **100baseT4:**
+  - Utilizza 4 coppie di cavi UTP di categoria 3, con una lunghezza massima di 100 metri.
+  - La trasmissione sfrutta una codifica **8B/6T**, che converte 8 bit in 6 simboli ternari.
+
+- **100baseTX:**
+  - Richiede cavi UTP di categoria 5 o superiore.
+  - Utilizza 2 coppie per trasmissione dati (una per direzione) e offre comunicazioni full-duplex fino a 100 metri.
+
+- **100baseFX:**
+  - Si basa sulla fibra ottica multimodo, con una portata massima di 2000 metri.
+  - È ideale per connessioni tra edifici o cablaggi backbone.
+
+#### Gigabit Ethernet (IEEE 802.3z - 1 Gbit/s)**
+
+Progettata per incrementare la velocità a 1 Gbps mantenendo la semplicità di Ethernet.
+
+- **1000baseSX:** Utilizza fibra ottica multimodo per distanze fino a 550 metri.
+- **1000baseLX:** Compatibile sia con fibra multimodo che monomodo, estende le connessioni fino a 5000 metri con quest'ultima.
+- **1000baseCX:** Sfrutta 2 coppie di cavi intrecciati schermati (STP) ma è più costosa e meno performante rispetto alla fibra ottica.
+- **1000baseT:** Impiega 4 coppie di cavi UTP di categoria 5, con una lunghezza massima di 100 metri ed utilizza una codifica innovativa che associa 2 bit a un simbolo con 5 livelli, garantendo una velocità netta di 1 Gbps.
+
+#### 10 Gigabit Ethernet (IEEE 802.3ae)
+
+È progettata esclusivamente per la fibra ottica, con velocità dieci volte superiori rispetto al Gigabit Ethernet.
+
+- **Caratteristiche principali:** Supporta connessioni su fibra ottica con distanze che variano da pochi chilometri fino a diverse decine di chilometri, a seconda del tipo di fibra e della modalità di trasmissione. È prevalentemente utilizzata per backbone in reti aziendali o per Metropolitan Area Networks (MAN). L'elevato costo e l'hardware specifico rendono difficile l'adozione su larga scala per dispositivi comuni, riservandola principalmente a infrastrutture critiche.
+
+#### Carrier Ethernet
+
+Estende Ethernet oltre il contesto delle LAN per essere utilizzata come tecnologia di trasporto nei provider di rete.
+
+- **Nuove Funzionalità:** Indirizzamento multilivello gerarchico per migliorare la scalabilità ed introduzione di meccanismi di segnalazione, gestione e recupero dei guasti.
+- **Applicazioni:** È ideale per reti backbone, trasporto su lunghe distanze e reti aziendali distribuite.
+- **Alternative:** Lo standard IEEE 802.17 (RPR, Resilient Packet Ring) è stato proposto come opzione alternativa per backbone MAN.
+
+### Cablaggio delle LAN Moderne
+
+**Caratteristiche Generali:**
+
+- Un unico cablaggio strutturato per tutti i servizi di telecomunicazione.
+- Basato su UTP (tipicamente 4 coppie) con terminazioni RJ45 o RJ11.
+- Standard: **EIA/TIA 568** e **ISO 11801**.
+
+**Struttura del Cablaggio:**
+
+- **Prese a muro:** punto di accesso per le stazioni.
+- **Cablaggio orizzontale:** collega prese a muro all’armadio di rete (topologia a stella).
+- **Cablaggio verticale:** connette diversi armadi di rete (backbone).
+- **Armadio di rete:**
+  - Contiene switch, patch panel e altre apparecchiature attive.
+  - **Patch panel:** consente di organizzare e distribuire le connessioni dei cavi UTP.
+  - **Patch cord:** collega le porte dei patch panel agli switch.
+
+- **Tecnologie Attive:**
+  - Switch con porte Ethernet UTP (es. 100 Mbps, 1 Gbps) o fibra ottica per il backbone.
+
+## Wirless LAN (Wi-Fi)
+
+### Standard IEEE 802.11
+
+- Introdotto nel 1997 per accesso radio alle reti locali.
+- Strato fisico 802.11, Trasmissione trame, interazione con MAC per attività del canale.
+- Tecniche iniziali (1-2 Mbps): Infrarossi, FHSS, DSSS.
+- Banda ISM (2.4 GHz, 83.5 MHz): senza licenze per usi industriali, scientifici e medici.
+- Regolamentazioni:
+  - Limiti di potenza.
+  - Tecniche Spread Spectrum (FHSS: 79 canali; DSSS: gain ≥ 10 dB).
+- Banda ISM in Italia: autorizzazione obbligatoria solo su suolo pubblico (D.M. 28 Maggio 2003).
+
+- **Standard successivi:**
+  - **802.11a (1999):** banda 5 GHz, OFDM, 12 canali da 20 MHz, bit rate da 6 a 54 Mbps.
+  - **802.11b (1999):** banda 2.4 GHz, HR-DSSS, 14 canali (5 MHz), bit rate fino a 11 Mbps, Dynamic Rate Shifting.
+  - **802.11g (2003):** banda 2.4 GHz, OFDM/HR-DSSS, bit rate da 1 a 54 Mbps.
+
+### Architettura di rete 802.11
+
+**Nomenclatura:**
+
+- **Basic Service Set (BSS):** Un insieme di stazioni wireless che comunicano tra loro tramite un Access Point (AP).
+- **Access Point (AP):** Dispositivo che funge da ponte tra le stazioni wireless e la rete cablata, gestendo il traffico di rete.
+- **Distribution System:** Sistema di distribuzione che collega più BSS, permettendo la comunicazione tra stazioni in diverse BSS.
+- **Wireless Station:** Dispositivo finale che si connette alla rete wireless, come laptop, smartphone o tablet.
+
+**Modalità:**
+
+- **Infrastrutturata (BSS):** stazioni comunicano tramite un Access Point (AP).
+- **Ad-Hoc (IBSS):** comunicazione diretta tra stazioni.
+
+<div style="text-align: center;">
+<img src="./img/BSS.png
+" alt="Diagramma di rete" width="300">
+<p>Basic Service Set</p>
+</div>
+
+<div style="text-align: center;">
+<img src="./img/I-BSS.png
+" alt="Diagramma di rete" width="300">
+<p>Infrastructure and Independent BSS</p>
+</div>
+
+<div style="text-align: center;">
+<img src="./img/E-BSS.png
+" alt="Diagramma di rete" width="300">
+<p>Extended BSS</p>
+</div>
+
+<div style="text-align: center;">
+<img src="./img/ESS-BSS.png
+" alt="Diagramma di rete" width="300">
+<p>Extended Service Ser BSS</p>
+</div>
+
+### Problemi di accesso multiplo nelle WLAN
+
+Problemi specifici rispetto alle LAN cablate:
+
+- **Stazione nascosta:** il carrier sensing risulta limitato.
+- **Stazione esposta:** difficoltà nell'utilizzo del canale.
+- Half-duplex impedisce collision detect.
+
+Accesso al canale (CSMA/CA):
+
+- **DCF:** accesso distribuito (RTS/CTS per evitare collisioni, ACK per confermare trame ricevute).
+- **PCF:** AP gestisce il polling e trasmette beacon per sincronizzazione e associazione.
 
 \
 \
 \
-\
-
 ****
