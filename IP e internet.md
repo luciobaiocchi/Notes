@@ -1,6 +1,6 @@
 # Appunti reti
 
-- [Appunti reti](#appunti-reti)
+- [Appunti reti](#appunti-reti)****
   - [IP e internet](#ip-e-internet)
     - [Composizione Indirizzo IP](#composizione-indirizzo-ip)
     - [Funzioni](#funzioni)
@@ -160,7 +160,9 @@
     - [Standard IEEE 802.11](#standard-ieee-80211)
     - [Architettura di rete 802.11](#architettura-di-rete-80211)
     - [Problemi di accesso multiplo nelle WLAN](#problemi-di-accesso-multiplo-nelle-wlan)
-
+    - [Protocollo MAC 802.11 – DCF (Distributed Coordination Function)](#protocollo-mac-80211--dcf-distributed-coordination-function)
+    - [Protocollo MAC 802.11 – PCF (Point Coordination Function)](#protocollo-mac-80211--pcf-point-coordination-function)
+    - [Indirizzamento](#indirizzamento)
 
 ## IP e internet
 
@@ -196,15 +198,13 @@ identifica Host e router tramite indirizzi di lunghezza fissa, raggruppandoli in
 | `Identification`    | Valore intero che identifica univocamente il datagramma (pacchetto)          |
 | `Flag`              | Vari flag utilizzati per il controllo della frammentazione dei pacchetti     |
 
----
-
 ![Se non posso frammentare il pacchetto lo distruggo. ](/img/Screenshot_2024-10-02_at_13.39.55.png)
 
-Se non posso frammentare il pacchetto lo distruggo. 
+Se non posso frammentare il pacchetto lo distruggo.
 
-**Fragment offset→** indica quale è la posizione di questo frammento (della dimensione di 8 byte , 64 bit)nel datagramma, come distanza dall’inizio. Il numero logico del primo blocco viene scritto nel Fragment Offset del datagramma 
+**Fragment offset→** indica quale è la posizione di questo frammento (della dimensione di 8 byte , 64 bit)nel datagramma, come distanza dall’inizio. Il numero logico del primo blocco viene scritto nel Fragment Offset del datagramma
 
-**Implementazione frammentazione:** 
+**Implementazione frammentazione:**
 
 - Effettuata da qualsiasi apparato di rete dotato di protocollo.
 - I nodi intermedi non riassemblano, solo il terminale ricevente
@@ -213,9 +213,9 @@ Se non posso frammentare il pacchetto lo distruggo.
 Grazie alla numerazione tramite offset permette di rinumerare facilmente i segmenti.
 
 > La segmentazione è fondamentale perché non sempre la dimensione del pacchetto è corretta per essere elaborata dai macchinari disponibili sulla rete
-> 
+>
 
-**Riassemblamento** 
+**Riassemblamento**
 
 ![Screenshot 2024-10-02 at 13.55.55.png](/img/Screenshot_2024-10-02_at_13.55.55.png)
 
@@ -227,7 +227,7 @@ Grazie alla numerazione tramite offset permette di rinumerare facilmente i segme
 
 **Source and Destination→** indirizzi sorgente e destinazione
 
-**Options→** lunghezza variabile perché contiene opzioni relative al trasferimento 
+**Options→** lunghezza variabile perché contiene opzioni relative al trasferimento
 
 **Padding→** bit inutili per fare tornare intestazione multiplo di 32 bit
 
@@ -239,45 +239,46 @@ Come funziona internet → Rete di reti.
 
 ### Network IP → componente elementare
 
-Una sorta di isola che contiene calcolatori che fanno da **Host** 
+Una sorta di isola che contiene calcolatori che fanno da **Host**
 
 **Gateway o Router** → componenti che fanno da ponte.
 
-Ogni Network IP viene implementata con una tecnologia specifica, per esempio : 
+Ogni Network IP viene implementata con una tecnologia specifica, per esempio :
 
 - Wi-Fi
 - Ethernet, cavo breve distanza locale
 - ADSL e xDSL, cavo a media distanza
 - **GPRS/EDGE/LTE,** radio media distanza
 
-I calcolatori di una network IP devono potersi scambiare pacchetti in modo diretto tra di loro. 
+I calcolatori di una network IP devono potersi scambiare pacchetti in modo diretto tra di loro.
 
 ![Screenshot 2024-10-04 at 11.35.42.png](/img/Screenshot_2024-10-04_at_11.35.42.png)
 
 > **La tecnologia IP è agnostica rispetto alla tecnologia
 con cui sono realizzate le network**
-> 
+>
 
-Quindi non dipende dalla tipologia di tecnologia utilizzata 
+Quindi non dipende dalla tipologia di tecnologia utilizzata
 
 Quando un terminale invia un pacchetto ha due alternative:
 
 - Dentro la network **→** **Direct delivery**
 - Fuori network, usando gateway **→** **Indirect delivery**
 
-La scelta è binaria, ma deve essere fatta in poco tempo. 
+La scelta è binaria, ma deve essere fatta in poco tempo.
 
 Ogni nodo ha una base di dati che contiene la lista degli ip che può raggiungere
 
-I collegamenti fra router vengono visti come network 
+I collegamenti fra router vengono visti come network
 
 ![Screenshot 2024-10-04 at 11.45.55.png](/img/Screenshot_2024-10-04_at_11.45.55.png)
 
 ### Invio pacchetto
 
 1. Il **calcolatore** **instrada** il pacchetto verso il router
-2. il **router** decide che direzione seguire e **instrada nuovamente** il pacchetto 
-- Un salto viene detto **hop**
+2. il **router** decide che direzione seguire e **instrada nuovamente** il pacchetto
+  
+Un salto viene detto **hop**
 
 ### Semantica indirizzo IP
 
@@ -333,7 +334,7 @@ la riga numero 1 è quella di default, perchè AND è sempre 0.0.0.0
 
 ![Screenshot 2024-10-23 at 14.35.26.png](/img/Screenshot_2024-10-23_at_14.35.26.png)
 
-il router ha lo stesso net-id mio e come ultimo numero ha 254, ma più generalmente il numero massimo di host-id. 
+il router ha lo stesso net-id mio e come ultimo numero ha 254, ma più generalmente il numero massimo di host-id.
 
 Qual’è la configurazione minima dell’interfaccia IP?
 
@@ -355,26 +356,26 @@ Inizialmente, gli indirizzi IP erano suddivisi in classi (A, B, C, D, E) con net
 
 la soluzione è stata quella di utilizzare reti più piccole con indirizzi consecutivi, per ottimizzare l’utilizzo degli indirizzi.  Lo stesso indirizzo può essere interpretato diversamente in base a dove si trova nella rete, quindi le tabelle di instradamento devono
 
-
-
-
 ## Metodologie di filtraggio dei datagrammi
+
 ### Packet filter
+
 I nodi di rete eseguono delle operazioni di tipo attivo sui dati, generalmente per scopi di filtraggio. Quindi in nodi assumono un ruolo attivo nell'instradamento.
 
+**Come si fa?**
 
-##### Come si fa?
 l'instradamento selettivo viene fatto attraverso un packet filter, che instrada solo alcuni pacchetti che rispettano le caratteristiche indicate. I filtri operano a livello IP, quindi il filtro si basa al massimo sull'header IP, es: pacchetti con questo TTl passano e altri no.
 Viene fatto attraverso tabelle affiancate a tabelle di indirizzamento.
 
-##### Che vantaggio ha ?
+**Che vantaggio ha ?**
+
 dal punto di vista architetturale è in linea ai soliti protocolli (OSI).
 
 ### Statefull packet inspection
 
 <img src="./img/049_statefull_packet_inspection.png" alt="Diagramma di rete" width="500"/>
 
-Utilizzano informazioni prese dagli header di livello superiore (es : numero di porta utilizzata ecc...) 
+Utilizzano informazioni prese dagli header di livello superiore (es : numero di porta utilizzata ecc...)
 Questa operazione "viola" l'idea del protocollo iso-osi.
 
 ### Application layer gateway (proxy)
@@ -382,7 +383,7 @@ Questa operazione "viola" l'idea del protocollo iso-osi.
 <img src="./img/050_application_layer_gateway.png" alt="Diagramma di rete" width="500"/>
 
 Da più funzionalità possibili ma è anche il più dispendioso di tutti perchè controlla tutto il pacchetto (livello 3 e 4).
-Posso anche decidere di fare passare solo determinati protocolli 
+Posso anche decidere di fare passare solo determinati protocolli
 (FTP HTTP)
 
 #### Firewall
@@ -394,7 +395,7 @@ Protegge interno da esterno ed esterno da interno. Solitamente è una combinazio
 Gateway che filtra pacchetti, statefull packet inspection tra due network, e modifica i pacchetti modificando gli indirizzi.
 È un concetto, ma ci sono molte implementazioni diverse.
 
-<img src="./img/Screenshot 2024-10-30 at 17.29.58_nat.png" alt="Diagramma di rete" width="500"/>
+<img src="./img/Screenshot 2024-10-30 at 17.29.58_nat.png" alt="Diagramma di rete" width="500">
 
 Il nat permette anche di modificare il verso dei pacchetti, permettendo a quelli che sono dentro di parlare all'esterno, mentre quelli all'esterno possono parlare solo se hanno ricevuto una richiesta.
 Oggi è concepito come uno strumento di protezione, ma inizialmente è nato perchè stavano finendo i numeri IP. Infatti tutti quelli che stanno alla sinistra del NAT possono essere visti come lo stesso numero IP.
@@ -418,10 +419,10 @@ Tutte le metodologie di instradamento si devono adattare a modifiche della rete 
 
 I nodi di commutazione per applicare l’algoritmo possono utilizzare informazioni predisposte localente tipicamente sotto forma di tabelle
 
-
-#### Senza tabella:
+#### Senza tabella
 
 ##### Flooding (broadcast)
+
 Pro:
 
 - ogni nodo ritrasmette tutte le porte in uscita ogni pacchetto ricevuto
@@ -435,23 +436,26 @@ Soluzioni :
 - fare si che i pacchetti non ritornano da dove sono venuti
 - aggiungere TTl
 
-##### Random 
+##### Random
+
 Poco usato perchè poco efficiente.
 
 ##### Deflection Routing (hot potato)
-Il pacchetto viene inviato all aporta con meno pacchetti in fila da inviare. 
+
+Il pacchetto viene inviato all aporta con meno pacchetti in fila da inviare.
 Per reti con spazio e risorse limitate.
-Problemi: possibili pacchetti che girano all'infinito e potrebbero non arrivare in ordine 
+Problemi: possibili pacchetti che girano all'infinito e potrebbero non arrivare in ordine
 
+#### Con tabella
 
-#### Con tabella 
 instradamento principalmente statico  
-Linee di ingresso -> funzione di instradamento -> linee di uscita 
+Linee di ingresso -> funzione di instradamento -> linee di uscita
 
 Il pacchetto viene prima memorizzato interamente nel nodo e quindi ritrasmesso nella direzione opportuna
 In generale dovrebbe esistere una base dati per il confronto che è la tabella di instradamento
 
 ##### Shortest path routing
+
 Ogni nodo ha una lunghezza, difficoltà per attraversare due punti.
 Per implementare il routing shortest path verso una qualunque destinazione devono utilizzare:
 
@@ -466,7 +470,6 @@ Se la rete è grande ci vuole troppo tempo, c'è la possibilità che la rete cam
 ###### Cosa succede se la rete si modifica?
 
 <img src="./img/Screenshot_2024-11-25_at_21.19.17.png" alt="Bouncing effect" width="500"/>
-
 
 - **bouncing effect** la convinzione che un certo router per inviare pacchetti a un altro deve mandarli a lui e poi farseli rispedire indietro.
 - **convergenza lenta** la possibilità che anche in una rete con 3 nodi ci si mettano anche 20/30 scambi di distance vector
@@ -537,86 +540,96 @@ Si scompone anche il problema all'interno (intra Domain) dell'autonomus sistem e
 
 **autonomus sistem** insieme di router che utilizzano stesso protocollo di comunicazione. Oggi viene usata una terminologia più precisa:
 Oggi un AS è:
+
 - Un insieme di prefissi di rete IP (network IP definite secondo
 la logica CIDR)
 - Gestito in modo unitario e con una ben definita politica di routing
 - Questo significa che chi gestisce l’AS ha definito in modo chiaro al suo interno come raggiungere le network IP
 
 Un AS importa le informazioni di routing da solo determinati AS certificati.
-RADb -> database contenente le politiche di routing 
+RADb -> database contenente le politiche di routing
 
 ### ISP internet service provider
+
 Una associazione che fornisce servizi di connnettività, web e mail hosting, registrazione e noleggio di indirizzi IP. Può essere a fini di lucro o no e coperativa o no. Tipocamente un ISP è un AS.
 
-**Internet region** una porzione di internet contenuta in una determinata area. 
+**Internet region** una porzione di internet contenuta in una determinata area.
 
 Tipologie di ISP:
+
 - Tier 1 ISP (più grandi tipo tim, collegato a internet globale)
 - Tier 2 ISP (più piccoli che passano per tier 1 per andare a internet globale)
 - Tier 3 o local ISP (vengono aiutati da livello 1 o 2 comprando servizi)
 
 **PEERING** collegamento tra ISP, con lo scopo di scambiare servizi
-**POP** Nelle reti, un PoP (Point of Presence) è un punto di accesso fisico che consente la connessione a una rete, come un ISP (Internet Service Provider) o una rete aziendale. 
+**POP** Nelle reti, un PoP (Point of Presence) è un punto di accesso fisico che consente la connessione a una rete, come un ISP (Internet Service Provider) o una rete aziendale.
 **Internet Exchange Point (IX o IXP)**
+
 - Infrastrutture attraverso le quali gli ISP possono stabilire
 relazioni di peering
 - L’IXP è costruito per permettere l’interconnessione diretta degli AS senza utilizzare reti di terze parti
 - L’IXP fornisce soluzioni di connettività con specifiche garanzie di qualità (disponibilità elevata, sicurezza fisica, banda garantita ecc.)
-
-
 
 #### IGP
 
 Un IGP **(Interior Gateway Protocol)** è un protocollo di routing utilizzato per instradare il traffico all’interno di un’unica rete autonoma, chiamata AS (Autonomous System). È progettato per gestire la comunicazione tra router appartenenti alla stessa organizzazione o dominio amministrativo.
 
 Esempi di IGP:
-- OSPF (Open Shortest Path First), basato sullo stato dei collegamenti (link-state).
-- RIP (Routing Information Protocol), basato sulla distanza (distance-vector).
+
+- **OSPF** (Open Shortest Path First), basato sullo stato dei collegamenti (link-state).
+- **RIP** (Routing Information Protocol), basato sulla distanza (distance-vector).
     Il RIP (Routing Information Protocol) è un protocollo di routing dinamico basato sull’approccio distance-vector, progettato per reti IP di piccole dimensioni. È uno dei protocolli di routing più semplici ed è stato ampiamente utilizzato in passato, anche se oggi è meno comune a causa delle sue limitazioni.
-- EIGRP (Enhanced Interior Gateway Routing Protocol), un protocollo ibrido.
+- **EIGRP** (Enhanced Interior Gateway Routing Protocol), un protocollo ibrido.
 
 L’IGP si differenzia dai EGP (Exterior Gateway Protocols), come BGP, che gestiscono il routing tra AS differenti.
 
-
 #### RIP come funziona
 
-1.	**Metriche del percorso:**
-•	Utilizza il conteggio dei salti (hop count) come metrica per determinare il percorso migliore.
-•	Ogni router aggiunge un salto alla distanza e il limite massimo è di 15 salti (il 16° indica che la destinazione è irraggiungibile).
-2.	**Scambio di informazioni:**
-•	Ogni router invia periodicamente (default: ogni 30 secondi) la propria tabella di routing ai router adiacenti tramite messaggi broadcast o multicast.
-•	I router aggiornano le proprie tabelle di routing basandosi sulle informazioni ricevute, selezionando il percorso con il minor numero di salti.
-3.	**Aggiornamenti periodici:**
-•	RIP invia aggiornamenti anche se non ci sono cambiamenti nella rete, il che può causare overhead.
-4.	**Meccanismi di stabilità:**
-•	Split horizon: Evita di pubblicizzare un percorso indietro verso il router da cui è stato appreso.
-•	Hold-down timer: Impedisce aggiornamenti troppo frequenti per evitare instabilità.
-•	Poison reverse: Annuncia che un percorso non è più raggiungibile, impostando la metrica a 16.
+**Metriche del percorso:**
+
+- Utilizza il conteggio dei salti (hop count) come metrica per determinare il percorso migliore.
+
+- Ogni router aggiunge un salto alla distanza e il limite massimo è di 15 salti (il 16° indica che la destinazione è irraggiungibile).
+
+**Scambio di informazioni:**
+
+- Ogni router invia periodicamente (default: ogni 30 secondi) la propria tabella di routing ai router adiacenti tramite messaggi broadcast o multicast.
+- I router aggiornano le proprie tabelle di routing basandosi sulle informazioni ricevute, selezionando il percorso con il minor numero di salti.
+
+**Aggiornamenti periodici:**
+
+- RIP invia aggiornamenti anche se non ci sono cambiamenti nella rete, il che può causare overhead.
+
+**Meccanismi di stabilità:**
+
+- Split horizon: Evita di pubblicizzare un percorso indietro verso il router da cui è stato appreso.
+- Hold-down timer: Impedisce aggiornamenti troppo frequenti per evitare instabilità.
+- Poison reverse: Annuncia che un percorso non è più raggiungibile, impostando la metrica a 16.
 
 **Versioni di RIP:**
 
-•	**RIP v1:** Supporta solo subnet classful (senza subnet mask).
-•	**RIP v2:** **Aggiunge supporto per reti classless (CIDR)**, autenticazione e multicast.
+- **RIP v1:** Supporta solo subnet classful (senza subnet mask).
+- **RIP v2:** **Aggiunge supporto per reti classless (CIDR)**, **autenticazione** e multicast.
 
 **Limiti di RIP:**
 
-•	Scalabilità ridotta (massimo 15 salti).
-•	Lento nel convergere rispetto a protocolli più moderni come OSPF o EIGRP.
-•	Overhead causato dagli aggiornamenti periodici.
+- Scalabilità ridotta (massimo 15 salti).
+- Lento nel convergere rispetto a protocolli più moderni come OSPF o EIGRP.
+- Overhead causato dagli aggiornamenti periodici.
 
 Utilizzo attuale:
 
 RIP è ormai superato da protocolli più efficienti e scalabili, ma viene ancora usato in reti semplici o per scopi didattici.
 
-#### OSPF (Open Shortest Path First) 
+#### OSPF (Open Shortest Path First)
 
 È un protocollo di routing dinamico utilizzato nei sistemi autonomi per instradare i pacchetti all’interno di una rete. È uno dei più comuni (tra gli IGP), progettati per operare all’interno di una singola organizzazione o rete.
 
-##### Caratteristiche principali di OSPF:
+##### Caratteristiche principali di OSPF
 
-1. **<details><summary> Protocollo di routing a stato di collegamento (Link-State): </summary>**
+1. **Protocollo di routing a stato di collegamento (Link-State)**
     Un protocollo di routing a stato di collegamento crea una mappa completa della rete, condividendo informazioni sui collegamenti tra i router tramite pacchetti LSA. Ogni router calcola il percorso migliore verso ogni destinazione utilizzando un algoritmo come Dijkstra. Questo approccio garantisce una convergenza rapida, aggiornamenti selettivi e maggiore efficienza, rendendolo ideale per reti complesse. Esempi comuni sono OSPF e IS-IS.
-    </details> OSPF utilizza un approccio basato su mappature dettagliate della rete. Ogni router crea una rappresentazione della topologia completa e calcola i percorsi migliori utilizzando l’algoritmo di Dijkstra.
+    OSPF utilizza un approccio basato su mappature dettagliate della rete. Ogni router crea una rappresentazione della topologia completa e calcola i percorsi migliori utilizzando l’algoritmo di Dijkstra.
 
 2.	**Routing senza classe:**
 Supporta subnet di dimensioni variabili grazie all’uso del VLSM (Variable Length Subnet Mask), permettendo un uso efficiente degli indirizzi IP.
@@ -890,7 +903,7 @@ Utilizzi comuni:
 - Collegamento di reti separate (ad esempio, reti aziendali remote).
 - Trasporto di protocolli che non possono essere instradati direttamente su IP.
 
-Se viene modificata la rete fisica non c'è modifica nella rete logica. 
+Se viene modificata la rete fisica non c'è modifica nella rete logica.
 
 ### Header
 
@@ -1772,7 +1785,7 @@ La rigenerazione del token nel Token Ring è il meccanismo attraverso cui la ret
 2. **Gestione dinamica**: La stazione corrente effettua un **polling** per **invitare** le stazioni che vogliono entrare nella rete mentre coloro che vogliono **uscire** **comunicano** la loro intenzione al predecessore e al successore.  
 3. **Vantaggi rispetto al Token Ring**: Ciò migliora la flessibilità nella gestione delle stazioni ed è decisamente più adatto per applicazioni real-time grazie all’assenza di collisioni.  
 
-### Confronto tra protocolli a contesa e collision-free 
+### Confronto tra protocolli a contesa e collision-free
 
 1. **Protocolli a contesa** (es. CSMA):
 
@@ -2041,16 +2054,98 @@ Estende Ethernet oltre il contesto delle LAN per essere utilizzata come tecnolog
 ### Problemi di accesso multiplo nelle WLAN
 
 Problemi specifici rispetto alle LAN cablate:
+La natura **half-duplex** (ricevere e trasmettere non in contemporanea) delle interfacce WLAN **impedisce l'uso del collision detection** perché i dispositivi non possono ascoltare il canale mentre trasmettono, rendendo impossibile rilevare le collisioni in tempo reale. Invece, le reti WLAN utilizzano meccanismi di **collision avoidance** per gestire le trasmissioni e ridurre le collisioni.
 
 - **Stazione nascosta:** il carrier sensing risulta limitato.
 - **Stazione esposta:** difficoltà nell'utilizzo del canale.
 - Half-duplex impedisce collision detect.
 
-Accesso al canale (CSMA/CA):
+Accesso al canale (**CSMA/CA** Carrier Sense Multiple Access with Collision Avoidance):
 
-- **DCF:** accesso distribuito (RTS/CTS per evitare collisioni, ACK per confermare trame ricevute).
-- **PCF:** AP gestisce il polling e trasmette beacon per sincronizzazione e associazione.
+- **DCF (Distributed Coordination Function):** accesso distribuito (RTS/CTS per evitare collisioni, ACK per confermare trame ricevute).
+- **PCF (Point Coordination Function):** AP gestisce il polling e trasmette beacon per sincronizzazione e associazione.
 
+### Protocollo MAC 802.11 – DCF (Distributed Coordination Function)
+
+**Request to Send (RTS):** Prima che un mittente invii una trama, invia un RTS al destinatario. Questo avvisa le altre stazioni che il canale sta per essere occupato e indica la durata dell'occupazione.
+
+**Clear to Send (CTS):** Se il destinatario è pronto a ricevere, risponde con un CTS. Questo avviso viene ricevuto anche dalle stazioni che vedono il destinatario ma non il mittente, informandole che il canale sarà occupato per un certo periodo.
+
+**ACK (Acknowledgment):** Solo il **ricevitore può rilevare se una trama è errata**(utilizzando tecniche come controllo di parità, il checksum o il CRC (Cyclic Redundancy Check)), inviando un ACK al mittente per ogni trama ricevuta correttamente. Se scade il timeout prima dell'ACK, il mittente ritrasmette la trama, preceduta da un nuovo RTS.
+
+**Carrier Sensing Virtuale (NAV):** Le stazioni che non vedono direttamente il canale, ma lo percepiscono attraverso il NAV, evitano di trasmettere durante il periodo di occupazione del canale.
+
+**Backoff Esponenziale Binario:** In caso di collisione tra RTS, viene applicato un backoff esponenziale, in cui il tempo di attesa aumenta esponenzialmente con ogni tentativo di trasmissione fallito (2^n).
+
+![](img/802.11-DCF.png)
+
+### Protocollo MAC 802.11 – PCF (Point Coordination Function)
+
+**Gestione del Canale da parte dell'Access Point (AP):** In modalità infrastrutturata, l'AP gestisce il canale a polling, assegnandolo a turno alle stazioni che devono trasmettere.
+
+**Beaconing:** L'AP invia periodicamente segnali di beacon che consentono la sincronizzazione delle stazioni, la rilevazione della presenza dell'AP e la possibilità di entrare nel processo di polling.
+
+**Scansione Canali:** Quando una stazione si attiva, scandisce i canali disponibili per cercare i beacon di un AP con cui associarsi. Il beacon mostra anche l'SSID (se impostato), che identifica l'AP.
+
+**Tempi di Spaziatura tra i Frame**:
+
+- **SIFS (Short InterFrame Spacing):** Utilizzato per i frame di risposta rapida come ACK, CTS o frammenti di trama successivi.
+- **PIFS (PCF InterFrame Spacing):** Usato per i frame gestiti dall'AP durante il polling.
+- **DIFS (DCF InterFrame Spacing):** Usato per l'accesso al canale da parte delle stazioni.
+- **EIFS (Extended InterFrame Spacing):** Usato quando una stazione riceve un frame inatteso, segnalando l'errore.
+
+![](img/802.11-PCF.png)
+
+Dato che la possibilità di collisione si limita ai pacchetti di richiesta e non ai dati veri e propri, il problema si riduce notevolmente poiché i pacchetti sono decisamente più piccoli e dunque temporalmente meno lunghi da trasmettere.
+
+**Struttura della Trama**
+La struttura della trama presenta quattro campi per gli indirizzi. Questo è dovuto al fatto che la consegna avviene in maniera indiretta tra mittente e ricevente. A differenza del modello IP, dove utilizziamo il data link, qui dobbiamo salvare gli indirizzi dell'intermediario, ovvero l'**access point** (indirizzo 3). Inoltre, qualora fossimo in un **Wireless Distribution System**, ci servirà anche un secondo access point (indirizzo 4).
+
+**BSSID**
+Il BSSID (Basic Service Set Identifier) è un identificatore univoco utilizzato nelle reti Wi-Fi per distinguere una rete wireless specifica. È simile a un indirizzo MAC e identifica un punto di accesso (AP) o una rete ad-hoc. Il BSSID è fondamentale per la gestione delle connessioni wireless, permettendo ai dispositivi di identificare e connettersi alla rete corretta. È composto da 48 bit e viene trasmesso nei beacon frames per il riconoscimento della rete.
+
+### Indirizzamento
+
+**Significato acronimi**
+
+- **IBSS** (Independent basic service set): Rete ad-hoc senza punto di accesso, dispositivi comunicano direttamente.
+- **BSS** (basic service set): Rete con un singolo punto di accesso che gestisce le connessioni.
+- **ESS** (extended service set): Rete con più punti di accesso collegati, permettendo il roaming tra AP.
+
+**IBSS (Ad-Hoc):**  
+
+- SA = Mittente e trasmettitore  
+- DA = Destinatario e ricevitore  
+- Address 1 = DA, Address 2 = SA  
+- BSSID = Casuale, generato da una stazione dell'IBSS  
+
+![](img/ibss.png)
+
+**BSS/ESS (Uplink verso LAN):**
+
+- SA = Mittente e trasmettitore  
+- DA = Destinatario  
+- Address 1 = BSSID (Indirizzo MAC dell'AP)  
+- To DS = 1, From DS = 0  
+
+![](img/bss_ess_uplink.png)
+
+**BSS/ESS (Downlink da LAN):**
+
+- SA = Mittente  
+- DA = Destinatario e ricevitore  
+- Address 1 = DA, Address 2 = BSSID (AP)  
+- To DS = 0, From DS = 1  
+
+![](img/bss_ess_downlink.png)
+
+**ESS con Wireless Distribution System:**
+
+- SA = Mittente, DA = Destinatario  
+- Address 1 = RA (Ricevitore), Address 2 = TA (Trasmettitore)  
+- To DS = 1, From DS = 1
+
+![](img/ESS_WDS.png)
 \
 \
 \
