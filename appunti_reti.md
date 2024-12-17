@@ -42,6 +42,7 @@ Protegge interno da esterno ed esterno da interno. Solitamente è una combinazio
 
 
 ### Broadcast livello 2
+
 In informatica, un broadcast di livello 2 si riferisce a una trasmissione dati all'interno del livello Data Link (Livello 2) del modello OSI, che coinvolge tutti i dispositivi collegati nella stessa rete locale (LAN).
 
 In pratica, il broadcast di livello 2 invia un messaggio a tutti i dispositivi connessi a un segmento di rete, senza una destinazione specifica. Il messaggio viene inviato all'indirizzo MAC di broadcast (FF:FF:FF:FF:FF:FF), che tutti i dispositivi all'interno della rete ascoltano e ricevono. Un esempio comune è l'uso del broadcast per la risoluzione dell'indirizzo IP tramite ARP (Address Resolution Protocol), in cui un dispositivo chiede a tutti i dispositivi della rete se possiedono un determinato indirizzo IP.

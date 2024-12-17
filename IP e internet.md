@@ -175,18 +175,6 @@ identifica Host e router tramite indirizzi di lunghezza fissa, raggruppandoli in
 
 ![Screenshot 2024-10-01 at 16.49.03.png](/img/Screenshot_2024-10-01_at_16.49.03.png)
 
-**Version**→ indica il formato dell’intestazione, attualmetne 4
-
-**IHL** **→** ip header length, lunghezzza dell’intestazione.
-
-**Type of service →**  tipo di servizio richiesto, usato anche come sorta di priorità
-
-**Total length →** lunghezza totale del datagramma
-
-**Identification →** valore intero che identifica univocamente il datagramma (pacchetto).
-
-**Flag →**
-
 ### Funzioni
 
 | Funzione            | Descrizione                                                                 |
@@ -196,9 +184,26 @@ identifica Host e router tramite indirizzi di lunghezza fissa, raggruppandoli in
 | `Type of service`   | Tipo di servizio richiesto, usato anche come sorta di priorità               |
 | `Total length`      | Lunghezza totale del datagramma                                             |
 | `Identification`    | Valore intero che identifica univocamente il datagramma (pacchetto)          |
-| `Flag`              | Vari flag utilizzati per il controllo della frammentazione dei pacchetti     |
+| `Flag`              | Vari flag utilizzati per il controllo della frammentazione dei pacchetti    - |
+| `Fragment offset`              | Indica quale è la posizione di questo frammento nel datagramma, come distanza in unità di 64 bit dall’inizio|
 
-![Se non posso frammentare il pacchetto lo distruggo. ](/img/Screenshot_2024-10-02_at_13.39.55.png)
+**Flags per la frammentazione**:
+
+- Bit 0: sempre 0
+- Bit 1 (DF - Don't Fragment):
+  - 0 = si può frammentare
+  - 1 = non si può frammentare (nel caso fosse a 1 e fosse necessario frammentarlo lo distruggo)
+- Bit 2 (MF - More Fragments):
+  - 0 = ultimo frammento (aiuta a riordimare i paccheti in arrivo, è tecnicamente superfluo ma ci risparmia il calcolo di vedere quanto era lungo)
+  - 1 = frammento intermedio
+
+![Se non posso frammentare il pacchetto lo distruggo.](/img/Screenshot_2024-10-02_at_13.39.55.png)
+
+**Calcolo del Fragment Offset**:
+Il datagramma è diviso in **blocchi di 8 byte (64 bit)** l'offset è calcolato in unità di 8 byte dall'inizio del datagramma originale (non ho bisogno di mappare tutti i bit ma posso mapparli a blocchi di 8 byte per ridurre a 13 il numero di bit necessari a tenerne traccia, ciò implica che la frammentazione non potrà mai scendere sotto i 64 bit perché non sarei più in grado di ricomporre il pacchetto)
+
+**Time to Live (TTL)**:
+Imposta un limite al numero di hop che un pacchetto può attraversare,il valore iniziale tipicamente è 64 (massimo 255) decrementato di 1 ad ogni hop quando raggiunge 0, il pacchetto viene scartato
 
 Se non posso frammentare il pacchetto lo distruggo.
 
@@ -212,10 +217,10 @@ Se non posso frammentare il pacchetto lo distruggo.
 
 Grazie alla numerazione tramite offset permette di rinumerare facilmente i segmenti.
 
-> La segmentazione è fondamentale perché non sempre la dimensione del pacchetto è corretta per essere elaborata dai macchinari disponibili sulla rete
->
+La segmentazione è fondamentale perché non sempre la dimensione del pacchetto è corretta per essere elaborata dai macchinari disponibili sulla rete
 
-**Riassemblamento**
+**Riassemblaggio dei datagrammi**:
+I frammenti possono arrivare fuori sequenza o con tempi diversi. Il riassemblaggio avviene solo al terminale di destinazione. Utilizza i campi **Identification**, **Flags** e **Fragment** Offset per ricostruire correttamente il datagramma originale
 
 ![Screenshot 2024-10-02 at 13.55.55.png](/img/Screenshot_2024-10-02_at_13.55.55.png)
 
@@ -232,6 +237,10 @@ Grazie alla numerazione tramite offset permette di rinumerare facilmente i segme
 **Padding→** bit inutili per fare tornare intestazione multiplo di 32 bit
 
 ## Instradamento IP
+
+**ICMP** -> internet control message protocoll
+
+L’ICMP (Internet Control Message Protocol) è un protocollo di rete utilizzato per inviare messaggi di controllo e diagnostica all’interno di reti IP. Trasporta **direttamente su ip** senza un protocollo di trasporto. Serve a segnalare errori (ad esempio, host irraggiungibile) e a fornire informazioni sullo stato della rete. ICMP non trasporta dati applicativi, ma aiuta a gestire la comunicazione tra dispositivi di rete. Viene utilizzato da strumenti come ping (per verificare la raggiungibilità di un host) e traceroute (per tracciare il percorso dei pacchetti). Fa parte della famiglia dei protocolli IP, operando al livello di rete.
 
 Internet → rete a commutazione di pacchetto, con più percorsi disponibili
 
@@ -273,16 +282,16 @@ I collegamenti fra router vengono visti come network
 
 ![Screenshot 2024-10-04 at 11.45.55.png](/img/Screenshot_2024-10-04_at_11.45.55.png)
 
-### Invio pacchetto
+### Invio pacchetto e semantica
 
 1. Il **calcolatore** **instrada** il pacchetto verso il router
 2. il **router** decide che direzione seguire e **instrada nuovamente** il pacchetto
   
 Un salto viene detto **hop**
 
-### Semantica indirizzo IP
+**Semantica indirizzo IP**
 
-Due parti : 
+Due parti :
 
 - Network ID → identifica network di appartenenza
 - Host ID → identifica l’host vero e proprio (interfaccia) contenuto nella network
@@ -299,6 +308,44 @@ IP è un indirizzo locator, che indica la posizione.
 
 **Net Mask** → deve essere configurata localmente. Calcolatori della stessa network devono avere la stessa Net Mask
 
+### Problematiche dell’IP
+
+**Mobilità**
+
+- **Indirizzi riferiti alla rete di appartenenza**: Gli indirizzi IP sono legati alla rete a cui appartengono. Se un host viene spostato in un’altra rete, il suo indirizzo IP deve cambiare.
+- **Configurazione automatica con DHCP**: Il Dynamic Host Configuration Protocol (DHCP) permette la configurazione automatica degli indirizzi IP, facilitando la gestione degli indirizzi in reti dinamiche.
+- **Mobile IP**: Mobile IP è una tecnologia che permette agli utenti di spostarsi tra diverse reti mantenendo lo stesso indirizzo IP, garantendo la continuità delle sessioni di rete.
+
+**Sicurezza**
+
+- **Scarsa protezione del datagramma IP**: L'intestazione dei datagrammi IP è in chiaro, rendendo vulnerabili i dati in transito.
+- **IPSec**: Il protocollo IPSec può essere applicato anche a IPv4 per migliorare la sicurezza delle comunicazioni, fornendo autenticazione e cifratura dei dati.
+
+**Dimensioni delle reti prefissate**: Il subnetting e il Classless Inter-Domain Routing (CIDR) sono tecniche utilizzate per suddividere le reti in sottoreti più piccole e per ottimizzare l'uso degli indirizzi IP.
+
+**Esaurimento degli indirizzi IPv4**: A causa dell'enorme diffusione di Internet, il numero di indirizzi IPv4 disponibili è insufficiente. Le reti IP private e il Network Address Translation (NAT) sono soluzioni temporanee per mitigare questo problema.
+
+### 1. DHCP (Dynamic Host Configuration Protocol)
+
+- **Funzione**: Il DHCP si occupa di assegnare automaticamente gli indirizzi IP ai dispositivi connessi a una rete.
+- **Come funziona**: Quando un dispositivo si collega a una rete, invia una richiesta di DHCP. Il server DHCP risponde con un indirizzo IP disponibile, una subnet mask, un gateway, e altre configurazioni di rete (come i DNS).
+Livello del modello OSI: Lavora a livello Applicazione (Livello 7).
+- **Obiettivo**: Assicurare che ogni dispositivo connesso alla rete ottenga un indirizzo IP unico e una configurazione di rete corretta senza la necessità di configurazioni manuali.
+
+### 2. ARP (Address Resolution Protocol)
+
+- **Funzione**: ARP è utilizzato per tradurre un indirizzo IP in un indirizzo MAC (fisico) in una LAN.
+- **Come funziona**: Quando un dispositivo conosce l’indirizzo IP di un altro dispositivo nella rete locale ma non il suo indirizzo MAC, invia una richiesta ARP in broadcast. Il dispositivo destinatario risponde con il proprio indirizzo MAC, permettendo così la comunicazione a livello di collegamento dati.
+Livello del modello OSI: Lavora a livello Collegamento Dati (Livello 2) ma può anche interagire con il Livello di Rete (Livello 3).
+- **Obiettivo**: Consentire la comunicazione tra dispositivi in una rete locale traducendo indirizzi IP in indirizzi MAC, necessari per l’instradamento dei pacchetti a livello di collegamento dati.
+
+#### Differenze Chiave
+
+- **Funzione**: DHCP assegna indirizzi IP e configurazioni di rete, mentre ARP traduce indirizzi IP in indirizzi MAC.
+- **Livello OSI**: DHCP opera a livello Applicazione, mentre ARP opera a livello Collegamento Dati.
+- **Ambito di utilizzo**: DHCP è usato per l'assegnazione iniziale della configurazione di rete; ARP è usato per risolvere indirizzi IP in MAC all'interno della stessa rete locale.
+In sintesi, DHCP fornisce gli indirizzi IP, mentre ARP permette di individuare l'indirizzo MAC associato a un IP specifico per comunicare nella LAN.
+
 ## Instradamento
 
 ### Diretto
@@ -308,6 +355,28 @@ Una consegna **diretta** avviene quando l'IP sorgente e destinatario sono nella 
 ### Indiretto
 
 Nella consegna **indiretta**, quando l'IP destinatario è su un'altra rete, il pacchetto viene prima inviato al router della rete sorgente. A livello di collegamento dati, il MAC sarà quello del router, che instraderà il pacchetto verso il prossimo router fino a raggiungere la rete di destinazione. Il TTL limita il numero massimo di salti. Anche nei passaggi indiretti, ARP viene utilizzato per ottenere il MAC del gateway successivo.
+
+### ARP (Address Resolution Protocol)
+
+Protocollo di rete utilizzato per mappare un indirizzo IP a un indirizzo MAC corrispondente all'interno di una rete locale (LAN). Funziona a livello **2 (Data Link)** e si interfaccia con il livello **3 (Rete)** del modello OSI, consentendo la comunicazione tra dispositivi in una rete Ethernet o simile.
+
+Quando un dispositivo vuole comunicare con un altro sulla stessa rete:
+
+1. Conosce l'indirizzo IP del destinatario (ad esempio 192.168.1.2).
+2. Non conosce il corrispondente indirizzo MAC, necessario per inviare i pacchetti a livello di collegamento.
+3. Usa il protocollo ARP per scoprire l'indirizzo MAC associato all'IP.
+
+Quando un host deve inviare un pacchetto:
+
+1. **Controllo della cache ARP**:  
+   - L'host verifica se l'indirizzo IP è già mappato a un indirizzo MAC nella propria cache ARP (una tabella locale).  
+   - Se trova un'associazione valida, utilizza l'indirizzo MAC e invia direttamente il pacchetto.
+2. **Richiesta ARP (ARP Request)**:  
+   - Se l'indirizzo non è presente nella cache, l'host genera una richiesta ARP:
+     - La richiesta è un messaggio broadcast inviato a **tutti i dispositivi** della LAN (MAC di destinazione = `FF:FF:FF:FF:FF:FF`).
+     - Contiene l'indirizzo IP di cui si vuole conoscere il MAC. 
+3. **Risposta ARP (ARP Reply)**: Il dispositivo con l'indirizzo IP richiesto risponde con un messaggio unicast, fornendo il proprio indirizzo MAC.  
+4. **Aggiornamento della cache ARP**: L'host salva nella cache l'associazione IP-MAC per usi futuri.
 
 ### Tabella di instradamento
 
@@ -350,11 +419,18 @@ Le righe delle tabelle di route vanno ordinate, per dare precedenza alle route p
 
 ### Intervalli di indirizzi
 
-Inizialmente, gli indirizzi IP erano suddivisi in classi (A, B, C, D, E) con netmask implicite e fisse che limitavano la flessibilità nella gestione degli indirizzi. Questo sistema rigido causava inefficienze e sprechi di indirizzi. Per risolvere questi problemi, è stato introdotto il Classless Inter-Domain Routing (CIDR), che utilizza netmask variabili, espresse in notazione slash (ad esempio, /24). CIDR consente una suddivisione più efficiente e flessibile degli indirizzi IP, supportando anche il supernetting per ridurre la complessità delle tabelle di routing e migliorare l’efficienza e la scalabilità della rete.
+**Classfull vs Classless**
+Inizialmente, gli indirizzi IP erano suddivisi in **classi** (A, B, C, D, E) con netmask implicite e fisse che limitavano la flessibilità nella gestione degli indirizzi. Questo sistema rigido causava inefficienze e sprechi di indirizzi. Per risolvere questi problemi, è stato introdotto il **Classless Inter-Domain Routing (CIDR)**, che utilizza netmask variabili, espresse in notazione slash (ad esempio, /24).
+**VANTAGGI**
+CIDR consente una suddivisione più **efficiente** e **flessibile** degli indirizzi IP, supportando anche il **supernetting** per ridurre la complessità delle tabelle di routing e migliorare l’efficienza e la scalabilità della rete.
 
-### Supernetting
+### Supernetting o CIDR
 
 la soluzione è stata quella di utilizzare reti più piccole con indirizzi consecutivi, per ottimizzare l’utilizzo degli indirizzi.  Lo stesso indirizzo può essere interpretato diversamente in base a dove si trova nella rete, quindi le tabelle di instradamento devono
+
+### Routing aggregato
+
+Un router aggregato è un concetto che si riferisce alla combinazione di più router in una singola entità logica per migliorare la gestione e l'efficienza della rete. Questo può includere tecniche come il routing virtuale e la ridondanza
 
 ## Metodologie di filtraggio dei datagrammi
 
@@ -549,7 +625,7 @@ la logica CIDR)
 Un AS importa le informazioni di routing da solo determinati AS certificati.
 RADb -> database contenente le politiche di routing
 
-### ISP internet service provider
+## ISP internet service provider
 
 Una associazione che fornisce servizi di connnettività, web e mail hosting, registrazione e noleggio di indirizzi IP. Può essere a fini di lucro o no e coperativa o no. Tipocamente un ISP è un AS.
 
@@ -570,7 +646,7 @@ relazioni di peering
 - L’IXP è costruito per permettere l’interconnessione diretta degli AS senza utilizzare reti di terze parti
 - L’IXP fornisce soluzioni di connettività con specifiche garanzie di qualità (disponibilità elevata, sicurezza fisica, banda garantita ecc.)
 
-#### IGP
+### IGP
 
 Un IGP **(Interior Gateway Protocol)** è un protocollo di routing utilizzato per instradare il traffico all’interno di un’unica rete autonoma, chiamata AS (Autonomous System). È progettato per gestire la comunicazione tra router appartenenti alla stessa organizzazione o dominio amministrativo.
 
@@ -581,9 +657,9 @@ Esempi di IGP:
     Il RIP (Routing Information Protocol) è un protocollo di routing dinamico basato sull’approccio distance-vector, progettato per reti IP di piccole dimensioni. È uno dei protocolli di routing più semplici ed è stato ampiamente utilizzato in passato, anche se oggi è meno comune a causa delle sue limitazioni.
 - **EIGRP** (Enhanced Interior Gateway Routing Protocol), un protocollo ibrido.
 
-L’IGP si differenzia dai EGP (Exterior Gateway Protocols), come BGP, che gestiscono il routing tra AS differenti.
+L’IGP si differenzia dai EGP (Exterior Gateway Protocols), come BGP (funziona a sessioni), che gestiscono il routing tra AS differenti.
 
-#### RIP come funziona
+### RIP come funziona
 
 **Metriche del percorso:**
 
@@ -621,11 +697,11 @@ Utilizzo attuale:
 
 RIP è ormai superato da protocolli più efficienti e scalabili, ma viene ancora usato in reti semplici o per scopi didattici.
 
-#### OSPF (Open Shortest Path First)
+## OSPF (Open Shortest Path First)
 
 È un protocollo di routing dinamico utilizzato nei sistemi autonomi per instradare i pacchetti all’interno di una rete. È uno dei più comuni (tra gli IGP), progettati per operare all’interno di una singola organizzazione o rete.
 
-##### Caratteristiche principali di OSPF
+### Caratteristiche principali di OSPF
 
 1. **Protocollo di routing a stato di collegamento (Link-State)**
     Un protocollo di routing a stato di collegamento crea una mappa completa della rete, condividendo informazioni sui collegamenti tra i router tramite pacchetti LSA. Ogni router calcola il percorso migliore verso ogni destinazione utilizzando un algoritmo come Dijkstra. Questo approccio garantisce una convergenza rapida, aggiornamenti selettivi e maggiore efficienza, rendendolo ideale per reti complesse. Esempi comuni sono OSPF e IS-IS.
@@ -642,8 +718,7 @@ Determina il percorso migliore in base alla capacità di throughput dei collegam
 6.	**Aggiornamenti efficienti:**
 Invia aggiornamenti solo quando ci sono cambiamenti, anziché inviare l’intera tabella di routing periodicamente.
 
-
-##### Componenti chiave:
+### Componenti chiave:
 
 - **Router ID:** Identificatore univoco per ogni router nella rete OSPF.
     **Router catalogati come:**
@@ -660,14 +735,11 @@ Invia aggiornamenti solo quando ci sono cambiamenti, anziché inviare l’intera
 - **LSA (Link-State Advertisement):** Messaggi che trasportano informazioni sulla topologia della rete.
 - **Database LSDB (Link-State Database):** Contiene le informazioni sulla topologia dell’intera rete OSPF.
 
-
 <div style="text-align: center;">
   <img src="./img/Screenshot_2024-11-28_at_09.49.29.png" alt="Diagramma di rete" width="400"/>
 </div>
 
-
-
-##### Utilizzi principali:
+#### Utilizzi principali
 
 - Grandi reti aziendali: Dove è richiesta scalabilità e convergenza rapida.
 - Provider di servizi Internet: Per gestione reti interne.
@@ -675,8 +747,8 @@ Invia aggiornamenti solo quando ci sono cambiamenti, anziché inviare l’intera
 
 OSPF è standardizzato dall’IETF (Internet Engineering Task Force) come parte della famiglia di protocolli TCP/IP ed è definito nell’RFC 2328.
 
+#### Configurazione iniziale
 
-##### Configurazione iniziale
 ogni router ha un proprio Router-id. Come eleggere un router designato? inizialmente tutti i router si scambiano i propri vicini e vengono scartati quelli che hanno priorità 0. Viene designato tra i restanti quello con il numero più alto e diventa DR, quello subito dopo diventa il backup router BDR. Il DR diventa adiacente a tutti e diventa il punto di riferimento centrale  per la distribuzione delle informazioni di stato dei collegamenti (Link-State Advertisements, LSA) all'interno di una rete broadcast multi-access, come una rete Ethernet.
 
 <div style="text-align: center;">
@@ -690,13 +762,14 @@ I pacchetti HELLO sono inviati sulle interfacce periodicamente secondo quanto sp
 
 - **Scoprire i propri vicini**: Includono una lista di tutti i vicini (Neighbor) dai quali è stato ricevuto un pacchetto HELLO recente (cioè non più vecchio di `RouterDeadInterval`). Questo permette di conoscere se per ciascun vicino è presente un collegamento bidirezionale e se esso è ancora attivo.
 
-#### Campi dei Pacchetti HELLO
+### Campi dei Pacchetti HELLO
 
 - **Router Priority, Designated Router e Backup Designated Router**: Utilizzati per l’elezione di DR e BDR.
 - **Network Mask**: Indica la maschera relativa all’interfaccia del router (l’indirizzo è nell’header IP).
 - **Options**: Indica se si supportano funzionalità opzionali.
 
-### EXCHANGE protocol 
+### EXCHANGE protocol
+
 Sincronizzazione dei Link State Database
 
 Una volta stabilite le adiacenze, i router adiacenti devono sincronizzare i rispettivi Link State Database (LSDB). La procedura è asimmetrica e prevede i seguenti passaggi:
@@ -725,7 +798,6 @@ La diffusione dei LSA (Link-State Advertisements) a tutti i router della rete av
 
 Questa procedura assicura che tutti i router abbiano una visione aggiornata e coerente della topologia della rete.
 
-
 ### Exterior Gateway Protocols (EGP)
 
 I protocolli di tipo EGP sono diversi da quelli di tipo IGP. Le principali differenze e caratteristiche includono:
@@ -750,7 +822,6 @@ Due protocolli EGP per Internet:
   1. **Neighbor Acquisition**: Verifica accordi per diventare vicini.
   2. **Neighbor Reachability**: Monitora connessioni con i vicini.
   3. **Network Reachability**: Scambia informazioni sulle reti raggiungibili.
-
 
 EGP è simile a un protocollo di tipo distance vector, con le seguenti caratteristiche:
 
@@ -781,7 +852,7 @@ BGP è stato concepito come sostituto di EGP e oggi è in uso la versione 4 (RFC
   - **iBGP (Internal BGP)**: Sessioni instaurate tra router BGP appartenenti allo stesso AS.
 - **Informazioni Scambiate**: Le informazioni riguardano la raggiungibilità di reti IP secondo lo schema classless (CIDR).
 
-Queste caratteristiche rendono BGP un protocollo robusto e scalabile per il routing tra diversi AS. Utilizza un path vector, un'evoluzione del distance vector, nel vettore dei percorsi si elencano tutti gli AS da attraversare per raggiungere una destinazione per evitare percorsi ciclici. Quando un router riceve un path e c'è già lui dentro lo scarta, evitando di creare cicli.
+Queste caratteristiche rendono BGP un protocollo robusto e scalabile per il routing tra diversi AS. Utilizza un **path vector** (non predilige il percorso migliore, basato su geopolitica o accordi commerciali  ), un'evoluzione del distance vector, nel vettore dei percorsi si elencano tutti gli AS da attraversare per raggiungere una destinazione per evitare percorsi ciclici. Quando un router riceve un path e c'è già lui dentro lo scarta, evitando di creare cicli.
 
 ##### Attributi
 
@@ -822,13 +893,13 @@ Queste categorie aiutano a gestire come gli attributi vengono trattati e propaga
 
 - Router normale che però può attaccare una label
   
-**LPSLabel Switch Path**
+**LPS Label Switch Path**
 
 - È un percorso logico preconfigurato che i pacchetti seguono attraverso la rete MPLS.
 
 **detti LSR, Label Switch Router**
 
-- 
+- Ricevono trama e effettuano switch
 
 ### Label Switching
 
@@ -836,24 +907,24 @@ Il label switching è una tecnica usata nelle reti (come in MPLS, Multi-Protocol
 
 Ecco come funziona in modo semplice:
 
-1. Etichetta (Label):
+**Etichetta (Label):**
 
-   - Quando un pacchetto entra nella rete, gli viene assegnata una “etichetta” (un numero breve) che identifica il percorso che deve seguire.
+- Quando un pacchetto entra nella rete, gli viene assegnata una “etichetta” (un numero breve) che identifica il percorso che deve seguire.
 
-2. Switching basato sull’etichetta:
+**Switching basato sull’etichetta:**
 
-   - Ogni router (o switch) della rete non guarda l’indirizzo IP del pacchetto, ma legge solo l’etichetta.
-   - In base all’etichetta, il router sa subito dove inoltrare il pacchetto, senza dover fare calcoli complicati.
+- Ogni router (o switch) della rete non guarda l’indirizzo IP del pacchetto, ma legge solo l’etichetta.
+- In base all’etichetta, il router sa subito dove inoltrare il pacchetto, senza dover fare calcoli complicati.
 
-3. Riassegnazione dell’etichetta:
+**Riassegnazione dell’etichetta:**
 
-   - Durante il percorso, ogni router può sostituire l’etichetta del pacchetto con una nuova, per aggiornare le istruzioni sul percorso successivo.
+- Durante il percorso, ogni router può sostituire l’etichetta del pacchetto con una nuova, per aggiornare le istruzioni sul percorso successivo.
 
-4. Rimozione dell’etichetta:
+**Rimozione dell’etichetta:**
 
-   - Alla fine del percorso, l’ultima etichetta viene rimossa e il pacchetto continua verso la sua destinazione usando il metodo tradizionale (indirizzo IP).
+- Alla fine del percorso, l’ultima etichetta viene rimossa e il pacchetto continua verso la sua destinazione usando il metodo tradizionale (indirizzo IP).
 
-Vantaggi:
+**Vantaggi:**
 
 - Velocità: Gli switch lavorano più velocemente perché analizzano solo etichette, non indirizzi complessi.
 - Efficienza: Si possono creare percorsi ottimizzati per migliorare le prestazioni della rete.
@@ -871,31 +942,42 @@ innestare domini MPLS, simile al concetto di routing gerarchico
 ### label allocation
 
 chi decide le label? decide sempre il router a valle (il primo router)
+## Ifrastruttura regionale italiana
 
-## Reti Overlay
+In Italia, l'infrastruttura degli AS è distribuita tra reti private, reti pubbliche e diversi punti di interscambio fondamentali per il traffico Internet nazionale e internazionale. Gli AS italiani sono numerosi e variano per dimensione e scopo: dai provider di servizi Internet (ISP) alle reti aziendali, fino alle reti gestite dalle pubbliche amministrazioni. Due strutture cardine che facilitano l'interconnessione e migliorano l'efficienza del traffico Internet in Italia sono il **Milan Internet Exchange (MIX)** e la rete **LEPIDA**.
 
-Obiettivo della virtualizzazione
+### Il Ruolo del MIX
 
-- Realizzare topologie o funzionalità sull’infrastruttura esistente
-diverse da quelle native
-- In generale si parla di reti “overlay”
+Il MIX è uno dei più importanti punti di interscambio di traffico Internet in Italia e uno dei maggiori a livello europeo. Situato a Milano, permette l’interconnessione diretta tra AS di vari operatori, riducendo la latenza e ottimizzando il routing del traffico Internet a livello nazionale e internazionale. Il MIX è una struttura neutrale e indipendente che offre **servizi di peering pubblico e privato**, consentendo ai provider di scambiarsi traffico direttamente. Ciò riduce la necessità di instradare il traffico verso AS esteri, favorendo una maggiore autonomia della rete italiana e migliorando l’efficienza di trasmissione tra reti locali. Questo snodo è particolarmente importante per garantire la connettività tra le grandi reti italiane e l’infrastruttura globale di Internet.
+
+### La Rete LEPIDA
+
+LEPIDA è una rete regionale di proprietà pubblica, gestita dalla società Lepida S.p.A., che supporta il sistema di interconnessione digitale per le pubbliche amministrazioni dell’Emilia-Romagna. Nasce con l’obiettivo di interconnettere le amministrazioni pubbliche regionali, migliorando la qualità dei servizi digitali rivolti ai cittadini e garantendo la sicurezza e la gestione diretta delle reti di pubblica utilità. LEPIDA opera anche come AS e stabilisce connessioni con altri AS nazionali e internazionali, facilitando l'accesso a risorse e servizi pubblici in tutta Italia. Grazie a LEPIDA, la Regione Emilia-Romagna gode di un’infrastruttura autonoma e indipendente, riducendo la dipendenza da operatori privati e aumentando la resilienza della rete regionale.
+
+In questo scenario, MIX e LEPIDA contribuiscono a una maggiore autonomia della rete italiana. Il MIX facilita l'interconnessione tra grandi reti commerciali e nazionali, mentre LEPIDA supporta un’infrastruttura dedicata alla pubblica amministrazione, assicurando una comunicazione efficiente e sicura per il settore pubblico e migliorando il servizio per i cittadini e le imprese a livello regionale.
+
+## Virtualizzazione di Rete
+
+La virtualizzazione di rete permette la creazione di **versioni virtuali di infrastrutture di computazione, memorizzazione e reti**, realizzando componenti che si comportano come sistemi software indipendenti dall'hardware fisico. Questo approccio garantisce vantaggi significativi come la condivisione delle risorse fisiche e il disaccoppiamento tra progetto software e hardware, migliorando flessibilità, mobilità e scalabilità. Tuttavia, la virtualizzazione comporta criticità legate alla sicurezza e all'isolamento dei sistemi che condividono lo stesso hardware fisico.
+
+**Obiettivo e Tecniche della Virtualizzazione di Rete**:
+La virtualizzazione di rete risponde alla crescente complessità dei requisiti di servizio dell’utenza, consentendo di realizzare topologie o funzionalità su infrastrutture esistenti, altrimenti difficili da modificare. Questo approccio spesso si basa su **reti overlay**, ovvero reti logiche sovrapposte all'infrastruttura fisica per creare funzionalità aggiuntive, le network IP nel loro piccolo ne sono un esempio. Tra le tecnologie che consentono questo tipo di virtualizzazione troviamo **VLAN (IEEE 802.1Q)**, **GRE (RFC 1701)**, **VXLAN (RFC 7348)** e **VPN**, che rappresentano alcune delle soluzioni per segmentare, incapsulare e isolare il traffico di rete virtuale.
+
+### GRE
 
 **Un tunnel GRE** (Generic Routing Encapsulation) è un protocollo di tunneling usato per incapsulare una varietà di protocolli di rete all’interno di una connessione IP.
 
-- Sovrapposte logicamente all’infrastruttura fisica per realizzare funzionalità diverse da quelle normalmente fornite dalla stessa
-Un tunnel GRE (Generic Routing Encapsulation) è un protocollo di tunneling usato per incapsulare una varietà di protocolli di rete all’interno di una connessione IP.
-
 Come funziona:
 
-1. Encapsulaamento: I dati originali (pacchetti) vengono racchiusi in un nuovo header GRE.
+1. Encapsulamento: I dati originali (pacchetti) vengono racchiusi in un nuovo header GRE.
 2. Trasporto: Il pacchetto incapsulato viene inviato attraverso una rete IP.
 3. Decapsulamento: Il router di destinazione rimuove l’header GRE e consegna il pacchetto originale.
 
 Caratteristiche principali:
 
-- Flessibilità: Supporta diversi protocolli (IPv4, IPv6, MPLS).
-- Indipendenza: Funziona sopra un’infrastruttura IP senza modifiche.
-- Overhead: Aggiunge un piccolo sovraccarico ai pacchetti per includere l’header GRE.
+- **Flessibilità**: Supporta diversi protocolli (IPv4, IPv6, MPLS).
+- **Indipendenza**: Funziona sopra un’infrastruttura IP senza modifiche.
+- **Overhead**: Aggiunge un piccolo sovraccarico ai pacchetti per includere l’header GRE.
 
 Utilizzi comuni:
 
@@ -905,12 +987,9 @@ Utilizzi comuni:
 
 Se viene modificata la rete fisica non c'è modifica nella rete logica.
 
-### Header
-
 **L’header GRE** è una struttura di dati utilizzata per incapsulare pacchetti all’interno di un tunnel GRE. Serve a fornire le informazioni necessarie per gestire il pacchetto incapsulato durante il suo transito attraverso la rete.
 
-Struttura dell’header GRE (base)
-
+**Struttura dell’header GRE base**
 L’header base di GRE è lungo 4 byte (32 bit) e contiene i seguenti campi principali:
 
 1. Flags e Version (16 bit):
@@ -923,8 +1002,7 @@ L’header base di GRE è lungo 4 byte (32 bit) e contiene i seguenti campi prin
 2. Protocol Type (16 bit):
    - Specifica il tipo di protocollo incapsulato (es. 0x0800 per IPv4, 0x86DD per IPv6).
 
-Header GRE opzionale
-
+**Header GRE opzionale**
 A seconda delle impostazioni, possono essere aggiunti altri campi:
 
 - Checksum (32 bit): Per verificare l’integrità del pacchetto.
@@ -939,11 +1017,76 @@ Funzionamento
 
 GRE è semplice e flessibile, ma non offre crittografia o meccanismi di sicurezza avanzati. Per proteggere i dati, può essere combinato con protocolli come IPsec.
 
+![gre](img/gre.PNG)
+
 ### VXLAN
 
-La VXLAN (Virtual Extensible LAN) è una tecnologia di rete che estende reti Layer 2 (L2) su infrastrutture Layer 3 (L3) usando tunneling. Incapsula i frame Ethernet L2 in pacchetti UDP L3, permettendo di creare fino a 16 milioni di reti virtuali grazie al VNI (identificatore a 24 bit), superando il limite di 4096 VLAN.
+**VXLAN (Virtual eXtensible LAN)**: VXLAN, ampiamente usato nel cloud computing, consente l'incapsulamento di traffico Layer 2 in pacchetti UDP, garantendo un isolamento scalabile con identificatori unici per ciascun segmento. Creado un tunnel VXLAN ottengo la fusione di 2 LAN distinte dato che grazie al tunnel esse **risponderanno alla stessa ARP request**. Il tunnel VXLAN funziona incapsulando i frame Ethernet in pacchetti UDP, che vengono poi trasmessi attraverso una rete IP. Ogni segmento VXLAN è identificato da un **VXLAN Network Identifier (VNI)**, che consente di isolare il traffico tra diversi segmenti. I dispositivi che terminano i tunnel VXLAN, noti come **VXLAN Tunnel Endpoints (VTEP)**, aggiungono e rimuovono l'incapsulamento VXLAN. Quando un frame Ethernet entra in un VTEP, viene incapsulato in un pacchetto UDP con un header VXLAN e inviato attraverso la rete IP. Il VTEP di destinazione rimuove l'incapsulamento e inoltra il frame Ethernet alla rete locale.
 
-La VXLAN utilizza dispositivi VTEP per incapsulare i frame Ethernet Layer 2 in pacchetti UDP Layer 3. Ogni VTEP collega una rete virtuale (L2) alla rete fisica (L3). I pacchetti incapsulati viaggiano attraverso la rete Layer 3 e vengono de-incapsulati dal VTEP di destinazione per consegnarli alla rete virtuale corretta, identificata dal VNI.
+![vxlan](img/vxlan.PNG)
+
+Nonostante i vantaggi, l'uso di VXLAN può introdurre alcuni problemi di prestazione:
+
+**Overhead di Incapsulamento**: L'aggiunta di header VXLAN e UDP aumenta la dimensione dei pacchetti, riducendo l'efficienza della trasmissione e aumentando il carico sulla rete.
+
+**Latenza**: L'incapsulamento e il decapsulamento dei pacchetti richiedono tempo di elaborazione aggiuntivo, che può aumentare la latenza end-to-end.
+
+**Fragmentazione dei Pacchetti**: L'aumento della dimensione dei pacchetti può causare la frammentazione, che a sua volta può ridurre le prestazioni e aumentare il rischio di perdita di pacchetti.
+
+### VLAN (Virtual Local Area Network)
+
+Le VLAN creano domini di broadcast separati all'interno della stessa rete fisica. VLAN statiche e dinamiche permettono una gestione ottimizzata delle risorse, mentre l'uso del protocollo IEEE 802.1Q facilita l'instradamento su più switch. Se una VLAN corrisponde a una rete IP, i broadcast di una rete non raggiungono gli host di un’altra. Senza VLAN, i broadcast inviati da un host possono raggiungere tutti gli altri host sulla stessa rete fisica, causando congestione e riducendo le prestazioni. Con le VLAN, i broadcast sono limitati al **broadcast domain** (dominio broadcast) della VLAN specifica, migliorando l'efficienza della rete e riducendo il traffico non necessario. Questo impatta anche sulla sicurezza, dato che un soggetto di un dominio broadcast non potrà conoscere attraverso un broadcast soggetti esterni al suo dominio.
+
+#### Classificazione delle VLAN
+
+**VLAN statiche (Port-Based)**:
+
+- Ogni porta dello switch è associata a una VLAN specifica.
+- Gli host appartengono alla VLAN corrispondente alla porta a cui sono connessi.
+- Cambiare VLAN di un host richiede la riconfigurazione dello switch.
+- Lo switch determina la VLAN di un host in base alla configurazione della porta di connessione.
+- Configurazione tipica per semplificare la gestione in ambienti con strutture di rete fisse.
+
+**VLAN dinamiche**:
+
+- Prateicamente non più utilizzata.
+- L’appartenenza alla VLAN dipende dall’indirizzo dell’host (MAC o IP).
+- Gli host rimangono nella VLAN assegnata indipendentemente dalla porta di connessione.
+- Cambiare VLAN richiede la modifica della configurazione associata all’indirizzo dell’host.
+
+#### LAN Estesa e Gestione delle VLAN tra Switch
+
+- **Definizione**: Una LAN estesa utilizza più switch per gestire una rete più ampia, mantenendo separazione tra VLAN.
+- **Problema**: Come assicurare che le VLAN rimangano distinte e funzionino correttamente su switch multipli.
+
+**Protocollo IEEE 802.1Q**
+
+- **Funzione**: Consente l'uso delle stesse VLAN su più switch interconnessi.
+- **Tagging VLAN**:
+  - Aggiunta di un’etichetta (tag) nell’intestazione Ethernet per identificare la VLAN di appartenenza.
+  - **Header IEEE 802.1Q**:
+    - **4 byte** aggiunti al frame Ethernet:
+      - **Tag Protocol Identifier (TPID)**: 16 bit, solitamente 0x8100.
+      - **Priority**: 3 bit per la priorità del traffico.
+      - **CFI**: 1 bit, formato del MAC address.
+      - **VID**: 12 bit, identifica la VLAN (da 0 a 4095).
+
+- **Modalità delle porte di uno switch**
+
+**Access Mode**:
+
+- Porta associata a una sola VLAN.
+- Nessun tagging 802.1Q richiesto.
+- Ideale per porte collegate agli host.
+
+**Trunk Mode**:
+
+- Porta associata a VLAN multiple.
+- Richiede il tagging 802.1Q per identificare la VLAN dei frame Ethernet.
+- Configurazioni:
+  - Una VLAN “untagged” per il traffico non taggato.
+  - Più VLAN “tagged”.
+- Tipica per connessioni tra switch o router.
 
 ### Reti private
 
@@ -953,7 +1096,9 @@ Soluzione tradizionale: utilizzo di linee dedicate da affittare direttamente pre
 
 - Implica costi di acquisto e di gestione dedicati
 - Le normative non lo permettono
-  
+
+### VPN
+
 Alternativa: utilizzo di una rete in “overlay” attraverso
 reti pubbliche (reti private virtuali - VPN)
 
@@ -961,8 +1106,10 @@ reti pubbliche (reti private virtuali - VPN)
 informativo criptato) incapsulati in pacchetti tradizionali - diverse tecnologie disponibili
 - Diversi protocolli di tunnelling
   - livello 2: PPTP, L2TP ・livello 3: IPsec
-  
-#### Roda warrior
+
+  ![pn-vs-vpn.png](img/pn-vs-vpn.png)
+
+#### Road warrior
 
 Una VPN Roadwarrior è una configurazione VPN per utenti che si connettono da luoghi remoti e variabili, come lavoratori in viaggio o in smart working. Offre una connessione sicura attraverso protocolli di tunneling e crittografia, permettendo l’accesso remoto a risorse aziendali o personali tramite dispositivi come laptop, smartphone o tablet.
 
@@ -977,6 +1124,8 @@ Vantaggi:
 
 TOPOLOGIA : a stella
 
+![roadwarrior](img/roadwarrior.png)
+
 #### VPN rete a rete
 
 Se ho molti host co-localizzati il rodawarrior è inefficiente
@@ -990,6 +1139,8 @@ Si crea un tunnel cifrato su rete pubblica fra due LAN o fra due network IP
 mascherato
 
 Viene utilizzato
+
+![net to net](img/net-to-net.png)
 
 ##### IPsec
 
@@ -1009,7 +1160,7 @@ In una VPN Site-to-Site, IPsec viene utilizzato per creare un tunnel sicuro tra 
 
 - **IKE** (Internet Key Exchange): autentica interlocutore negoziazione algoritmi e chiavi crittografiche
 - **AH** (Authentication Header): Garantisce **integrità** e **autenticità** dei pacchetti.
-- **ESP** (Encapsulating Security Payload): **Cifra** i dati per garantirne la riservatezza.
+- **ESP** (Encapsulating Security Payload): **Cifra** i dati per garantirne la riservatezza, **tunnel** (cifra anche l'header) e **transport** (cifra solo payload).
 
 Vantaggi:
 
@@ -1031,8 +1182,10 @@ Se l'attenuazione è bassa posso creare collegamenti più lunghi, altrimenti no.
 
 $$A_{dB} = 10 \cdot \log_{10} \left( \frac{P_T}{P_R} \right) = \alpha \sqrt{f_{MHz}} L$$
 
-- L'attenuazione cresce esponenzialmente con la lunghezzadel collegamento
-- Esponenzialmente con la radfice della frequenza del segnale
+L'attenuazione:
+
+- cresce esponenzialmente con la lunghezza del collegamento
+- cresce esponenzialmente con la radice della frequenza del segnale
 
 #### Coppie Intrecciate (Twisted Pair)
 
@@ -1052,7 +1205,7 @@ $$A_{dB} = 10 \cdot \log_{10} \left( \frac{P_T}{P_R} \right) = \alpha \sqrt{f_{M
 - Aumento del diametro dei conduttori e miglioramento della qualità del dielettrico.
 - Miglioramento della regolarità e infittimento del passo di avvolgimento.
 
-##### Categorie (dalla Cat. 1 alla Cat. 7):
+##### Categorie (dalla Cat. 1 alla Cat. 7)
 
 - **Cat. 1**: Rete telefonica e ISDN.
 - **Cat. 3**: Rete fino a 16 MHz, Ethernet a 10 Mbit/s.
@@ -1103,6 +1256,28 @@ $$A_{dB} = 10 \cdot \log_{10} \left( \frac{P_T}{P_R} \right) = \alpha \sqrt{f_{M
   - **ETACS** (900 MHz, analogico).
   - **GSM** (digitale, copertura mondiale).
   - **Generazioni successive** (multimediali, roaming, hand-over).
+
+### Fibra Ottica
+La fibra ottica ha trasformato le reti di telecomunicazione a partire dagli anni 2000, sostituendo progressivamente il rame nella rete di trasporto. Grazie alla sua larghezza di banda superiore, la fibra ottica permette la trasmissione di grandi quantità di dati su lunghe distanze con minima perdita di segnale, migliorando significativamente la qualità e l'affidabilità delle comunicazioni.
+
+**Caratteristiche**: le fibre ottiche sono sottili filamenti di vetro o plastica che trasportano dati sotto forma di impulsi luminosi. La fibra offre un'elevata capacità di trasporto dati e una bassa attenuazione, rendendola ideale per le tratte di lunga distanza. Negli anni, la tecnologia della fibra ha permesso di superare i limiti fisici delle trasmissioni terrestri e transoceaniche, anche in condizioni complesse come il fondo marino.
+
+**Innovazioni**: grazie alla tecnica del **multiplexing a lunghezza d'onda (WDM)**, è possibile trasmettere simultaneamente più flussi di dati su diverse frequenze di luce all'interno dello stesso cavo in fibra ottica. Questo approccio sfrutta la scarsa selettività della fibra rispetto al colore della luce, permettendo a una singola fibra di trasportare diversi flussi di dati ad alta velocità, aumentando così la capacità totale di trasmissione senza necessità di nuovi cavi.
+
+**Manutenzione e Sicurezza della Fibra Ottica**
+
+  - **Giunzione e Allineamento**: le fibre ottiche devono essere giuntate con estrema precisione per evitare perdite di segnale e dispersione della luce, che potrebbero compromettere la qualità della trasmissione. Le giunzioni possono essere permanenti o temporanee, ma in entrambi i casi è fondamentale un allineamento perfetto tra i segmenti di fibra per garantire un'efficienza ottimale.
+  - **Problemi di Sicurezza nelle Lunghe Tratte**: nelle tratte di lunga distanza, specialmente nelle trasmissioni transoceaniche, emergono problemi di sicurezza e manutenzione. Le lunghe distanze e la difficoltà di accesso rendono complicato il monitoraggio e la protezione delle fibre da potenziali danni o manomissioni. Per garantire sicurezza e affidabilità, sono necessari sistemi di sorveglianza avanzati e misure di protezione che preservino l'integrità del segnale su queste distanze estese.
+
+### Micro-Electro-Mechanical Systems
+I MEM (Micro-Electro-Mechanical Systems) sono dispositivi miniaturizzati che combinano componenti meccanici ed elettrici su un singolo chip di silicio. Funzionano attraverso l'integrazione di sensori, attuatori e circuiti elettronici, permettendo la rilevazione e la manipolazione di segnali fisici. Nei sistemi di telecomunicazione, i MEM vengono applicati in matrici per creare **switch ottici**, utilizzati per instradare segnali luminosi nelle reti in fibra ottica. Questi switch sfruttano micro-specchi mobili per deviare i fasci di luce, consentendo una commutazione rapida e precisa dei segnali ottici senza conversione elettrica, migliorando l'efficienza e la velocità delle reti di comunicazione.
+
+### Arrayed Waveguide Grating
+L'Arrayed Waveguide Grating (AWG) è un dispositivo ottico utilizzato nelle reti di telecomunicazione per la multiplazione e demultiplazione di segnali ottici. Funziona sfruttando la differenza di percorso ottico tra una serie di guide d'onda disposte in modo da creare interferenze costruttive e distruttive. Questo permette di separare o combinare diverse lunghezze d'onda della luce, rendendo l'AWG fondamentale per il **Wavelength Division Multiplexing (WDM)**. Grazie alla sua capacità di gestire molteplici canali ottici simultaneamente, l'AWG è essenziale per aumentare la capacità di trasmissione delle reti in fibra ottica, migliorando l'efficienza e la scalabilità delle comunicazioni ottiche.
+
+### Divisione Geografica in Zone Bianche, Grigie e Nere
+La divisione geografica in zone bianche, grigie e nere è una classificazione utilizzata per identificare le aree in base alla disponibilità e alla qualità delle infrastrutture di rete a banda larga. Le **zone bianche** sono aree in cui non esiste alcuna infrastruttura di rete a banda larga e non sono previsti investimenti privati nei prossimi tre anni qui sarà necessario un interveto publico per costruire un infrastruttura che ad un ente privato potrebbe risultare non conveniente. Le **zone grigie** sono aree in cui è presente un solo operatore di rete a banda larga, con una copertura limitata e una qualità del servizio che potrebbe non essere sufficiente per soddisfare le esigenze future. Le **zone nere** sono aree in cui sono presenti almeno due operatori di rete a banda larga che offrono servizi competitivi e di alta qualità. Questa classificazione è utilizzata per indirizzare gli investimenti pubblici e privati, promuovendo lo sviluppo delle infrastrutture di rete nelle zone meno servite e garantendo un accesso equo e diffuso alla banda larga su tutto il territorio.
+
 
 #### Considerazioni
 
@@ -2077,7 +2252,7 @@ Accesso al canale (**CSMA/CA** Carrier Sense Multiple Access with Collision Avoi
 
 **Backoff Esponenziale Binario:** In caso di collisione tra RTS, viene applicato un backoff esponenziale, in cui il tempo di attesa aumenta esponenzialmente con ogni tentativo di trasmissione fallito (2^n).
 
-![](img/802.11-DCF.png)
+![802.11-DCF](img/802.11-DCF.png)
 
 ### Protocollo MAC 802.11 – PCF (Point Coordination Function)
 
@@ -2094,7 +2269,7 @@ Accesso al canale (**CSMA/CA** Carrier Sense Multiple Access with Collision Avoi
 - **DIFS (DCF InterFrame Spacing):** Usato per l'accesso al canale da parte delle stazioni.
 - **EIFS (Extended InterFrame Spacing):** Usato quando una stazione riceve un frame inatteso, segnalando l'errore.
 
-![](img/802.11-PCF.png)
+![802.11-PCF.png](img/802.11-PCF.png)
 
 Dato che la possibilità di collisione si limita ai pacchetti di richiesta e non ai dati veri e propri, il problema si riduce notevolmente poiché i pacchetti sono decisamente più piccoli e dunque temporalmente meno lunghi da trasmettere.
 
@@ -2119,7 +2294,7 @@ Il BSSID (Basic Service Set Identifier) è un identificatore univoco utilizzato 
 - Address 1 = DA, Address 2 = SA  
 - BSSID = Casuale, generato da una stazione dell'IBSS  
 
-![](img/ibss.png)
+![ibss](img/ibss.png)
 
 **BSS/ESS (Uplink verso LAN):**
 
@@ -2128,7 +2303,7 @@ Il BSSID (Basic Service Set Identifier) è un identificatore univoco utilizzato 
 - Address 1 = BSSID (Indirizzo MAC dell'AP)  
 - To DS = 1, From DS = 0  
 
-![](img/bss_ess_uplink.png)
+![bss_ess_uplink](img/bss_ess_uplink.png)
 
 **BSS/ESS (Downlink da LAN):**
 
@@ -2137,7 +2312,7 @@ Il BSSID (Basic Service Set Identifier) è un identificatore univoco utilizzato 
 - Address 1 = DA, Address 2 = BSSID (AP)  
 - To DS = 0, From DS = 1  
 
-![](img/bss_ess_downlink.png)
+![bss_ess_downlink](img/bss_ess_downlink.png)
 
 **ESS con Wireless Distribution System:**
 
@@ -2145,8 +2320,35 @@ Il BSSID (Basic Service Set Identifier) è un identificatore univoco utilizzato 
 - Address 1 = RA (Ricevitore), Address 2 = TA (Trasmettitore)  
 - To DS = 1, From DS = 1
 
-![](img/ESS_WDS.png)
-\
-\
-\
+![ESS_WDS](img/ESS_WDS.png)
+
+## Interconnessione di LAN
+
+**Apparati di interconnessione:**
+  
+- **Repeater:**
+  - Livello 1 OSI, rigenera segnali.
+  - Estende la topologia LAN (entro i limiti di standard, es. 2500m in Ethernet).
+
+- **Bridge:**
+
+  - Livello 2 OSI, separa domini di collisione.
+  - Learning bridge: impara gli indirizzi sorgenti per filtrare le trame.
+  - Fa traduzione diretta dato che i due protocolli hanno la stessa semantica.
+
+  ![bridge](img/bridge.PNG)
+
+  **Switch:**
+
+  - Bridge multiporta, commutazione su indirizzi MAC.
+  - Permette comunicazioni simultanee migliorando prestazioni rispetto agli hub.
+  - Capacità aggregata superiore (es. switch Fast Ethernet: 200 Mbps vs 100 Mbps degli hub).
+
+**Differenze Hub vs Switch:**
+
+- **Hub:** bus condiviso, trasmissione broadcast.
+- **Switch:** selettività nella ritrasmissione, maggiore capacità aggregata.
+  
+  ![bridge](img/switch.PNG)
+
 ****
