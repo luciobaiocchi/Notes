@@ -1,169 +1,5 @@
 # Appunti reti
 
-- [Appunti reti](#appunti-reti)****
-  - [IP e internet](#ip-e-internet)
-    - [Composizione Indirizzo IP](#composizione-indirizzo-ip)
-    - [Funzioni](#funzioni)
-  - [Instradamento IP](#instradamento-ip)
-    - [Network IP → componente elementare](#network-ip--componente-elementare)
-    - [Invio pacchetto](#invio-pacchetto)
-    - [Semantica indirizzo IP](#semantica-indirizzo-ip)
-  - [Instradamento](#instradamento)
-    - [Diretto](#diretto)
-    - [Indiretto](#indiretto)
-    - [Tabella di instradamento](#tabella-di-instradamento)
-    - [Table look-up](#table-look-up)
-    - [Intervalli di indirizzi](#intervalli-di-indirizzi)
-    - [Supernetting](#supernetting)
-  - [Metodologie di filtraggio dei datagrammi](#metodologie-di-filtraggio-dei-datagrammi)
-    - [Packet filter](#packet-filter)
-        - [Come si fa?](#come-si-fa)
-        - [Che vantaggio ha ?](#che-vantaggio-ha-)
-    - [Statefull packet inspection](#statefull-packet-inspection)
-    - [Application layer gateway (proxy)](#application-layer-gateway-proxy)
-      - [Firewall](#firewall)
-      - [Nat](#nat)
-  - [Instradamento nelle reti a pacchetto e in Internet](#instradamento-nelle-reti-a-pacchetto-e-in-internet)
-    - [Algoritmi di instradamento](#algoritmi-di-instradamento)
-      - [Senza tabella:](#senza-tabella)
-        - [Flooding (broadcast)](#flooding-broadcast)
-        - [Random](#random)
-        - [Deflection Routing (hot potato)](#deflection-routing-hot-potato)
-      - [Con tabella](#con-tabella)
-        - [Shortest path routing](#shortest-path-routing)
-          - [Cosa succede se la rete si modifica?](#cosa-succede-se-la-rete-si-modifica)
-    - [Routing link state](#routing-link-state)
-    - [Cosa sono i nodi](#cosa-sono-i-nodi)
-      - [Ruolo router](#ruolo-router)
-        - [Tabella routing e forwarding](#tabella-routing-e-forwarding)
-  - [Internet moderna](#internet-moderna)
-    - [ISP internet service provider](#isp-internet-service-provider)
-      - [IGP](#igp)
-      - [RIP come funziona](#rip-come-funziona)
-      - [OSPF (Open Shortest Path First)](#ospf-open-shortest-path-first)
-        - [Caratteristiche principali di OSPF:](#caratteristiche-principali-di-ospf)
-        - [Componenti chiave:](#componenti-chiave)
-        - [Utilizzi principali:](#utilizzi-principali)
-        - [Configurazione iniziale](#configurazione-iniziale)
-    - [Pacchetti HELLO](#pacchetti-hello)
-      - [Campi dei Pacchetti HELLO](#campi-dei-pacchetti-hello)
-    - [EXCHANGE protocol](#exchange-protocol)
-    - [Flooding Protocol](#flooding-protocol)
-      - [Modalità di Flooding](#modalità-di-flooding)
-    - [Exterior Gateway Protocols (EGP)](#exterior-gateway-protocols-egp)
-    - [Protocolli EGP per Internet](#protocolli-egp-per-internet)
-      - [EGP](#egp)
-      - [Limiti di EGP](#limiti-di-egp)
-    - [BGP: Border Gateway Protocol](#bgp-border-gateway-protocol)
-      - [Caratteristiche principali di BGP](#caratteristiche-principali-di-bgp)
-        - [Attributi](#attributi)
-  - [Commutazione di etichetta: MPLS](#commutazione-di-etichetta-mpls)
-    - [Label Switching](#label-switching)
-    - [label stacking](#label-stacking)
-    - [label allocation](#label-allocation)
-  - [Reti Overlay](#reti-overlay)
-    - [Header](#header)
-    - [VXLAN](#vxlan)
-    - [Reti private](#reti-private)
-      - [Roda warrior](#roda-warrior)
-      - [VPN rete a rete](#vpn-rete-a-rete)
-        - [IPsec](#ipsec)
-  - [Strato fisico](#strato-fisico)
-    - [Attenuazione](#attenuazione)
-    - [Rame](#rame)
-      - [Coppie Intrecciate (Twisted Pair)](#coppie-intrecciate-twisted-pair)
-        - [Tipologie](#tipologie)
-        - [Miglioramenti](#miglioramenti)
-        - [Categorie (dalla Cat. 1 alla Cat. 7):](#categorie-dalla-cat-1-alla-cat-7)
-      - [Cavo Coassiale](#cavo-coassiale)
-        - [Multiplazione a divisione di frequenza (FDM):](#multiplazione-a-divisione-di-frequenza-fdm)
-    - [Comunicazioni Radio](#comunicazioni-radio)
-    - [Sistemi Satellitari](#sistemi-satellitari)
-    - [Sistemi Cellulari](#sistemi-cellulari)
-      - [Considerazioni](#considerazioni)
-  - [Funzionalità e prestazioni](#funzionalità-e-prestazioni)
-    - [Prestazioni](#prestazioni)
-      - [Richieste perdute](#richieste-perdute)
-      - [Utenti e servizi](#utenti-e-servizi)
-        - [PDU (protocoll data unit)](#pdu-protocoll-data-unit)
-      - [Frequenza di servizio](#frequenza-di-servizio)
-        - [esempio](#esempio)
-      - [Traffico](#traffico)
-    - [Prestazioni Ideali per un Protocollo Data Link](#prestazioni-ideali-per-un-protocollo-data-link)
-    - [Capacità Effettiva $(C\_e)$](#capacità-effettiva-c_e)
-    - [Valutazione efficienza](#valutazione-efficienza)
-  - [Reti commutate: il sistema a coda con singolo servitore](#reti-commutate-il-sistema-a-coda-con-singolo-servitore)
-    - [Ipotesi semplificative](#ipotesi-semplificative)
-    - [Utilizzazione](#utilizzazione)
-    - [Miglioramento prestazioni](#miglioramento-prestazioni)
-  - [Reti Local Area Network (LAN)](#reti-local-area-network-lan)
-    - [Caratteristiche principali delle LAN](#caratteristiche-principali-delle-lan)
-    - [Scelte progettuali delle LAN](#scelte-progettuali-delle-lan)
-      - [Mezzo trasmissivo](#mezzo-trasmissivo)
-      - [Topologie](#topologie)
-    - [Accesso multiplo](#accesso-multiplo)
-    - [Protocolli ad Accesso Casuale](#protocolli-ad-accesso-casuale)
-    - [Differenze tra accesso multiplo e casuale](#differenze-tra-accesso-multiplo-e-casuale)
-    - [Protocolli Medium Acces Control (MAC)](#protocolli-medium-acces-control-mac)
-    - [Prestazioni e parametri chiave delle LAN](#prestazioni-e-parametri-chiave-delle-lan)
-    - [Propagazione reale nella topologia bus](#propagazione-reale-nella-topologia-bus)
-    - [Efficienza del MAC ideale](#efficienza-del-mac-ideale)
-    - [Traffico smaltito dalla LAN](#traffico-smaltito-dalla-lan)
-    - [Efficienza delle LAN](#efficienza-delle-lan)
-  - [Protocollo a contesa: ALOHA](#protocollo-a-contesa-aloha)
-    - [Prestazioni di ALOHA](#prestazioni-di-aloha)
-    - [Throughput di ALOHA](#throughput-di-aloha)
-    - [Slotted ALOHA](#slotted-aloha)
-    - [Algoritmi di back-off](#algoritmi-di-back-off)
-    - [Stabilità del sistema](#stabilità-del-sistema)
-    - [Derivati del protocollo ALOHA](#derivati-del-protocollo-aloha)
-  - [CSMA (Carrier Sensing Multiple Access)](#csma-carrier-sensing-multiple-access)
-    - [Principi di funzionamento](#principi-di-funzionamento)
-    - [Gestione delle collisioni](#gestione-delle-collisioni)
-    - [Algoritmo di back-off](#algoritmo-di-back-off)
-    - [Versione slotted del CSMA:](#versione-slotted-del-csma)
-    - [CSMA/CD (Carrier Sensing Multiple Access with Collision Detection)](#csmacd-carrier-sensing-multiple-access-with-collision-detection)
-    - [Codifica di Manchester](#codifica-di-manchester)
-  - [Token Ring e IEEE 802.5  (tutto da skippare)](#token-ring-e-ieee-8025--tutto-da-skippare)
-    - [Token Ring](#token-ring)
-    - [Definizioni dei tempi principali nel Token Ring](#definizioni-dei-tempi-principali-nel-token-ring)
-    - [Rimozione delle trame nell’anello](#rimozione-delle-trame-nellanello)
-    - [Strategie di rigenerazione del token](#strategie-di-rigenerazione-del-token)
-    - [Monitor nel Token Ring](#monitor-nel-token-ring)
-    - [Sincronizzazione nel Token Ring](#sincronizzazione-nel-token-ring)
-    - [Token Bus](#token-bus)
-    - [Confronto tra protocolli a contesa e collision-free](#confronto-tra-protocolli-a-contesa-e-collision-free)
-  - [Progetto IEEE 802 (finer skip !!!)](#progetto-ieee-802-finer-skip-)
-  - [Rete Ethernet](#rete-ethernet)
-    - [Sviluppo e Standardizzazione](#sviluppo-e-standardizzazione)
-    - [Protocollo di Accesso: CSMA/CD](#protocollo-di-accesso-csmacd)
-    - [Slot Time](#slot-time)
-      - [Dimensione dello Slot Time](#dimensione-dello-slot-time)
-    - [Campi del Frame Ethernet/IEEE 802.3](#campi-del-frame-ethernetieee-8023)
-      - [**Preamble**](#preamble)
-      - [**SFD (Start Frame Delimiter)**](#sfd-start-frame-delimiter)
-      - [**Lunghezza / Tipo**](#lunghezza--tipo)
-      - [**Dati**](#dati)
-      - [**Pad**](#pad)
-      - [**Frame Checking Sequence (FCS)**](#frame-checking-sequence-fcs)
-      - [**Indirizzi**](#indirizzi)
-    - [Delimitazione trame](#delimitazione-trame)
-    - [Collision Domain e Broadcast Domain](#collision-domain-e-broadcast-domain)
-    - [Evoluzione dell'Ethernet](#evoluzione-dellethernet)
-      - [Ethernet Classica a *10 Mbit/s*](#ethernet-classica-a-10-mbits)
-      - [Fast Ethernet (IEEE 802.3u - *100 Mbit/s*)\*\*](#fast-ethernet-ieee-8023u---100-mbits)
-      - [Gigabit Ethernet (IEEE 802.3z - 1 Gbit/s)\*\*](#gigabit-ethernet-ieee-8023z---1-gbits)
-      - [10 Gigabit Ethernet (IEEE 802.3ae)](#10-gigabit-ethernet-ieee-8023ae)
-      - [Carrier Ethernet](#carrier-ethernet)
-    - [Cablaggio delle LAN Moderne](#cablaggio-delle-lan-moderne)
-  - [Wirless LAN (Wi-Fi)](#wirless-lan-wi-fi)
-    - [Standard IEEE 802.11](#standard-ieee-80211)
-    - [Architettura di rete 802.11](#architettura-di-rete-80211)
-    - [Problemi di accesso multiplo nelle WLAN](#problemi-di-accesso-multiplo-nelle-wlan)
-    - [Protocollo MAC 802.11 – DCF (Distributed Coordination Function)](#protocollo-mac-80211--dcf-distributed-coordination-function)
-    - [Protocollo MAC 802.11 – PCF (Point Coordination Function)](#protocollo-mac-80211--pcf-point-coordination-function)
-    - [Indirizzamento](#indirizzamento)
-
 ## IP e internet
 
 ### Composizione Indirizzo IP
@@ -171,9 +7,9 @@
 IP→ Progettato per funzionare a commutazione di pacchetto in modalità connectionless.
 
 identifica Host e router tramite indirizzi di lunghezza fissa, raggruppandoli in reti IP.
-****
 
-![Screenshot 2024-10-01 at 16.49.03.png](/img/Screenshot_2024-10-01_at_16.49.03.png)
+<div style="text-align: center;"><img src="./img/header_ip.png
+" alt="Diagramma di rete" width="400"></div>
 
 ### Funzioni
 
@@ -182,10 +18,10 @@ identifica Host e router tramite indirizzi di lunghezza fissa, raggruppandoli in
 | `Version`           | Indica il formato dell’intestazione, attualmente 4                           |
 | `IHL`               | IP header length, lunghezza dell’intestazione                                |
 | `Type of service`   | Tipo di servizio richiesto, usato anche come sorta di priorità               |
-| `Total length`      | Lunghezza totale del datagramma                                             |
+| `Total length`      | Lunghezza totale del datagramma                                              |
 | `Identification`    | Valore intero che identifica univocamente il datagramma (pacchetto)          |
 | `Flag`              | Vari flag utilizzati per il controllo della frammentazione dei pacchetti    - |
-| `Fragment offset`              | Indica quale è la posizione di questo frammento nel datagramma, come distanza in unità di 64 bit dall’inizio|
+| `Fragment offset`   | Indica quale è la posizione di questo frammento nel datagramma, come distanza in unità di 64 bit dall’inizio|
 
 **Flags per la frammentazione**:
 
@@ -197,7 +33,8 @@ identifica Host e router tramite indirizzi di lunghezza fissa, raggruppandoli in
   - 0 = ultimo frammento (aiuta a riordimare i paccheti in arrivo, è tecnicamente superfluo ma ci risparmia il calcolo di vedere quanto era lungo)
   - 1 = frammento intermedio
 
-![Se non posso frammentare il pacchetto lo distruggo.](/img/Screenshot_2024-10-02_at_13.39.55.png)
+<div style="text-align: center;"><img src="./img/flag_ip.png
+" alt="Diagramma di rete" width="400"></div>
 
 **Calcolo del Fragment Offset**:
 Il datagramma è diviso in **blocchi di 8 byte (64 bit)** l'offset è calcolato in unità di 8 byte dall'inizio del datagramma originale (non ho bisogno di mappare tutti i bit ma posso mapparli a blocchi di 8 byte per ridurre a 13 il numero di bit necessari a tenerne traccia, ciò implica che la frammentazione non potrà mai scendere sotto i 64 bit perché non sarei più in grado di ricomporre il pacchetto)
@@ -222,7 +59,8 @@ La segmentazione è fondamentale perché non sempre la dimensione del pacchetto 
 **Riassemblaggio dei datagrammi**:
 I frammenti possono arrivare fuori sequenza o con tempi diversi. Il riassemblaggio avviene solo al terminale di destinazione. Utilizza i campi **Identification**, **Flags** e **Fragment** Offset per ricostruire correttamente il datagramma originale
 
-![Screenshot 2024-10-02 at 13.55.55.png](/img/Screenshot_2024-10-02_at_13.55.55.png)
+<div style="text-align: center;"><img src="./img/frammentazione_ip.png
+" alt="Diagramma di rete" width="400"></div>
 
 **Time to travel (TTL)→** max numero nodi attraversabili
 
@@ -269,7 +107,8 @@ Ogni Network IP viene implementata con una tecnologia specifica, per esempio :
 
 I calcolatori di una network IP devono potersi scambiare pacchetti in modo diretto tra di loro.
 
-![Screenshot 2024-10-04 at 11.35.42.png](/img/Screenshot_2024-10-04_at_11.35.42.png)
+<div style="text-align: center;"><img src="./img/network_ip.png
+" alt="Diagramma di rete" width="400"></div>
 
 **La tecnologia IP è agnostica rispetto alla tecnologia con cui sono realizzate le network** quindi non dipende dalla tipologia di tecnologia utilizzata
 
@@ -284,7 +123,8 @@ Ogni nodo ha una **base di dati** che contiene la lista degli ip che può raggiu
 
 I collegamenti fra router vengono visti come network
 
-![Screenshot 2024-10-04 at 11.45.55.png](/img/Screenshot_2024-10-04_at_11.45.55.png)
+<div style="text-align: center;"><img src="./img/Screenshot_2024-10-04_at_11.45.55.png
+" alt="Diagramma di rete" width="400"></div>
 
 ### Invio pacchetto e semantica
 
@@ -301,7 +141,8 @@ Due parti :
 
 Per entrambi vengono usati bit contigui.
 
-![Screenshot 2024-10-04 at 11.59.51.png](/img/Screenshot_2024-10-04_at_11.59.51.png)
+<div style="text-align: center;"><img src="./img/Screenshot_2024-10-04_at_11.59.51.png
+" alt="Diagramma di rete" width="400"></div>
 
 000000 e 111111 sono due numeri speciali e non possono essere usati come Host id
 
@@ -381,7 +222,8 @@ Ogni nodo, che sia un host o un router, possiede una tabella di instradamento ch
 4. **Interface**: Definisce l'interfaccia di rete attraverso cui inviare il pacchetto e da cui eseguire richieste ARP, se necessario.
 5. **Metric**: Rappresenta il costo del percorso, aiutando a scegliere il percorso migliore quando esistono più opzioni di instradamento.
 
-![Screenshot 2024-10-23 at 13.43.14.png](/img/Screenshot_2024-10-23_at_13.43.14.png)
+<div style="text-align: center;"><img src="./img/Screenshot_2024-10-23_at_13.43.14.png
+" alt="Diagramma di rete" width="400"></div>
 
 ### Table look-up
 
@@ -392,9 +234,9 @@ Per selezionare la riga corretta vengono fatti 2 passaggi:
 
 la riga numero 1 è quella di default, perchè AND è sempre 0.0.0.0
 
-![Screenshot 2024-10-23 at 14.00.17.png](/img/Screenshot_2024-10-23_at_14.00.17.png)
+![Screenshot 2024-10-23 at 14.00.17.png](img/Screenshot_2024-10-23_at_14.00.17.png)
 
-![Screenshot 2024-10-23 at 14.35.26.png](/img/Screenshot_2024-10-23_at_14.35.26.png)
+![Screenshot 2024-10-23 at 14.35.26.png](img/Screenshot_2024-10-23_at_14.35.26.png)
 
 il router ha lo stesso net-id mio e come ultimo numero ha 254, ma più generalmente il numero massimo di host-id.
 
@@ -402,11 +244,13 @@ Qual’è la configurazione minima dell’interfaccia IP?
 
 numero ip e netmask
 
-![Screenshot 2024-10-24 at 10.33.53.png](/img/Screenshot_2024-10-24_at_10.33.53.png)
+<div style="text-align: center;"><img src="./img/Screenshot_2024-10-24_at_10.33.53.png
+" alt="Diagramma di rete" width="400"></div>
 
 settando delle netmask apposite posso creare una aggregazione di righe (aggregazione di rotte). nel caso di r2 è comodo perchè ho solo due instradazioni possibili e posso ottimizzare gli AND da fare. Si può fare solo se sono righe contigue.
 
-![Screenshot 2024-10-24 at 10.36.31.png](/img/Screenshot_2024-10-24_at_10.36.31.png)
+<div style="text-align: center;"><img src="./img/Screenshot_2024-10-24_at_10.36.31.png
+" alt="Diagramma di rete" width="400"></div>
 
 Le righe delle tabelle di route vanno ordinate, per dare precedenza alle route più specifiche.
 
@@ -703,27 +547,27 @@ RIP è ormai superato da protocolli più efficienti e scalabili, ma viene ancora
     Un protocollo di routing a stato di collegamento crea una mappa completa della rete, condividendo informazioni sui collegamenti tra i router tramite pacchetti LSA. Ogni router calcola il percorso migliore verso ogni destinazione utilizzando un algoritmo come Dijkstra. Questo approccio garantisce una convergenza rapida, aggiornamenti selettivi e maggiore efficienza, rendendolo ideale per reti complesse. Esempi comuni sono OSPF e IS-IS.
     OSPF utilizza un approccio basato su mappature dettagliate della rete. Ogni router crea una rappresentazione della topologia completa e calcola i percorsi migliori utilizzando l’algoritmo di Dijkstra.
 
-2.	**Routing senza classe:**
+2. **Routing senza classe:**
 Supporta subnet di dimensioni variabili grazie all’uso del VLSM (Variable Length Subnet Mask), permettendo un uso efficiente degli indirizzi IP.
-3.	**Scalabilità:**
+3. **Scalabilità:**
 Può gestire reti grandi suddividendole in aree gerarchiche, riducendo il carico di elaborazione e la dimensione delle tabelle di routing.
-4.	**Convergenza rapida:**
+4. **Convergenza rapida:**
 Rispetto ai protocolli basati su vettore di distanza (come RIP), OSPF converge rapidamente in caso di cambiamenti nella rete.
-5.	**Metriche basate sulla larghezza di banda:**
+5. **Metriche basate sulla larghezza di banda:**
 Determina il percorso migliore in base alla capacità di throughput dei collegamenti, non al numero di hop.
-6.	**Aggiornamenti efficienti:**
+6. **Aggiornamenti efficienti:**
 Invia aggiornamenti solo quando ci sono cambiamenti, anziché inviare l’intera tabella di routing periodicamente.
 
 ### Componenti chiave
 
 - **Router ID:** Identificatore univoco per ogni router nella rete OSPF.
-    **Router catalogati come:**
-    - **Internal Router:** router interni a ciascuna area
-    - **Area Border Router:** router che scambiano informazioni con
-    altre aree
-    - **Backbone Router:** router che si interfacciano con il backbone
-    - **AS Boundary Router:** router che scambiano informazioni con
-    altri AS usando un protocollo EGP
+  **Router catalogati come:**
+  - **Internal Router:** router interni a ciascuna area
+  - **Area Border Router:** router che scambiano informazioni con
+  altre aree
+  - **Backbone Router:** router che si interfacciano con il backbone
+  - **AS Boundary Router:** router che scambiano informazioni con
+  altri AS usando un protocollo EGP
 - **Designated Router (DR):** Router eletto per centralizzare la distribuzione delle informazioni di stato dei collegamenti.
 - **Backup Designated Router (BDR):** Router eletto per assumere il ruolo di DR in caso di fallimento del DR.
 - **Area:** Una rete OSPF può essere divisa in aree per migliorare la scalabilità e l’efficienza. Tutte le aree devono essere connesse all’Area 0 (area backbone).
@@ -1273,7 +1117,6 @@ L'Arrayed Waveguide Grating (AWG) è un dispositivo ottico utilizzato nelle reti
 
 ### Divisione Geografica in Zone Bianche, Grigie e Nere
 La divisione geografica in zone bianche, grigie e nere è una classificazione utilizzata per identificare le aree in base alla disponibilità e alla qualità delle infrastrutture di rete a banda larga. Le **zone bianche** sono aree in cui non esiste alcuna infrastruttura di rete a banda larga e non sono previsti investimenti privati nei prossimi tre anni qui sarà necessario un interveto publico per costruire un infrastruttura che ad un ente privato potrebbe risultare non conveniente. Le **zone grigie** sono aree in cui è presente un solo operatore di rete a banda larga, con una copertura limitata e una qualità del servizio che potrebbe non essere sufficiente per soddisfare le esigenze future. Le **zone nere** sono aree in cui sono presenti almeno due operatori di rete a banda larga che offrono servizi competitivi e di alta qualità. Questa classificazione è utilizzata per indirizzare gli investimenti pubblici e privati, promuovendo lo sviluppo delle infrastrutture di rete nelle zone meno servite e garantendo un accesso equo e diffuso alla banda larga su tutto il territorio.
-
 
 #### Considerazioni
 
