@@ -238,17 +238,25 @@ I frammenti possono arrivare fuori sequenza o con tempi diversi. Il riassemblagg
 
 ## Instradamento IP
 
-**ICMP** -> internet control message protocoll
-
-L’ICMP (Internet Control Message Protocol) è un protocollo di rete utilizzato per inviare messaggi di controllo e diagnostica all’interno di reti IP. Trasporta **direttamente su ip** senza un protocollo di trasporto. Serve a segnalare errori (ad esempio, host irraggiungibile) e a fornire informazioni sullo stato della rete. ICMP non trasporta dati applicativi, ma aiuta a gestire la comunicazione tra dispositivi di rete. Viene utilizzato da strumenti come ping (per verificare la raggiungibilità di un host) e traceroute (per tracciare il percorso dei pacchetti). Fa parte della famiglia dei protocolli IP, operando al livello di rete.
-
-Internet → rete a commutazione di pacchetto, con più percorsi disponibili
+**Internet** → rete a commutazione di pacchetto, con più percorsi disponibili
 
 Come funziona internet → Rete di reti.
 
+### Diretto
+
+Una consegna **diretta** avviene quando l'IP sorgente e destinatario sono nella stessa rete. In questo caso, il pacchetto viene inviato utilizzando il MAC del destinatario, che viene trovato tramite il protocollo ARP se non già noto. **ARP effettua una richiesta broadcast per associare l'IP al MAC corretto**.
+
+### Indiretto
+
+Nella consegna **indiretta**, quando l'IP destinatario è su un'altra rete, il pacchetto viene prima inviato al router della rete sorgente. A livello di collegamento dati, il MAC sarà quello del router, che instraderà il pacchetto verso il prossimo router fino a raggiungere la rete di destinazione. Il TTL limita il numero massimo di salti. **Anche nei passaggi indiretti, ARP viene utilizzato per ottenere il MAC del gateway successivo.**
+
+**ICMP** -> internet control message protocoll
+
+L’ICMP (Internet Control Message Protocol) è un protocollo di rete utilizzato per inviare messaggi di controllo e diagnostica all’interno di reti IP. Trasporta **direttamente su ip** senza un protocollo di trasporto. Serve a segnalare errori (ad esempio, host irraggiungibile) e a fornire informazioni sullo stato della rete. ICMP **non trasporta dati applicativi**, ma aiuta a gestire la comunicazione tra dispositivi di rete. Viene utilizzato da strumenti come **ping** (per verificare la raggiungibilità di un host) e **traceroute** (per tracciare il percorso dei pacchetti). Fa parte della famiglia dei protocolli IP, operando al livello di rete.
+
 ### Network IP → componente elementare
 
-Una sorta di isola che contiene calcolatori che fanno da **Host**
+Isola che contiene calcolatori che fanno da **Host**
 
 **Gateway o Router** → componenti che fanno da ponte.
 
@@ -263,11 +271,7 @@ I calcolatori di una network IP devono potersi scambiare pacchetti in modo diret
 
 ![Screenshot 2024-10-04 at 11.35.42.png](/img/Screenshot_2024-10-04_at_11.35.42.png)
 
-> **La tecnologia IP è agnostica rispetto alla tecnologia
-con cui sono realizzate le network**
->
-
-Quindi non dipende dalla tipologia di tecnologia utilizzata
+**La tecnologia IP è agnostica rispetto alla tecnologia con cui sono realizzate le network** quindi non dipende dalla tipologia di tecnologia utilizzata
 
 Quando un terminale invia un pacchetto ha due alternative:
 
@@ -276,7 +280,7 @@ Quando un terminale invia un pacchetto ha due alternative:
 
 La scelta è binaria, ma deve essere fatta in poco tempo.
 
-Ogni nodo ha una base di dati che contiene la lista degli ip che può raggiungere
+Ogni nodo ha una **base di dati** che contiene la lista degli ip che può raggiungere
 
 I collegamenti fra router vengono visti come network
 
@@ -284,13 +288,12 @@ I collegamenti fra router vengono visti come network
 
 ### Invio pacchetto e semantica
 
-1. Il **calcolatore** **instrada** il pacchetto verso il router
+1. Il **calcolatore instrada** il pacchetto verso il router
 2. il **router** decide che direzione seguire e **instrada nuovamente** il pacchetto
   
 Un salto viene detto **hop**
 
 **Semantica indirizzo IP**
-
 Due parti :
 
 - Network ID → identifica network di appartenenza
@@ -310,13 +313,13 @@ IP è un indirizzo locator, che indica la posizione.
 
 ### Problematiche dell’IP
 
-**Mobilità**
+#### Mobilità
 
 - **Indirizzi riferiti alla rete di appartenenza**: Gli indirizzi IP sono legati alla rete a cui appartengono. Se un host viene spostato in un’altra rete, il suo indirizzo IP deve cambiare.
 - **Configurazione automatica con DHCP**: Il Dynamic Host Configuration Protocol (DHCP) permette la configurazione automatica degli indirizzi IP, facilitando la gestione degli indirizzi in reti dinamiche.
 - **Mobile IP**: Mobile IP è una tecnologia che permette agli utenti di spostarsi tra diverse reti mantenendo lo stesso indirizzo IP, garantendo la continuità delle sessioni di rete.
 
-**Sicurezza**
+#### Sicurezza
 
 - **Scarsa protezione del datagramma IP**: L'intestazione dei datagrammi IP è in chiaro, rendendo vulnerabili i dati in transito.
 - **IPSec**: Il protocollo IPSec può essere applicato anche a IPv4 per migliorare la sicurezza delle comunicazioni, fornendo autenticazione e cifratura dei dati.
@@ -346,17 +349,7 @@ Livello del modello OSI: Lavora a livello Collegamento Dati (Livello 2) ma può 
 - **Ambito di utilizzo**: DHCP è usato per l'assegnazione iniziale della configurazione di rete; ARP è usato per risolvere indirizzi IP in MAC all'interno della stessa rete locale.
 In sintesi, DHCP fornisce gli indirizzi IP, mentre ARP permette di individuare l'indirizzo MAC associato a un IP specifico per comunicare nella LAN.
 
-## Instradamento
-
-### Diretto
-
-Una consegna **diretta** avviene quando l'IP sorgente e destinatario sono nella stessa rete. In questo caso, il pacchetto viene inviato utilizzando il MAC del destinatario, che viene trovato tramite il protocollo ARP se non già noto. ARP effettua una richiesta broadcast per associare l'IP al MAC corretto.
-
-### Indiretto
-
-Nella consegna **indiretta**, quando l'IP destinatario è su un'altra rete, il pacchetto viene prima inviato al router della rete sorgente. A livello di collegamento dati, il MAC sarà quello del router, che instraderà il pacchetto verso il prossimo router fino a raggiungere la rete di destinazione. Il TTL limita il numero massimo di salti. Anche nei passaggi indiretti, ARP viene utilizzato per ottenere il MAC del gateway successivo.
-
-### ARP (Address Resolution Protocol)
+### ARP approfondimento 
 
 Protocollo di rete utilizzato per mappare un indirizzo IP a un indirizzo MAC corrispondente all'interno di una rete locale (LAN). Funziona a livello **2 (Data Link)** e si interfaccia con il livello **3 (Rete)** del modello OSI, consentendo la comunicazione tra dispositivi in una rete Ethernet o simile.
 
@@ -434,13 +427,13 @@ Un router aggregato è un concetto che si riferisce alla combinazione di più ro
 
 ## Metodologie di filtraggio dei datagrammi
 
-### Packet filter
+## Packet filter
 
 I nodi di rete eseguono delle operazioni di tipo attivo sui dati, generalmente per scopi di filtraggio. Quindi in nodi assumono un ruolo attivo nell'instradamento.
 
 **Come si fa?**
 
-l'instradamento selettivo viene fatto attraverso un packet filter, che instrada solo alcuni pacchetti che rispettano le caratteristiche indicate. I filtri operano a livello IP, quindi il filtro si basa al massimo sull'header IP, es: pacchetti con questo TTl passano e altri no.
+l'instradamento selettivo viene fatto attraverso un packet filter, che instrada solo alcuni pacchetti che rispettano le caratteristiche indicate. I filtri operano a **livello IP**, quindi il filtro si basa al massimo sull'header IP, es: pacchetti con questo TTl passano e altri no.
 Viene fatto attraverso tabelle affiancate a tabelle di indirizzamento.
 
 **Che vantaggio ha ?**
@@ -449,14 +442,15 @@ dal punto di vista architetturale è in linea ai soliti protocolli (OSI).
 
 ### Statefull packet inspection
 
-<img src="./img/049_statefull_packet_inspection.png" alt="Diagramma di rete" width="500"/>
+<img src="./img/statefull-packet-inspection.png" alt="Diagramma di rete" width="500"/>
 
 Utilizzano informazioni prese dagli header di livello superiore (es : numero di porta utilizzata ecc...)
 Questa operazione "viola" l'idea del protocollo iso-osi.
 
 ### Application layer gateway (proxy)
 
-<img src="./img/050_application_layer_gateway.png" alt="Diagramma di rete" width="500"/>
+<img src="./img/ALP_proxy.png" alt="Diagramma di rete" width="500"/>
+<img src="./img/ALP_proxy_2.png" alt="Diagramma di rete" width="500"/>
 
 Da più funzionalità possibili ma è anche il più dispendioso di tutti perchè controlla tutto il pacchetto (livello 3 e 4).
 Posso anche decidere di fare passare solo determinati protocolli
@@ -465,6 +459,8 @@ Posso anche decidere di fare passare solo determinati protocolli
 #### Firewall
 
 Protegge interno da esterno ed esterno da interno. Solitamente è una combinazione di packet filter, statefull packet inspection, e ALG.
+
+<img src="./img/firewall.png" alt="Diagramma di rete" width="500"/>
 
 #### Nat
 
@@ -718,7 +714,7 @@ Determina il percorso migliore in base alla capacità di throughput dei collegam
 6.	**Aggiornamenti efficienti:**
 Invia aggiornamenti solo quando ci sono cambiamenti, anziché inviare l’intera tabella di routing periodicamente.
 
-### Componenti chiave:
+### Componenti chiave
 
 - **Router ID:** Identificatore univoco per ogni router nella rete OSPF.
     **Router catalogati come:**
