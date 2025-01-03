@@ -53,54 +53,58 @@
       - [STATICI](#statici)
       - [DINAMICI](#dinamici)
       - [FUNZIONALI](#funzionali)
-  - [Specifiche](#specifiche)
+    - [Specifiche](#specifiche)
     - [Ornamenti](#ornamenti)
     - [Distinzioni Comuni](#distinzioni-comuni)
-  - [Estendibilità e personalizzazione](#estendibilità-e-personalizzazione)
-    - [Stereotipo](#stereotipo)
-    - [Proprietà](#proprietà)
-    - [Profilo](#profilo)
-  - [Architettura - Viste del software](#architettura---viste-del-software)
-    - [Vista dei casi d’uso](#vista-dei-casi-duso)
-    - [Vista Logica](#vista-logica)
-    - [Vista dei processi](#vista-dei-processi)
-    - [Vista di implementazione](#vista-di-implementazione)
-    - [Vista di deployment](#vista-di-deployment)
-  - [DIAGRAMMA - casi d’uso](#diagramma---casi-duso)
-    - [Attore](#attore)
-    - [Ruolo casi d’uso](#ruolo-casi-duso)
-    - [Come disegnare casi d’uso](#come-disegnare-casi-duso)
-    - [Scenario](#scenario)
-  - [DIAGRAMMA - classi](#diagramma---classi)
-    - [Attributi](#attributi)
-    - [Operazioni](#operazioni)
-    - [Associazione](#associazione)
-    - [Elementi derivati](#elementi-derivati)
-    - [Aggregazione](#aggregazione)
-    - [Composizione](#composizione)
-      - [Gerarchia part of](#gerarchia-part-of)
+    - [Estendibilità e personalizzazione](#estendibilità-e-personalizzazione)
+      - [Stereotipo](#stereotipo)
+      - [Proprietà](#proprietà)
+      - [Vincolo](#vincolo)
+      - [Profilo](#profilo)
+      - [Differenza tra classe e componente](#differenza-tra-classe-e-componente)
+    - [Architettura - Viste del software](#architettura---viste-del-software)
+      - [Vista dei casi d’uso](#vista-dei-casi-duso)
+      - [Vista Logica](#vista-logica)
+      - [Vista dei processi](#vista-dei-processi)
+      - [Vista di implementazione](#vista-di-implementazione)
+      - [Vista di deployment](#vista-di-deployment)
+    - [DIAGRAMMI - casi d’uso](#diagrammi---casi-duso)
+      - [Attore e Casi d'uso](#attore-e-casi-duso)
+      - [Ruolo casi d’uso](#ruolo-casi-duso)
+      - [Come disegnare casi d’uso](#come-disegnare-casi-duso)
+      - [Scenario](#scenario)
+    - [DIAGRAMMI - diagramma delle classi](#diagrammi---diagramma-delle-classi)
+      - [Attributi](#attributi)
+      - [Operazioni](#operazioni)
+        - [Parametri](#parametri)
+      - [Associazione](#associazione)
+        - [VINCOLI E CLASSI ASSOCIATIVE](#vincoli-e-classi-associative)
+        - [ASSOCIAZIONI QUALIFICATE](#associazioni-qualificate)
+        - [ASSOCIAZIONI N-ARIE](#associazioni-n-arie)
+      - [Elementi derivati](#elementi-derivati)
+      - [Aggregazione](#aggregazione)
+      - [Composizione](#composizione)
       - [Differenze tra le due](#differenze-tra-le-due)
-    - [Generalizzazione](#generalizzazione)
-      - [Supportata ereditarietà multipla](#supportata-ereditarietà-multipla)
-    - [Classi astratte](#classi-astratte)
-    - [Powertype](#powertype)
-    - [Dipendenza](#dipendenza)
-    - [Template](#template)
-    - [Raffinamento](#raffinamento)
-    - [Interfacce](#interfacce)
-  - [Classi di progettazione](#classi-di-progettazione)
-  - [Associazione molti-a-uno molti-molti](#associazione-molti-a-uno-molti-molti)
-    - [Associazioni uno-uno](#associazioni-uno-uno)
-    - [Associazioni ternarie](#associazioni-ternarie)
-    - [Classe associativa](#classe-associativa)
-    - [Diagrammi degli oggetti](#diagrammi-degli-oggetti)
-    - [Diagramma package](#diagramma-package)
-    - [Diagrammi di sequenza](#diagrammi-di-sequenza)
+      - [Generalizzazione](#generalizzazione)
+      - [Classi astratte](#classi-astratte)
+      - [Powertype](#powertype)
+      - [Dipendenza](#dipendenza)
+      - [Template](#template)
+      - [Raffinamento](#raffinamento)
+      - [Interfacce](#interfacce)
+      - [Classi di progettazione](#classi-di-progettazione)
+      - [Associazione molti-a-uno molti-molti](#associazione-molti-a-uno-molti-molti)
+      - [Associazioni uno-uno](#associazioni-uno-uno)
+      - [Associazioni ternarie](#associazioni-ternarie)
+      - [Classe associativa](#classe-associativa)
+    - [DIAGRAMMI - diagramma degli oggetti](#diagrammi---diagramma-degli-oggetti)
+    - [DIAGRAMMI - diagramma dei package](#diagrammi---diagramma-dei-package)
+    - [DIAGRAMMI - diagramma di sequenza](#diagrammi---diagramma-di-sequenza)
       - [17,20-21,46](#1720-2146)
-    - [Frammenti combinati](#frammenti-combinati)
-  - [Diagramma degli stati](#diagramma-degli-stati)
-    - [Tipi di eventi](#tipi-di-eventi)
-    - [Stati compositi](#stati-compositi)
+      - [Frammenti combinati](#frammenti-combinati)
+    - [DIAGRAMMI -  diagramma degli stati](#diagrammi----diagramma-degli-stati)
+      - [Tipi di eventi](#tipi-di-eventi)
+      - [Stati compositi](#stati-compositi)
   - [Ingegneria SW](#ingegneria-sw-1)
     - [Produzione](#produzione)
     - [Modelli prescrittivi](#modelli-prescrittivi)
@@ -108,24 +112,24 @@
     - [Modello incrementale](#modello-incrementale)
     - [RAD](#rad)
     - [Incrementale vs iterativo](#incrementale-vs-iterativo)
-  - [Modelli evolutivi](#modelli-evolutivi)
+    - [Modelli evolutivi](#modelli-evolutivi)
     - [Prototipazione evolutiva](#prototipazione-evolutiva)
     - [Prototipazione usa e getta](#prototipazione-usa-e-getta)
     - [Modello a spirale](#modello-a-spirale)
     - [Model driven development](#model-driven-development)
     - [Modelli agili](#modelli-agili)
     - [Extreme programming](#extreme-programming)
-  - [Unified Process](#unified-process)
+    - [Unified Process](#unified-process)
     - [Manufatti](#manufatti)
     - [Flussi di lavoro](#flussi-di-lavoro)
     - [Fasi](#fasi)
-  - [Verifica del software](#verifica-del-software)
-    - [Testing in the **Small**](#testing-in-the-small)
-    - [**Testing in the Large**](#testing-in-the-large)
-    - [Code inspection/ Code walk-through](#code-inspection-code-walk-through)
-    - [Analisi flusso dati](#analisi-flusso-dati)
-  - [Certificazione](#certificazione)
-  - [Manutenzione](#manutenzione)
+    - [Verifica del software](#verifica-del-software)
+      - [Testing in the **Small**](#testing-in-the-small)
+      - [**Testing in the Large**](#testing-in-the-large)
+      - [Code inspection/ Code walk-through](#code-inspection-code-walk-through)
+      - [Analisi flusso dati](#analisi-flusso-dati)
+    - [Certificazione](#certificazione)
+    - [Manutenzione](#manutenzione)
 
 ## Ciclo di vita
 
@@ -456,6 +460,8 @@ Sintesi di metodi attualmente utilizzati e fornisce costrutti per le fasi di svi
 
 ![Screenshot 2024-09-25 at 16.21.36.png](img/UML/Screenshot_2024-09-25_at_16.21.36.png)
 
+verde esercizi, giallo anche teoria
+
 ### Costituenti fondamentali - DIAGRAMMI
 
 #### STATICI
@@ -468,18 +474,16 @@ Sintesi di metodi attualmente utilizzati e fornisce costrutti per le fasi di svi
 
 #### DINAMICI
 
-- **DIAGRAMMA DEGLI STATI** → completamente dinamico, notazione di Harel. Notazione degli automi a stati finiti.  NEGLI ESERCIZI
-- **DIAGRAMMA ATTIVITà** → molto espressivo, coniuga aspetti funzionali e dinamici. Quando devo fare un’azione, mostra la **sequenza delle cose da fare**. Nativamente **dinamico** ma viene associata una parte **funzionale**. Workflow aziendale.
-- **DIAGRAMMI DI INTERAZIONE** → messaggi tra i vari oggetti all’interno di una interazione di un sistema.
-- **DIAGRAMMA DI SEQUENZA** → porta in primo piano l’ordine delle informazioni
+- **Diagramma degli stati** → completamente dinamico, notazione di Harel. Notazione degli automi a stati finiti.  NEGLI ESERCIZI
+- **Diagramma attività** → molto espressivo, coniuga aspetti funzionali e dinamici. Quando devo fare un’azione, mostra la **sequenza delle cose da fare**. Nativamente **dinamico** ma viene associata una parte **funzionale**. Workflow aziendale.
+- **Diagramma di interazione** → messaggi tra i vari oggetti all’interno di una interazione di un sistema.
+- **Diagramma di sequenza** → porta in primo piano l’ordine delle informazioni
 
 #### FUNZIONALI
 
 - **CASI D’USO** → elenco casi uso del sistema, il primo che si disegna, il più semplice. Specificazione dei requisiti con il cliente. Un caso d’uso è una funzionalità, perchè i casi d’uso sono dei processi. NEGLI ESERCIZI
 
-verde esercizi, giallo anche teoria
-
-## Specifiche
+### Specifiche
 
 Sono la descrizione testuale della semantica di un elemento
 
@@ -503,9 +507,9 @@ Rendono visibili gli aspetti particolari della specifica dell’elemento, non so
 
 ![Screenshot 2024-09-25 at 16.24.56.png](img/UML/Screenshot_2024-09-25_at_16.24.56.png)
 
-## Estendibilità e personalizzazione
+### Estendibilità e personalizzazione
 
-### Stereotipo
+#### Stereotipo
 
 Uno **stereotipo** → variazione di un elemento di modellazione esistente, *stessa forma ma diverso scopo*.  
 
@@ -515,56 +519,77 @@ Permette quindi di **introdurre nuovi elementi** di modellazione a partire da qu
 
 Classe utente stereotipata attore
 
-### Proprietà
+#### Proprietà
 
-Valore associato a un elemento del modello. Espresso associato a una stringa dell’elemento.
-`{ author = “Joe Smith”, status = analysis }` → proprietà
+Sono caratteristiche o attributi di un elemento UML. Espresso associato a una stringa dell’elemento.
+`{ author = “Joe Smith”, status = analysis }` → **proprietà**
 
-`{ disjoint , complete}`  → vincolo, una regola di un elemento del dominio che deve sempre risultare vera
+#### Vincolo
 
-`{ subset }` → vincolo
+È una regola o condizione che limita il comportamento o la struttura di un elemento.
 
-### Profilo
+`{ disjoint , complete}`  → **vincolo**, una regola di un elemento del dominio che deve sempre risultare vera
+
+`{ subset }` → **vincolo**
+
+#### Profilo
 
 Insieme di stereotipi, proprietà e vincoli, usato per personalizzare UML.
 
-## Architettura - Viste del software
+#### Differenza tra classe e componente
 
-### Vista dei casi d’uso
+Classe: Astrazione logica (cosa è).
+
+Componente: Implementazione fisica (cosa fa).
+
+**Esempio:** Un componente Database potrebbe rappresentare un modulo che gestisce l'accesso ai dati.
+Una classe Auto potrebbe avere attributi come marca e modello, e metodi come accelera() o frena().
+
+### Architettura - Viste del software
+
+Le **viste** sono **raggruppamenti** logici di diagrammi che rappresentano un aspetto specifico del sistema. Ogni vista si concentra su una prospettiva diversa (es: funzionale, strutturale, comportamentale).
+
+**Esempio**: La vista logica (classi) e la vista fisica (componenti).
+
+I **diagrammi** invece sono rappresentazioni grafiche specifiche all'interno di una vista. Mostrano dettagli concreti, come classi, oggetti, interazioni o flussi.
+
+**Esempio**: Diagramma delle classi, diagramma di sequenza.
+
+#### Vista dei casi d’uso
 
 Descrive le **funzionalità del sistema** come vengono percepite dagli utenti, dagli analisti e dagli esecutori del testing. Non specifica l’organizzazione del software ma è la **base per le altre viste**.
 
-### Vista Logica
+#### Vista Logica
 
 Stabilisce la **terminologia del dominio del problema sotto forma di classi e oggetti**, illustrando come essi implementano il comportamento richiesto
 
-### Vista dei processi
+#### Vista dei processi
 
 È una variante **orientata ai processi della vista logica**; modella i thread e i processi sotto forma di classi attive
 
-### Vista di implementazione
+#### Vista di implementazione
 
 Descrive i **moduli implementativi e le loro dipendenze**, illustrandone la configurazione così da definire il concetto di versione del sistema
 
-### Vista di deployment
+#### Vista di deployment
 
 Mostra la distribuzione fisica del sistema software sull’architettura hardware
 
-## DIAGRAMMA - casi d’uso
+### DIAGRAMMI - casi d’uso
 
 Ruoli di utilizzo del sistema da parte dei vari attori (utilizzatori).
 
 - Non rappresenta la logica ma le interazioni tra il sistema e gli attori.
 - Comprensibile anche per non programmatori, devono descrivere i casi d’uso dal punto di vista del cliente.
 
-### Attore
+#### Attore e Casi d'uso
 
-Attore → entità esterna al sistema ma che interagisce con esso
+**Attore** → entità esterna al sistema ma che interagisce con esso
 
 - Lancia i casi d’uso
 - Stereotipo di classe
 
-Caso d’uso → Funzionalità come percepita da un attore, e deve fare qualcosa di visibile e utile, e deve essere completo.
+**Caso d’uso** → Funzionalità come percepita da un attore, e deve fare qualcosa di visibile e utile, e deve essere completo.
 
 L’unico modo per collegare un attore e un caso d’uso è tramite l’associazione di comunicazione
 
@@ -595,22 +620,22 @@ Errore perché Login è una precondizione ma non viene fatto ogni volta che vien
 
 Versione corretta con precondizione di Login
 
-### Ruolo casi d’uso
+#### Ruolo casi d’uso
 
 - Ruolo contrattuale per fare capire la specificazione dei requisiti del cliente e chiarire cosa deve essere sviluppato.
 - Sono il punto di partenza per il testing
 - Rappresentano le unità di rilascio, per seguire un approccio incrementale.
 
-### Come disegnare casi d’uso
+#### Come disegnare casi d’uso
 
 - Confini sistema
 - Elenco attori
 - Pero ogni attore pensare ai casi d’uso che utilizza
 - Relazioni tra attori e casi d’uso
 
-### Scenario
+#### Scenario
 
-Una specifica esecuzione(istanza) di un caso d’uso.
+Una **specifica esecuzione** (istanza) di un caso d’uso.
 
 Successo → termina con esito positivo
 
@@ -622,7 +647,7 @@ Insuccesso → termina con esito negativo
 
 ![Screenshot 2024-10-01 at 11.33.37.png](img/UML/Screenshot_2024-10-01_at_11.33.37.png)
 
-## DIAGRAMMA - classi
+### DIAGRAMMI - diagramma delle classi
 
 Generalmente alcuni attori rientrano nel diagramma delle classi, i tipici attori esterni che il sistema deve memorizzare.
 
@@ -634,28 +659,30 @@ Generalmente alcuni attori rientrano nel diagramma delle classi, i tipici attori
 
 ![Screenshot 2024-10-01 at 11.37.15.png](img/UML/3a51c5dd-1fec-4df7-ac83-7d61c496df1c.png)
 
-### Attributi
+#### Attributi
 
 - **Visibilità**  : pubblica +, privata - , protected # (visibile da gerarchia), package ~
 - **Molteplicità**: String [5], Real [2..*], Boolean [0..1]
 - **Tipo**:  Integer, UnlimitedNatural, Real, Boolean, String
 - **Ambito**: istanza o classe, ambito di classe, quindi attributi statici che sono sempre uguali per ogni classe
 
-### Operazioni
-
-direzione nomeParametro: tipoParametro=valoreDefault
+#### Operazioni
 
 ![Screenshot 2024-10-09 at 14.36.56.png](img/UML/Screenshot_2024-10-09_at_14.36.56.png)
+
+##### Parametri
+
+direzione nomeParametro: tipoParametro=valoreDefault
 
 - **Direzione:**
   - in
   - out
   - inout
-  - return(si usa quando l’operazione restituisce più valori)
+  - return (si usa quando l’operazione restituisce più valori)
 - **Ambito:**
     istanza o classe
 
-### Associazione
+#### Associazione
 
 Connessione tra classi, tipicamente bidirezionale.
 
@@ -673,7 +700,7 @@ Indicare il verso di lettura si può fare ma non è obbligatorio. Si possono anc
 
 L’opzionalità in dirigente è obbligatoria perché altrimenti si creerebbe una gerarchia infinita.
 
-VINCOLI E CLASSI ASSOCIATIVE
+##### VINCOLI E CLASSI ASSOCIATIVE
 
 ![Una persona può essere a capo del comitato se ne fa parte, e un comitato ha un solo capo. {Subset} è una property](img/UML/Screenshot_2024-10-02_at_15.38.40.png)
 
@@ -681,25 +708,27 @@ Una persona può essere a capo del comitato se ne fa parte, e un comitato ha un 
 
 ![Proprietà per rappresentare un vincolo, {proprietà} e vincolo or già integrato nella sintassi](img/UML/Screenshot_2024-10-02_at_15.35.32.png)
 
-Proprietà per rappresentare un vincolo, {proprietà} e vincolo or già integrato nella sintassi
+**Proprietà per rappresentare un vincolo**, {proprietà} e vincolo or già integrato nella sintassi
 
 ![Possibilità di inserire una annotazione. Dot notation, data una  persona, percorro l’associazione e trovo il suo capo. Tra graffe quindi è un vincolo. Si possono scrivere in linguaggio naturale. [Va letta al contrario → il datore della persona = persona.datore e il datore del capo della persona = persona.capo.datore]](img/UML/Screenshot_2024-10-02_at_15.41.29.png)
 
-Possibilità di inserire una annotazione. Dot notation, data una  persona, percorro l’associazione e trovo il suo capo. Tra graffe quindi è un vincolo. Si possono scrivere in linguaggio naturale. [Va letta al contrario → il datore della persona = persona.datore e il datore del capo della persona = persona.capo.datore]
+Possibilità di inserire una **annotazione**. Dot notation, data una  persona, percorro l’associazione e trovo il suo capo. Tra graffe quindi è un vincolo. Si possono scrivere in linguaggio naturale. [Va letta al contrario → il datore della persona = persona.datore e il datore del capo della persona = persona.capo.datore]
 
-Classe associativa, per rappresentare attributi di associazione
+**Classe associativa**, per rappresentare attributi di associazione
 
 ![Il vincolo della classe associativa rapporto uno uno tra istanze della classe associativa e istanze della associazione, quindi per ogni istanza di persona e azienda si ha una istanza di Posizione. In presenza di classi associative tutte le classi appartenenti all’istanza possono entrare una volta sola, come negli E/R.](img/UML/Screenshot_2024-10-02_at_15.46.02.png)
 
-Il vincolo della classe associativa rapporto uno uno tra istanze della classe associativa e istanze della associazione, quindi per ogni istanza di persona e azienda si ha una istanza di Posizione. In presenza di classi associative tutte le classi appartenenti all’istanza possono entrare una volta sola, come negli E/R.
+Il **vincolo della classe associativa** rapporto uno uno tra istanze della classe associativa e istanze della associazione, quindi per ogni istanza di persona e azienda si ha una istanza di Posizione. In presenza di classi associative tutte le classi appartenenti all’istanza possono entrare una volta sola, come negli E/R.
 
 ![Screenshot 2024-10-02 at 16.19.52.png](img/UML/Screenshot_2024-10-02_at_16.19.52.png)
 
-ASSOCIAZIONI QUALIFICATE
+##### ASSOCIAZIONI QUALIFICATE
 
-!!!
+Servono per ridurre le associazioni molti a molti ad associazioni uno a molti grazie all'aggiunta di un id che permette di selezionare in modo univoco un elemento.
 
-ASSOCIAZIONI N-ARIE
+![associazioni_qualificate](img/UML/associazioni_qualificate.png)
+
+##### ASSOCIAZIONI N-ARIE
 
 definite tra n classi
 
@@ -717,7 +746,7 @@ mercoledì 14, ingegneria Sw → 1 aula
 
 Aula 2.12, mercoledì 14→  1 corso
 
-### Elementi derivati
+#### Elementi derivati
 
 Rappresentare il fatto che un attributo o una associazione sono derivabili da un’altra.
 
@@ -727,7 +756,7 @@ Rappresentare il fatto che un attributo o una associazione sono derivabili da un
 
 **Associazioni derivate →** Molto spesso determinate relazioni (quando sono cicliche) possono essere considerate derivabili, per lasciare il vincolo che si vuole esprimere si possono inserire delle relazioni ridondanti.
 
-### Aggregazione
+#### Aggregazione
 
 Sia il tutto e le parti esistono indipendentemente
 
@@ -737,7 +766,7 @@ Nell’aggregazione il legame è debole, il composto non contiene le parti e le 
 
 Se io sciolgo una squadra i giocatori esistono ancora indipendentemente dalla squadra.
 
-### Composizione
+#### Composizione
 
 Sempre un part-of. Ogni parte appartiene esattamente al tutto.
 
@@ -751,17 +780,15 @@ Non mi interessa mai sapere a che poligono appartiene un punto, viene utilizzata
 
 ![Screenshot 2024-10-08 at 09.55.26.png](img/UML/Screenshot_2024-10-08_at_09.55.26.png)
 
-#### Gerarchia part of
-
-Una finestra è costituita da…
+**Gerarchia part of** Una finestra è costituita da…
 
 #### Differenze tra le due
 
 La squadra conterrà riferimento agli oggetti  →**aggr**
 
-La stanza viene istanziata dentro l’ggetto edificio → **comp**
+La stanza viene istanziata dentro l’oggetto edificio → **comp**
 
-### Generalizzazione
+#### Generalizzazione
 
 Tutti attributi e operazioni della superclasse venfonon ereditati dalle sotto-classi
 
@@ -769,34 +796,34 @@ Tutti attributi e operazioni della superclasse venfonon ereditati dalle sotto-cl
 
 Possibile usare notazione a tridente
 
-#### Supportata ereditarietà multipla
-
-Anche se c’è la possibilità di conflitti tra operazioni.
+**Supportata ereditarietà multipla**, ma possibilità di conflitti tra operazioni.
 
 ![Screenshot 2024-10-08 at 10.02.41.png](img/UML/Screenshot_2024-10-08_at_10.02.41.png)
 
-Overlapping → sovrapposto
+Possono essere indicati insiemi di generalizzazione e vincoli
+(overlapping, disjoint, complete, incomplete) overlapping → sovrapposto
 
 Se c’è assenza di vincolo sono overlapping e incomplete.
 
-### Classi astratte
+#### Classi astratte
 
 Sono implementabili ma non istanziabili.
+![classi_astratte.png](img/UML/classi_astratte.png)
 
-### Powertype
+#### Powertype
 
 Tipizzazione potente, le istanze di tipoArticolo sono le classi che specializzano articolo e quindi possono essere solo quelle disponibili.
 
 ![Screenshot 2024-10-08 at 10.28.06.png](img/UML/Screenshot_2024-10-08_at_10.28.06.png)
 
-### Dipendenza
+#### Dipendenza
 
 *A dipende da B quando una variazione in B può
 comportare una variazione in A*
 
 ![Screenshot 2024-10-08 at 10.50.58.png](img/UML/e79c266f-3568-459b-acf8-fccb36136b8f.png)
 
-### Template
+#### Template
 
 descrive una classe in cui uno o più parametri formali non sono istanziati, parametri formali T,k.
 
@@ -804,13 +831,13 @@ Bound element → una classe che istanzia i parametri di un template.
 
 ![Screenshot 2024-10-08 at 10.55.56.png](img/UML/Screenshot_2024-10-08_at_10.55.56.png)
 
-### Raffinamento
+#### Raffinamento
 
 Raffinamento tra un tipo astratto e una classe che lo realizza. Tra classe di analisi e una di progetto
 
 ![Screenshot 2024-10-08 at 10.58.04.png](img/UML/Screenshot_2024-10-08_at_10.58.04.png)
 
-### Interfacce
+#### Interfacce
 
 Stereotipo definito e particolare rappresentazione grafica. Meccanismo di astrazione potente, è una classe senta struttura, dotata solo di operazioni. Non tutte le classi astratte sono interfaccie ma una interfaccia è una classe astratta.
 
@@ -818,7 +845,7 @@ Stereotipo definito e particolare rappresentazione grafica. Meccanismo di astraz
 
 la rappresentazione lollipop è migliore perchè è più sintetica delle altre.
 
-## Classi di progettazione
+#### Classi di progettazione
 
 Si specifica come le classi devono essere implementate.
 
@@ -836,7 +863,7 @@ minimamente interdipendente
 
 Alcuni costrutti come le associazioni o classi associative non sono implementabili direttamente, ma devono essere trasformate in base al carico di lavoro.
 
-## Associazione molti-a-uno molti-molti
+#### Associazione molti-a-uno molti-molti
 
 ![Screenshot 2024-10-15 at 09.58.15.png](img/Classi_di_progettazione/Screenshot_2024-10-15_at_09.58.15.png)
 
@@ -846,7 +873,7 @@ Dipendenza trace. Posso sapere l’azienda di una persona, ma se voglio sapere t
 
 Se il carico di lavoro è bilanciato, meglio usare questa soluzione. Può creare ridondanza che è risolta con l’incapsulamento.
 
-### Associazioni uno-uno
+#### Associazioni uno-uno
 
 ![Screenshot 2024-10-15 at 10.06.23.png](img/Classi_di_progettazione/Screenshot_2024-10-15_at_10.06.23.png)
 
@@ -854,7 +881,7 @@ rombo bianco → collegamento riferimento
 
 rombo nero → collegamento per valore
 
-### Associazioni ternarie
+#### Associazioni ternarie
 
 ![Screenshot 2024-10-15 at 10.08.11.png](img/Classi_di_progettazione/Screenshot_2024-10-15_at_10.08.11.png)
 
@@ -868,13 +895,13 @@ le dipendenze funzionali che c’erano nei diagrammi di analisi, non ci sono nei
 
 soluzione 1 ottima se so corso e voglio ottenere orario e aula, mentra la seconda soluzione è ridondande parzialmente, per capire quante lezioni ci sono in una determianta aula, ma senza sapere il corso
 
-### Classe associativa
+#### Classe associativa
 
 Rimane così anche nel diagramma di progettazione.
 
 ![Screenshot 2024-10-15 at 10.19.31.png](img/Classi_di_progettazione/Screenshot_2024-10-15_at_10.19.31.png)
 
-### Diagrammi degli oggetti
+### DIAGRAMMI - diagramma degli oggetti
 
 ![Screenshot 2024-10-15 at 11.25.16.png](img/Classi_di_progettazione/Screenshot_2024-10-15_at_11.25.16.png)
 
@@ -886,7 +913,7 @@ Serve per mostrare esempi delle strutture dati.
 
 Da diagramma degli oggetti a diagramma delle classi
 
-### Diagramma package
+### DIAGRAMMI - diagramma dei package
 
 i package annidati vedono lo spazio die nomi dei package che li contengono, il contrario non è vero.
 
@@ -905,7 +932,7 @@ quando un package specifico si deve conformare all’interfaccia del package gen
 
 Non ci sono indicazioni precise su come identificare package. Seguendo gerarchie del diagramma delle classi (gerarchie part-of e gerarchie is-e suddivise). Oppure secondo i casi d’uso. Tra 4 e 10 classi in un package, no dipendenze circolari.
 
-### Diagrammi di sequenza
+### DIAGRAMMI - diagramma di sequenza
 
 4 tipi di interazione, cose simili ma enfasi diversa:
 
@@ -938,7 +965,7 @@ distrizione, cancellano oggetto.
 
 attivazione → intervallo in cui linea di vita è attiva
 
-### Frammenti combinati
+#### Frammenti combinati
 
 ![Screenshot 2024-10-16 at 16.29.17.png](img/Classi_di_progettazione/Screenshot_2024-10-16_at_16.29.17.png)
 
@@ -952,7 +979,7 @@ uscito dal loop → se bisogno conferma la mando altrimenti niente
 
 ![Screenshot 2024-10-16 at 16.29.42.png](img/Classi_di_progettazione/Screenshot_2024-10-16_at_16.29.42.png)
 
-## Diagramma degli stati
+### DIAGRAMMI -  diagramma degli stati
 
 Grammatica → insieme di regole con le quali si definisce un linguaggio, usando notazione apposita (BNF, backus-naur form).
 
@@ -994,7 +1021,7 @@ stessa cosa per l’uscita:
 
 ![Screenshot 2024-10-22 at 10.23.59.png](img/Classi_di_progettazione/Screenshot_2024-10-22_at_10.23.59.png)
 
-### Tipi di eventi
+#### Tipi di eventi
 
 - Evento di variazione: quando una condizione diventa vera, denotato da espressione booleana
 - Evento di segnale: nel momento in cui un oggetto riceve un oggetto segnale da un altro oggetto.
@@ -1003,7 +1030,7 @@ stessa cosa per l’uscita:
   - when(data = 01/01/2008)
   - after (10 seconds)
 
-### Stati compositi
+#### Stati compositi
 
 ## Ingegneria SW
 
@@ -1062,7 +1089,7 @@ Differenze:
 - *incrementale*: ogni versione aggiunge nuove funzionalità o sottosistemi
 - *iterativo*: da subito sono presenti le funzionalità/sottosistemi di base che vengono successivamente raffinate e migliorate. I requisiti possono cambiare
 
-## Modelli evolutivi
+### Modelli evolutivi
 
 Sono iterativi, caratterizzati per consentire sviluppo di versioni sempre più complete del SW
 
@@ -1124,7 +1151,7 @@ insieme di linee guida che trascurano la fragilità delle persone che realizzano
 
 Dopo il primo rilascio il team calcola la velocità del progetto. Determinare se le user story sono state sottovalutate e modificano il contenuto e le date di consegna.
 
-## Unified Process
+### Unified Process
 
 CHI: una risorsa o un ruolo definisce il comportamento e le responsabilità di un gruppo
 
@@ -1159,14 +1186,14 @@ effettua il testing, prepara la documentazione
 - Transition: consegna il sistema agli utenti finali (include marketing,
 installazione, configurazione, formazione, supporto, mantenimento)
 
-## Verifica del software
+### Verifica del software
 
 Serve per controllare se il sistema corrisponde alle specifiche del progetto. La verifica segue passo passo il progetto.
 
 - **Dinamiche o di testing**, verifica lanciando il sw
 - **Statiche o di analisi,** analizzando la struttura e i moduli.
 
-### Testing in the **Small**
+#### Testing in the **Small**
 
 parto dalle operazioni più critiche
 
@@ -1176,7 +1203,7 @@ parto dalle operazioni più critiche
 - Criterio di copertura delle decisioni (branch test), controllare che almeno ogni nodo del grafo di controllo deve essere toccato almeno una volta.
 - Criterio di copertura delle decisioni e delle condizioni, per ogni predicato composto devo valutare almeno una volta un sottopredicato true e una volta false.
 
-### **Testing in the Large**
+#### **Testing in the Large**
 
 Tecnica black-box, analizzando le corrispondenze input-output.
 
@@ -1184,17 +1211,17 @@ Tecnica black-box, analizzando le corrispondenze input-output.
 - test d’integrazione → comportamento di sottoparti. Utile per scoprire eventuali bug durante lo sviluppo.
 - test di sistema → verifica il comportamento intero
 
-### Code inspection/ Code walk-through
+#### Code inspection/ Code walk-through
 
 eseguita da un team di persone che dopo aver selezionato opportune porzioni del codice e opportuni valori di input ne simulano su carta il comportamento.
 
-### Analisi flusso dati
+#### Analisi flusso dati
 
 Tipo particolare di code inspection, Analisi dell’evoluzione del valore associato alle variabili durante l’esecuzione di un programma. Ad ogni comando è possibile associare staticamente il tipo di operazioni eseguite sulle variabili:
 
 definizioni d, usi u, annullamenti a.
 
-## Certificazione
+### Certificazione
 
 Significa che un ente riconosciuto dichiara che un prodotto è conforme a una specifica o norma, attraverso l’accreditamento mediante prove in laboratorio.
 
@@ -1205,7 +1232,7 @@ Attraverso normativa ISO 9000 che ha due obbiettivi principali:
 
 ![Screenshot 2024-11-13 at 15.46.19.png](img/Ingegneria_SW/Screenshot_2024-11-13_at_15.46.19.png)
 
-## Manutenzione
+### Manutenzione
 
 - Correttiva → correzzione errori
 - Adattiva → quando mutano le condizioni di utilizzo del sw, es nuova normativa.
