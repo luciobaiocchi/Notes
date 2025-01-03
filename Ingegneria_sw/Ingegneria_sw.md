@@ -1,6 +1,203 @@
-# Ciclo di vita
+# INGEGNERIA SW
 
-## Analisi requisiti
+- [INGEGNERIA SW](#ingegneria-sw)
+  - [Ciclo di vita](#ciclo-di-vita)
+    - [1. Definizione Strategica](#1-definizione-strategica)
+    - [2. Pianificazione](#2-pianificazione)
+    - [3. Controllo di Qualità](#3-controllo-di-qualità)
+    - [4. Analisi dei Requisiti](#4-analisi-dei-requisiti)
+    - [5. Progettazione del Sistema](#5-progettazione-del-sistema)
+    - [6. Progettazione Esecutiva](#6-progettazione-esecutiva)
+    - [7. Realizzazione e Collaudo in Fabbrica](#7-realizzazione-e-collaudo-in-fabbrica)
+    - [8. Certificazione](#8-certificazione)
+    - [9. Installazione](#9-installazione)
+    - [10. Collaudo del Sistema Installato](#10-collaudo-del-sistema-installato)
+    - [11. Esercizio](#11-esercizio)
+    - [12. Diagnosi](#12-diagnosi)
+    - [13. Manutenzione](#13-manutenzione)
+    - [14. Evoluzione](#14-evoluzione)
+      - [Riassunto](#riassunto)
+    - [Analisi requisiti](#analisi-requisiti)
+    - [Come modellare?](#come-modellare)
+      - [Analisi Oggetti (Informazioni complesse, funzioni relativamente semplici)](#analisi-oggetti-informazioni-complesse-funzioni-relativamente-semplici)
+      - [Analisi Funzioni (complessità nelle trasformazioni input-output)](#analisi-funzioni-complessità-nelle-trasformazioni-input-output)
+      - [Analisi Stati (Modellare la sincronizzazione tra diverse attività cooperanti nel sistema)](#analisi-stati-modellare-la-sincronizzazione-tra-diverse-attività-cooperanti-nel-sistema)
+    - [Come costruire una base di conoscenza ?](#come-costruire-una-base-di-conoscenza-)
+    - [Linguaggi per specificare requisiti](#linguaggi-per-specificare-requisiti)
+    - [Uso di notazioni](#uso-di-notazioni)
+    - [Progettazione](#progettazione)
+  - [Paradigma a Oggetti](#paradigma-a-oggetti)
+    - [Oggetti](#oggetti)
+      - [Interfaccia](#interfaccia)
+      - [Dati astratti](#dati-astratti)
+      - [Classi](#classi)
+      - [Incapsulamento](#incapsulamento)
+      - [Operazioni e metodi](#operazioni-e-metodi)
+    - [Ereditarietà](#ereditarietà)
+      - [Ereditarietà multipla](#ereditarietà-multipla)
+    - [Polimorfismo](#polimorfismo)
+    - [Oggetto complesso e delegazione](#oggetto-complesso-e-delegazione)
+    - [Obbiettivo OOP](#obbiettivo-oop)
+    - [Approccio funzionale](#approccio-funzionale)
+    - [Approccio a Oggetti VS Funzionale](#approccio-a-oggetti-vs-funzionale)
+      - [Benefici oggetti](#benefici-oggetti)
+  - [UML](#uml)
+    - [Struttura](#struttura)
+    - [Costituenti fondamentali - ENTITÀ](#costituenti-fondamentali---entità)
+      - [STRUTTURE](#strutture)
+      - [COMPORTAMENTI](#comportamenti)
+      - [RAGGRUPPAMENTI](#raggruppamenti)
+      - [INFORMAZIONI](#informazioni)
+    - [Costituenti fondamentali - RELAZIONI](#costituenti-fondamentali---relazioni)
+    - [Costituenti fondamentali - DIAGRAMMI](#costituenti-fondamentali---diagrammi)
+      - [STATICI](#statici)
+      - [DINAMICI](#dinamici)
+      - [FUNZIONALI](#funzionali)
+  - [Specifiche](#specifiche)
+    - [Ornamenti](#ornamenti)
+    - [Distinzioni Comuni](#distinzioni-comuni)
+  - [Estendibilità e personalizzazione](#estendibilità-e-personalizzazione)
+    - [Stereotipo](#stereotipo)
+    - [Proprietà](#proprietà)
+    - [Profilo](#profilo)
+  - [Architettura - Viste del software](#architettura---viste-del-software)
+    - [Vista dei casi d’uso](#vista-dei-casi-duso)
+    - [Vista Logica](#vista-logica)
+    - [Vista dei processi](#vista-dei-processi)
+    - [Vista di implementazione](#vista-di-implementazione)
+    - [Vista di deployment](#vista-di-deployment)
+  - [DIAGRAMMA - casi d’uso](#diagramma---casi-duso)
+    - [Attore](#attore)
+    - [Ruolo casi d’uso](#ruolo-casi-duso)
+    - [Come disegnare casi d’uso](#come-disegnare-casi-duso)
+    - [Scenario](#scenario)
+  - [DIAGRAMMA - classi](#diagramma---classi)
+    - [Attributi](#attributi)
+    - [Operazioni](#operazioni)
+    - [Associazione](#associazione)
+    - [Elementi derivati](#elementi-derivati)
+    - [Aggregazione](#aggregazione)
+    - [Composizione](#composizione)
+      - [Gerarchia part of](#gerarchia-part-of)
+      - [Differenze tra le due](#differenze-tra-le-due)
+    - [Generalizzazione](#generalizzazione)
+      - [Supportata ereditarietà multipla](#supportata-ereditarietà-multipla)
+    - [Classi astratte](#classi-astratte)
+    - [Powertype](#powertype)
+    - [Dipendenza](#dipendenza)
+    - [Template](#template)
+    - [Raffinamento](#raffinamento)
+    - [Interfacce](#interfacce)
+  - [Classi di progettazione](#classi-di-progettazione)
+  - [Associazione molti-a-uno molti-molti](#associazione-molti-a-uno-molti-molti)
+    - [Associazioni uno-uno](#associazioni-uno-uno)
+    - [Associazioni ternarie](#associazioni-ternarie)
+    - [Classe associativa](#classe-associativa)
+    - [Diagrammi degli oggetti](#diagrammi-degli-oggetti)
+    - [Diagramma package](#diagramma-package)
+    - [Diagrammi di sequenza](#diagrammi-di-sequenza)
+      - [17,20-21,46](#1720-2146)
+    - [Frammenti combinati](#frammenti-combinati)
+  - [Diagramma degli stati](#diagramma-degli-stati)
+    - [Tipi di eventi](#tipi-di-eventi)
+    - [Stati compositi](#stati-compositi)
+  - [Ingegneria SW](#ingegneria-sw-1)
+    - [Produzione](#produzione)
+    - [Modelli prescrittivi](#modelli-prescrittivi)
+    - [Modello a cascata](#modello-a-cascata)
+    - [Modello incrementale](#modello-incrementale)
+    - [RAD](#rad)
+    - [Incrementale vs iterativo](#incrementale-vs-iterativo)
+  - [Modelli evolutivi](#modelli-evolutivi)
+    - [Prototipazione evolutiva](#prototipazione-evolutiva)
+    - [Prototipazione usa e getta](#prototipazione-usa-e-getta)
+    - [Modello a spirale](#modello-a-spirale)
+    - [Model driven development](#model-driven-development)
+    - [Modelli agili](#modelli-agili)
+    - [Extreme programming](#extreme-programming)
+  - [Unified Process](#unified-process)
+    - [Manufatti](#manufatti)
+    - [Flussi di lavoro](#flussi-di-lavoro)
+    - [Fasi](#fasi)
+  - [Verifica del software](#verifica-del-software)
+    - [Testing in the **Small**](#testing-in-the-small)
+    - [**Testing in the Large**](#testing-in-the-large)
+    - [Code inspection/ Code walk-through](#code-inspection-code-walk-through)
+    - [Analisi flusso dati](#analisi-flusso-dati)
+  - [Certificazione](#certificazione)
+  - [Manutenzione](#manutenzione)
+
+## Ciclo di vita
+
+### 1. Definizione Strategica
+
+- Si decide quale area aziendale sarà oggetto di automazione.
+
+### 2. Pianificazione
+
+- Si definiscono gli obiettivi, si evidenziano i fabbisogni e si realizza uno studio di fattibilità per identificare strategie, costi, benefici e tempi.
+
+### 3. Controllo di Qualità
+
+- Si prepara un piano per garantire il rispetto delle specifiche e verificare che il sistema funzioni come previsto.
+
+### 4. Analisi dei Requisiti
+
+- Si formalizzano i requisiti utilizzando tecniche di modellazione e si producono macro-specifiche per la progettazione.
+
+### 5. Progettazione del Sistema
+
+- I requisiti vengono trasformati in una soluzione architetturale di massima, con specifiche indipendenti dagli strumenti di sviluppo.
+
+### 6. Progettazione Esecutiva
+
+- Si descrivono struttura e comportamento dei componenti, producendo specifiche che porteranno a un prodotto funzionante.
+
+### 7. Realizzazione e Collaudo in Fabbrica
+
+- Il sistema viene implementato e testato internamente (**α-test**) utilizzando i casi di prova definiti.
+
+### 8. Certificazione
+
+- Si verifica che il software sia stato sviluppato seguendo i criteri previsti e in conformità con le specifiche e la documentazione.
+
+### 9. Installazione
+
+- Il sistema viene installato, configurato e si recuperano eventuali dati pregressi.
+
+### 10. Collaudo del Sistema Installato
+
+- Gli utenti testano il sistema (**β-test**) per identificare:
+  - Errori bloccanti (malfunzionamenti critici).
+  - Errori non bloccanti (malfunzionamenti minori).
+  - Problemi di operatività (funzionalità non adeguate).
+  - Problemi funzionali (funzionalità mancanti).
+
+### 11. Esercizio
+
+- Dopo il collaudo positivo, il sistema entra in produzione, sostituendo gradualmente l'eventuale sistema precedente.
+
+### 12. Diagnosi
+
+- Durante l'esercizio, gli utenti segnalano eventuali errori.
+
+### 13. Manutenzione
+
+- Gli errori riscontrati vengono corretti (**manutenzione correttiva**).
+- Il software viene adattato ai cambiamenti del dominio applicativo (**manutenzione adattativa**).
+
+### 14. Evoluzione
+
+- Si valutano possibilità di evolvere il sistema con nuove funzionalità o miglioramenti (**manutenzione evolutiva o perfettiva**).
+
+#### Riassunto
+
+- Il processo parte dalla **pianificazione** e dall'**analisi dei requisiti**, per definire cosa automatizzare e come farlo.
+- Si prosegue con la **progettazione** (iniziale ed esecutiva) e l'**implementazione del sistema**.
+- Seguono fasi di **test** (α e β), **certificazione** e **messa in produzione**.
+- Infine, si monitora il funzionamento con **diagnosi** e **manutenzione**, considerando eventuali miglioramenti futuri.
+
+### Analisi requisiti
 
 - Lo scopo è produrre un documento che specifica i requisiti.
     utente finale e progettista si accordano sulle specifiche finali del sw e necessita:
@@ -24,11 +221,11 @@ Le proprietà degli oggetti rimangono abbastanza stabili varia notevolmente l’
 
 #### Analisi Funzioni (complessità nelle trasformazioni input-output)
 
-Sistema rappresentato come una **`rete di processi`** che trasforma **`flussi informativi`,**  tramite una progressiva costruzione di una gerarchia funzionale.
+Sistema rappresentato come una **`rete di processi`** che trasforma **`flussi informativi`,**  tramite una progressiva costruzione di una gerarchia funzionale. Possono essere espresse inizialmente in modo **vago** (controllare il livello di gas nocivi nell'aria) e successivamente precisate (la programmazione del livello di soglia per l'allarme della centralina viene attivata premendo il pulsante P).
 
 #### Analisi Stati (Modellare la sincronizzazione tra diverse attività cooperanti nel sistema)
 
-Sistema pensato come un **`insieme di stati operativi`** e studio delle eventuali transizioni.
+Sistema pensato come un **`insieme di stati operativi`** e studio delle eventuali transizioni. Gli stati possono essere decritti a un elevato livello di astrazione
 
 ### Come costruire una base di conoscenza ?
 
@@ -37,7 +234,7 @@ si utilizzano i metodi di astrazione:
 - **Classificazione**→ raggruppa in classi degli oggetti in base alle loro proprietà
 - **Generalizzazione** → **is-a** astrae caratteristiche comuni in quelle di superclassi
 - **Aggregazione** → **part-of** aggregazione tra oggetti, funzioni e stati
-- **Associazioni**→ Associazioni tra varie classi
+- **Associazioni**→ Associazioni tra varie classi (persona lavora per azienda)
 
 ### Linguaggi per specificare requisiti
 
@@ -49,11 +246,11 @@ si utilizzano i metodi di astrazione:
 
 notazioni diverse vengono usate per rappresentare informazioni diverse
 
-Formalismi operazionali → Definiscono il problema in base al comportamento
+**Formalismi operazionali** → Definiscono il problema in base al comportamento
 
-Formalismi dichiarativi → Definiscono sistema in base alle proprietà
+**Formalismi dichiarativi** → Definiscono sistema in base alle proprietà
 
-## Progettazione
+### Progettazione
 
 Ponte tra la fase di specifica alla fase di codifica, si passa da “che cosa” a “come”.
 
@@ -66,56 +263,73 @@ Due esigenze:
 
 La progettazione è un’attività altamente creativa,  e ci sono vari obbiettivi che devono essere rispettati:
 
+- affidabilità
+- modificabilità
+- comprensibilità
+- riusabilità
+
+Riassumibili come diminuzione costi, tempi di produzione e aumento qualità.
+
 ## Paradigma a Oggetti
 
 ### Oggetti
 
-Elementi di base del paradigma, possiedono:
+Elementi di base del paradigma (non necessariamente corrispondono a entità "fisiche"), possiedono:
 
-- Identità (OID, object identifier)
-- Stato: insieme di valori assunti in un determinato istante
-- Comportamento: definito da un insieme di operazioni
+- **Identità** (OID, object identifier)
+- **Stato**: insieme di valori assunti in un determinato istante
+- **Comportamento**: definito da un insieme di operazioni
 
-### Interfaccia
+**Oggetti complessi** -> composti da altri oggetti
+Gli attributi esistono nel mondo reale, gli objectID no.
 
-Signature → operazione svolta dall’oggetto con parametri in input e output
+#### Interfaccia
 
-Interfaccia → insieme signature
+**Signature** → operazione svolta dall’oggetto con parametri in input e output
 
-### Dati astratti
+**Interfaccia** → insieme di tutte le signature
 
-rappresentazione di un’insieme di oggetti “simili”
+#### Dati astratti
 
-### Classi
+rappresentazione di un’insieme di oggetti “simili”, caratterizzati da **struttura** e **interfaccia** simili.
+
+Un tipo è **sottotipo** di un **supertipo** se contiene l'interfaccia del supertipo. Il sottotipo eredita interfaccia supertipo, ma l'interfaccia non vincola l'implementazione dei metodi.
+
+#### Classi
 
 Realizzazione di un tipo astratto, fornendo i metodi a esso associati.
+Un oggetto è sempre istanza di una classe.
+Esistono metodi di due tipi:
 
-### Incapsulamento
+- restituiscono astrazioni significative
+- alterano stato oggetto
 
-Protezione di attributi dell’oggetto, e possibilità di modificarli solo attraverso i metodi che l’interfaccia mette a disposizione.
+#### Incapsulamento
+
+Protezione di attributi dell’oggetto e implementazione delle operazioni, e possibilità di modificarli solo attraverso i metodi pubblici che la classe mette a disposizione.
 
 Vantaggi:
 
-- per usare una classe basta conoscere interfaccia
+- per usare una classe basta conoscere interfaccia (vista come scatola nera)
 - Modificando la classe non si modifica l’applicazione
 - meno errori e debugging più facile
 
-### Operazioni e metodi
+#### Operazioni e metodi
 
 Il metodo implementa un’operazione:
 
 Vari tipi:
 
-- Costruttori → costruiscono ogg con parametri
-- Distruttori → distruggono ogg e altri ogg collegati
-- Accessori → informazioni su proprietà
-- Trasformatori → modificano stato
+- **Costruttori** → costruiscono obj con parametri
+- **Distruttori** → distruggono obj e altri ogg collegati
+- **Accessori** → informazioni su proprietà
+- **Trasformatori** → modificano stato
 
 Pubblici, protetti, privati
 
 ### Ereditarietà
 
-Basare la definizione di una classe e implementazione su quella di altre classi.
+permette di basare la definizione di una classe e implementazione su quella di altre classi.
 
 Generalizzazione → super-classe
 
@@ -125,23 +339,23 @@ Vengono ereditati metodi e attributi, con possibilità di aggiungerne altri o mo
 
 #### Ereditarietà multipla
 
-quando una sotto-classe eredita da più super-classi, formando gerarchie di classi (ad albero o DAG).
+quando una sotto-classe eredita da più super-classi, formando gerarchie di classi (ad albero o DAG). Relazione B is-a A, se B eredità da A, B è un A.
 
 ### Polimorfismo
 
 Possibilità di creare metodi con stesso nome ma implementazioni differenti.
 
-Stesso nome, ma *signature *****diversa.
+Stesso nome, ma **signature diversa**. Reso possibile grazie al meccanismo di overload.
 
-![Screenshot 2024-09-24 at 16.22.34.png](Paradigma%20a%20Oggetti%20d2278a1a0b19469782cd214c7c847211/Screenshot_2024-09-24_at_16.22.34.png)
+![Screenshot 2024-09-24 at 16.22.34.png](img/Paradigma_a_Oggetti/Screenshot_2024-09-24_at_16.22.34.png)
 
-Per permettere il polimorfismo è necessario l’istanziamento dinamico (a run-time).
+Per permettere il polimorfismo è necessario l’istanziamento dinamico (a run-time). Fino a run-time non si è vincolati a una determinata implementazione.
 
-### Oggetto complesso
+### Oggetto complesso e delegazione
 
-Quando un determinato oggetto contiene il riferimento ad un altro oggetto, e delega operazioni a quest’ ultimo.
+Quando un determinato oggetto contiene il riferimento ad un altro oggetto, e **delega** operazioni a quest’ ultimo.
 
-Permette di implementare associazione tra classi.
+Permette di implementare **associazione tra classi**.
 
 ### Obbiettivo OOP
 
@@ -149,14 +363,36 @@ migliorare produttività e garantire estendibilità e riusabilità.
 
 ### Approccio funzionale
 
-Il sitema ha una unica funzionalità, e a basso livello ci sono vari compiti (task), ma ci sono vari problemi:
+Il sitema caratterizzato come un'unica funzionalità, e a livello è suddiviso in compiti (task), ma ci sono vari problemi:
 
+- Discrepanza tra concetto di flusso di dati (analisi) e gerarchia di compiti (implementazione).
 - mancanza di iterazione
+- No estendibilità
+- No riusabilità, ogni sistema viene progettato da zero
+- Progettazione dei dati trascurata.
+  
+### Approccio a Oggetti VS Funzionale
+
+- Fin da subito **focus sugli oggetti**, non ci sono confini distinti tra fase di progettazione e implementazione.
+- Processo **iterativo**
+- Grazie all'ereditarietà vi è una migliore **estendibilità** e **riusabilità** del codice, rendendo gli aggiornamenti meno onerosi.
+- Più **flessibile**, cambiare implementazione non modifica il sistema.
+
+#### Benefici oggetti
+
+- Sistemi più stabili
+- Produttività più alta
+- Si possono sviluppare prototipi velocemente
+- Drastica diminuzione del costo di manutenzione.
 
 ## UML
 
-Fornisce costrutti per le fasi di sviluppo SW:
+Sintesi di metodi attualmente utilizzati e fornisce costrutti per le fasi di sviluppo SW, Standard dal 1997:
 
+- è un linguaggio e non un metodo
+- definisce notazioni standard basate su metamodello
+- indipendente dai modelli
+  
 - analisi requisiti tramite use cases
 - analisi e progettazione a OOP
 - modellazione componenti
@@ -172,13 +408,13 @@ Fornisce costrutti per le fasi di sviluppo SW:
 
 **ELEMENTO** → in più diagrammi ma in un solo modello, sempre con stessa nomenclatura.
 
-![Screenshot 2024-09-25 at 15.44.43.png](UML%2010c3dd22936380e18da4ee2177f47a6c/Screenshot_2024-09-25_at_15.44.43.png)
+![Screenshot 2024-09-25 at 15.44.43.png](img/UML/Screenshot_2024-09-25_at_15.44.43.png)
 
 ### Struttura
 
-### Costituenti fondamentali - ENTITà
+### Costituenti fondamentali - ENTITÀ
 
-![Screenshot 2024-09-25 at 15.47.07.png](UML%2010c3dd22936380e18da4ee2177f47a6c/485efe63-b2b4-493d-83a5-ca9263c3dec1.png)
+![Screenshot 2024-09-25 at 15.47.07.png](img/UML/485efe63-b2b4-493d-83a5-ca9263c3dec1.png)
 
 #### STRUTTURE
 
@@ -203,7 +439,7 @@ Fornisce costrutti per le fasi di sviluppo SW:
 
 ### Costituenti fondamentali - RELAZIONI
 
-![Screenshot 2024-09-25 at 15.47.25.png](UML%2010c3dd22936380e18da4ee2177f47a6c/Screenshot_2024-09-25_at_15.47.25.png)
+![Screenshot 2024-09-25 at 15.47.25.png](img/UML/Screenshot_2024-09-25_at_15.47.25.png)
 
 - **ASSOCIAZIONE** → astrazione per associazione, relationship delle ER, lega non solo le classi ma anche tipi diversi
 - **PART-OF (aggregazione, composizione)** → rombo dove sta il tutto, il composto e non il componente. La differenza sta nella forza del part of. Aggregazione debole, il tutto non possiede le parti, le parti esistono senza il tutto se distruggo team corse non muoiono gli studenti. Composizione forte, il tutto possiede le parti, se distruggo aula le pareti non esistono.
@@ -218,7 +454,7 @@ Fornisce costrutti per le fasi di sviluppo SW:
 
       Es: Collegare classi di analisi con classi di progetto. (collegato con la stessa freccia di realizzazione).
 
-![Screenshot 2024-09-25 at 16.21.36.png](UML%2010c3dd22936380e18da4ee2177f47a6c/Screenshot_2024-09-25_at_16.21.36.png)
+![Screenshot 2024-09-25 at 16.21.36.png](img/UML/Screenshot_2024-09-25_at_16.21.36.png)
 
 ### Costituenti fondamentali - DIAGRAMMI
 
@@ -251,7 +487,7 @@ Sono la descrizione testuale della semantica di un elemento
 
 Rendono visibili gli aspetti particolari della specifica dell’elemento, non sono indispensabili. Negli esercizi non ci saranno mai ornamenti completi.
 
-![Screenshot 2024-09-25 at 16.22.46.png](UML%2010c3dd22936380e18da4ee2177f47a6c/Screenshot_2024-09-25_at_16.22.46.png)
+![Screenshot 2024-09-25 at 16.22.46.png](img/UML/Screenshot_2024-09-25_at_16.22.46.png)
 
 ### Distinzioni Comuni
 
@@ -259,13 +495,13 @@ Rendono visibili gli aspetti particolari della specifica dell’elemento, non so
 
 **Istanza** → Stessa cosa di classificatore ma sottolineata
 
-![Screenshot 2024-09-25 at 16.25.02.png](UML%2010c3dd22936380e18da4ee2177f47a6c/Screenshot_2024-09-25_at_16.25.02.png)
+![Screenshot 2024-09-25 at 16.25.02.png](img/UML/Screenshot_2024-09-25_at_16.25.02.png)
 
 **Interfaccia** → Separa signatura da implementazione di un oggetto  
 
 **Implementazione** → Implementa i metodi di una interfaccia specifica  
 
-![Screenshot 2024-09-25 at 16.24.56.png](UML%2010c3dd22936380e18da4ee2177f47a6c/Screenshot_2024-09-25_at_16.24.56.png)
+![Screenshot 2024-09-25 at 16.24.56.png](img/UML/Screenshot_2024-09-25_at_16.24.56.png)
 
 ## Estendibilità e personalizzazione
 
@@ -275,7 +511,7 @@ Uno **stereotipo** → variazione di un elemento di modellazione esistente, *ste
 
 Permette quindi di **introdurre nuovi elementi** di modellazione a partire da quelli esistenti. Dico di più rispetto al linguaggio UML.
 
-![Classe utente stereotipata attore](UML%2010c3dd22936380e18da4ee2177f47a6c/Screenshot_2024-09-25_at_16.26.50.png)
+![Classe utente stereotipata attore](img/UML/Screenshot_2024-09-25_at_16.26.50.png)
 
 Classe utente stereotipata attore
 
@@ -332,9 +568,9 @@ Caso d’uso → Funzionalità come percepita da un attore, e deve fare qualcosa
 
 L’unico modo per collegare un attore e un caso d’uso è tramite l’associazione di comunicazione
 
-![Screenshot 2024-10-01 at 09.30.33.png](UML%2010c3dd22936380e18da4ee2177f47a6c/Screenshot_2024-10-01_at_09.30.33.png)
+![Screenshot 2024-10-01 at 09.30.33.png](img/UML/Screenshot_2024-10-01_at_09.30.33.png)
 
-![Screenshot 2024-10-01 at 09.36.08.png](UML%2010c3dd22936380e18da4ee2177f47a6c/Screenshot_2024-10-01_at_09.36.08.png)
+![Screenshot 2024-10-01 at 09.36.08.png](img/UML/Screenshot_2024-10-01_at_09.36.08.png)
 
 **TIPI DI RELAZIONI IN CASI D’USO:**
 
@@ -351,11 +587,11 @@ Dipendenza, A→B se una modifica fatta in B comporta una modifica su A
 
 Include deve essere vista come una chiamata a funzione, ogni volta che faccio prelievo bancomat, deve essere fatta una “chiamata a funzione” di verifica identità.
 
-![Screenshot 2024-10-01 at 09.50.48.png](UML%2010c3dd22936380e18da4ee2177f47a6c/Screenshot_2024-10-01_at_09.50.48.png)
+![Screenshot 2024-10-01 at 09.50.48.png](img/UML/Screenshot_2024-10-01_at_09.50.48.png)
 
 Errore perché Login è una precondizione ma non viene fatto ogni volta che viene fatta una iscrizione.
 
-![Screenshot 2024-10-01 at 09.53.18.png](UML%2010c3dd22936380e18da4ee2177f47a6c/Screenshot_2024-10-01_at_09.53.18.png)
+![Screenshot 2024-10-01 at 09.53.18.png](img/UML/Screenshot_2024-10-01_at_09.53.18.png)
 
 Versione corretta con precondizione di Login
 
@@ -380,11 +616,11 @@ Successo → termina con esito positivo
 
 Insuccesso → termina con esito negativo
 
-![Screenshot 2024-10-01 at 10.06.58.png](UML%2010c3dd22936380e18da4ee2177f47a6c/Screenshot_2024-10-01_at_10.06.58.png)
+![Screenshot 2024-10-01 at 10.06.58.png](img/UML/Screenshot_2024-10-01_at_10.06.58.png)
 
-![Screenshot 2024-10-01 at 11.33.20.png](UML%2010c3dd22936380e18da4ee2177f47a6c/Screenshot_2024-10-01_at_11.33.20.png)
+![Screenshot 2024-10-01 at 11.33.20.png](img/UML/Screenshot_2024-10-01_at_11.33.20.png)
 
-![Screenshot 2024-10-01 at 11.33.37.png](UML%2010c3dd22936380e18da4ee2177f47a6c/Screenshot_2024-10-01_at_11.33.37.png)
+![Screenshot 2024-10-01 at 11.33.37.png](img/UML/Screenshot_2024-10-01_at_11.33.37.png)
 
 ## DIAGRAMMA - classi
 
@@ -396,7 +632,7 @@ Generalmente alcuni attori rientrano nel diagramma delle classi, i tipici attori
 
 **Comportamento** → elenco delle operazioni
 
-![Screenshot 2024-10-01 at 11.37.15.png](UML%2010c3dd22936380e18da4ee2177f47a6c/3a51c5dd-1fec-4df7-ac83-7d61c496df1c.png)
+![Screenshot 2024-10-01 at 11.37.15.png](img/UML/3a51c5dd-1fec-4df7-ac83-7d61c496df1c.png)
 
 ### Attributi
 
@@ -409,7 +645,7 @@ Generalmente alcuni attori rientrano nel diagramma delle classi, i tipici attori
 
 direzione nomeParametro: tipoParametro=valoreDefault
 
-![Screenshot 2024-10-09 at 14.36.56.png](UML%2010c3dd22936380e18da4ee2177f47a6c/Screenshot_2024-10-09_at_14.36.56.png)
+![Screenshot 2024-10-09 at 14.36.56.png](img/UML/Screenshot_2024-10-09_at_14.36.56.png)
 
 - **Direzione:**
   - in
@@ -425,7 +661,7 @@ Connessione tra classi, tipicamente bidirezionale.
 
 Le cardinalià vengono lette sulla classe di arrivo.
 
-![Persona possiede una o più case](UML%2010c3dd22936380e18da4ee2177f47a6c/Screenshot_2024-10-02_at_15.21.36.png)
+![Persona possiede una o più case](img/UML/Screenshot_2024-10-02_at_15.21.36.png)
 
 Persona possiede una o più case
 
@@ -433,31 +669,31 @@ Persona possiede una o più case
 
 Indicare il verso di lettura si può fare ma non è obbligatorio. Si possono anche specificare i ruoli della classe all’interno della associazione
 
-![L’opzionalità in dirigente è obbligatoria perché altrimenti si creerebbe una gerarchia infinita.](UML%2010c3dd22936380e18da4ee2177f47a6c/Screenshot_2024-10-02_at_15.33.38.png)
+![L’opzionalità in dirigente è obbligatoria perché altrimenti si creerebbe una gerarchia infinita.](img/UML/Screenshot_2024-10-02_at_15.33.38.png)
 
 L’opzionalità in dirigente è obbligatoria perché altrimenti si creerebbe una gerarchia infinita.
 
 VINCOLI E CLASSI ASSOCIATIVE
 
-![Una persona può essere a capo del comitato se ne fa parte, e un comitato ha un solo capo. {Subset} è una property](UML%2010c3dd22936380e18da4ee2177f47a6c/Screenshot_2024-10-02_at_15.38.40.png)
+![Una persona può essere a capo del comitato se ne fa parte, e un comitato ha un solo capo. {Subset} è una property](img/UML/Screenshot_2024-10-02_at_15.38.40.png)
 
 Una persona può essere a capo del comitato se ne fa parte, e un comitato ha un solo capo. {Subset} è una property
 
-![Proprietà per rappresentare un vincolo, {proprietà} e vincolo or già integrato nella sintassi](UML%2010c3dd22936380e18da4ee2177f47a6c/Screenshot_2024-10-02_at_15.35.32.png)
+![Proprietà per rappresentare un vincolo, {proprietà} e vincolo or già integrato nella sintassi](img/UML/Screenshot_2024-10-02_at_15.35.32.png)
 
 Proprietà per rappresentare un vincolo, {proprietà} e vincolo or già integrato nella sintassi
 
-![Possibilità di inserire una annotazione. Dot notation, data una  persona, percorro l’associazione e trovo il suo capo. Tra graffe quindi è un vincolo. Si possono scrivere in linguaggio naturale. [Va letta al contrario → il datore della persona = persona.datore e il datore del capo della persona = persona.capo.datore]](UML%2010c3dd22936380e18da4ee2177f47a6c/Screenshot_2024-10-02_at_15.41.29.png)
+![Possibilità di inserire una annotazione. Dot notation, data una  persona, percorro l’associazione e trovo il suo capo. Tra graffe quindi è un vincolo. Si possono scrivere in linguaggio naturale. [Va letta al contrario → il datore della persona = persona.datore e il datore del capo della persona = persona.capo.datore]](img/UML/Screenshot_2024-10-02_at_15.41.29.png)
 
 Possibilità di inserire una annotazione. Dot notation, data una  persona, percorro l’associazione e trovo il suo capo. Tra graffe quindi è un vincolo. Si possono scrivere in linguaggio naturale. [Va letta al contrario → il datore della persona = persona.datore e il datore del capo della persona = persona.capo.datore]
 
 Classe associativa, per rappresentare attributi di associazione
 
-![Il vincolo della classe associativa rapporto uno uno tra istanze della classe associativa e istanze della associazione, quindi per ogni istanza di persona e azienda si ha una istanza di Posizione. In presenza di classi associative tutte le classi appartenenti all’istanza possono entrare una volta sola, come negli E/R.](UML%2010c3dd22936380e18da4ee2177f47a6c/Screenshot_2024-10-02_at_15.46.02.png)
+![Il vincolo della classe associativa rapporto uno uno tra istanze della classe associativa e istanze della associazione, quindi per ogni istanza di persona e azienda si ha una istanza di Posizione. In presenza di classi associative tutte le classi appartenenti all’istanza possono entrare una volta sola, come negli E/R.](img/UML/Screenshot_2024-10-02_at_15.46.02.png)
 
 Il vincolo della classe associativa rapporto uno uno tra istanze della classe associativa e istanze della associazione, quindi per ogni istanza di persona e azienda si ha una istanza di Posizione. In presenza di classi associative tutte le classi appartenenti all’istanza possono entrare una volta sola, come negli E/R.
 
-![Screenshot 2024-10-02 at 16.19.52.png](UML%2010c3dd22936380e18da4ee2177f47a6c/Screenshot_2024-10-02_at_16.19.52.png)
+![Screenshot 2024-10-02 at 16.19.52.png](img/UML/Screenshot_2024-10-02_at_16.19.52.png)
 
 ASSOCIAZIONI QUALIFICATE
 
@@ -467,7 +703,7 @@ ASSOCIAZIONI N-ARIE
 
 definite tra n classi
 
-![Screenshot 2024-10-02 at 16.13.05.png](UML%2010c3dd22936380e18da4ee2177f47a6c/Screenshot_2024-10-02_at_16.13.05.png)
+![Screenshot 2024-10-02 at 16.13.05.png](img/UML/Screenshot_2024-10-02_at_16.13.05.png)
 
 Tutte le n-arie devono essere vere n-arie e non false, quindi non devono essere scindibili.
 
@@ -485,7 +721,7 @@ Aula 2.12, mercoledì 14→  1 corso
 
 Rappresentare il fatto che un attributo o una associazione sono derivabili da un’altra.
 
-![/attribute → significa che è derivabile da altri. {} tra graffe vincoli.](UML%2010c3dd22936380e18da4ee2177f47a6c/Screenshot_2024-10-08_at_09.23.28.png)
+![/attribute → significa che è derivabile da altri. {} tra graffe vincoli.](img/UML/Screenshot_2024-10-08_at_09.23.28.png)
 
 /attribute → significa che è derivabile da altri. {} tra graffe vincoli.
 
@@ -495,7 +731,7 @@ Rappresentare il fatto che un attributo o una associazione sono derivabili da un
 
 Sia il tutto e le parti esistono indipendentemente
 
-![Screenshot 2024-10-08 at 09.45.31.png](UML%2010c3dd22936380e18da4ee2177f47a6c/Screenshot_2024-10-08_at_09.45.31.png)
+![Screenshot 2024-10-08 at 09.45.31.png](img/UML/Screenshot_2024-10-08_at_09.45.31.png)
 
 Nell’aggregazione il legame è debole, il composto non contiene le parti e le parti esistono indipendentemente dal tutto.
 
@@ -505,15 +741,15 @@ Se io sciolgo una squadra i giocatori esistono ancora indipendentemente dalla sq
 
 Sempre un part-of. Ogni parte appartiene esattamente al tutto.
 
-![Screenshot 2024-10-08 at 09.51.32.png](UML%2010c3dd22936380e18da4ee2177f47a6c/Screenshot_2024-10-08_at_09.51.32.png)
+![Screenshot 2024-10-08 at 09.51.32.png](img/UML/Screenshot_2024-10-08_at_09.51.32.png)
 
 Sul rombo nero va sempre cardinalità 1.
 
-![Screenshot 2024-10-08 at 09.52.57.png](UML%2010c3dd22936380e18da4ee2177f47a6c/Screenshot_2024-10-08_at_09.52.57.png)
+![Screenshot 2024-10-08 at 09.52.57.png](img/UML/Screenshot_2024-10-08_at_09.52.57.png)
 
 Non mi interessa mai sapere a che poligono appartiene un punto, viene utilizzata anche una freccia monodirezionale.
 
-![Screenshot 2024-10-08 at 09.55.26.png](UML%2010c3dd22936380e18da4ee2177f47a6c/Screenshot_2024-10-08_at_09.55.26.png)
+![Screenshot 2024-10-08 at 09.55.26.png](img/UML/Screenshot_2024-10-08_at_09.55.26.png)
 
 #### Gerarchia part of
 
@@ -529,7 +765,7 @@ La stanza viene istanziata dentro l’ggetto edificio → **comp**
 
 Tutti attributi e operazioni della superclasse venfonon ereditati dalle sotto-classi
 
-![Screenshot 2024-10-08 at 10.01.51.png](UML%2010c3dd22936380e18da4ee2177f47a6c/Screenshot_2024-10-08_at_10.01.51.png)
+![Screenshot 2024-10-08 at 10.01.51.png](img/UML/Screenshot_2024-10-08_at_10.01.51.png)
 
 Possibile usare notazione a tridente
 
@@ -537,7 +773,7 @@ Possibile usare notazione a tridente
 
 Anche se c’è la possibilità di conflitti tra operazioni.
 
-![Screenshot 2024-10-08 at 10.02.41.png](UML%2010c3dd22936380e18da4ee2177f47a6c/Screenshot_2024-10-08_at_10.02.41.png)
+![Screenshot 2024-10-08 at 10.02.41.png](img/UML/Screenshot_2024-10-08_at_10.02.41.png)
 
 Overlapping → sovrapposto
 
@@ -551,14 +787,14 @@ Sono implementabili ma non istanziabili.
 
 Tipizzazione potente, le istanze di tipoArticolo sono le classi che specializzano articolo e quindi possono essere solo quelle disponibili.
 
-![Screenshot 2024-10-08 at 10.28.06.png](UML%2010c3dd22936380e18da4ee2177f47a6c/Screenshot_2024-10-08_at_10.28.06.png)
+![Screenshot 2024-10-08 at 10.28.06.png](img/UML/Screenshot_2024-10-08_at_10.28.06.png)
 
 ### Dipendenza
 
 *A dipende da B quando una variazione in B può
 comportare una variazione in A*
 
-![Screenshot 2024-10-08 at 10.50.58.png](UML%2010c3dd22936380e18da4ee2177f47a6c/e79c266f-3568-459b-acf8-fccb36136b8f.png)
+![Screenshot 2024-10-08 at 10.50.58.png](img/UML/e79c266f-3568-459b-acf8-fccb36136b8f.png)
 
 ### Template
 
@@ -566,19 +802,19 @@ descrive una classe in cui uno o più parametri formali non sono istanziati, par
 
 Bound element → una classe che istanzia i parametri di un template.
 
-![Screenshot 2024-10-08 at 10.55.56.png](UML%2010c3dd22936380e18da4ee2177f47a6c/Screenshot_2024-10-08_at_10.55.56.png)
+![Screenshot 2024-10-08 at 10.55.56.png](img/UML/Screenshot_2024-10-08_at_10.55.56.png)
 
 ### Raffinamento
 
 Raffinamento tra un tipo astratto e una classe che lo realizza. Tra classe di analisi e una di progetto
 
-![Screenshot 2024-10-08 at 10.58.04.png](UML%2010c3dd22936380e18da4ee2177f47a6c/Screenshot_2024-10-08_at_10.58.04.png)
+![Screenshot 2024-10-08 at 10.58.04.png](img/UML/Screenshot_2024-10-08_at_10.58.04.png)
 
 ### Interfacce
 
 Stereotipo definito e particolare rappresentazione grafica. Meccanismo di astrazione potente, è una classe senta struttura, dotata solo di operazioni. Non tutte le classi astratte sono interfaccie ma una interfaccia è una classe astratta.
 
-![Screenshot 2024-10-08 at 10.59.34.png](UML%2010c3dd22936380e18da4ee2177f47a6c/Screenshot_2024-10-08_at_10.59.34.png)
+![Screenshot 2024-10-08 at 10.59.34.png](img/UML/Screenshot_2024-10-08_at_10.59.34.png)
 
 la rappresentazione lollipop è migliore perchè è più sintetica delle altre.
 
@@ -602,17 +838,17 @@ Alcuni costrutti come le associazioni o classi associative non sono implementabi
 
 ## Associazione molti-a-uno molti-molti
 
-![Screenshot 2024-10-15 at 09.58.15.png](Classi%20di%20progettazione%201203dd229363808b9973db8def6fa5e7/Screenshot_2024-10-15_at_09.58.15.png)
+![Screenshot 2024-10-15 at 09.58.15.png](img/Classi_di_progettazione/Screenshot_2024-10-15_at_09.58.15.png)
 
 Dipendenza trace. Posso sapere l’azienda di una persona, ma se voglio sapere tutti i dipendenti di una azienda devo guardare tutte le persone. quella sopra è una soluzione completa, efficiente per determinate query. Devo poter accedere a tutti gli oggetti che ho creato (contenitore).
 
-![Screenshot 2024-10-15 at 09.58.22.png](Classi%20di%20progettazione%201203dd229363808b9973db8def6fa5e7/Screenshot_2024-10-15_at_09.58.22.png)
+![Screenshot 2024-10-15 at 09.58.22.png](img/Classi_di_progettazione/Screenshot_2024-10-15_at_09.58.22.png)
 
 Se il carico di lavoro è bilanciato, meglio usare questa soluzione. Può creare ridondanza che è risolta con l’incapsulamento.
 
 ### Associazioni uno-uno
 
-![Screenshot 2024-10-15 at 10.06.23.png](Classi%20di%20progettazione%201203dd229363808b9973db8def6fa5e7/Screenshot_2024-10-15_at_10.06.23.png)
+![Screenshot 2024-10-15 at 10.06.23.png](img/Classi_di_progettazione/Screenshot_2024-10-15_at_10.06.23.png)
 
 rombo bianco → collegamento riferimento
 
@@ -620,7 +856,7 @@ rombo nero → collegamento per valore
 
 ### Associazioni ternarie
 
-![Screenshot 2024-10-15 at 10.08.11.png](Classi%20di%20progettazione%201203dd229363808b9973db8def6fa5e7/Screenshot_2024-10-15_at_10.08.11.png)
+![Screenshot 2024-10-15 at 10.08.11.png](img/Classi_di_progettazione/Screenshot_2024-10-15_at_10.08.11.png)
 
 reificare la relazione con una classe. No legami diretti tra corso e aula o corso e orario. Reificare sempre n-aria
 
@@ -636,17 +872,17 @@ soluzione 1 ottima se so corso e voglio ottenere orario e aula, mentra la second
 
 Rimane così anche nel diagramma di progettazione.
 
-![Screenshot 2024-10-15 at 10.19.31.png](Classi%20di%20progettazione%201203dd229363808b9973db8def6fa5e7/Screenshot_2024-10-15_at_10.19.31.png)
+![Screenshot 2024-10-15 at 10.19.31.png](img/Classi_di_progettazione/Screenshot_2024-10-15_at_10.19.31.png)
 
 ### Diagrammi degli oggetti
 
-![Screenshot 2024-10-15 at 11.25.16.png](Classi%20di%20progettazione%201203dd229363808b9973db8def6fa5e7/Screenshot_2024-10-15_at_11.25.16.png)
+![Screenshot 2024-10-15 at 11.25.16.png](img/Classi_di_progettazione/Screenshot_2024-10-15_at_11.25.16.png)
 
 Al centro un oggetto anonimo, a destra una composizione, dove c’è una gerarchia di composizione si possono comunque inserire le istanze.
 
 Serve per mostrare esempi delle strutture dati.
 
-![Screenshot 2024-10-15 at 11.34.14.png](Classi%20di%20progettazione%201203dd229363808b9973db8def6fa5e7/Screenshot_2024-10-15_at_11.34.14.png)
+![Screenshot 2024-10-15 at 11.34.14.png](img/Classi_di_progettazione/Screenshot_2024-10-15_at_11.34.14.png)
 
 Da diagramma degli oggetti a diagramma delle classi
 
@@ -665,7 +901,7 @@ GENERALIZZAZIONE
 
 quando un package specifico si deve conformare all’interfaccia del package generale.
 
-![Screenshot 2024-10-16 at 15.54.53.png](Classi%20di%20progettazione%201203dd229363808b9973db8def6fa5e7/Screenshot_2024-10-16_at_15.54.53.png)
+![Screenshot 2024-10-16 at 15.54.53.png](img/Classi_di_progettazione/Screenshot_2024-10-16_at_15.54.53.png)
 
 Non ci sono indicazioni precise su come identificare package. Seguendo gerarchie del diagramma delle classi (gerarchie part-of e gerarchie is-e suddivise). Oppure secondo i casi d’uso. Tra 4 e 10 classi in un package, no dipendenze circolari.
 
@@ -684,7 +920,7 @@ TERMINOLOGIA:
 - contesto → ambito dell’interazione, generalmente una parte specifica del caso d’uso, molto spesso un caso d’uso.
 - linea di vita→ è un oggetto, istanza di classificatore. Rappresenta come un oggetto partecipa nell’interazione.
 
-![Screenshot 2024-10-16 at 16.05.57.png](Classi%20di%20progettazione%201203dd229363808b9973db8def6fa5e7/Screenshot_2024-10-16_at_16.05.57.png)
+![Screenshot 2024-10-16 at 16.05.57.png](img/Classi_di_progettazione/Screenshot_2024-10-16_at_16.05.57.png)
 
 L’istanza che partecipa come linea di vita a quella interazione. linea tratteggiata = vita del sistema
 
@@ -696,7 +932,7 @@ creazione, invocano il construttore, entrano in una linea di vita
 
 distrizione, cancellano oggetto.
 
-![Screenshot 2024-10-16 at 16.07.52.png](Classi%20di%20progettazione%201203dd229363808b9973db8def6fa5e7/Screenshot_2024-10-16_at_16.07.52.png)
+![Screenshot 2024-10-16 at 16.07.52.png](img/Classi_di_progettazione/Screenshot_2024-10-16_at_16.07.52.png)
 
 #### 17,20-21,46
 
@@ -704,7 +940,7 @@ attivazione → intervallo in cui linea di vita è attiva
 
 ### Frammenti combinati
 
-![Screenshot 2024-10-16 at 16.29.17.png](Classi%20di%20progettazione%201203dd229363808b9973db8def6fa5e7/Screenshot_2024-10-16_at_16.29.17.png)
+![Screenshot 2024-10-16 at 16.29.17.png](img/Classi_di_progettazione/Screenshot_2024-10-16_at_16.29.17.png)
 
 iterazione con loop →
 
@@ -714,7 +950,7 @@ per ogni elemenot dell’ordine, se elevato → riguardo altrimenti distibutore 
 
 uscito dal loop → se bisogno conferma la mando altrimenti niente
 
-![Screenshot 2024-10-16 at 16.29.42.png](Classi%20di%20progettazione%201203dd229363808b9973db8def6fa5e7/Screenshot_2024-10-16_at_16.29.42.png)
+![Screenshot 2024-10-16 at 16.29.42.png](img/Classi_di_progettazione/Screenshot_2024-10-16_at_16.29.42.png)
 
 ## Diagramma degli stati
 
@@ -731,7 +967,7 @@ Automa a stati finiti → serve per fare un parsing di un linguaggio.
 
 **attività** → fatte durante uno stato, potenzialmente continue, ma possono anche finire. Entrambe richiedono uno stato, fino a che sei in quello stato fai quella cosa
 
-![Screenshot 2024-10-22 at 10.05.22.png](Classi%20di%20progettazione%201203dd229363808b9973db8def6fa5e7/Screenshot_2024-10-22_at_10.05.22.png)
+![Screenshot 2024-10-22 at 10.05.22.png](img/Classi_di_progettazione/Screenshot_2024-10-22_at_10.05.22.png)
 
 Transizioni→ passaggio da uno stato a un altro, associata a uno o più eventi.
 
@@ -754,9 +990,9 @@ stessa cosa per l’uscita:
 
 - (exit/ azione)
 
-![Screenshot 2024-10-22 at 10.05.31.png](Classi%20di%20progettazione%201203dd229363808b9973db8def6fa5e7/Screenshot_2024-10-22_at_10.05.31.png)
+![Screenshot 2024-10-22 at 10.05.31.png](img/Classi_di_progettazione/Screenshot_2024-10-22_at_10.05.31.png)
 
-![Screenshot 2024-10-22 at 10.23.59.png](Classi%20di%20progettazione%201203dd229363808b9973db8def6fa5e7/Screenshot_2024-10-22_at_10.23.59.png)
+![Screenshot 2024-10-22 at 10.23.59.png](img/Classi_di_progettazione/Screenshot_2024-10-22_at_10.23.59.png)
 
 ### Tipi di eventi
 
@@ -792,7 +1028,7 @@ Producono programmi documenti e dati, e tutti i modelli comprendono le stesse at
 
 Approccio sistematico e sequenziale lineare
 
-![Screenshot 2024-11-12 at 09.20.34.png](Ingegneria%20SW%2013c3dd22936380debac1d4bb83423063/Screenshot_2024-11-12_at_09.20.34.png)
+![Screenshot 2024-11-12 at 09.20.34.png](img/Ingegneria_SW/Screenshot_2024-11-12_at_09.20.34.png)
 
 Output 1 = input 2, questo modello è obsoleto, versione funzionale solo alla fine del progetto, e non sono permesse modifiche alle fasi precedenti.
 
@@ -800,7 +1036,7 @@ Output 1 = input 2, questo modello è obsoleto, versione funzionale solo alla fi
 
 Modello iterativo che consiste nell’applicare più sequenze lineari che produce uno stadio operativo del SW
 
-![Screenshot 2024-11-12 at 09.22.57.png](Ingegneria%20SW%2013c3dd22936380debac1d4bb83423063/Screenshot_2024-11-12_at_09.22.57.png)
+![Screenshot 2024-11-12 at 09.22.57.png](img/Ingegneria_SW/Screenshot_2024-11-12_at_09.22.57.png)
 
 ### RAD
 
@@ -812,7 +1048,7 @@ NON si usa quando:
 - il sistema è modularizzabile
 - sono richieste alte prestazioni di ottimizzazione
 
-![Screenshot 2024-11-12 at 09.25.42.png](Ingegneria%20SW%2013c3dd22936380debac1d4bb83423063/Screenshot_2024-11-12_at_09.25.42.png)
+![Screenshot 2024-11-12 at 09.25.42.png](img/Ingegneria_SW/Screenshot_2024-11-12_at_09.25.42.png)
 
 ### Incrementale vs iterativo
 
@@ -842,7 +1078,7 @@ Benefici:
 - Equivoci e funzionalità mancanti possono emergere
 - Un sistema funzionante è subito disponibile e si possono derivare specifiche aggiuntive
 
-![Screenshot 2024-11-12 at 09.33.24.png](Ingegneria%20SW%2013c3dd22936380debac1d4bb83423063/Screenshot_2024-11-12_at_09.33.24.png)
+![Screenshot 2024-11-12 at 09.33.24.png](img/Ingegneria_SW/Screenshot_2024-11-12_at_09.33.24.png)
 
 ### Prototipazione evolutiva
 
@@ -850,17 +1086,17 @@ ma i cambiamenti continui corrompono il sistema e il mantenimento è costoso, so
 
 Sistemi in cui le specifiche non possono essere sviluppate in anticipo,
 
-![Screenshot 2024-11-12 at 09.35.51.png](Ingegneria%20SW%2013c3dd22936380debac1d4bb83423063/Screenshot_2024-11-12_at_09.35.51.png)
+![Screenshot 2024-11-12 at 09.35.51.png](img/Ingegneria_SW/Screenshot_2024-11-12_at_09.35.51.png)
 
 ### Prototipazione usa e getta
 
 Non deve essere considerato un sistema finale perchè è creato per sperimentazione poi eliminato, e non è strutturato per essere mantenuto a lungo termine.
 
-![Screenshot 2024-11-12 at 09.38.14.png](Ingegneria%20SW%2013c3dd22936380debac1d4bb83423063/Screenshot_2024-11-12_at_09.38.14.png)
+![Screenshot 2024-11-12 at 09.38.14.png](img/Ingegneria_SW/Screenshot_2024-11-12_at_09.38.14.png)
 
 ### Modello a spirale
 
-![Screenshot 2024-11-12 at 09.40.40.png](Ingegneria%20SW%2013c3dd22936380debac1d4bb83423063/Screenshot_2024-11-12_at_09.40.40.png)
+![Screenshot 2024-11-12 at 09.40.40.png](img/Ingegneria_SW/Screenshot_2024-11-12_at_09.40.40.png)
 
 Crescita incrementale del grado di definizione e implementazione del sistema.
 
@@ -868,7 +1104,7 @@ Crescita incrementale del grado di definizione e implementazione del sistema.
 
 I modelli diventano la guida del processo di sviluppo, si creano modelli formali del sw che vengono fatti evolvere mentre il sw viene progettato e implementato.
 
-![Screenshot 2024-11-12 at 09.45.08.png](Ingegneria%20SW%2013c3dd22936380debac1d4bb83423063/Screenshot_2024-11-12_at_09.45.08.png)
+![Screenshot 2024-11-12 at 09.45.08.png](img/Ingegneria_SW/Screenshot_2024-11-12_at_09.45.08.png)
 
 ### Modelli agili
 
@@ -906,7 +1142,7 @@ QUANDO: Si modellano i flussi di lavoro, ossia le sequenze di attività.
 
 ### Flussi di lavoro
 
-![Screenshot 2024-11-12 at 10.11.55.png](Ingegneria%20SW%2013c3dd22936380debac1d4bb83423063/Screenshot_2024-11-12_at_10.11.55.png)
+![Screenshot 2024-11-12 at 10.11.55.png](img/Ingegneria_SW/Screenshot_2024-11-12_at_10.11.55.png)
 
 ### Fasi
 
@@ -934,7 +1170,7 @@ Serve per controllare se il sistema corrisponde alle specifiche del progetto. La
 
 parto dalle operazioni più critiche
 
-![Screenshot 2024-11-12 at 10.41.52.png](Ingegneria%20SW%2013c3dd22936380debac1d4bb83423063/Screenshot_2024-11-12_at_10.41.52.png)
+![Screenshot 2024-11-12 at 10.41.52.png](img/Ingegneria_SW/Screenshot_2024-11-12_at_10.41.52.png)
 
 - Criterio di copertura dei programmi (statement test) garantire che un’operazione viene eseguita almeno una volta.
 - Criterio di copertura delle decisioni (branch test), controllare che almeno ogni nodo del grafo di controllo deve essere toccato almeno una volta.
@@ -967,7 +1203,7 @@ Attraverso normativa ISO 9000 che ha due obbiettivi principali:
 - Gestione per la qualità → guida per aziende che progettano un sistema di qualità, per migliorare le attività e i processi.
 - Assicurazione della qualità → requisiti generali a fronte dei quali il cliente valuta l’adeguatezza di un sistema
 
-![Screenshot 2024-11-13 at 15.46.19.png](Ingegneria%20SW%2013c3dd22936380debac1d4bb83423063/Screenshot_2024-11-13_at_15.46.19.png)
+![Screenshot 2024-11-13 at 15.46.19.png](img/Ingegneria_SW/Screenshot_2024-11-13_at_15.46.19.png)
 
 ## Manutenzione
 
