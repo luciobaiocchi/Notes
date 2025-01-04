@@ -92,6 +92,10 @@
       - [Template](#template)
       - [Raffinamento](#raffinamento)
       - [Interfacce](#interfacce)
+      - [Analisi vs Progettazione](#analisi-vs-progettazione)
+        - [ANALISI](#analisi)
+        - [PROGETTAZIONE](#progettazione-1)
+        - [Identificazione classi analisi](#identificazione-classi-analisi)
       - [Classi di progettazione](#classi-di-progettazione)
       - [Associazione molti-a-uno molti-molti](#associazione-molti-a-uno-molti-molti)
       - [Associazioni uno-uno](#associazioni-uno-uno)
@@ -825,7 +829,7 @@ comportare una variazione in A*
 
 #### Template
 
-descrive una classe in cui uno o più parametri formali non sono istanziati, parametri formali T,k.
+descrive una classe in cui uno o più parametri formali non sono istanziati, parametri formali T,k. È simile ai generici di Java.
 
 Bound element → una classe che istanzia i parametri di un template.
 
@@ -833,7 +837,7 @@ Bound element → una classe che istanzia i parametri di un template.
 
 #### Raffinamento
 
-Raffinamento tra un tipo astratto e una classe che lo realizza. Tra classe di analisi e una di progetto
+Raffinamento tra un tipo astratto e una classe che lo realizza. Tra classe di analisi e una di progetto, tra una classe semplice e una complessa. IN GENERALE: serve per marcare la distinzione dello stesso concetto sotto due differenti punti di vista.
 
 ![Screenshot 2024-10-08 at 10.58.04.png](img/UML/Screenshot_2024-10-08_at_10.58.04.png)
 
@@ -845,21 +849,44 @@ Stereotipo definito e particolare rappresentazione grafica. Meccanismo di astraz
 
 la rappresentazione lollipop è migliore perchè è più sintetica delle altre.
 
+#### Analisi vs Progettazione
+
+##### ANALISI
+
+- astrazione problema
+- corrisponde a concetti concreti
+- indicano operazioni principali e sono ad un livello più alto
+- non ci sono dettagli implementativi ed è un insieme ridoto
+
+##### PROGETTAZIONE
+
+- Nascono dal dominio del problema e raffinano le classi di analisi
+- Ideate per implementare direttamente
+
+##### Identificazione classi analisi
+
+Corrispondono a concetti del dominio e a entità fisiche, NO classi onnipotenti.
+
+- Generalmente **3-5 metodi**
+- Nome riferito a **natura intrinseca** e non al ruolo nel dominio (Uomo si, Marito no)
+- Nomi che descrivono oggetti = **attributi** e non classe.
+- Ogni riferimento da una classe a un'altra è **associazione**
+- Una associazione -> descrive proprietà **strutturale** e non transitoria.
+- **Aggregazione** -> semantica "part-of", (auto, ruota).
+- Evitare **ternarie inutili** e specificare eventualmente ruoli
+- No attributi derivati  
+
 #### Classi di progettazione
 
 Si specifica come le classi devono essere implementate.
 
 requisiti di ogni classe :
 
-completa
-
-sufficiente
-
-essenziale
-
-massimamente coesa
-
-minimamente interdipendente
+- completa
+- sufficiente
+- essenziale
+- massimamente coesa
+- minimamente interdipendente
 
 Alcuni costrutti come le associazioni o classi associative non sono implementabili direttamente, ma devono essere trasformate in base al carico di lavoro.
 
