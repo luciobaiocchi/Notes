@@ -103,8 +103,8 @@
       - [Classe associativa](#classe-associativa)
     - [DIAGRAMMI - diagramma degli oggetti](#diagrammi---diagramma-degli-oggetti)
     - [DIAGRAMMI - diagramma dei package](#diagrammi---diagramma-dei-package)
+    - [DIAGRAMMI - diagramma di interazione](#diagrammi---diagramma-di-interazione)
     - [DIAGRAMMI - diagramma di sequenza](#diagrammi---diagramma-di-sequenza)
-      - [17,20-21,46](#1720-2146)
       - [Frammenti combinati](#frammenti-combinati)
     - [DIAGRAMMI -  diagramma degli stati](#diagrammi----diagramma-degli-stati)
       - [Tipi di eventi](#tipi-di-eventi)
@@ -959,38 +959,38 @@ quando un package specifico si deve conformare all’interfaccia del package gen
 
 Non ci sono indicazioni precise su come identificare package. Seguendo gerarchie del diagramma delle classi (gerarchie part-of e gerarchie is-e suddivise). Oppure secondo i casi d’uso. Tra 4 e 10 classi in un package, no dipendenze circolari.
 
-### DIAGRAMMI - diagramma di sequenza
+### DIAGRAMMI - diagramma di interazione
 
 4 tipi di interazione, cose simili ma enfasi diversa:
 
-- sequenza → enfasi tempo
-- comunicazione → enfasi  chi parla con chi(oggetto parla con chi)
-- sintesi interazione → spezzare l’interazione in più parti
-- temporizzazione → aspetti real time
+- **sequenza** → enfasi sulla sequenza teporale
+- **comunicazione** → enfasi  chi parla con chi (oggetto parla con chi)
+- **sintesi interazione** → spezzare l’interazione in più parti
+- **temporizzazione** → aspetti real time
 
-TERMINOLOGIA:
+**Terminologia:**
 
-- Interazione → serie messaggi tra oggetti per ottenere obbiettivo
-- contesto → ambito dell’interazione, generalmente una parte specifica del caso d’uso, molto spesso un caso d’uso.
-- linea di vita→ è un oggetto, istanza di classificatore. Rappresenta come un oggetto partecipa nell’interazione.
+- **Interazione** → serie messaggi tra oggetti per ottenere obbiettivo
+- **contesto** → ambito dell’interazione, generalmente una parte specifica del caso d’uso, molto spesso un caso d’uso.
+- **linea di vita** → è un oggetto, istanza di classificatore. Rappresenta come un oggetto partecipa nell’interazione, ma non una particolare istanza.
+- **messaggio** →   tipo specifico di comunicazione istantanea tra due linee di vita in un’interazione, e trasporta informazione nella prospettiva che seguirà una attività
 
 ![Screenshot 2024-10-16 at 16.05.57.png](img/Classi_di_progettazione/Screenshot_2024-10-16_at_16.05.57.png)
 
-L’istanza che partecipa come linea di vita a quella interazione. linea tratteggiata = vita del sistema
+**Messaggio di chiamata** → operazione su un altro oggetto
 
-Messaggio → chiamata, creazione e distruzione
+**Messaggio di  creazione** → invocano il construttore, entrano in una linea di vita
 
-chiamata, operazione su un altro oggetto
-
-creazione, invocano il construttore, entrano in una linea di vita
-
-distrizione, cancellano oggetto.
+**Messaggio di  distruzione** → cancellano oggetto.
 
 ![Screenshot 2024-10-16 at 16.07.52.png](img/Classi_di_progettazione/Screenshot_2024-10-16_at_16.07.52.png)
 
-#### 17,20-21,46
+### DIAGRAMMI - diagramma di sequenza
 
-attivazione → intervallo in cui linea di vita è attiva
+Sono la forma più **ricca** e **flessibile** di diagramma di **interazione**
+
+- **due dimensioni**: verticale → tempo, orizzontale → linee di vita
+- **attivazione** → intervallo in cui linea di vita è attiva
 
 #### Frammenti combinati
 
