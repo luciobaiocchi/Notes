@@ -120,6 +120,44 @@
       - [Manufatto](#manufatto)
     - [Conclusioni UML](#conclusioni-uml)
   - [Ingegneria SW](#ingegneria-sw-1)
+    - [Qualità software](#qualità-software)
+    - [Principi di progettazione](#principi-di-progettazione)
+      - [PRINCIPI: formalità](#principi-formalità)
+      - [PRINCIPI: anticipazione dei cambiamenti](#principi-anticipazione-dei-cambiamenti)
+        - [Tipi di Cambiamenti](#tipi-di-cambiamenti)
+        - [Aree di Cambiamento](#aree-di-cambiamento)
+      - [PRINCIPI: Separazione degli Aspetti di un Problema Complesso](#principi-separazione-degli-aspetti-di-un-problema-complesso)
+        - [Criteri di Suddivisione](#criteri-di-suddivisione)
+      - [PRINCIPI: Modularità](#principi-modularità)
+        - [Benefici della Modularizzazione](#benefici-della-modularizzazione)
+        - [Linee Guida per la Modularizzazione](#linee-guida-per-la-modularizzazione)
+        - [Definizione dell'Interfaccia dei Moduli](#definizione-dellinterfaccia-dei-moduli)
+        - [Requisiti dell'Interfaccia](#requisiti-dellinterfaccia)
+      - [PRINCIPI: Astrazione](#principi-astrazione)
+      - [PRINCIPI: generalità](#principi-generalità)
+    - [Misurazione](#misurazione)
+      - [Fonti di Costo](#fonti-di-costo)
+      - [Fattori di Costo](#fattori-di-costo)
+      - [Metriche del Software: Function Points (FP)](#metriche-del-software-function-points-fp)
+        - [Caratteristiche Principali](#caratteristiche-principali)
+      - [Utilizzo dei Function Points (FP) nelle Organizzazioni](#utilizzo-dei-function-points-fp-nelle-organizzazioni)
+      - [Conteggio dei Function Points](#conteggio-dei-function-points)
+        - [Pesi delle Funzioni](#pesi-delle-funzioni)
+    - [Numero Ciclomatico](#numero-ciclomatico)
+      - [Introduzione](#introduzione)
+      - [Calcolo del Numero Ciclomatico](#calcolo-del-numero-ciclomatico)
+        - [Grafo Fortemente Connesso](#grafo-fortemente-connesso)
+        - [Formula](#formula)
+        - [Esempio](#esempio)
+      - [Interpretazione](#interpretazione)
+      - [Grafo di Esempio](#grafo-di-esempio)
+      - [Teorema di Mills](#teorema-di-mills)
+      - [Programmi con Procedure](#programmi-con-procedure)
+      - [Interpretazione del Numero Ciclomatico](#interpretazione-del-numero-ciclomatico)
+      - [Esempio Pratico](#esempio-pratico)
+        - [Caso 1: Punti di Decisione](#caso-1-punti-di-decisione)
+      - [Caso 2: Programma con Procedure](#caso-2-programma-con-procedure)
+      - [Conclusione](#conclusione)
     - [Produzione](#produzione)
     - [Modelli prescrittivi](#modelli-prescrittivi)
     - [Modello a cascata](#modello-a-cascata)
@@ -1155,6 +1193,439 @@ Rappresenta un'entità concreta del mondo reale, esempio: file sorgenti, eseguib
 - UML è **complesso**: va adattato (“ritagliato”) in base alle specifiche esigenze dei progettisti e dei progetti, utilizzando solo ciò che serve nello specifico contesto
 
 ## Ingegneria SW
+
+L’ingegneria del software tratta la realizzazione di sistemi software (sw) di
+dimensioni e complessità talmente elevate da richiedere uno o più team di persone
+per la loro costruzione
+
+### Qualità software
+
+Le caratteristiche su cui si basa la valutazione di qualità di un SW sono classificate in:
+
+- **Interne I** -> legate allo sviluppo e non visibili agli utenti
+- **Esterne E** -> visibili agli utenti
+- **Relative al prodotto P** -> sempre valutabili e riguardano le carratterisctiche del prodotto
+- **Relative al processo PC** -> riguardano i metodi usati per sviluppare il sw
+
+Vengono poi definiti altri criteri, indirettamente composti da quelli dalle qualità elencate sopra:
+
+- **Correttezza (E,P)** -> se rispetta specifiche
+- **Affidabilità (E,P)** -> se l'utente può dipendere da esso
+- **Robustezza (E,P,PC)** -> se si comporta in modo ragionevole anche in presenza di casi limite (input errati)
+- **Efficienza (E,P)** -> se vengono usate efficacemente le risorse
+- **Faciltà d'uso (E,P)** -> se l'utilizzo risulta naturale da parte dell'utente
+- **Verificabilità (I,P,PC)** -> se le sue caratteristiche sono facilmente verificabili
+- **Riusabilità (I,P)** -> riusato per costruire nuovi sistemi
+- **Portabilità (E,P)** -> può essere utilizzato su diverse piattaforme
+- **Facilità di manutenzione (I,P)** -> se permette le tre tipologie di modifiche:
+  - adattive
+  - perfettive
+  - correttive
+- **Interoperabilità (E,P)** -> Possibilità di operare con altri sistemi (es word con grafici)
+- **Produttività (PC)** -> valutazione del processo di produzione sw
+- **Tempestività (PC)** -> velocità di produzione
+- **Trasparenza (PC)** -> possibilità di valutare stato di avanzamento
+
+### Principi di progettazione
+
+- **Software design:** è il processo che trasforma le specifiche dettate dall'utente a specifiche direttamente utilizzabili dai programmatori, attraverso un insieme di passi intermedi.
+- **Architettura software:** è il risultato del processo di design, e comprende tutti i moduli del sistema con relativa descrizione, funzione e relazioni tra di loro.
+- **Tutte le fasi sono basate su principi prestabiliti**
+
+#### PRINCIPI: formalità
+
+L’utilizzo di formalismi e di metodologie standardizzate nelle fasi di progettazione,implementazione e documentazione del sistema permette di ridurre fortemente gli errori di progetto (es. incompletezza, inconsistenza, ambiguità)
+
+#### PRINCIPI: anticipazione dei cambiamenti
+
+La progettazione deve considerare specifiche attuali e future per garantire manutenzione e riusabilità.
+
+##### Tipi di Cambiamenti
+
+1. **Noti a Priori**:  
+   - Evoluzione del software e servizi futuri da considerare in fase di progettazione.
+2. **Non Noti a Priori**:  
+   - Progettazione flessibile per modifiche impreviste.
+
+##### Aree di Cambiamento
+
+- **Hardware e Periferiche**
+- **Dominio di Applicazione**
+- **Algoritmi e Strutture Dati**:  
+  - Semplici nelle prime versioni per velocizzare sviluppo e debugging.
+
+#### PRINCIPI: Separazione degli Aspetti di un Problema Complesso
+
+È necessario individuare e trattare separatamente i diversi aspetti di un problema complesso per semplificare la soluzione.
+
+##### Criteri di Suddivisione
+
+1. **Tempo**:  
+   - Modelli di ciclo di produzione del software che identificano e separano le attività da svolgere.
+
+2. **Livello di Qualità**:  
+   - Progettazione iniziale corretta, seguita da ristrutturazione parziale per migliorare l'efficienza.
+
+3. **Vista**:  
+   - Analisi distinta dei flussi di dati tra le attività e del flusso di controllo durante l'analisi dei requisiti.
+
+4. **Livello di Astrazione**:  
+   - Raffinamento progressivo delle specifiche.
+
+5. **Dimensione**:  
+   - Modularizzazione del sistema.
+
+#### PRINCIPI: Modularità
+
+Un **modulo** è il componente di base di un sistema software che raccoglie un insieme di funzionalità strettamente correlate.
+
+##### Benefici della Modularizzazione
+
+1. **Scomposizione**:  
+   - Dividere un sistema complesso in parti più semplici.
+2. **Composizione**:  
+   - Costruire sistemi complessi a partire da moduli esistenti.
+3. **Comprensione**:  
+   - Capire un sistema in funzione delle sue parti.
+4. **Modificabilità**:  
+   - Modificare un sistema agendo solo su un piccolo insieme di moduli.
+
+##### Linee Guida per la Modularizzazione
+
+1. **Coesione**:  
+   - Servizi strettamente connessi devono appartenere allo stesso modulo.
+2. **Indipendenza**:  
+   - Ogni modulo deve essere realizzato in modo indipendente dagli altri.
+3. **Conoscenza Limitata**:  
+   - I programmatori devono poter lavorare su un modulo con una conoscenza minima degli altri.
+
+##### Definizione dell'Interfaccia dei Moduli
+
+L'interfaccia di un modulo deve rispettare il principio di **information hiding**, mostrando solo le informazioni necessarie per il suo utilizzo e nascondendo i dettagli implementativi. Questo permette di modificare l'implementazione senza impattare altre componenti del sistema.
+
+##### Requisiti dell'Interfaccia
+
+1. **Funzionalità a Disposizione**:  
+   - Devono essere chiaramente specificati i servizi offerti dal modulo.
+
+2. **Modalità di Fruizione di un Servizio**:  
+   - Indicare la sequenza di routine da chiamare per ogni servizio.
+
+3. **Definizione dei Parametri di Input**:  
+   - Specificare tipo, numero e semantica dei parametri di input in modo chiaro.
+
+4. **Descrizione dell'Output**:  
+   - Definire semantica e tipologia dei valori restituiti.  
+   - Includere una **tabella dei codici di errore** per ogni routine, con:  
+     - Tipo di errore.  
+     - Motivi che lo hanno provocato.
+
+La suddivizione di un sistema in moduli rende necessario tener traccia delle interazioni tra gli stessi. le relazioni di cui si deve tenere traccia sono di **USO**, **PART-OF**
+
+#### PRINCIPI: Astrazione
+
+Consente di identificare gli aspetti importanti di un fenomeno e tralasciare quelli superflui.
+
+#### PRINCIPI: generalità
+
+Ogni volta che si risolve un problema è utile cercare di ricondurlo aun problema generale, che spesso risulta più semplice da risolvere, la soluzione può essere già stata trovata e può essere riusabile.
+
+### Misurazione
+
+Necessaria per stimare tempi e costi di produzione, e in generale per comparare soluzioni differenti col fine di segliere quella più conveniente.
+
+Gli scopi sono:
+
+- **Previsione** delle caratteristiche del sw
+- **Stima** delle caratteristiche possedute dal sw
+
+Misurazioni nelle fasi:
+
+- **Progettazione** per prevedere manutenibilità ed eventuali problemi
+- **Collaudo/ Test** per confrontare con le specifiche
+- **Rilascio** per misurare l'impatto del prodotto dull'efficienza del lavoro svolto ed eventualmente migliorarlo anche grazie a confronti con altri sw.
+
+#### Fonti di Costo
+
+1. **Costo del Personale Tecnico**:  
+   - Sviluppatori, analisti, progettisti.
+2. **Costo del Personale di Supporto**:  
+   - Testers, tecnici di assistenza.
+3. **Costo delle Risorse Informatiche**:  
+   - Hardware, software, licenze.
+4. **Materiali di Consumo**:  
+   - Attrezzature, forniture.
+5. **Costi Generali della Struttura**:  
+   - Affitto, utenze, manutenzione.
+
+#### Fattori di Costo
+
+1. **Numero di Istruzioni da Codificare**:  
+   - Benefici del riuso del codice.
+2. **Capacità, Motivazione e Coordinamento del Team**:  
+   - Efficienza del personale.
+3. **Complessità del Programma**:  
+   - Difficoltà tecnica e logica.
+4. **Stabilità dei Requisiti**:  
+   - Cambiamenti frequenti aumentano i costi.
+5. **Caratteristiche dell’Ambiente di Sviluppo**:  
+   - Strumenti, tecnologie e infrastrutture utilizzate.
+
+#### Metriche del Software: Function Points (FP)
+
+I **Function Points (FP)** sono una delle metriche più antiche (introdotta da Allan Albrecht negli anni '70) e ancora ampiamente utilizzata per misurare la dimensione del software.
+
+##### Caratteristiche Principali
+
+1. **Parametro Adimensionale**:  
+   - Restituisce un valore numerico senza unità di misura.
+
+2. **Misura delle Funzionalità**:  
+   - Valuta la dimensione del software in base alle funzionalità offerte all'utente, non alle funzioni del linguaggio di programmazione.
+
+3. **Basato sul Disegno Logico**:  
+   - Utilizza specifiche in linguaggio naturale, schemi Entity-Relationship, diagrammi di flusso dei dati, ecc.
+
+4. **Applicabile dalle Prime Fasi**:  
+   - Può essere utilizzato fin dall'inizio dello sviluppo e ripetuto se le specifiche cambiano.
+
+5. **Indipendenza Tecnologica**:  
+   - Non dipende dall'ambiente tecnologico utilizzato.
+
+6. **Confrontabilità**:  
+   - Consente confronti tra progetti e organizzazioni diversi.
+
+#### Utilizzo dei Function Points (FP) nelle Organizzazioni
+
+I Function Points (FP) possono essere utilizzati da un'organizzazione per:
+
+1. **Determinare la Complessità di un Pacchetto Applicativo**:  
+   - Quantificare tutte le funzioni di un software acquistato.
+
+2. **Valutare il Beneficio di un Pacchetto Commerciale**:  
+   - Quantificare solo le funzioni che soddisfano i requisiti specifici dell'organizzazione.
+
+3. **Misurare la Qualità e la Produttività**:  
+   - Supportare analisi sulla qualità e sulla produttività del software.
+
+4. **Stimare Costi e Risorse**:  
+   - Prevedere i costi di sviluppo e manutenzione del software.
+
+5. **Normalizzare Confronti**:  
+   - Facilitare confronti tra progetti e organizzazioni.
+
+#### Conteggio dei Function Points
+
+Si individuano 5 tipi di funzioni:
+
+- **Funzioni di Tipo Dati**:
+  - **File Interni Logici (ILF):**
+      È un gruppo di dati o informazioni di controllo logicamente collegati e riconoscibili dall’utenteche sono mantenuti all’interno dei confini dell’applicazione Il compito primario di un ILF è di contenere dati mantenuti attraverso uno o più processi elementari dell’applicazione che si sta contando
+     **Esempio:**
+      Dati sulle entità gestite dall’applicazione come: informazioni sugli impiegati, sui prodotti, sui clienti, ecc
+  - **File Esterni di Interfaccia (EIF):**
+      È un gruppo di dati o informazioni di controllo logicamente collegati e riconoscibili dall’utente che sono referenziati dall’applicazione ma sono mantenuti all’interno dei confini di un’altra applicazione. Il compito primario di un EIF è di contenere dati referenziati da uno o più processi elementari dell’applicazione che si sta contando. Questo significa che un EIF contato per un’applicazione deve essere un ILF in un’altra applicazione
+      **Esempio:**
+      Dati su entità gestite da altre applicazioni
+- **Funzioni di Tipo Transazione**:
+  - **Input Esterno (EI):**
+   Processo elementare dell’applicazione che elabora dati o informazioni di controllo provenienti dall’esterno. Il compito di un EI è di mantenere uno o più ILFs e/o di modificare il comportamento del sistema.
+  - **Output Esterno (EO):**
+   È un processo elementare dell’applicazione che manda dati o informazioni di controllo all’esterno del confine dell’applicazione
+  - **Interrogazioni Esterne (EQ)**
+   È un processo elementare che manda dati o informazioni di controllo fuori dal confine dell’applicazione
+
+##### Pesi delle Funzioni
+
+| Tipo di Funzione                      | Peso (Semplice) | Peso (Medio) | Peso (Complesso) |
+|---------------------------------------|-----------------|--------------|------------------|
+| **Input Esterno (EI)**                | 3               | 4            | 6                |
+| **Output Esterno (EO)**               | 4               | 5            | 7                |
+| **Interrogazione Esterna (EQ)**       | 3               | 4            | 6                |
+| **File Interno Logico (ILF)**         | 7               | 10           | 15               |
+| **File Esterno di Interfaccia (EIF)** | 5               | 7            | 10               |
+
+**Assegnazione dei Pesi**:
+
+- A ciascuna funzione viene assegnato un peso in base alla quantità di dati e alla complessità delle relazioni.
+
+**Calcolo del Numero di Function Points Non Pesato**:  
+
+- Somma dei pesi di tutte le funzioni identificate.
+
+**Fattore di Aggiustamento**:  
+
+Il numero totale di FP viene moltiplicato per un fattore di aggiustamento per tenere conto di funzionalità del sistema non rappresentate dalle funzioni dati e transazionali. Il **valore** del fattore di aggiustamento varia fra 0.65 e 1.35 (+/-35%) e viene calcolato sulla base del grado di influenza di ciascuna delle 14 caratteristiche Generali del Sistema
+
+Il grado di influenza di una caratteristica è compreso tra 0 (nessuna influenza) e 5 (forte influenza):
+
+**$fattore\ di\ aggiustamento = 0.65 + (TDI*0.01)$**
+
+con **TDI (Total Degree of Influence)** somma dei gradi di influenza per ciascuna
+caratteristica:
+
+- comunicazione dati
+- distribuzione dell’elaborazione
+- prestazioni
+- utilizzo estensivo della configurazione
+- frequenza delle transazioni
+- inserimento dati interattivo
+- efficienza per l’utente finale
+- aggiornamento interattivo
+- complessità elaborativa
+- riusabilità
+- facilità di installazione
+- facilità di gestione operativa
+- molteplicità di siti
+- facilità di modifica
+
+![Conteggio funcion point](img/Ingegneria_SW/conteggio_function_point.png)
+
+### Numero Ciclomatico
+
+#### Introduzione
+
+Il **numero ciclomatico** è una metrica del software proposta da **McCabe** nel **1976**. Misura la **complessità** del flusso di controllo di un programma, aiutando a identificare i cammini necessari per una copertura completa del codice.
+
+---
+
+1. **Definizione Operativa**:  
+   - Misura la complessità del flusso di controllo, legata alla produzione, comprensione e modifica del software.
+
+2. **Focus sul Flusso di Controllo**:  
+   - Considera solo il flusso di controllo, ignorando la complessità dei dati (basato sul grafo del flusso di controllo).
+
+3. **Indipendenza dal Linguaggio**:  
+   - È una metrica universale, non legata a particolari linguaggi di programmazione.
+
+---
+
+#### Calcolo del Numero Ciclomatico
+
+##### Grafo Fortemente Connesso
+
+Il numero ciclomatico di un grafo fortemente connesso è il **numero minimo di archi** da eliminare per trasformarlo in un albero.
+
+##### Formula
+
+Il numero ciclomatico \( V(G) \) si calcola con la formula:
+
+$$
+V(G) = e - n + 1
+$$
+
+Dove:
+
+- \( e \): numero di archi (edges).
+- \( n \): numero di nodi (nodes).
+
+---
+
+##### Esempio
+
+Consideriamo un grafo con:
+
+- \( e = 10 \) archi.
+- \( n = 8 \) nodi.
+
+Applicando la formula:
+
+$$
+V(G) = 10 - 8 + 1 = 3
+$$
+
+Il numero ciclomatico è **3**.
+
+---
+
+#### Interpretazione
+
+- Un numero ciclomatico **basso** indica un codice semplice e facile da mantenere.
+- Un numero ciclomatico **alto** suggerisce una maggiore complessità, con più cammini possibili e potenziali difficoltà di manutenzione.
+
+---
+
+#### Grafo di Esempio
+
+```plaintext
+Nodi: A, B, C, D, E, F, G, H
+Archi: A→B, B→C, C→D, D→E, E→F, F→G, G→H, H→A, B→E, C→F
+```
+
+#### Teorema di Mills
+
+Il numero ciclomatico \( v(G) \) può essere calcolato anche utilizzando il **Teorema di Mills**:
+
+$$
+v(G) = d + 1
+$$
+
+Dove:
+
+- \( d \): numero di punti di decisione nel programma.
+  - Un punto di decisione con \( k \) uscite contribuisce come \( k-1 \) punti di decisione a 2 uscite.
+
+---
+
+#### Programmi con Procedure
+
+Se il programma contiene procedure (o sottoprogrammi), il numero ciclomatico dell'intero grafo è dato da:
+
+$$
+v(G) = e - n + 2p
+$$
+
+Dove:
+
+- \( e \): numero totale di archi (edges).
+- \( n \): numero totale di nodi (nodes).
+- \( p \): numero di grafi indipendenti (procedure).
+
+---
+
+#### Interpretazione del Numero Ciclomatico
+
+1. **Misura della Complessità**:  
+   - Il numero ciclomatico cattura la complessità del flusso di controllo in modo intuitivo.
+
+2. **Correlazione con gli Errori**:  
+   - Studi sperimentali mostrano una correlazione tra il numero ciclomatico e il numero di errori riscontrati nel software.
+
+3. **Raccomandazione**:  
+   - La complessità ciclomatica di un modulo **non dovrebbe superare il valore 10**.  
+   - Valori più alti indicano una maggiore complessità e difficoltà di manutenzione.
+
+---
+
+#### Esempio Pratico
+
+
+##### Caso 1: Punti di Decisione
+
+- Un programma ha 4 punti di decisione (\( d = 4 \)).
+- Applicando il Teorema di Mills:
+
+$$
+v(G) = 4 + 1 = 5
+$$
+
+#### Caso 2: Programma con Procedure
+
+- Un programma ha:
+  - \( e = 15 \) archi.
+  - \( n = 10 \) nodi.
+  - \( p = 2 \) procedure.
+- Applicando la formula:
+
+$$
+v(G) = 15 - 10 + 2 \times 2 = 15 - 10 + 4 = 9
+$$
+
+---
+
+#### Conclusione
+
+Il numero ciclomatico è uno strumento utile per valutare la complessità del flusso di controllo e identificare potenziali problemi di manutenzione. Mantenere il valore sotto 10 è una buona pratica per garantire codice comprensibile e manutenibile.
 
 ### Produzione
 
