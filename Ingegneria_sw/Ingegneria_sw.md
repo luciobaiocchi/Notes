@@ -105,10 +105,20 @@
     - [DIAGRAMMI - diagramma dei package](#diagrammi---diagramma-dei-package)
     - [DIAGRAMMI - diagramma di interazione](#diagrammi---diagramma-di-interazione)
     - [DIAGRAMMI - diagramma di sequenza](#diagrammi---diagramma-di-sequenza)
+      - [Possibilità di specificare vincoli e visualizzare stati](#possibilità-di-specificare-vincoli-e-visualizzare-stati)
       - [Frammenti combinati](#frammenti-combinati)
     - [DIAGRAMMI -  diagramma degli stati](#diagrammi----diagramma-degli-stati)
       - [Tipi di eventi](#tipi-di-eventi)
       - [Stati compositi](#stati-compositi)
+      - [Comunicazione automi](#comunicazione-automi)
+    - [DIAGRAMMI - diagramma di attività](#diagrammi---diagramma-di-attività)
+      - [Attività](#attività)
+      - [Corsie](#corsie)
+    - [DIAGRAMMI - diagramma dei componenti](#diagrammi---diagramma-dei-componenti)
+    - [DIAGRAMMI - diagramma di deployment](#diagrammi---diagramma-di-deployment)
+      - [Nodi](#nodi)
+      - [Manufatto](#manufatto)
+    - [Conclusioni UML](#conclusioni-uml)
   - [Ingegneria SW](#ingegneria-sw-1)
     - [Produzione](#produzione)
     - [Modelli prescrittivi](#modelli-prescrittivi)
@@ -992,15 +1002,18 @@ Sono la forma più **ricca** e **flessibile** di diagramma di **interazione**
 - **due dimensioni**: verticale → tempo, orizzontale → linee di vita
 - **attivazione** → intervallo in cui linea di vita è attiva
 
+![richiesta_prestito_diagrammi_sequenza](img/UML/richiesta_prestito_diagrammi_sequenza.png)
+
+#### Possibilità di specificare vincoli e visualizzare stati
+
+![vincoli e vizione stato](img/UML/diag_sequenza_stato_vincolo.png)
+
 #### Frammenti combinati
 
 ![Screenshot 2024-10-16 at 16.29.17.png](img/Classi_di_progettazione/Screenshot_2024-10-16_at_16.29.17.png)
 
-iterazione con loop →
-
-ripeto l’operazione
-
-per ogni elemenot dell’ordine, se elevato → riguardo altrimenti distibutore qualsiasi,
+**iterazione con loop**
+ripeto l’operazione per ogni elemento dell’ordine, se elevato → riguardo altrimenti distibutore qualsiasi,
 
 uscito dal loop → se bisogno conferma la mando altrimenti niente
 
@@ -1008,31 +1021,33 @@ uscito dal loop → se bisogno conferma la mando altrimenti niente
 
 ### DIAGRAMMI -  diagramma degli stati
 
-Grammatica → insieme di regole con le quali si definisce un linguaggio, usando notazione apposita (BNF, backus-naur form).
+**I diagrammi di stato** descrivono in modo esaustivo l’**evoluzione temporale** delle istanze di un classificatore (classe, caso d’uso, sottosistema) in risposta alle interazioni con altri oggetti. Ogni classe può avere asosciato un diagramma di stato. Viene usata la notazione di **Harel**.
 
-Automa a stati finiti → serve per fare un parsing di un linguaggio.
+**stato di un oggetto** → **astrazione** degli attributi in un determinato istante
 
-**I diagrammi di stato** descrivono in modo esaustivo l’evoluzione temporale delle istanze di un classificatore (classe, caso d’uso, sottosistema) in risposta alle interazioni con altri oggetti.
+- **Condizione** → se si verifica avviene il cambiamento di stato
 
-**stato** → **astrazione** degli attributi in un determinato istante
-**evento** *→* provoca la transizione tra uno stato e l’altro
+- **Evento** → provoca la transizione tra uno stato e l’altro, **durata nulla**
 
-**azioni *→*** sono operazioni **istantanee**, atomiche e non interrompibili; sono associate a transizioni attivate da eventi
+- **Azioni** → sono operazioni **istantanee**, atomiche e non interrompibili; sono associate a transizioni attivate da eventi
 
-**attività** → fatte durante uno stato, potenzialmente continue, ma possono anche finire. Entrambe richiedono uno stato, fino a che sei in quello stato fai quella cosa
+- **Attività** → fatte durante uno stato, potenzialmente continue, ma possono anche finire. Entrambe richiedono uno stato, fino a che sei in quello stato fai quella cosa
+
+- **Transizioni** → passaggio da uno stato a un altro, associata a uno o più eventi.
+
+ESEMPIO :
+
+```mermaid
+stateDiagram-v2
+direction LR
+    [*] --> Stato1
+    Stato1 --> Stato2 : event(param) [cond]/azion
+    Stato2 --> [*]
+```
 
 ![Screenshot 2024-10-22 at 10.05.22.png](img/Classi_di_progettazione/Screenshot_2024-10-22_at_10.05.22.png)
 
-Transizioni→ passaggio da uno stato a un altro, associata a uno o più eventi.
-
-Evento → in un preciso istante e con durata
-
-Una *condizione* è un’espressione booleana che deve risultare vera affinché
-la transizione possa avvenire
-
-*azione* è un’operazione istantanea, atomica e non interrompibile che viene eseguita all’atto della transizione.
-
-Event condition action (**eca** rule), abbinate alle transizioni, quaddo si verifica questo evento se condizione vera fai l’azione
+Event condition action (**eca** rule), abbinate alle transizioni, quando si verifica questo evento se condizione vera fai l’azione
 
 Transizione con nome implicito → Stato in cui esco è abbinato a una attività che termina
 
@@ -1048,6 +1063,9 @@ stessa cosa per l’uscita:
 
 ![Screenshot 2024-10-22 at 10.23.59.png](img/Classi_di_progettazione/Screenshot_2024-10-22_at_10.23.59.png)
 
+![pseudo stato di selezione](img/UML/pseudo-stato-selezione.png)
+permette di dirigere il flusso secondo condizioni specificate
+
 #### Tipi di eventi
 
 - Evento di variazione: quando una condizione diventa vera, denotato da espressione booleana
@@ -1058,6 +1076,83 @@ stessa cosa per l’uscita:
   - after (10 seconds)
 
 #### Stati compositi
+
+Uno stato che contiene altri stati annidati. Ogni stato annidato eredita tutte le transizioni dello stato che lo contiene.
+
+![Stati annidati](img/UML/stati-annidati.png)
+![Stato composito ortogonale](img/UML/stati-compositi.png)
+
+#### Comunicazione automi
+
+![Comunicazione automi](img/UML/comunicazione_automi.png)
+
+### DIAGRAMMI - diagramma di attività
+
+Modellano un processo come un’attività costituita da un insieme di nodi connessi da archi
+
+![esempio diagramma attività preparazione bevanda](img/UML/diagrammi_di_attività.png)
+
+#### Attività
+
+Modellate come deti di nodi connessi da archi
+
+Categorie di nodi:
+
+- Nodi azione -> rappresentano compiti atomici nell'attività
+![Nodi azione](img/UML/nodo_azione.png)
+- Nodi controllo -> controllano il flusso nell'attività
+![Nodi controllo](img/UML/Nodi_controllo.png)
+- Nodi oggetto -> rappresentano oggetti usati nell'attività
+![Nodi Oggetto](img/UML/Nodi_oggetto.png)
+
+Categorie Archi:
+
+- Flussi di **controllo** attraverso l'attività
+- Flussi di **oggetti** attraverso l'attività
+
+#### Corsie
+
+Le attività possono essere partizionate in corsie che raggruppano insiemi di azioni correlate
+
+![Esempio corsie](img/UML/corsie.png)
+
+### DIAGRAMMI - diagramma dei componenti
+
+Rappresenta i componenti e le loro interdipendenze. Un **Componente** è una parte modulare del sistema che incapsula i contenuti (black box), può avere attributi e operazioni e può partecipare a associazioni e generalizzazioni.
+
+![Esempio componenti](img/UML/componenti.png)
+
+Possono contenere oggetti e sono interconnessi tramite dipendenze, possibilmente tramite **interfacce** per indicare ch eun componente usa i servizi di un altro.
+
+![esempio componenti e collegamenti tra interfacce](img/UML/componenti_e_interfacce.png)
+
+### DIAGRAMMI - diagramma di deployment
+
+Specifica l'hardware su cui viene eseguito il software, e può avere due forme:
+
+- **Descrittore** -> modelal i tipi di archtetture
+- **Istanza** -> modella u deployment dell'architettura su un particolare sito
+
+#### Nodi
+
+Rappresentano una tipo di risorsa computazionale su cui i SW girano, ne esistono due tipologie:
+
+- **Device** rappresenta un tipo di periferica fissa
+- **executionEnvironment** rappresenta un tipo di ambiente sw di esecuzione, tipo browser
+  
+Associazione tra nodi significa creare un canale di comunicazione tra essi. Molti stereotipi per migliorare leggibilità.
+
+#### Manufatto
+
+Rappresenta un'entità concreta del mondo reale, esempio: file sorgenti, eseguibili, script, tabelle DB, documenti, UML.
+
+![esempio manufatto](img/UML/manufatto.png)
+
+### Conclusioni UML
+
+- UML è uno **standard**, e questo è un bene (uniformità nei concetti e nelle notazioni utilizzate, interoperabilità tra strumenti di sviluppo, indipendenza dai produttori, dalle tecnologie, dai metodi)
+- UML è **articolato**: può rappresentare qualunque sistema software, a diversi livelli di astrazione
+- UML è **complesso**: va adattato (“ritagliato”) in base alle specifiche esigenze dei progettisti e dei progetti, utilizzando solo ciò che serve nello specifico contesto
 
 ## Ingegneria SW
 
