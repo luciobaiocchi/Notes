@@ -119,6 +119,7 @@
       - [Nodi](#nodi)
       - [Manufatto](#manufatto)
     - [Conclusioni UML](#conclusioni-uml)
+    - [DIFFERENZE TRA VARI MODELLI](#differenze-tra-vari-modelli)
   - [Ingegneria SW](#ingegneria-sw-1)
     - [Qualità software](#qualità-software)
     - [Principi di progettazione](#principi-di-progettazione)
@@ -156,7 +157,7 @@
       - [Interpretazione del Numero Ciclomatico](#interpretazione-del-numero-ciclomatico)
       - [Esempio Pratico](#esempio-pratico)
         - [Caso 1: Punti di Decisione](#caso-1-punti-di-decisione)
-        - [Caso 2: Programma con Procedure](#caso-2-programma-con-procedure)
+      - [Caso 2: Programma con Procedure](#caso-2-programma-con-procedure)
       - [Conclusione](#conclusione)
     - [Produzione](#produzione)
     - [Modelli prescrittivi](#modelli-prescrittivi)
@@ -1192,6 +1193,21 @@ Rappresenta un'entità concreta del mondo reale, esempio: file sorgenti, eseguib
 - UML è **articolato**: può rappresentare qualunque sistema software, a diversi livelli di astrazione
 - UML è **complesso**: va adattato (“ritagliato”) in base alle specifiche esigenze dei progettisti e dei progetti, utilizzando solo ciò che serve nello specifico contesto
 
+### DIFFERENZE TRA VARI MODELLI
+
+| Caratteristica          | Diagrammi di Attività                                      | Diagrammi di Sequenza                                  | Diagrammi degli Stati                                | Diagrammi delle Classi                              | Diagrammi dei Casi d'Uso                           |
+|-------------------------|-----------------------------------------------------------|-------------------------------------------------------|-----------------------------------------------------|----------------------------------------------------|---------------------------------------------------|
+| **Scopo**               | Modellare flussi di attività o processi                   | Modellare interazioni tra oggetti                     | Modellare il comportamento di un oggetto nel tempo  | Descrivere la struttura statica del sistema        | Descrivere le funzionalità del sistema            |
+| **Focus**               | Flusso di controllo e dati                                | Sequenza temporale dei messaggi                       | Transizioni tra stati di un oggetto                 | Classi, attributi, metodi e relazioni              | Attori, casi d'uso e loro relazioni               |
+| **Elementi principali** | Nodi di attività, decisioni, fork/join                    | Oggetti, messaggi, attivazioni                        | Stati, transizioni, eventi, azioni                  | Classi, interfacce, associazioni, ereditarietà     | Attori, casi d'uso, relazioni (include/extend)    |
+| **Quando usarlo**       | Processi aziendali, workflow complessi                    | Interazioni dinamiche, casi d'uso                     | Comportamento di un singolo oggetto o componente    | Progettazione della struttura del sistema          | Analisi dei requisiti e delle funzionalità        |
+| **Esempi di contesti**  | - Processo di approvazione di un documento                | - Prelievo da un bancomat                             | - Ciclo di vita di un ordine (es. "In attesa", "Spedito") | - Modellazione di un sistema di gestione libreria  | - Sistema di prenotazione online                  |
+|                         | - Flusso di lavoro di una fabbrica                        | - Acquisto online                                     | - Stati di un semaforo (es. "Verde", "Giallo", "Rosso") | - Relazioni tra classi in un'app di e-commerce     | - Interazione tra utente e sistema di login       |
+|                         | - Processo di prenotazione di un viaggio                  | - Login in un'app                                     | - Comportamento di un utente in un'app (es. "Loggato", "Non loggato") | - Gerarchia di classi in un gioco                  | - Flusso di interazione per un carrello acquisti  |
+| **Dettagli aggiuntivi** | - Mostra attività parallele e condizioni (if-else)        | - Mostra l'ordine temporale delle interazioni         | - Utile per oggetti con comportamenti complessi     | - Mostra la struttura e le relazioni tra classi    | - Descrive come gli attori interagiscono con il sistema |
+|                         | - Utile per descrivere flussi di lavoro complessi         | - Utile per analizzare collaborazioni tra oggetti     | - Si concentra su cambiamenti di stato              | - Fondamentale per la progettazione OOP (Object-Oriented Programming) | - Aiuta a identificare i requisiti funzionali     |
+|                         | - Rappresenta il comportamento globale di un sistema      | - Si concentra su un caso d'uso specifico             | - Rappresenta il ciclo di vita di un oggetto        | - Supporta l'astrazione e l'organizzazione del codice | - Facilita la comunicazione con gli stakeholder   |
+
 ## Ingegneria SW
 
 L’ingegneria del software tratta la realizzazione di sistemi software (sw) di
@@ -1608,7 +1624,7 @@ $$
 v(G) = 4 + 1 = 5
 $$
 
-##### Caso 2: Programma con Procedure
+#### Caso 2: Programma con Procedure
 
 - Un programma ha:
   - \( e = 15 \) archi.
