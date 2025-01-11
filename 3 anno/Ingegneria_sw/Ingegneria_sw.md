@@ -159,6 +159,8 @@
         - [Caso 1: Punti di Decisione](#caso-1-punti-di-decisione)
       - [Caso 2: Programma con Procedure](#caso-2-programma-con-procedure)
       - [Conclusione](#conclusione)
+    - [COCOMO: Constructive Cost Model](#cocomo-constructive-cost-model)
+      - [Modello intermedio](#modello-intermedio)
     - [Produzione](#produzione)
     - [Modelli prescrittivi](#modelli-prescrittivi)
     - [Modello a cascata](#modello-a-cascata)
@@ -172,10 +174,12 @@
     - [Model driven development](#model-driven-development)
     - [Modelli agili](#modelli-agili)
     - [Extreme programming](#extreme-programming)
-    - [Unified Process](#unified-process)
-    - [Manufatti](#manufatti)
+    - [Unified Process (UP)](#unified-process-up)
+    - [Modello di UP (RUP - Rational Unified Process)](#modello-di-up-rup---rational-unified-process)
+    - [Manufatti (Artefatti)](#manufatti-artefatti)
     - [Flussi di lavoro](#flussi-di-lavoro)
-    - [Fasi](#fasi)
+    - [Fasi del UP](#fasi-del-up)
+    - [Milestone](#milestone)
     - [Verifica del software](#verifica-del-software)
       - [Testing in the **Small**](#testing-in-the-small)
       - [**Testing in the Large**](#testing-in-the-large)
@@ -1642,21 +1646,73 @@ $$
 
 Il numero ciclomatico è uno strumento utile per valutare la complessità del flusso di controllo e identificare potenziali problemi di manutenzione. Mantenere il valore sotto 10 è una buona pratica per garantire codice comprensibile e manutenibile.
 
+### COCOMO: Constructive Cost Model
+
+Stima iniziale dei costi di svilipppo del sw, successivamente si migliora in base a determinati parametri.
+
+#### Modello intermedio
+
+1. **Stima dimensione SW** Calcolata come numerodi righe codice: (KDSI). Basato su esperienza manager o su calcolo FP.
+
+2. **Determinare clase SW**: ci sono 3 categorie ordinati con difficoltà crescente espressi in mesi uomo:
+   1. Organic $MNom=3.2 x KDSI^{1.05}$
+   2. Semi-Detached $MNom=3.0 x KDSI^{1.12}$
+   3. Embedded $MNom=2.8 x KDSI^{1.2}$
+
+L’appartenenza ad uno dei tre profili viene determinata sulla base dei seguenti parametri:
+
+| Parametro                                          | Organic       | Semi-det.     | Embedded      |
+|----------------------------------------------------|---------------|---------------|---------------|
+| Conoscenza richiesta nel settore applicativo       | Limitata      | Normale       | Completa      |
+| Esperienza del team nello sviluppo di software     | Estesa        | Considerevole | Moderata      |
+| Necessità di comunicare con sistemi esterni        | Limitata      | Considerevole | Elevata       |
+| Presenza di vincoli di progetto                    | Limitata      | Considerevole | Elevata       |
+| Necessità di sviluppare apparecchiature hardware   | Limitata      | Normale       | Elevata       |
+| Necessità di sviluppare strutture dati e algoritmi | Limitata      | Normale       | Elevata       |
+| Premi per la consegna anticipata                   | Bassi         | Normali       | Elevati       |
+| Dimensione del prodotto                            | <50 KDSI      | <300 KDSI     | >300 KDSI     |
+
+| Proprietà del prodotto                              | Molto Bassa | Bassa | Normale | Alta | Molto Alta | Extra |
+|-----------------------------------------------------|-------------|-------|---------|------|------------|-------|
+| Affidabilità del software richiesto                | 0.75        | 0.88  | 1.00    | 1.15 | 1.40       | -     |
+| Complessità della base di dati                     | 0.94        | 1.00  | 1.08    | 1.16 | -          | -     |
+| Complessità del prodotto                           | 0.70        | 0.85  | 1.00    | 1.15 | 1.30       | 1.65  |
+
+| Caratteristiche dell’hardware                      | Molto Bassa | Bassa | Normale | Alta | Molto Alta | Extra |
+|-----------------------------------------------------|-------------|-------|---------|------|------------|-------|
+| Vincoli di efficienza                              | 1.00        | 1.11  | 1.30    | 1.66 | -          | -     |
+| Vincoli di memoria                                 | 1.00        | 1.06  | 1.21    | 1.56 | -          | -     |
+| Variabilità dell’ambiente di sviluppo              | 0.87        | 1.00  | 1.15    | 1.30 | -          | -     |
+| Tempi di risposta                                  | 0.87        | 1.00  | 1.07    | 1.15 | -          | -     |
+
+| Caratteristiche del team                           | Molto Bassa | Bassa | Normale | Alta | Molto Alta | Extra |
+|-----------------------------------------------------|-------------|-------|---------|------|------------|-------|
+| Capacità degli analisti                            | 1.46        | 1.19  | 1.00    | 0.86 | 0.71       | -     |
+| Esperienza nella classe di applicazioni            | 1.29        | 1.13  | 1.00    | 0.91 | 0.82       | -     |
+| Capacità dei programmatori                         | 1.42        | 1.17  | 1.00    | 0.86 | 0.70       | -     |
+| Esperienza nel linguaggio di programmazione        | 1.14        | 1.07  | 1.00    | 0.95 | -          | -     |
+| Esperienza nell’ambiente di sviluppo               | 1.21        | 1.10  | 1.00    | 0.90 | -          | -     |
+
+| Caratteristiche del progetto                       | Molto Bassa | Bassa | Normale | Alta | Molto Alta | Extra |
+|-----------------------------------------------------|-------------|-------|---------|------|------------|-------|
+| Modernità del processo di sviluppo                 | 1.24        | 1.10  | 1.00    | 0.91 | 0.82       | -     |
+| Utilizzo di tool di sviluppo                       | 1.24        | 1.10  | 1.00    | 0.91 | 0.83       | -     |
+| Presenza di un piano temporale di sviluppo         | 1.23        | 1.08  | 1.00    | 1.04 | 1.10       | -     |
+
 ### Produzione
 
-la sequenza di operazioni che viene
-seguita per costruire, consegnare e modificare un prodotto.
+la sequenza di operazioni che viene seguita per costruire, consegnare e modificare un prodotto.
 
 ### Modelli prescrittivi
 
-Insieme di attività azioni e compiti che sono necessari per ingengerizzare un sw di qualità
+Definiscono un insieme di attività azioni e compiti che sono necessari per ingengerizzare un sw di qualità
 
 Producono programmi documenti e dati, e tutti i modelli comprendono le stesse attività:
 
-- comunizazione
+- comunizazione (raccolta requisiti)
 - pianificazione
 - modellazione
-- costruzione
+- costruzione (comprende testing)
 - deployment
 
 ### Modello a cascata
@@ -1672,10 +1728,11 @@ Output 1 = input 2, questo modello è obsoleto, versione funzionale solo alla fi
 Modello iterativo che consiste nell’applicare più sequenze lineari che produce uno stadio operativo del SW
 
 ![Screenshot 2024-11-12 at 09.22.57.png](img/Ingegneria_SW/Screenshot_2024-11-12_at_09.22.57.png)
+Prima si sviluppa un prodotto base e poi in seguito sl riscontro del cliente si perfeziona il risultato.
 
 ### RAD
 
-Rapid application developement. Adattamento del modello a cascata, ogni funzionalità che parallelizzo deve essere sviluppabile in meno di 3 mesi perchè deve essere rapid.
+Rapid application developement, punta ad esser ebreve. Adattamento del modello a cascata, ogni funzionalità che parallelizzo deve essere sviluppabile in meno di 3 mesi perchè deve essere rapid.
 
 NON si usa quando:
 
@@ -1689,13 +1746,13 @@ NON si usa quando:
 
 Similarità:
 
-- Entrambi più versioni successive del sistema.
-- Ad ogni istante dopo il primo rilascio esiste una versione in esercizio e una versione in sviluppo
+- Entrambi **più versioni successive** del sistema.
+- Ad ogni istante dopo il primo rilascio esiste una **versione in esercizio e una versione in sviluppo**
 
 Differenze:
 
-- *incrementale*: ogni versione aggiunge nuove funzionalità o sottosistemi
-- *iterativo*: da subito sono presenti le funzionalità/sottosistemi di base che vengono successivamente raffinate e migliorate. I requisiti possono cambiare
+- ***incrementale***: ogni versione aggiunge nuove funzionalità o sottosistemi
+- ***iterativo***: da subito sono presenti le funzionalità/sottosistemi di base che vengono successivamente raffinate e migliorate. I requisiti possono cambiare
 
 ### Modelli evolutivi
 
@@ -1717,15 +1774,17 @@ Benefici:
 
 ### Prototipazione evolutiva
 
-ma i cambiamenti continui corrompono il sistema e il mantenimento è costoso, sono richieste grandi capacità e il tempo di vita è corto.
+**Prototipo:** Versione approssimata, parziale (funzionante), dell’applicazione che deve essere sviluppata. Usati sempre di più per GUI.
 
 Sistemi in cui le specifiche non possono essere sviluppate in anticipo,
+
+**Difetti:** I cambiamenti continui corrompono il sistema e il mantenimento è costoso, sono richieste grandi capacità e il tempo di vita è corto.
 
 ![Screenshot 2024-11-12 at 09.35.51.png](img/Ingegneria_SW/Screenshot_2024-11-12_at_09.35.51.png)
 
 ### Prototipazione usa e getta
 
-Non deve essere considerato un sistema finale perchè è creato per sperimentazione poi eliminato, e non è strutturato per essere mantenuto a lungo termine.
+Non deve essere considerato un sistema finale perchè è creato per sperimentazione poi eliminato, e non è strutturato per essere mantenuto a lungo termine. e aslcune specifiche possono essere state ignorate.
 
 ![Screenshot 2024-11-12 at 09.38.14.png](img/Ingegneria_SW/Screenshot_2024-11-12_at_09.38.14.png)
 
@@ -1747,52 +1806,117 @@ insieme di linee guida che trascurano la fragilità delle persone che realizzano
 
 ### Extreme programming
 
+Modello agile più diffuso
+
 **Pianificazione**: definizione di User story, funzionalità del sistema. L’utente attribuisce priorità e il developer costo. Se user story impiega più di 3 settimane deve essere frammentata.
 
-**Design:** massima semplicità, no funzionalità aggiuntive e uso di *schede CRC*. Se c’è un problema viene ideato uno spike, incoraggiando il refactoring. L’architettura viene rimessa in discussione ogni iterazione.
+**Design:** massima semplicità, no funzionalità aggiuntive e uso di *schede CRC* (classe responsabilità collaborazione) . Se c’è un problema viene ideato uno spike (prototipo operativo), incoraggiando il refactoring. L’architettura viene rimessa in discussione ogni iterazione.
 
 **Programmazione:** basata sul pair programming, due persone sulla stessa workstation.
 
 **Testing:** test di regressione a ogni modifica del SW. testare tutto il SW ogni iterazione, perchè c’è la possibilità che le nuove funzionalità intacchino quelle testate in precedenza.
 
+Dopo il primo rilascio il team calcola la velocità del progetto (numero di User story implementate). Determinare se le user story sono state sottovalutate e modificano il contenuto e le date di consegna.
+
+### Unified Process (UP)
+
+- **Definizione**: Processo di sviluppo del software ideato da Booch, Rumbaugh e Jacobson (autori di UML).
+- **Caratteristiche principali**:
+  - **Guidato dai casi d’uso**: I requisiti sono definiti attraverso casi d’uso.
+  - **Centrato sull’architettura**: L'architettura del sistema è un elemento chiave.
+  - **Iterativo e incrementale**: Il progetto è suddiviso in iterazioni, con aggiunte progressive di funzionalità.
+  - **Model-based e component-based**: Basato su modelli e componenti software.
+  - **Object-oriented**: Utilizza i principi della programmazione orientata agli oggetti.
+  - **Configurabile**: Adattabile alle esigenze specifiche del progetto.
+
 ---
 
-Dopo il primo rilascio il team calcola la velocità del progetto. Determinare se le user story sono state sottovalutate e modificano il contenuto e le date di consegna.
+### Modello di UP (RUP - Rational Unified Process)
 
-### Unified Process
+Iterativo e incrementale: Significa che il progetto è suddiviso in cicli (iterazioni), in cui vengono aggiunte funzionalità gradualmente. Questo permette di gestire meglio i cambiamenti e i rischi.
 
-CHI: una risorsa o un ruolo definisce il comportamento e le responsabilità di un gruppo
+- **CHI**: Ruoli e responsabilità definiti per individui o gruppi.
+- **COSA**: Comportamento espresso in termini di attività e manufatti (artefatti prodotti durante il processo).
+- **QUANDO**: Flussi di lavoro, ovvero sequenze di attività correlate che producono manufatti.
 
-COSA: il comportamento è espresso intermini di attività e manufatti
+---
 
-QUANDO: Si modellano i flussi di lavoro, ossia le sequenze di attività.
+### Manufatti (Artefatti)
 
-### Manufatti
+Manufatti (Artefatti): Sono i documenti, i modelli e i prodotti generati durante il processo di sviluppo. Rappresentano il "risultato tangibile" di ogni fase.
 
-- Set di gestione
-- Set dei requisiti (documenti visione)
-- Set progettazione
-- Set implementazione
-- Set rilascio utenti (script installazione)
+- **Set di gestione**:
+  - Elaborati di pianificazione (es. piano di sviluppo, studio economico).
+  - Elaborati operazionali (es. stato di avanzamento, descrizione della versione).
+- **Set dei requisiti**:
+  - Documento di visione.
+  - Modello dei casi d’uso.
+  - Modello di business.
+- **Set di progettazione**:
+  - Modello di design.
+  - Modello architetturale.
+  - Modello di test.
+- **Set di implementazione**:
+  - Codice sorgente ed eseguibili.
+  - File di dati.
+- **Set di rilascio agli utenti**:
+  - Script di installazione.
+  - Documentazione utente.
+  - Materiale formativo.
+
+---
 
 ### Flussi di lavoro
 
-![Screenshot 2024-11-12 at 10.11.55.png](img/Ingegneria_SW/Screenshot_2024-11-12_at_10.11.55.png)
+Flussi di lavoro non sequenziali: A differenza dei modelli a cascata, i flussi di lavoro non seguono un ordine rigido, ma possono essere eseguiti in parallelo o ripetuti in più iterazioni.
 
-### Fasi
+- **Non sequenziali**: Eseguiti in ogni iterazione del progetto.
+- **Principali flussi**:
+  - **Requisiti**: Definisce cosa il sistema deve fare.
+  - **Analisi**: Struttura e raffina i requisiti.
+  - **Progettazione**: Trasforma i requisiti in un'architettura.
+  - **Implementazione**: Costruzione del software.
+  - **Test**: Verifica che il software rispetti i requisiti.
+  - **Deployment**: Configurazione del sistema.
+  - **Gestione configurazione**: Mantiene le versioni del sistema.
+  - **Gestione progetto**: Pianifica e gestisce il processo iterativo.
+  - **Ambiente**: Definisce le infrastrutture di sviluppo.
 
-Le fasi sono sequenziali, e corrispondono a milestone significativi
-per committenti, utenti, management
+---
 
-- Inception (avvio): definisce gli obiettivi del progetto, ne investiga la
-fattibilità, ne stima i costi, il potenziale di mercato e i rischi, analizza i
-prodotti concorrenti
-- Elaboration: pianifica il progetto e ne definisce le caratteristiche
-funzionali, strutturali e architetturali
-- Construction: sviluppa il prodotto attraverso una serie di iterazioni,
-effettua il testing, prepara la documentazione
-- Transition: consegna il sistema agli utenti finali (include marketing,
-installazione, configurazione, formazione, supporto, mantenimento)
+### Fasi del UP
+
+- **Sequenziali**: Ogni fase rappresenta una milestone significativa.
+- **Fasi principali**:
+  1. **Inception (Avvio)**:
+     - Definisce obiettivi e fattibilità del progetto.
+     - Stima costi, potenziale di mercato e rischi.
+     - Analizza prodotti concorrenti.
+  2. **Elaboration**:
+     - Pianifica il progetto.
+     - Definisce caratteristiche funzionali, strutturali e architetturali.
+  3. **Construction**:
+     - Sviluppa il prodotto attraverso iterazioni.
+     - Esegue testing e prepara la documentazione.
+  4. **Transition**:
+     - Consegna il sistema agli utenti finali.
+     - Include marketing, installazione, configurazione, formazione e supporto.
+
+---
+
+### Milestone
+
+Sono punti chiave nel progetto che segnano il completamento di una fase e aiutano a valutare lo stato del progetto.
+
+- **Inception**:
+  - Documenti di fattibilità.
+- **Elaboration**:
+  - Specifica dei requisiti software.
+  - Architettura consolidata e verificata.
+- **Construction**:
+  - Versione del sistema in pre-produzione (Beta).
+- **Transition**:
+  - Versione del sistema in produzione.
 
 ### Verifica del software
 
@@ -1807,27 +1931,41 @@ parto dalle operazioni più critiche
 
 ![Screenshot 2024-11-12 at 10.41.52.png](img/Ingegneria_SW/Screenshot_2024-11-12_at_10.41.52.png)
 
-- Criterio di copertura dei programmi (statement test) garantire che un’operazione viene eseguita almeno una volta.
-- Criterio di copertura delle decisioni (branch test), controllare che almeno ogni nodo del grafo di controllo deve essere toccato almeno una volta.
-- Criterio di copertura delle decisioni e delle condizioni, per ogni predicato composto devo valutare almeno una volta un sottopredicato true e una volta false.
+- Criterio di copertura dei **programmi** (statement test) garantire che un’operazione viene eseguita almeno una volta.
+- Criterio di copertura delle **decisioni** (branch test), controllare che almeno ogni nodo del grafo di controllo deve essere toccato almeno una volta.
+- Criterio di copertura delle **decisioni e delle condizioni**, per ogni predicato composto devo valutare almeno una volta un sottopredicato true e una volta false.
 
 #### **Testing in the Large**
 
 Tecnica black-box, analizzando le corrispondenze input-output.
 
-- test di modulo → correttezza modulo in base a comportamento esterno
-- test d’integrazione → comportamento di sottoparti. Utile per scoprire eventuali bug durante lo sviluppo.
-- test di sistema → verifica il comportamento intero
+- **test di modulo** → correttezza modulo in base a comportamento esterno
+- **test d’integrazione** → comportamento di sottoparti. Utile per scoprire eventuali bug durante lo sviluppo.
+- **test di sistema** → verifica il comportamento intero
 
 #### Code inspection/ Code walk-through
 
-eseguita da un team di persone che dopo aver selezionato opportune porzioni del codice e opportuni valori di input ne simulano su carta il comportamento.
+**Code inspection:** Mira a ricercare classi specifiche di errori piuttosto che verificare comportamento.
+**Code walk-through** Eseguita da un team di persone che dopo aver selezionato opportune porzioni del codice e opportuni valori di input ne **simulano su carta il comportamento**.
 
 #### Analisi flusso dati
 
 Tipo particolare di code inspection, Analisi dell’evoluzione del valore associato alle variabili durante l’esecuzione di un programma. Ad ogni comando è possibile associare staticamente il tipo di operazioni eseguite sulle variabili:
 
 definizioni d, usi u, annullamenti a.
+
+```c
+1 procedure swap (x1, x2: real)
+2 var x: real;
+3 begin
+4 x2 := x;
+5 x2 := x1;
+6 x1 := x;
+```
+
+x -> auu
+x1 -> duu
+x2 -> ddd
 
 ### Certificazione
 
