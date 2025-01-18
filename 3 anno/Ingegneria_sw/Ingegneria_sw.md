@@ -1,3 +1,9 @@
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config"> MathJax.Hub.Config({ tex2jax: {inlineMath: [['$', '$']]}, messageStyle: "none" });</script>
+
 # INGEGNERIA SW
 
 - [INGEGNERIA SW](#ingegneria-sw)
@@ -185,8 +191,15 @@
       - [**Testing in the Large**](#testing-in-the-large)
       - [Code inspection/ Code walk-through](#code-inspection-code-walk-through)
       - [Analisi flusso dati](#analisi-flusso-dati)
-    - [Certificazione](#certificazione)
-    - [Manutenzione](#manutenzione)
+    - [Certificazione e Norme Tecniche](#certificazione-e-norme-tecniche)
+    - [Obiettivi della ISO 9000](#obiettivi-della-iso-9000)
+    - [Certificazione ISO 9000](#certificazione-iso-9000)
+    - [Iter di Certificazione](#iter-di-certificazione)
+    - [Non Conformità](#non-conformità)
+    - [Documenti del Progetto](#documenti-del-progetto)
+    - [Tipi di Manutenzione](#tipi-di-manutenzione)
+    - [Analogie con il Mondo Reale](#analogie-con-il-mondo-reale)
+    - [Fattori Chiave per la Manutenibilità](#fattori-chiave-per-la-manutenibilità)
 
 ## Ciclo di vita
 
@@ -1967,20 +1980,94 @@ x -> auu
 x1 -> duu
 x2 -> ddd
 
-### Certificazione
+Analizzare il flusso dati di una variabile permette di verificare se ci sono anomalie.
 
-Significa che un ente riconosciuto dichiara che un prodotto è conforme a una specifica o norma, attraverso l’accreditamento mediante prove in laboratorio.
+**Uso** di una variabile x sempre  **preceduto** in ogni sequenza da **definizione** della stessa variabile x, **senza annullamenti intermedi**
 
-Attraverso normativa ISO 9000 che ha due obbiettivi principali:
+**Definizione** di una variabile x sempre seguita da un **uso** della variabile x, prima di un’altra definizione o di un annullamento della stessa variabile x
 
-- Gestione per la qualità → guida per aziende che progettano un sistema di qualità, per migliorare le attività e i processi.
-- Assicurazione della qualità → requisiti generali a fronte dei quali il cliente valuta l’adeguatezza di un sistema
+### Certificazione e Norme Tecniche
+
+- **Regole tecniche**: Emesse dalla pubblica amministrazione, sono obbligatorie e rispettano le direttive comunitarie.
+- **Norme tecniche consensuali**: Elaborate da organismi di normazione (UNI, CEI, EN, ISO, IEC), non sono obbligatorie ma possono esserlo se imposte da leggi o regolamenti. La famiglia **ISO 9000** rientra tra queste norme.
+
+### Obiettivi della ISO 9000
+
+1. **Gestione per la qualità**: Guida le aziende nel miglioramento dei processi e delle attività.
+2. **Assicurazione della qualità**: Definisce i requisiti per valutare l’adeguatezza del sistema qualità di un fornitore.
+
+### Certificazione ISO 9000
+
+- **Certificazione**: Atto con cui un organismo accreditato dichiara la conformità di un prodotto, processo o sistema qualità a una norma specifica.
+- **Acreditamento**: Riconoscimento formale dell’idoneità di un organismo a svolgere attività di certificazione.
+
+### Iter di Certificazione
+
+1. **Predisposizione della documentazione**: Creazione del manuale qualità.
+2. **Esame di conformità**: Verifica del manuale e azioni correttive se necessario.
+3. **Verifica ispettiva**: Visita in azienda per valutare l’applicazione delle procedure.
+4. **Concessione della certificazione**: Rilascio del certificato se conforme.
+5. **Visite di sorveglianza**: Controlli periodici per mantenere la certificazione.
+
+### Non Conformità
+
+- **Tipologie**:
+  - Mancato rispetto dei requisiti della norma.
+  - Documentazione incompleta o non conforme.
+  - Procedure non attuate correttamente.
+- **Esempi comuni**:
+  - Ciclo di sviluppo non documentato.
+  - Procedure di controllo della sub-fornitura non conformi.
+  - Politica per la qualità non compresa o attuata.
+
+### Documenti del Progetto
+
+- **Gestione della qualità**: Standardizzazione delle operazioni tramite documentazione.
+- **Tipologie**:
+  - **Documenti tecnici**.
+  - **Documenti di pianificazione** (es. piano della qualità, piano di gestione del progetto).
 
 ![Screenshot 2024-11-13 at 15.46.19.png](img/Ingegneria_SW/Screenshot_2024-11-13_at_15.46.19.png)
 
-### Manutenzione
+### Tipi di Manutenzione
 
-- Correttiva → correzzione errori
-- Adattiva → quando mutano le condizioni di utilizzo del sw, es nuova normativa.
-- Perfettiva → migliora qualitativamente le caratteristiche funzionali o tecniche del sistema, es algoritmo più efficiente.
-- Evolutiva → miglioramento quantitativo delle caratteristiche
+1. **Manutenzione Correttiva**:
+   - **Scopo**: Risolve malfunzionamenti causati da errori di analisi, progettazione, codifica o test.
+   - **Esempi**: Bug, crash, risultati errati.
+   - **Costi**: Elevati (fino al 40% del totale).
+   - **Risultati**: Ripristino della qualità, ma aumento dell’entropia e degrado del sistema.
+
+2. **Manutenzione Adattiva**:
+   - **Scopo**: Mantiene il livello di servizio al mutare delle condizioni operative.
+   - **Esempi**: Aggiornamento di tasse, listini, routine di calcolo.
+   - **Costi**: Altri (20-30%), spesso imputati allo sviluppo.
+   - **Risultati**: Nessun aumento del valore informativo, ma ripristino della qualità.
+
+3. **Manutenzione Perfettiva**:
+   - **Scopo**: Migliora le caratteristiche funzionali o tecniche del sistema.
+   - **Esempi**: Ottimizzazione delle performance, nuove interfacce, modifiche architetturali.
+   - **Costi**: Spesso imputati allo sviluppo.
+   - **Risultati**: Aumento del valore informativo e dell’utilizzabilità, ma possibile degrado della qualità.
+
+4. **Manutenzione Evolutiva**:
+   - **Scopo**: Migliora qualitativamente e quantitativamente il sistema.
+   - **Esempi**: Nuove funzioni, passaggio a nuove tecnologie (es. da file indexed a DBMS).
+   - **Costi**: Elevati, spesso nascosti fino all’esercizio.
+   - **Risultati**: Aumento della potenza e della qualità, ma solo se ben progettata.
+
+---
+
+### Analogie con il Mondo Reale
+
+- **Automobili**: Progettazione modulare e mirata alla manutenzione.
+- **Hi-Fi**: Componenti strettamente legate, spesso non riparabili.
+- **Casa**: Costruzione non modulare, con elementi nascosti (tubi, cavi).
+- **Software**: Spesso costruito come una casa ma gestito come un’automobile, con difficoltà di manutenzione.
+
+---
+
+### Fattori Chiave per la Manutenibilità
+
+- **Architettura modulare**: Facilita interventi mirati.
+- **Documentazione**: Essenziale per comprendere il sistema.
+- **Progettazione iniziale**: Deve considerare la manutenzione futura.
