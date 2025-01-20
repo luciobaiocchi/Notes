@@ -13,8 +13,8 @@ identifica Host e router tramite indirizzi di lunghezza fissa, raggruppandoli in
 
 ### Funzioni
 
-| Funzione            | Descrizione                                                                 |
-|---------------------|-----------------------------------------------------------------------------|
+| Funzione            | Descrizione|
+|-|-|
 | `Version`           | Indica il formato dell’intestazione, attualmente 4                           |
 | `IHL`               | IP header length, lunghezza dell’intestazione                                |
 | `Type of service`   | Tipo di servizio richiesto, usato anche come sorta di priorità               |
