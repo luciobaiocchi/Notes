@@ -83,12 +83,16 @@ Ecco una panoramica della notazione utilizzata:
     z = \lambda x + (1 - \lambda) y
     $$
   - Esempio: Se $x, y \in \mathbb{R}^2$, $z$ è un punto sul segmento che congiunge $x$ e $y$.
+  
+![combinazione convessa 1](img/combinazione_convessa.png)
 
 - **Combinazione Convessa di $K$ punti**:
   - Dati $p_1, p_2, \dots, p_K \in \mathbb{R}^n$, $z$ è una combinazione convessa se:
     $$
     z = \sum_{i=1}^K \lambda_i p_i \quad \text{con} \quad \lambda_i \geq 0 \quad \text{e} \quad \sum_{i=1}^K \lambda_i = 1
     $$
+
+![combinazione convessa 2](img/combinazione_convessa2.png)
 
 **Insiemi Convessi**
 
@@ -105,6 +109,9 @@ Ecco una panoramica della notazione utilizzata:
   - L'intersezione di insiemi convessi è convessa.
   - $\mathbb{R}^n$ è convesso.
 
+![insiemi convessi](/img/insiemi_convessi.png)
+![insiemi convessi](/img/proprietà_insiemi_convessi.png)
+
 **Funzioni Convesse**
 
 - **Definizione**:
@@ -113,6 +120,8 @@ Ecco una panoramica della notazione utilizzata:
     \phi(\lambda x + (1 - \lambda) y) \leq \lambda \phi(x) + (1 - \lambda) \phi(y)
     $$
   - Esempio: $\phi(x) = x^2$ è una funzione convessa.
+
+![funzioni convesse](img/funzioni_convesse.png)
 
 **Problemi di Ottimizzazione**
 
@@ -208,7 +217,13 @@ $$
 
 **Regione Ammissibile e Convessità**
 
+![regione ammissibile](img/esempio_regione_amissibile.png)
+
 - **Regione ammissibile $F$**: È un **poliedro convesso**, ovvero un insieme convesso definito dall'intersezione di un numero finito di semispazi.
+  - **Definizione Esplicita**
+La regione ammissibile \( F \) è specificata **direttamente** attraverso le proprietà delle variabili decisionali \( x \).
+  - **Definizione Implicita**
+La regione ammissibile \( F \) è definita **indirettamente** attraverso un insieme di **equazioni** e **disequazioni** che le variabili decisionali \( x \) devono soddisfare.
 - **Vertici**: La soluzione ottima di un problema di PL si trova sempre in uno dei vertici del poliedro $F$.
 
 **Esempio di Problema di PL**
