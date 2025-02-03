@@ -11,8 +11,23 @@
 - [**Ricerca Operativa**](#ricerca-operativa)
   - [**Programmazione Matematica**](#programmazione-matematica)
   - [**Programmazione Lineare (PL)**](#programmazione-lineare-pl)
-  - [**Spreadsheet e Online LP Solvers**](#spreadsheet-e-online-lp-solvers)
-  - [**Algoritmo Branch and Bound per la Programmazione Lineare Intera (PLI)**](#algoritmo-branch-and-bound-per-la-programmazione-lineare-intera-pli)
+- [Metodo del Simplesso: Esempio Risolto](#metodo-del-simplesso-esempio-risolto)
+  - [Problema](#problema)
+  - [Passo 1: Scrittura in forma standard](#passo-1-scrittura-in-forma-standard)
+  - [Passo 2: Tabella iniziale](#passo-2-tabella-iniziale)
+  - [Passo 3: Determinazione della variabile entrante](#passo-3-determinazione-della-variabile-entrante)
+  - [Passo 4: Determinazione della riga pivot](#passo-4-determinazione-della-riga-pivot)
+  - [Passo 5: Aggiornamento della tabella](#passo-5-aggiornamento-della-tabella)
+  - [Passo 6: Iterazione successiva](#passo-6-iterazione-successiva)
+  - [Soluzione ottima](#soluzione-ottima)
+- [**Spreadsheet e Online LP Solvers**](#spreadsheet-e-online-lp-solvers)
+- [Metodo Branch and Bound: Esempio Risolto](#metodo-branch-and-bound-esempio-risolto)
+  - [Problema](#problema-1)
+  - [Passo 1: Risoluzione rilassata](#passo-1-risoluzione-rilassata)
+  - [Passo 2: Creazione dell'albero di branching](#passo-2-creazione-dellalbero-di-branching)
+  - [Passo 3: Esplorazione del nodo sinistro](#passo-3-esplorazione-del-nodo-sinistro)
+  - [Passo 4: Esplorazione del nodo destro](#passo-4-esplorazione-del-nodo-destro)
+  - [Passo 5: Soluzione ottima](#passo-5-soluzione-ottima)
   - [**Modelli di Programmazione Lineare Intera (PLI)**](#modelli-di-programmazione-lineare-intera-pli)
   - [**Constraint Programming (CP)**](#constraint-programming-cp)
   - [**Teoria dei Grafi**](#teoria-dei-grafi)
@@ -309,6 +324,114 @@ $$
 - **Vertici**: $(0,0)$, $(4,0)$, $(4,3)$, $(2,6)$, $(0,6)$.
 - **Soluzione ottima**: $(2,6)$ con $z = 36$.
 
+Ecco un esempio ben formattato in Markdown che spiega come risolvere un problema di programmazione lineare utilizzando il metodo del simplesso:
+
+
+# Metodo del Simplesso: Esempio Risolto
+
+## Problema
+Massimizzare la funzione obiettivo:
+\[
+Z = 3x_1 + 2x_2
+\]
+
+Soggetto ai vincoli:
+\[
+x_1 + x_2 \leq 4
+\]
+\[
+2x_1 + x_2 \leq 5
+\]
+\[
+x_1, x_2 \geq 0
+\]
+
+---
+
+## Passo 1: Scrittura in forma standard
+Per risolvere il problema con il metodo del simplesso, trasformiamo i vincoli in **uguaglianze** aggiungendo le variabili di slack (\(s_1\) e \(s_2\)):
+
+\[
+x_1 + x_2 + s_1 = 4
+\]
+\[
+2x_1 + x_2 + s_2 = 5
+\]
+
+La funzione obiettivo diventa:
+\[
+Z = 3x_1 + 2x_2 + 0s_1 + 0s_2
+\]
+
+---
+
+## Passo 2: Tabella iniziale
+Costruiamo la prima tabella del simplesso:
+
+| Base      | \( Z \) | \( x_1 \) | \( x_2 \) | \( s_1 \) | \( s_2 \) | RHS |
+| --------- | ------- | --------- | --------- | --------- | --------- | --- |
+| \( Z \)   | 1       | -3        | -2        | 0         | 0         | 0   |
+| \( s_1 \) | 0       | 1         | 1         | 1         | 0         | 4   |
+| \( s_2 \) | 0       | 2         | 1         | 0         | 1         | 5   |
+
+---
+
+## Passo 3: Determinazione della variabile entrante
+Le variabili entranti si scelgono tra quelle con coefficiente negativo nella riga di \(Z\). In questo caso:
+- \(x_1 = -3\) e \(x_2 = -2\).
+
+Scegliamo \(x_1\) come variabile entrante (più negativa).
+
+---
+
+## Passo 4: Determinazione della riga pivot
+Calcoliamo il **rapporto minimo** (\(\text{RHS} / \text{coefficiente della colonna di ingresso}\)):
+- Per \(s_1\): \(4 / 1 = 4\).
+- Per \(s_2\): \(5 / 2 = 2.5\).
+
+La riga pivot è quella di \(s_2\) (rapporto minimo).
+
+---
+
+## Passo 5: Aggiornamento della tabella
+Effettuiamo le operazioni di riga per trasformare il pivot (\(2\)) in \(1\) e azzerare gli altri valori nella colonna di \(x_1\).
+
+Nuova tabella:
+
+| Base      | \( Z \) | \( x_1 \) | \( x_2 \) | \( s_1 \) | \( s_2 \) | RHS |
+| --------- | ------- | --------- | --------- | --------- | --------- | --- |
+| \( Z \)   | 1       | 0         | -0.5      | 0         | 1.5       | 7.5 |
+| \( s_1 \) | 0       | 0         | 0.5       | 1         | -0.5      | 1   |
+| \( x_1 \) | 0       | 1         | 0.5       | 0         | 0.5       | 2.5 |
+
+---
+
+## Passo 6: Iterazione successiva
+1. La variabile entrante è \(x_2\) (coefficiente \(-0.5\)).
+2. Ripetiamo il processo per determinare la riga pivot, aggiornare la tabella, e così via fino a quando non ci sono più valori negativi nella riga di \(Z\).
+
+---
+
+## Soluzione ottima
+Alla fine delle iterazioni, otteniamo la tabella ottima:
+
+| Base      | \( Z \) | \( x_1 \) | \( x_2 \) | \( s_1 \) | \( s_2 \) | RHS |
+| --------- | ------- | --------- | --------- | --------- | --------- | --- |
+| \( Z \)   | 1       | 0         | 0         | 0.25      | 1.25      | 11  |
+| \( x_2 \) | 0       | 0         | 1         | 2         | -0.5      | 3   |
+| \( x_1 \) | 0       | 1         | 0         | -1        | 1         | 2   |
+
+La soluzione ottima è:
+\[
+x_1 = 2, \, x_2 = 3
+\]
+\[
+Z = 11
+\]
+
+
+Questo esempio mostra passo dopo passo come applicare il metodo del simplesso. Puoi modificarlo o adattarlo in base alle tue necessità!
+
 **Forme di Programmazione Lineare**
 
 - **Forma generale**:
@@ -340,7 +463,7 @@ $$
 - **Divisibilità**: Le variabili possono assumere valori non interi.
 - **Certezza**: I parametri sono noti e costanti.
 
-## **Spreadsheet e Online LP Solvers**
+# **Spreadsheet e Online LP Solvers**
 
 **Risoluzione di Problemi di PL con più di 2 Variabili**
 - **Caso 3D (3 Variabili)**:
@@ -507,105 +630,95 @@ Un semplice algoritmo euristico per PLI è il seguente:
   - **Branch-and-Cut**: Combina Branch-and-Bound con Cutting Planes.
   - **Branch-and-Price/Column Generation**: Utilizzato per problemi con un numero elevato di variabili.
 
-## **Algoritmo Branch and Bound per la Programmazione Lineare Intera (PLI)**
+# Metodo Branch and Bound: Esempio Risolto
 
-**Introduzione all'Algoritmo Branch and Bound**
-L'algoritmo **Branch and Bound** (B&B) è una tecnica generale per risolvere problemi di ottimizzazione combinatoria, tra cui la Programmazione Lineare Intera (PLI). Si basa sulla suddivisione del problema originale in sottoproblemi più semplici, che vengono esplorati in modo sistematico.
+## Problema
+Massimizzare la funzione obiettivo:
+\[
+Z = 3x_1 + 2x_2
+\]
 
-**Concetti Fondamentali**
-- **Problema originale $P_0$**:
-  $$
-  z_0 = \min c^T x \quad \text{s.t.} \quad A x \geq d, \quad x \geq 0, \quad x \in \mathbb{Z}
-  $$
-  - $z_0$: Valore ottimo della funzione obiettivo.
-  - $F(P_0)$: Regione ammissibile del problema.
+Soggetto ai vincoli:
+\[
+x_1 + x_2 \leq 4
+\]
+\[
+2x_1 + x_2 \leq 5
+\]
+\[
+x_1, x_2 \geq 0 \quad \text{e interi.}
+\]
 
-- **Sottoproblemi**:
-  - Il problema $P_0$ viene suddiviso in $K$ sottoproblemi $P_1, P_2, \dots, P_K$, ciascuno con una regione ammissibile $F(P_k)$.
-  - La suddivisione avviene in modo che:
-    $$
-    F(P_0) = \bigcup_{k=1}^K F(P_k) \quad \text{e} \quad F(P_i) \cap F(P_j) = \emptyset \quad \text{per} \quad i \neq j
-    $$
+## Passo 1: Risoluzione rilassata
+Risolviamo il problema senza imporre la condizione di interezza su \(x_1\) e \(x_2\). 
 
-**Rappresentazione ad Albero**
-- **Albero decisionale**:
-  - I nodi rappresentano i sottoproblemi.
-  - Gli archi rappresentano le relazioni di suddivisione (branching).
-  - Esempio:
+Usiamo il metodo del simplesso e otteniamo la soluzione:
+\[
+x_1 = 2.5, \quad x_2 = 1.5, \quad Z = 11
+\]
+
+Poiché \(x_1\) e \(x_2\) non sono interi, applichiamo il metodo Branch and Bound.
+
+## Passo 2: Creazione dell'albero di branching
+Dividiamo il problema in due sotto-problemi imponendo i seguenti vincoli:
+1. **Nodo sinistro**: \(x_1 \leq 2\)
+2. **Nodo destro**: \(x_1 \geq 3\)
+
+```mermaid
+graph TD
+    A["Problema originale<br>x_1 = 2.5, x_2 = 1.5, Z = 11"] 
+    B["Nodo sinistro:<br>x_1 ≤ 2"] 
+    C["Nodo destro:<br>x_1 ≥ 3"]
+
+    A --> B
+    A --> C
 ```
-    P0
-    /  \
-   P1   P2
-   / \   / \
-  P3 P4 P5 P6
+
+## Passo 3: Esplorazione del nodo sinistro 
+
+Risolviamo il problema rilassato aggiungendo il vincolo :
+
+$x_1 = 2, \quad x_2 = 2, \quad Z = 10$  
+Poiché  e  sono interi, questa è una soluzione valida. La registriamo come soluzione candidata.
+
+Albero dopo l'esplorazione del nodo sinistro:
+
+```mermaid
+graph TD
+    A["Problema originale<br>x_1 = 2.5, x_2 = 1.5, Z = 11"] 
+    B["Nodo sinistro:<br>x_1 ≤ 2<br>x_1 = 2, x_2 = 2, Z = 10"] 
+    C["Nodo destro:<br>x_1 ≥ 3"]
+
+    A --> B
+    A --> C
+```
+## Passo 4: Esplorazione del nodo destro
+
+Risolviamo il problema rilassato aggiungendo il vincolo :
+
+$x_1 = 3, \quad x_2 = 1, \quad Z = 11$
+
+Poiché  e  sono interi, questa è un'altra soluzione valida. La registriamo come soluzione candidata.
+
+```mermaid
+graph TD
+    A["Problema originale<br>x_1 = 2.5, x_2 = 1.5, Z = 11"] 
+    B["Nodo sinistro:<br>x_1 ≤ 2<br>x_1 = 2, x_2 = 2, Z = 10"] 
+    C["Nodo destro:<br>x_1 ≥ 3<br>x_1 = 3, x_2 = 1, Z = 11"]
+
+    A --> B
+    A --> C
 ```
 
-**Passi dell'Algoritmo Branch and Bound**
-1. **Risolvi il rilassamento continuo**:
-   - Per ogni sottoproblema $P_k$, risolvi il rilassamento continuo $C(P_k)$.
-   - Ottieni una soluzione $x_{Ck}$ e un valore $z_{Ck}$.
+## Passo 5: Soluzione ottima
 
-2. **Verifica l'ammissibilità**:
-   - Se $x_{Ck}$ è intera, allora è una soluzione ammissibile per $P_k$.
-   - Se $z_{Ck} \geq z_{\text{Best}}$, il sottoproblema $P_k$ può essere scartato (bounding).
+Confrontiamo i valori di 
 
-3. **Branching**:
-   - Se $x_{Ck}$ non è intera, scegli una variabile frazionaria $x_j$ e crea due nuovi sottoproblemi:
-     - $P_{k1}$: $x_j \leq \lfloor x_{Ck,j} \rfloor$
-     - $P_{k2}$: $x_j \geq \lfloor x_{Ck,j} \rfloor + 1$
+Z trovati nei nodi esplorati:
 
-4. **Esplorazione**:
-   - Continua a esplorare i sottoproblemi attivi fino a quando non ci sono più nodi da esaminare.
-
-**Esempio di Applicazione**
-
-**Problema PLI**:
-$$
-\max z = x_1 + x_2
-$$
-soggetto a:
-$$
-5x_1 + 3x_2 \leq 15, \quad 5x_1 - 3x_2 \geq 0, \quad x_2 \geq \frac{1}{2}, \quad x_1, x_2 \geq 0, \quad x_1, x_2 \in \mathbb{Z}
-$$
-
-**Passi**:
-1. **Risolvi il rilassamento continuo $C(P_0)$**:
-   - Soluzione: $x_{C0} = \left( \frac{3}{2}, \frac{5}{2} \right)$, $z_{C0} = 4$.
-
-2. **Branching su $x_1$**:
-   - $P_1$: $x_1 \leq 1$
-   - $P_2$: $x_1 \geq 2$
-
-3. **Risolvi $C(P_1)$ e $C(P_2)$**:
-   - $P_1$: $x_{C1} = (1, \frac{5}{3})$, $z_{C1} = \frac{8}{3}$.
-   - $P_2$: $x_{C2} = (2, \frac{5}{3})$, $z_{C2} = \frac{11}{3}$.
-
-4. **Branching su $x_2$ in $P_2$**:
-   - $P_3$: $x_2 \leq 1$
-   - $P_4$: $x_2 \geq 2$
-
-5. **Risolvi $C(P_3)$ e $C(P_4)$**:
-   - $P_3$: $x_{C3} = \left( \frac{12}{5}, 1 \right)$, $z_{C3} = \frac{17}{5}$.
-   - $P_4$: Impossibile.
-
-6. **Branching su $x_1$ in $P_3$**:
-   - $P_5$: $x_1 \leq 2$
-   - $P_6$: $x_1 \geq 3$
-
-7. **Risolvi $C(P_5)$**:
-   - $P_5$: $x_{C5} = (2, 1)$, $z_{C5} = 3$ (soluzione intera).
-
-8. **Terminazione**:
-   - La soluzione ottima è $x^* = (2, 1)$ con $z^* = 3$.
-
-**Strategie di Esplorazione**
-
-- **Scelta del prossimo sottoproblema**:
-  - Si preferisce esplorare il sottoproblema con il miglior limite superiore (per problemi di massimizzazione) o inferiore (per problemi di minimizzazione).
-  - Esempio: Se $z_{C1} = \frac{8}{3}$ e $z_{C2} = \frac{11}{3}$, si esplora prima $P_2$.
-
-- **Scelta della variabile per il branching**:
-  - Si sceglie la variabile con la parte frazionaria più grande.
+Nodo sinistro: $ Z = 10$
+Nodo destro: $ Z = 11$
+La soluzione ottima è: $x_1 = 3,\ x_2 = 1,\ Z=11$ 
 
 **Terminologia**
 
@@ -635,11 +748,11 @@ La **Programmazione Lineare Intera (PLI)** è una tecnica di ottimizzazione in c
 - **Obiettivo**: Massimizzare il profitto settimanale.
 
 **Dati**:
-| Prodotto | Ore di Lavoro | Legno (piedi²) | Prezzo di Vendita (€) | Costi Variabili (€) |
-|------------------|-------------------|------------------|-------------------|-------------------|
-| Scrivanie| 16            | 10             | 330                   | 82                  |
-| Armadi   | 29            | 15             | 620                   | 97                  |
-| Sedie    | 10            | 3              | 150                   | 28                  |
+| Prodotto  | Ore di Lavoro | Legno (piedi²) | Prezzo di Vendita (€) | Costi Variabili (€) |
+| --------- | ------------- | -------------- | --------------------- | ------------------- |
+| Scrivanie | 16            | 10             | 330                   | 82                  |
+| Armadi    | 29            | 15             | 620                   | 97                  |
+| Sedie     | 10            | 3              | 150                   | 28                  |
 
 **Formulazione PLI**:
 - **Variabili decisionali**:
@@ -763,8 +876,9 @@ La **Programmazione Lineare Intera (PLI)** è una tecnica di ottimizzazione in c
 **Problema**:
 - **Obiettivo**: Minimizzare il numero di persone necessarie per coprire i turni settimanali.
 - **Requisiti giornalieri**:
-  | Giorno | Lun | Mar | Mer | Gio | Ven | Sab | Dom ------|
-  | Personale | 22 | 18 | 13 | 14 | 15 | 18 | 25 |
+  | Giorno    | Lun | Mar | Mer | Gio | Ven | Sab | Dom |
+  | ------- | --- | --- | --- | --- | --- | --- | --- |
+  | Personale | 22  | 18  | 13  | 14  | 15  | 18  | 25  |
 
 **Formulazione PLI**:
 - **Variabili decisionali**:
@@ -1782,14 +1896,14 @@ Trovare una schedulazione delle attività che:
 
 Consideriamo il seguente progetto di ristrutturazione di un ufficio:
 
-| Attività | Simbolo | Precedenza | Durata | Persone | Costi (in 1000) |
-|----------|---------|------------|--------|---------|-----------------|
-| Preparare opzioni di finanziamento | A | - | 2 | 3 | 3 |
-| Preparare schizzi preliminari | B | - | 3 | 2 | 1 |
-| Delineare le specifiche | C | - | 1 | 1 | 3 |
-| Preparare disegni | D | A | 4 | 3 | 4 |
-| Scrivere le specifiche | E | C, D | 5 | 3 | 1 |
-| Eseguire le stampe | F | B | 1 | 1 | 1 |
+| Attività                           | Simbolo | Precedenza | Durata | Persone | Costi (in 1000) |
+| ---------------------------------- | ------- | ---------- | ------ | ------- | --------------- |
+| Preparare opzioni di finanziamento | A       | -          | 2      | 3       | 3               |
+| Preparare schizzi preliminari      | B       | -          | 3      | 2       | 1               |
+| Delineare le specifiche            | C       | -          | 1      | 1       | 3               |
+| Preparare disegni                  | D       | A          | 4      | 3       | 4               |
+| Scrivere le specifiche             | E       | C, D       | 5      | 3       | 1               |
+| Eseguire le stampe                 | F       | B          | 1      | 1       | 1               |
 
 **Disponibilità delle risorse**:
 - $q_{Persone} = 4$

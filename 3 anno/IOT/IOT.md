@@ -1,5 +1,246 @@
 # IOT
 
+## Richiami di Componenti e Circuiti Elettrici
+
+## Carica Elettrica
+- **Atomo**: Composto da elettroni (carica negativa), protoni (carica positiva) e neutroni (senza carica).
+- **Carica dell'elettrone (Q)**: Misurata in Coulomb (C). 1 C = carica di 6.25 * 10^18 elettroni.
+- **Materiali**:
+  - **Conduttori**: Molti elettroni liberi (es. rame, argento).
+  - **Semiconduttori**: Meno elettroni liberi (es. silicio).
+  - **Isolanti**: Pochissimi elettroni liberi.
+
+## Campo Elettrico
+- **Carica netta**: Eccesso di elettroni (carica negativa) o protoni (carica positiva).
+- **Forza elettrica**: Cariche opposte si attraggono, cariche uguali si respingono.
+- **Ioni**: Atomi con carica netta positiva (ioni positivi) o negativa (ioni negativi).
+
+## Tensione (Differenza di Potenziale)
+- **Definizione**: Energia potenziale per unità di carica. \( V = \frac{W}{Q} \).
+- **Unità**: Volt (V). 1 V = 1 Joule/Coulomb.
+- **Generatori di Tensione**:
+  - **Batteria**: Trasforma energia chimica in elettrica.
+  - **Alimentatore**: Converte tensione alternata in continua.
+  - **Celle solari**: Trasformano luce in energia elettrica.
+  - **Generatori**: Trasformano energia meccanica in elettrica.
+
+## Corrente Elettrica
+- **Definizione**: Flusso ordinato di carica elettrica. \( I = \frac{Q}{t} \).
+- **Unità**: Ampère (A). 1 A = 1 Coulomb/secondo.
+- **Tipi di Corrente**:
+  - **Continua (DC)**: Verso costante (es. batterie).
+  - **Alternata (AC)**: Verso variabile periodicamente (es. rete elettrica).
+
+## Potenza Elettrica
+- **Definizione**: Energia consumata per unità di tempo. \( P = \frac{W}{t} \).
+- **Unità**: Watt (W). 1 W = 1 Joule/secondo.
+- **Consumo di Energia**: \( W = P \cdot t \) (es. kWh).
+
+## Resistenza
+- **Definizione**: Opposizione al passaggio della corrente. \( R = \frac{V}{I} \).
+- **Unità**: Ohm (Ω). 1 Ω = 1 Volt/Ampère.
+- **Legge di Ohm**: \( V = I \cdot R \).
+- **Potenza Dissipata**: \( P = V \cdot I = I^2 \cdot R = \frac{V^2}{R} \).
+
+## Componenti Elettronici
+- **Passivi**: Resistori, condensatori, induttori, diodi.
+- **Attivi**: Transistor, circuiti integrati.
+- **Resistori**: Caduta di potenziale al passaggio della corrente. Codice colore per il valore.
+- **Condensatori**: Immagazzinano carica elettrica. Capacità misurata in Farad (F).
+- **Induttori**: Generano campo magnetico con corrente variabile.
+- **Diodi**: Permettono il passaggio di corrente in una sola direzione.
+- **LED**: Diodi emettitori di luce.
+- **Transistor**: Amplificano segnali o agiscono come interruttori.
+
+## Leggi di Kirchhoff
+- **Prima Legge (dei Nodi)**: La somma delle correnti entranti in un nodo è uguale alla somma delle correnti uscenti.
+- **Seconda Legge (delle Maglie)**: La somma algebrica delle tensioni in una maglia chiusa è zero.
+
+## Resistenze e Condensatori in Serie e Parallelo
+- **Resistenze**:
+  - **Serie**: \( R_{eq} = R_1 + R_2 \).
+  - **Parallelo**: \( R_{eq} = \frac{R_1 \cdot R_2}{R_1 + R_2} \).
+- **Condensatori**:
+  - **Serie**: \( C_{eq} = \frac{C_1 \cdot C_2}{C_1 + C_2} \).
+  - **Parallelo**: \( C_{eq} = C_1 + C_2 \).
+
+## Strumenti di Misura
+- **Amperometro**: Misura la corrente in un circuito. Montato in serie. Resistenza interna piccola.
+- **Voltmetro**: Misura la differenza di potenziale. Montato in parallelo. Resistenza interna grande.
+- **Multimetro**: Strumento combinato per misurare tensione, corrente e resistenza.
+- 
+##  Introduzione ai Sistemi Embedded
+
+## 1. Concetti di base
+
+### Definizione
+I sistemi embedded sono sistemi di calcolo dedicati a svolgere una funzione specifica all'interno di dispositivi elettronici. Interagiscono con il mondo fisico tramite sensori e attuatori e possono essere costituiti da hardware e software.
+
+### Caratteristiche principali
+- **Scopo specifico:** progettati per un'unica applicazione.
+- **Efficienza e risorse limitate:** ottimizzati per consumare meno energia e occupare poco spazio.
+- **Criticità:** utilizzati in settori dove l'affidabilità è essenziale (sanità, automotive, industria).
+- **Reattività e real-time:** devono rispondere velocemente agli input ambientali.
+
+### Applicazioni comuni
+- Elettronica di consumo (smartphone, smartwatch, fotocamere)
+- Domotica (termostati, sistemi di illuminazione)
+- Automotive (navigazione, sistemi di sicurezza)
+- Sanità (monitor biomedicali, wearable)
+- Industria (controllo processi, automazione)
+
+## 2. Microcontrollori e Architettura
+
+### Elementi principali di un Microcontrollore
+- **CPU**
+- **Memoria (Flash, SRAM, EEPROM)**
+- **GPIO (General Purpose Input/Output)**
+- **Convertitori Analogico/Digitale (ADC)**
+- **Timer**
+- **Bus di comunicazione seriale**
+
+### Esempio: Arduino Uno
+- MCU: **ATMega328P** (8-bit, 16 MHz, 32 KB Flash, 2 KB SRAM, 1 KB EEPROM)
+- **14** pin digitali, **6** pin PWM, **6** ingressi analogici
+- **Alimentazione:** 5V, input consigliato 7-12V
+
+### Architetture CPU
+- **Von Neumann:** memoria unica per dati e istruzioni
+- **Harvard:** memorie separate per dati e istruzioni (usata nei microcontrollori)
+
+# Embedded Systems and Object-Oriented Modelling
+
+## Summary
+This module focuses on the modelling of embedded software using paradigms such as Object-Oriented (OO) modelling. It explores the design and development of embedded software through top-down and bottom-up approaches, emphasizing the importance of modelling in understanding system complexities, reusability, portability, and extensibility.
+
+## Key Concepts
+
+### Modelling and Programming
+- **Programming Paradigms**: OO is both a programming and modelling paradigm.
+- **Model**: A representation of relevant aspects of a system, abstracting from irrelevant details.
+- **Strong Relationships**: Between modelling and programming, as highlighted by the Scandinavian school.
+
+### Importance of Modelling
+- **Advantages**:
+  - Better understanding of system complexities.
+  - Reusability, portability, and extensibility.
+  - Rigorous approaches to verify system correctness.
+
+### Fundamental Dimensions of Modelling
+- **Structure**: Parts composing a system.
+- **Behaviour**: Computational behaviour of each part.
+- **Interaction**: How parts interact.
+
+### Paradigms and Languages
+- **Modelling Paradigms**: Set of concepts and principles defining models (e.g., OO).
+- **Modelling Languages**: Provide a rigorous way to represent models (e.g., UML).
+
+### Object-Oriented Paradigm
+- **Main Paradigm**: Effective abstraction for capturing and representing essential aspects of a problem.
+- **Properties**:
+  - Modularity, encapsulation, reuse, and extensibility.
+- **Limitations**: Does not directly capture concurrency, asynchronous interactions, and distribution.
+
+### Modelling Embedded Software
+- **Two Main Parts**:
+  - **Controller**: Encapsulates control/application logic.
+  - **Controlled Elements**: Resources and devices managed by the controller.
+
+### Button-LED Example
+- **Model**: A button controlling an LED.
+- **Interfaces**:
+  - `Button`: `isPressed(): boolean`
+  - `Led`: `switchOn()`, `switchOff()`
+- **Control Loop**: Super-loop architecture for controlling the LED based on button state.
+
+### From Models to Code: Arduino in Wiring/C++
+- **Light Interface**: Abstract class in C++.
+- **Led Device**: Concrete implementation of the Light interface.
+- **Button Interface**: Basic button interface.
+- **ButtonImpl**: Concrete implementation of the Button interface.
+- **Setup and Loop**: Object creation and control loop in Arduino.
+
+### Extension: LED with Light Intensity
+- **LightExt Interface**: Extends the Light interface with `setIntensity(int)`.
+- **LedExt Class**: Implements the LightExt interface, allowing control of LED intensity.
+
+### Smart Light Controller
+- **Evolution**: From a simple button-LED system to a smart light system.
+- **Components**:
+  - `MovementDetector`: Detects presence.
+  - `LightDetector`: Measures light intensity.
+  - `SmartLightController`: Controls the light based on presence and light intensity.
+
+### Control Loop and Finite State Machines
+- **Execution Model**: Based on a control loop (super-loop).
+- **Finite State Machines (FSM)**: Used to describe state-based behaviours.
+
+### Controller as an Active Entity
+- **Conceptual Nature**: The controller is an active entity with its own control flow.
+- **Agent Concept**: Used to model controllers as first-class active entities.
+
+### Agents in Literature
+- **Adopted in**: Artificial Intelligence, modelling and simulation, software engineering.
+- **Agent-Oriented Software Engineering**: Agents encapsulate reactive and proactive behaviours.
+
+### From Individual Agents to Multi-Agent Systems
+- **Complex Systems**: Distributed systems with interacting/cooperating sub-systems.
+- **Multi-Agent Systems**: Used to model systems like smart homes and smart cities.
+
+## Bibliography
+- **[OLE]**: Ole Lehrmann Madsen, Birger Møller-Pedersen. A Unified Approach to Modeling and Programming.
+- **[GOF]**: Erich Gamma; Richard Helm, Ralph Johnson, John M. Vlissides. Design Patterns: Elements of Reusable Object-Oriented Software.
+- **[WOO]**: Michael Wooldridge. An Introduction to MultiAgent Systems.
+- **[JEN]**: Nicholas R. Jennings. An agent-based approach for building complex software systems.
+- 
+## 3. Programmazione dei Microcontrollori
+
+### Struttura del codice in Wiring (Arduino)
+```cpp
+void setup() {
+  pinMode(13, OUTPUT); 
+}
+
+void loop() {
+  digitalWrite(13, HIGH);
+  delay(1000);
+  digitalWrite(13, LOW);
+  delay(1000);
+}
+```
+
+### Concetti chiave
+- **Super-loop:** ciclo infinito senza sistema operativo.
+- **Interfacciamento GPIO:** gestione di input e output digitali/analogici.
+- **Interrupt:** gestione asincrona degli eventi.
+- **Comunicazione seriale:** invio e ricezione dati (UART, I2C, SPI).
+
+## 4. Sensori e Attuatori
+
+### Sensori
+Dispositivi che rilevano grandezze fisiche e le trasformano in segnali elettrici.
+- **Analogici:** generano segnali continui (termistori, LDR, microfoni)
+- **Digitali:** generano segnali discreti (sensori di prossimità, encoder)
+
+### Attuatori
+Dispositivi che trasformano segnali elettrici in azioni fisiche.
+- **Motori (DC, stepper, servo)**
+- **LED, display, buzzer**
+- **Relè, elettrovalvole**
+
+### Conversione ADC
+Gli ingressi analogici vengono convertiti in valori numerici (0-1023 su Arduino con ADC a 10 bit).
+```cpp
+int val = analogRead(A0);
+```
+
+## 5. Considerazioni su Misurazioni e Errori
+- **Accuratezza:** differenza tra valore misurato e reale.
+- **Precisione:** ripetibilità della misura.
+- **Errori sistematici e casuali:** fonti di imprecisione nelle misurazioni.
+
+
+
 ## 3.1 Embedded Systems based on SoC and RTOS - Summary
 
 #### Introduction
@@ -483,3 +724,66 @@ This module provides an overview of **wireless communication technologies and pr
 #### References
 - **IoT Fundamentals**: Networking Technologies, Protocols, and Use Cases for the Internet of Things. Hanes et al., Cisco Press, 2017.
 - **Building Internet of Things with Arduino**, Charalampos Doukas.
+# Resistenza per LED con Arduino e ESP32
+
+La resistenza per un LED si calcola con la **Legge di Ohm**:
+
+\[
+R = \frac{V_{cc} - V_f}{I}
+\]
+
+Dove:
+- \( R \): resistenza in ohm (Ω).
+- \( V_{cc} \): tensione di alimentazione (5V per Arduino, 3.3V per ESP32).
+- \( V_f \): tensione diretta del LED (tipicamente 1.8V-3.3V).
+- \( I \): corrente desiderata (di solito 20 mA = 0.02 A).
+
+---
+
+## Esempi di calcolo
+
+### Arduino (5V)
+- \( V_{cc} = 5V \)
+- \( V_f = 2V \) (LED rosso)
+- \( I = 20 mA \)
+
+\[
+R = \frac{5V - 2V}{0.02A} = 150 \, \Omega
+\]
+
+**Usa una resistenza da 150 Ω** (o 220 Ω come valore standard).
+
+---
+
+### ESP32 (3.3V)
+- \( V_{cc} = 3.3V \)
+- \( V_f = 2V \) (LED rosso)
+- \( I = 20 mA \)
+
+\[
+R = \frac{3.3V - 2V}{0.02A} = 65 \, \Omega
+\]
+
+**Usa una resistenza da 68 Ω** (valore standard più vicino).
+
+---
+
+## Tabella riassuntiva
+
+| Componente       | \( V_{cc} \) | \( V_f \) | \( I \) | Resistenza (\( R \)) |
+|------------------|--------------|-----------|---------|----------------------|
+| Arduino (5V)     | 5V           | 2V        | 20 mA   | 150 Ω                |
+| Arduino (5V)     | 5V           | 3.3V      | 20 mA   | 85 Ω                 |
+| ESP32 (3.3V)     | 3.3V         | 2V        | 20 mA   | 68 Ω                 |
+| ESP32 (3.3V)     | 3.3V         | 3.3V      | 20 mA   | 0 Ω (non necessaria) |
+
+---
+
+## Note
+1. **Corrente massima dei pin**:
+   - Arduino: max 20 mA.
+   - ESP32: max 12-20 mA (per sicurezza).
+2. Se \( V_f = V_{cc} \) (es. 3.3V su ESP32), usa una piccola resistenza (es. 10 Ω) per limitare la corrente.
+3. Usa valori standard di resistenza (es. 220 Ω invece di 150 Ω).
+
+©
