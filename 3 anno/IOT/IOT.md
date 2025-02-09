@@ -68,7 +68,8 @@
 - **Amperometro**: Misura la corrente in un circuito. Montato in serie. Resistenza interna piccola.
 - **Voltmetro**: Misura la differenza di potenziale. Montato in parallelo. Resistenza interna grande.
 - **Multimetro**: Strumento combinato per misurare tensione, corrente e resistenza.
-- 
+  
+
 ##  Introduzione ai Sistemi Embedded
 
 ## 1. Concetti di base
@@ -89,6 +90,120 @@ I sistemi embedded sono sistemi di calcolo dedicati a svolgere una funzione spec
 - Sanità (monitor biomedicali, wearable)
 - Industria (controllo processi, automazione)
 
+## Differenza tra General Purpose Processor, ASIP, Programmable Hardware e ASIC
+
+## General Purpose Processor (GPP)
+- **Descrizione**: Un processore progettato per eseguire un'ampia gamma di applicazioni e compiti generici.
+- **Caratteristiche**:
+  - **Flessibilità**: Può eseguire qualsiasi tipo di software, grazie a un set di istruzioni generico.
+  - **Utilizzo**: Comunemente utilizzato in computer desktop, laptop e server.
+  - **Esempi**: CPU Intel, AMD, ARM Cortex-A.
+- **Vantaggi**:
+  - Adatto a una vasta gamma di applicazioni.
+  - Facile da programmare e aggiornare.
+- **Svantaggi**:
+  - Meno efficiente per compiti specifici rispetto a hardware specializzato.
+
+## Application-Specific Instruction-set Processor (ASIP)
+- **Descrizione**: Un processore progettato per un'applicazione specifica o un dominio di applicazioni.
+- **Caratteristiche**:
+  - **Set di Istruzioni Personalizzato**: Ottimizzato per compiti specifici, migliorando l'efficienza.
+  - **Utilizzo**: Utilizzato in applicazioni come elaborazione del segnale, telecomunicazioni, automobilistica.
+  - **Esempi**: DSP (Digital Signal Processor) per l'elaborazione di segnali audio/video.
+- **Vantaggi**:
+  - Maggiore efficienza per compiti specifici rispetto ai GPP.
+  - Bilancio tra flessibilità e prestazioni.
+- **Svantaggi**:
+  - Meno flessibile rispetto ai GPP per applicazioni generiche.
+
+## Programmable Hardware (FPGA)
+- **Descrizione**: Hardware riconfigurabile che può essere programmato per eseguire specifiche funzioni logiche.
+- **Caratteristiche**:
+  - **Riconfigurabilità**: Può essere riprogrammato per diverse applicazioni dopo la produzione.
+  - **Utilizzo**: Utilizzato in prototipazione, accelerazione hardware, applicazioni di nicchia.
+  - **Esempi**: FPGA (Field-Programmable Gate Array) di Xilinx, Intel (ex Altera).
+- **Vantaggi**:
+  - Alta flessibilità e capacità di aggiornamento.
+  - Ideale per applicazioni che richiedono personalizzazione e velocità.
+- **Svantaggi**:
+  - Maggiore consumo energetico rispetto agli ASIC.
+  - Costo più elevato per volumi di produzione elevati.
+
+## Application-Specific Integrated Circuit (ASIC)
+- **Descrizione**: Circuito integrato progettato per un'applicazione specifica.
+- **Caratteristiche**:
+  - **Ottimizzazione**: Massima efficienza per un compito specifico.
+  - **Utilizzo**: Utilizzato in dispositivi di consumo, automobilistica, IoT, mining di criptovalute.
+  - **Esempi**: Chip per smartphone, chip per mining Bitcoin.
+- **Vantaggi**:
+  - Massima efficienza energetica e prestazioni per l'applicazione specifica.
+  - Costo ridotto per grandi volumi di produzione.
+- **Svantaggi**:
+  - Nessuna flessibilità dopo la produzione.
+  - Costi di sviluppo e produzione iniziali elevati.
+
+## Confronto Riassuntivo
+| Caratteristica            | GPP                     | ASIP                    | Programmable Hardware (FPGA) | ASIC                     |
+|---------------------------|-------------------------|-------------------------|------------------------------|--------------------------|
+| **Flessibilità**           | Alta                   | Media                   | Alta                         | Bassa                    |
+| **Efficienza**             | Bassa per compiti specifici | Alta per compiti specifici | Media-Alta                   | Massima                  |
+| **Costo di Sviluppo**      | Basso                  | Medio                   | Alto                         | Molto Alto               |
+| **Costo per Volume**       | Medio                  | Medio                   | Alto                         | Basso (per grandi volumi)|
+| **Tempo di Mercato**       | Rapido                 | Medio                   | Medio                        | Lungo                    |
+| **Esempi**                 | CPU Intel, AMD         | DSP per telecomunicazioni | FPGA Xilinx, Intel           | Chip per smartphone      |
+
+![difference cpu](img/difference_cpu.png)
+
+## Embedded Systems: Interaction with the Environment via Sensors and Actuators
+
+An **embedded system** is designed to interact with its environment through two key components: **sensors** and **actuators**. These components enable the system to perceive external conditions and respond appropriately, forming the basis of its functionality.
+
+| **Aspect**          | **Sensors**                                                                 | **Actuators**                                                             |
+|----------------------|-----------------------------------------------------------------------------|---------------------------------------------------------------------------|
+| **Function**         | Measure or detect environmental phenomena                                  | Produce physical effects or actions                                      |
+| **Output Type**      | Analog or digital                                                          | Mechanical, thermal, optical, etc.                                       |
+| **Examples**         | Temperature sensors, humidity sensors, accelerometers                      | Motors, LEDs, heaters, relays                                             |
+| **Role in System**   | Provide input data for decision-making                                     | Execute decisions by interacting with the environment                   |
+
+### Comunication Protocols
+
+#### **Summary of Concepts**
+1. **UART/USART**:
+   - UART is an asynchronous protocol for simple serial communication, while USART extends it with synchronous capabilities using a clock signal.
+
+2. **I2C**:
+   - A synchronous protocol with only two wires (clock and data), suitable for multi-device communication on the same bus.
+   - master-slave architecture (tipically the microcontroller)
+     - every slave has 7bit unique id (sent by master)
+     - only target can respond to master
+     - SDA = standard data
+     - SCL = standard clock
+   - Two lines:
+     - clock 
+     - bidirectional data line
+
+![](img/i2c.png)
+
+1. **SPI**:
+   - A faster, synchronous protocol requiring more wires, ideal for high-speed communication with peripherals.
+
+2. **JTAG**:
+   - A testing and debugging protocol used for hardware fault detection and software debugging in embedded systems.
+
+3. **CAN-BUS**:
+   - A robust, message-based protocol designed for automotive and industrial applications, capable of handling electromagnetic interference and supporting multiple nodes.
+
+These protocols cater to different needs in embedded systems, ranging from simple communication (UART/I2C) to high-speed data transfer (SPI) and robust, multi-node networks (CAN-BUS). JTAG stands out as a specialized tool for testing and debugging.
+
+## Signals 
+
+The information associated to physical quantities are called signals:
+
+- analog signals
+- discrete signals 
+- that can be further classified as:
+  - logical signals, only two admissible values
+  - codified signals, if more than two values
 ## 2. Microcontrollori e Architettura
 
 ### Elementi principali di un Microcontrollore
@@ -101,6 +216,8 @@ I sistemi embedded sono sistemi di calcolo dedicati a svolgere una funzione spec
 
 ### Esempio: Arduino Uno
 - MCU: **ATMega328P** (8-bit, 16 MHz, 32 KB Flash, 2 KB SRAM, 1 KB EEPROM)
+  - based on von neumann machine
+    ![](img/Vonn%20Neumann%20machine.png)
 - **14** pin digitali, **6** pin PWM, **6** ingressi analogici
 - **Alimentazione:** 5V, input consigliato 7-12V
 
