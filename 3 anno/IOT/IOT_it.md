@@ -1,178 +1,158 @@
-# IOT
+# IoT
 
-## Richiami di Componenti e Circuiti Elettrici
+## Recap of Electrical Components and Circuits
 
-## Carica Elettrica
-- **Atomo**: Composto da elettroni (carica negativa), protoni (carica positiva) e neutroni (senza carica).
-- **Carica dell'elettrone (Q)**: Misurata in Coulomb (C). 1 C = carica di 6.25 * 10^18 elettroni.
-- **Materiali**:
-  - **Conduttori**: Molti elettroni liberi (es. rame, argento).
-  - **Semiconduttori**: Meno elettroni liberi (es. silicio).
-  - **Isolanti**: Pochissimi elettroni liberi.
+## Electric Charge
+- **Atom**: Composed of electrons (negative charge), protons (positive charge), and neutrons (neutral charge).
+- **Electron Charge (Q)**: Measured in Coulombs (C). 1 C = charge of 6.25 * 10^18 electrons.
+- **Materials**:
+  - **Conductors**: Many free electrons (e.g., copper, silver).
+  - **Semiconductors**: Fewer free electrons (e.g., silicon).
+  - **Insulators**: Very few free electrons.
 
-## Campo Elettrico
-- **Carica netta**: Eccesso di elettroni (carica negativa) o protoni (carica positiva).
-- **Forza elettrica**: Cariche opposte si attraggono, cariche uguali si respingono.
-- **Ioni**: Atomi con carica netta positiva (ioni positivi) o negativa (ioni negativi).
+## Electric Field
+- **Net Charge**: Excess electrons (negative charge) or protons (positive charge).
+- **Electric Force**: Opposite charges attract, like charges repel.
+- **Ions**: Atoms with a net positive (positive ions) or negative (negative ions) charge.
 
-## Tensione (Differenza di Potenziale)
-- **Definizione**: Energia potenziale per unità di carica. \( V = \frac{W}{Q} \).
-- **Unità**: Volt (V). 1 V = 1 Joule/Coulomb.
-- **Generatori di Tensione**:
-  - **Batteria**: Trasforma energia chimica in elettrica.
-  - **Alimentatore**: Converte tensione alternata in continua.
-  - **Celle solari**: Trasformano luce in energia elettrica.
-  - **Generatori**: Trasformano energia meccanica in elettrica.
+## Voltage (Potential Difference)
+- **Definition**: Potential energy per unit charge. \( V = \frac{W}{Q} \).
+- **Unit**: Volt (V). 1 V = 1 Joule/Coulomb.
+- **Voltage Sources**:
+  - **Battery**: Converts chemical energy into electrical energy.
+  - **Power Supply**: Converts AC voltage to DC.
+  - **Solar Cells**: Convert light into electrical energy.
+  - **Generators**: Convert mechanical energy into electrical energy.
 
-## Corrente Elettrica
-- **Definizione**: Flusso ordinato di carica elettrica. \( I = \frac{Q}{t} \).
-- **Unità**: Ampère (A). 1 A = 1 Coulomb/secondo.
-- **Tipi di Corrente**:
-  - **Continua (DC)**: Verso costante (es. batterie).
-  - **Alternata (AC)**: Verso variabile periodicamente (es. rete elettrica).
+## Electric Current
+- **Definition**: Ordered flow of electric charge. \( I = \frac{Q}{t} \).
+- **Unit**: Ampère (A). 1 A = 1 Coulomb/second.
+- **Types of Current**:
+  - **Direct Current (DC)**: Constant direction (e.g., batteries).
+  - **Alternating Current (AC)**: Periodically changing direction (e.g., mains electricity).
 
-## Potenza Elettrica
-- **Definizione**: Energia consumata per unità di tempo. \( P = \frac{W}{t} \).
-- **Unità**: Watt (W). 1 W = 1 Joule/secondo.
-- **Consumo di Energia**: \( W = P \cdot t \) (es. kWh).
+## Electric Power
+- **Definition**: Energy consumed per unit time. \( P = \frac{W}{t} \).
+- **Unit**: Watt (W). 1 W = 1 Joule/second.
+- **Energy Consumption**: \( W = P \cdot t \) (e.g., kWh).
 
-## Resistenza
-- **Definizione**: Opposizione al passaggio della corrente. \( R = \frac{V}{I} \).
-- **Unità**: Ohm (Ω). 1 Ω = 1 Volt/Ampère.
-- **Legge di Ohm**: \( V = I \cdot R \).
-- **Potenza Dissipata**: \( P = V \cdot I = I^2 \cdot R = \frac{V^2}{R} \).
+## Resistance
+- **Definition**: Opposition to the flow of current. \( R = \frac{V}{I} \).
+- **Unit**: Ohm (Ω). 1 Ω = 1 Volt/Ampère.
+- **Ohm’s Law**: \( V = I \cdot R \).
+- **Power Dissipation**: \( P = V \cdot I = I^2 \cdot R = \frac{V^2}{R} \).
 
-## Componenti Elettronici
-- **Passivi**: Resistori, condensatori, induttori, diodi.
-- **Attivi**: Transistor, circuiti integrati.
-- **Resistori**: Caduta di potenziale al passaggio della corrente. Codice colore per il valore.
-- **Condensatori**: Immagazzinano carica elettrica. Capacità misurata in Farad (F).
-- **Induttori**: Generano campo magnetico con corrente variabile.
-- **Diodi**: Permettono il passaggio di corrente in una sola direzione.
-- **LED**: Diodi emettitori di luce.
-- **Transistor**: Amplificano segnali o agiscono come interruttori.
+## Electronic Components
+- **Passive**: Resistors, capacitors, inductors, diodes.
+- **Active**: Transistors, integrated circuits.
+- **Resistors**: Voltage drop when current flows. Color code for value identification.
+- **Capacitors**: Store electric charge. Capacitance measured in Farads (F).
+- **Inductors**: Generate magnetic fields with varying current.
+- **Diodes**: Allow current to flow in only one direction.
+- **LEDs**: Light-emitting diodes.
+- **Transistors**: Amplify signals or act as switches.
 
-## Leggi di Kirchhoff
-- **Prima Legge (dei Nodi)**: La somma delle correnti entranti in un nodo è uguale alla somma delle correnti uscenti.
-- **Seconda Legge (delle Maglie)**: La somma algebrica delle tensioni in una maglia chiusa è zero.
+## Kirchhoff’s Laws
+- **First Law (Node Rule)**: The sum of currents entering a node equals the sum of currents leaving.
+- **Second Law (Loop Rule)**: The algebraic sum of voltages in a closed loop is zero.
 
-## Resistenze e Condensatori in Serie e Parallelo
-- **Resistenze**:
-  - **Serie**: \( R_{eq} = R_1 + R_2 \).
-  - **Parallelo**: \( R_{eq} = \frac{R_1 \cdot R_2}{R_1 + R_2} \).
-- **Condensatori**:
-  - **Serie**: \( C_{eq} = \frac{C_1 \cdot C_2}{C_1 + C_2} \).
-  - **Parallelo**: \( C_{eq} = C_1 + C_2 \).
+## Resistors and Capacitors in Series and Parallel
+- **Resistors**:
+  - **Series**: \( R_{eq} = R_1 + R_2 \).
+  - **Parallel**: \( R_{eq} = \frac{R_1 \cdot R_2}{R_1 + R_2} \).
+- **Capacitors**:
+  - **Series**: \( C_{eq} = \frac{C_1 \cdot C_2}{C_1 + C_2} \).
+  - **Parallel**: \( C_{eq} = C_1 + C_2 \).
 
-## Strumenti di Misura
-- **Amperometro**: Misura la corrente in un circuito. Montato in serie. Resistenza interna piccola.
-- **Voltmetro**: Misura la differenza di potenziale. Montato in parallelo. Resistenza interna grande.
-- **Multimetro**: Strumento combinato per misurare tensione, corrente e resistenza.
-  
+## Measurement Instruments
+- **Ammeter**: Measures current. Connected in series. Low internal resistance.
+- **Voltmeter**: Measures voltage. Connected in parallel. High internal resistance.
+- **Multimeter**: Measures voltage, current, and resistance.
 
-##  Introduzione ai Sistemi Embedded
+---
 
-## 1. Concetti di base
+# Introduction to Embedded Systems
 
-### Definizione
-I sistemi embedded sono sistemi di calcolo dedicati a svolgere una funzione specifica all'interno di dispositivi elettronici. Interagiscono con il mondo fisico tramite sensori e attuatori e possono essere costituiti da hardware e software.
+## 1. Basic Concepts
 
-### Caratteristiche principali
-- **Scopo specifico:** progettati per un'unica applicazione.
-- **Efficienza e risorse limitate:** ottimizzati per consumare meno energia e occupare poco spazio.
-- **Criticità:** utilizzati in settori dove l'affidabilità è essenziale (sanità, automotive, industria).
-- **Reattività e real-time:** devono rispondere velocemente agli input ambientali.
+### Definition
+Embedded systems are computing systems designed to perform a specific function within electronic devices. They interact with the physical world through sensors and actuators and consist of both hardware and software.
 
-### Applicazioni comuni
-- Elettronica di consumo (smartphone, smartwatch, fotocamere)
-- Domotica (termostati, sistemi di illuminazione)
-- Automotive (navigazione, sistemi di sicurezza)
-- Sanità (monitor biomedicali, wearable)
-- Industria (controllo processi, automazione)
+### Key Characteristics
+- **Specific Purpose**: Designed for a single application.
+- **Efficiency & Limited Resources**: Optimized for low power consumption and minimal space.
+- **Criticality**: Used in applications where reliability is crucial (healthcare, automotive, industry).
+- **Responsiveness & Real-Time**: Must quickly react to environmental inputs.
 
-## Differenza tra General Purpose Processor, ASIP, Programmable Hardware e ASIC
+### Common Applications
+- Consumer electronics (smartphones, smartwatches, cameras)
+- Home automation (thermostats, lighting systems)
+- Automotive (navigation, safety systems)
+- Healthcare (biomedical monitoring, wearables)
+- Industry (process control, automation)
 
-## General Purpose Processor (GPP)
-- **Descrizione**: Un processore progettato per eseguire un'ampia gamma di applicazioni e compiti generici.
-- **Caratteristiche**:
-  - **Flessibilità**: Può eseguire qualsiasi tipo di software, grazie a un set di istruzioni generico.
-  - **Utilizzo**: Comunemente utilizzato in computer desktop, laptop e server.
-  - **Esempi**: CPU Intel, AMD, ARM Cortex-A.
-- **Vantaggi**:
-  - Adatto a una vasta gamma di applicazioni.
-  - Facile da programmare e aggiornare.
-- **Svantaggi**:
-  - Meno efficiente per compiti specifici rispetto a hardware specializzato.
+---
 
-## Application-Specific Instruction-set Processor (ASIP)
-- **Descrizione**: Un processore progettato per un'applicazione specifica o un dominio di applicazioni.
-- **Caratteristiche**:
-  - **Set di Istruzioni Personalizzato**: Ottimizzato per compiti specifici, migliorando l'efficienza.
-  - **Utilizzo**: Utilizzato in applicazioni come elaborazione del segnale, telecomunicazioni, automobilistica.
-  - **Esempi**: DSP (Digital Signal Processor) per l'elaborazione di segnali audio/video.
-- **Vantaggi**:
-  - Maggiore efficienza per compiti specifici rispetto ai GPP.
-  - Bilancio tra flessibilità e prestazioni.
-- **Svantaggi**:
-  - Meno flessibile rispetto ai GPP per applicazioni generiche.
+### Comparison of GPP, ASIP, FPGA, and ASIC
 
-## Programmable Hardware (FPGA)
-- **Descrizione**: Hardware riconfigurabile che può essere programmato per eseguire specifiche funzioni logiche.
-- **Caratteristiche**:
-  - **Riconfigurabilità**: Può essere riprogrammato per diverse applicazioni dopo la produzione.
-  - **Utilizzo**: Utilizzato in prototipazione, accelerazione hardware, applicazioni di nicchia.
-  - **Esempi**: FPGA (Field-Programmable Gate Array) di Xilinx, Intel (ex Altera).
-- **Vantaggi**:
-  - Alta flessibilità e capacità di aggiornamento.
-  - Ideale per applicazioni che richiedono personalizzazione e velocità.
-- **Svantaggi**:
-  - Maggiore consumo energetico rispetto agli ASIC.
-  - Costo più elevato per volumi di produzione elevati.
+### General Purpose Processor (GPP)
+- **Description**: A processor designed for a wide range of applications and general computing tasks.
+- **Examples**: Intel, AMD, ARM Cortex-A CPUs.
+- **Pros**:
+  - Flexible and can run different software.
+  - Easy to program and update.
+- **Cons**:
+  - Less efficient for specific tasks than specialized hardware.
 
-## Application-Specific Integrated Circuit (ASIC)
-- **Descrizione**: Circuito integrato progettato per un'applicazione specifica.
-- **Caratteristiche**:
-  - **Ottimizzazione**: Massima efficienza per un compito specifico.
-  - **Utilizzo**: Utilizzato in dispositivi di consumo, automobilistica, IoT, mining di criptovalute.
-  - **Esempi**: Chip per smartphone, chip per mining Bitcoin.
-- **Vantaggi**:
-  - Massima efficienza energetica e prestazioni per l'applicazione specifica.
-  - Costo ridotto per grandi volumi di produzione.
-- **Svantaggi**:
-  - Nessuna flessibilità dopo la produzione.
-  - Costi di sviluppo e produzione iniziali elevati.
+### Application-Specific Instruction-set Processor (ASIP)
+- **Description**: A processor tailored for a specific application domain.
+- **Examples**: DSP (Digital Signal Processor) for audio/video processing.
+- **Pros**:
+  - Higher efficiency for targeted tasks.
+  - Balance between flexibility and performance.
+- **Cons**:
+  - Less flexible than GPPs for general applications.
 
-## Confronto Riassuntivo
-| Caratteristica            | GPP                     | ASIP                    | Programmable Hardware (FPGA) | ASIC                     |
-|---------------------------|-------------------------|-------------------------|------------------------------|--------------------------|
-| **Flessibilità**           | Alta                   | Media                   | Alta                         | Bassa                    |
-| **Efficienza**             | Bassa per compiti specifici | Alta per compiti specifici | Media-Alta                   | Massima                  |
-| **Costo di Sviluppo**      | Basso                  | Medio                   | Alto                         | Molto Alto               |
-| **Costo per Volume**       | Medio                  | Medio                   | Alto                         | Basso (per grandi volumi)|
-| **Tempo di Mercato**       | Rapido                 | Medio                   | Medio                        | Lungo                    |
-| **Esempi**                 | CPU Intel, AMD         | DSP per telecomunicazioni | FPGA Xilinx, Intel           | Chip per smartphone      |
+### Programmable Hardware (FPGA)
+- **Description**: Reconfigurable hardware programmable for specific logic functions.
+- **Examples**: Xilinx, Intel (Altera) FPGA.
+- **Pros**:
+  - High flexibility and upgradability.
+  - Suitable for high-speed and custom applications.
+- **Cons**:
+  - Higher power consumption than ASICs.
+  - Expensive for mass production.
+
+### Application-Specific Integrated Circuit (ASIC)
+- **Description**: A circuit optimized for a single application.
+- **Examples**: Smartphone chips, Bitcoin mining chips.
+- **Pros**:
+  - Maximum efficiency for a dedicated function.
+  - Low cost in large volumes.
+- **Cons**:
+  - No flexibility after manufacturing.
+  - High initial development cost.
 
 ![difference cpu](img/difference_cpu.png)
 
+
 ## Embedded Systems: Interaction with the Environment via Sensors and Actuators
 
-An **embedded system** is designed to interact with its environment through two key components: **sensors** and **actuators**. These components enable the system to perceive external conditions and respond appropriately, forming the basis of its functionality.
+| **Aspect**        | **Sensors**                         | **Actuators**                          |
+|------------------|---------------------------------|---------------------------------|
+| **Function**     | Measure environmental phenomena | Produce physical effects       |
+| **Output Type**  | Analog or digital               | Mechanical, thermal, optical   |
+| **Examples**     | Temperature sensors, accelerometers | Motors, LEDs, heaters         |
 
-| **Aspect**          | **Sensors**                                                                 | **Actuators**                                                             |
-|----------------------|-----------------------------------------------------------------------------|---------------------------------------------------------------------------|
-| **Function**         | Measure or detect environmental phenomena                                  | Produce physical effects or actions                                      |
-| **Output Type**      | Analog or digital                                                          | Mechanical, thermal, optical, etc.                                       |
-| **Examples**         | Temperature sensors, humidity sensors, accelerometers                      | Motors, LEDs, heaters, relays                                             |
-| **Role in System**   | Provide input data for decision-making                                     | Execute decisions by interacting with the environment                   |
 
 ### Comunication Protocols
 
 #### **Summary of Concepts**
 1. **UART/USART**:
-   - UART is an asynchronous protocol for simple serial communication, while USART extends it with synchronous capabilities using a clock signal.
+   - UART is an asynchronous protocol for simple **serial communication**, while USART extends it with synchronous capabilities using a clock signal.
 
 2. **I2C**:
-   - A synchronous protocol with only two wires (clock and data), suitable for multi-device communication on the same bus.
+   - A **synchronous** protocol with only two wires (clock and data), suitable for multi-device communication on the same bus.
    - master-slave architecture (tipically the microcontroller)
      - every slave has 7bit unique id (sent by master)
      - only target can respond to master
@@ -304,12 +284,6 @@ This module focuses on the modelling of embedded software using paradigms such a
 - **Complex Systems**: Distributed systems with interacting/cooperating sub-systems.
 - **Multi-Agent Systems**: Used to model systems like smart homes and smart cities.
 
-## Bibliography
-- **[OLE]**: Ole Lehrmann Madsen, Birger Møller-Pedersen. A Unified Approach to Modeling and Programming.
-- **[GOF]**: Erich Gamma; Richard Helm, Ralph Johnson, John M. Vlissides. Design Patterns: Elements of Reusable Object-Oriented Software.
-- **[WOO]**: Michael Wooldridge. An Introduction to MultiAgent Systems.
-- **[JEN]**: Nicholas R. Jennings. An agent-based approach for building complex software systems.
-- 
 ## 3. Programmazione dei Microcontrollori
 
 ### Struttura del codice in Wiring (Arduino)
@@ -356,8 +330,6 @@ int val = analogRead(A0);
 - **Precisione:** ripetibilità della misura.
 - **Errori sistematici e casuali:** fonti di imprecisione nelle misurazioni.
 
-
-
 ## 3.1 Embedded Systems based on SoC and RTOS - Summary
 
 #### Introduction
@@ -396,53 +368,6 @@ This module covers embedded systems based on **System-on-a-Chip (SoC)** and **Re
 - **Virtual Machines**
 - **Operating System**
 - **Hardware**
-
----
-
-#### Hardware Level Zoom
-
-- **High-level Languages / Applications**
-- **Operating Systems**
-- **Assembler**
-- **Machine Language (or Code)**
-- **Computer Architecture**
-  - **ALU (Arithmetic Logic Unit)**
-  - **Memory**
-  - **Boolean Arithmetic / Algebra**
-  - **Combinatory & Sequential Logic Circuits**
-  - **Boolean Logic**
-
----
-
-#### Virtualisation Level Zoom
-
-- **High-level Languages / Applications**
-- **Operating System**
-- **System Compiler**
-- **System Virtual Machine**
-- **Hardware**
-
----
-
-#### Overall Software and Hardware Hierarchy
-
-- **Software Hierarchy**:
-  - **Applications**
-  - **High-level Languages**
-  - **Compilers / Interpreters**
-  - **Virtual Machines**
-  - **Operating System**
-  - **System Compiler**
-  - **System Virtual Machine**
-- **Hardware Hierarchy**:
-  - **Assembler**
-  - **Machine Language**
-  - **Computer Architecture**
-  - **ALU and Memory**
-  - **Boolean Arithmetic and Sequential Logic Circuits**
-  - **Boolean Logic**
-
----
 
 #### Levels and Interfaces
 
@@ -576,14 +501,6 @@ This module covers embedded systems based on **System-on-a-Chip (SoC)** and **Re
 - **Not useful for**:
   - Simple super-loop applications.
   - Single-task applications with small memory footprints.
-
----
-
-#### Examples of RTOS Architectures
-
-- **FreeRTOS**: Open-source RTOS with a modular architecture.
-- **QNX Neutrino**: Commercial RTOS with a microkernel architecture.
-- **RT Linux**: Real-time extension of the Linux kernel.
 
 ---
 
@@ -725,13 +642,6 @@ This module explores the transition from **Embedded Systems** to the **Internet 
 
 ---
 
-### References
-
-- Kevin Ashton. *The Internet of Things Thing*. RFID Journal, 2009.
-- Luigi Atzori, Antonio Iera, Giacomo Morabito. *The Internet of Things: A survey*. Computer Networks, 2010.
-- Samuel Greengard. *The Internet of Things*. MIT Press.
-- IoT Fundamentals: Networking Technologies, Protocols, and Use Cases for the Internet of Things. Hanes et al., Cisco Press, 2017.
-  
 ## 3.3 Technologies and Protocols for Wireless Communication - Summary
 
 #### Introduction
@@ -838,9 +748,6 @@ This module provides an overview of **wireless communication technologies and pr
 
 ---
 
-#### References
-- **IoT Fundamentals**: Networking Technologies, Protocols, and Use Cases for the Internet of Things. Hanes et al., Cisco Press, 2017.
-- **Building Internet of Things with Arduino**, Charalampos Doukas.
 # Resistenza per LED con Arduino e ESP32
 
 La resistenza per un LED si calcola con la **Legge di Ohm**:
