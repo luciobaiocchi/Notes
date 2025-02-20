@@ -35,5 +35,18 @@ Diversamente da quanto abbiamo sempre visto gli applicativi sono generalmente co
 - assicurarsi che la rete permetta il passaggio di messaggi all'interno, e se non possibile configurare il NAT.
 - è fondamentale quindi e parte integrante del processo di creazione del sistema **progettare opportunamente le comunicazioni**
 
-### Sicurezza nei sistemi informaticiù
+### Sicurezza nei sistemi informatici
 
+I requisiti di sicurezza vanno pensati al momento in cui si concepisce il sistema e non dopo averlo creato.
+
+Molto spesso un requisito è centralizzare il servizio di autenticazione, per limitare i punti di attacco e favorire il controllo. Gli scenari in cui è necearia la centralizzazione si estendono non solo agli utenti, ma anche all'autorizzazione all'accesso delle risorse delle entità o nei mezzi trasmissivi. Un esempio è l'autenticazione degli access point wifi di ateneo, l'access point chiede autorizzazione a server Radius.
+
+### Directory Service
+
+Sistema centralizzato che deve gestire utenti macchine ecc. 
+![](img/directory_service.png)
+
+
+Le macchine possono essere riconosciute anche al boot, e cambiando la configurazione in un server cambiano le informazioni automaticamente in tutte le macchine. Nella fase iniziale di installazione, ad ogni macchina viene dato un certificato digitale che serve per rendere sicure le comunicazioni tra macchina e server. Questo processo si chaima Join con dominio.
+
+![](img/log_centralizzato.png)
