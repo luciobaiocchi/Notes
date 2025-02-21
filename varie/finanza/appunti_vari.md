@@ -242,7 +242,6 @@ I **titoli high yield** (o "obbligazioni spazzatura") sono obbligazioni emesse d
 - Lo **yield** è il rendimento di un investimento, espresso in percentuale.
 - I **titoli high yield** sono obbligazioni rischiose ma con rendimenti elevati, emesse da aziende o entità con un basso rating creditizio.
 
-Spero sia chiaro! 😊
 
 # Prezzo di Apertura di un Asset e Orari dei Mercati Mondiali
 
