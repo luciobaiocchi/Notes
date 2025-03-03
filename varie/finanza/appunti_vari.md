@@ -229,6 +229,7 @@ I **titoli high yield** (o "obbligazioni spazzatura") sono obbligazioni emesse d
 - **Rendimenti attraenti**: Possono offrire guadagni significativi rispetto ad altre forme di investimento.
 - **Diversificazione**: Aggiungono varietà a un portafoglio, bilanciando investimenti più sicuri ma meno redditizi.
 
+
 ---
 
 ## **Rischi dei Titoli High Yield**
