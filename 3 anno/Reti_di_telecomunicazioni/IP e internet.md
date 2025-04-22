@@ -234,9 +234,9 @@ Per selezionare la riga corretta vengono fatti 2 passaggi:
 
 la riga numero 1 è quella di default, perchè AND è sempre 0.0.0.0
 
-![Screenshot 2024-10-23 at 14.00.17.png](img/Screenshot_2024-10-23_at_14.00.17.png)
+![Screenshot 2024-10-23 at 14.00.17.png](Screenshot_2024-10-23_at_14.00.17.png)
 
-![Screenshot 2024-10-23 at 14.35.26.png](img/Screenshot_2024-10-23_at_14.35.26.png)
+![Screenshot 2024-10-23 at 14.35.26.png](Screenshot_2024-10-23_at_14.35.26.png)
 
 il router ha lo stesso net-id mio e come ultimo numero ha 254, ma più generalmente il numero massimo di host-id.
 
@@ -857,13 +857,13 @@ Funzionamento
 
 GRE è semplice e flessibile, ma non offre crittografia o meccanismi di sicurezza avanzati. Per proteggere i dati, può essere combinato con protocolli come IPsec.
 
-![gre](img/gre.PNG)
+![gre](gre.png)
 
 ### VXLAN
 
 **VXLAN (Virtual eXtensible LAN)**: VXLAN, ampiamente usato nel cloud computing, consente l'incapsulamento di traffico Layer 2 in pacchetti UDP, garantendo un isolamento scalabile con identificatori unici per ciascun segmento. Creado un tunnel VXLAN ottengo la fusione di 2 LAN distinte dato che grazie al tunnel esse **risponderanno alla stessa ARP request**. Il tunnel VXLAN funziona incapsulando i frame Ethernet in pacchetti UDP, che vengono poi trasmessi attraverso una rete IP. Ogni segmento VXLAN è identificato da un **VXLAN Network Identifier (VNI)**, che consente di isolare il traffico tra diversi segmenti. I dispositivi che terminano i tunnel VXLAN, noti come **VXLAN Tunnel Endpoints (VTEP)**, aggiungono e rimuovono l'incapsulamento VXLAN. Quando un frame Ethernet entra in un VTEP, viene incapsulato in un pacchetto UDP con un header VXLAN e inviato attraverso la rete IP. Il VTEP di destinazione rimuove l'incapsulamento e inoltra il frame Ethernet alla rete locale.
 
-![vxlan](img/vxlan.PNG)
+![vxlan](vxlan.png)
 
 Nonostante i vantaggi, l'uso di VXLAN può introdurre alcuni problemi di prestazione:
 
@@ -947,7 +947,7 @@ informativo criptato) incapsulati in pacchetti tradizionali - diverse tecnologie
 - Diversi protocolli di tunnelling
   - livello 2: PPTP, L2TP ・livello 3: IPsec
 
-  ![pn-vs-vpn.png](img/pn-vs-vpn.png)
+  ![pn-vs-vpn.png](pn-vs-vpn.png)
 
 #### Road warrior
 
@@ -964,7 +964,7 @@ Vantaggi:
 
 TOPOLOGIA : a stella
 
-![roadwarrior](img/roadwarrior.png)
+![roadwarrior](roadwarrior.png)
 
 #### VPN rete a rete
 
@@ -980,7 +980,7 @@ mascherato
 
 Viene utilizzato
 
-![net to net](img/net-to-net.png)
+![net to net](net-to-net.png)
 
 ##### IPsec
 
@@ -2091,7 +2091,7 @@ Accesso al canale (**CSMA/CA** Carrier Sense Multiple Access with Collision Avoi
 
 **Backoff Esponenziale Binario:** In caso di collisione tra RTS, viene applicato un backoff esponenziale, in cui il tempo di attesa aumenta esponenzialmente con ogni tentativo di trasmissione fallito (2^n).
 
-![802.11-DCF](img/802.11-DCF.png)
+![802.11-DCF](802.11-DCF.png)
 
 ### Protocollo MAC 802.11 – PCF (Point Coordination Function)
 
@@ -2108,7 +2108,7 @@ Accesso al canale (**CSMA/CA** Carrier Sense Multiple Access with Collision Avoi
 - **DIFS (DCF InterFrame Spacing):** Usato per l'accesso al canale da parte delle stazioni.
 - **EIFS (Extended InterFrame Spacing):** Usato quando una stazione riceve un frame inatteso, segnalando l'errore.
 
-![802.11-PCF.png](img/802.11-PCF.png)
+![802.11-PCF.png](802.11-PCF.png)
 
 Dato che la possibilità di collisione si limita ai pacchetti di richiesta e non ai dati veri e propri, il problema si riduce notevolmente poiché i pacchetti sono decisamente più piccoli e dunque temporalmente meno lunghi da trasmettere.
 
@@ -2133,7 +2133,7 @@ Il BSSID (Basic Service Set Identifier) è un identificatore univoco utilizzato 
 - Address 1 = DA, Address 2 = SA  
 - BSSID = Casuale, generato da una stazione dell'IBSS  
 
-![ibss](img/ibss.png)
+![ibss](ibss.png)
 
 **BSS/ESS (Uplink verso LAN):**
 
@@ -2142,7 +2142,7 @@ Il BSSID (Basic Service Set Identifier) è un identificatore univoco utilizzato 
 - Address 1 = BSSID (Indirizzo MAC dell'AP)  
 - To DS = 1, From DS = 0  
 
-![bss_ess_uplink](img/bss_ess_uplink.png)
+![bss_ess_uplink](bss_ess_uplink.png)
 
 **BSS/ESS (Downlink da LAN):**
 
@@ -2151,7 +2151,7 @@ Il BSSID (Basic Service Set Identifier) è un identificatore univoco utilizzato 
 - Address 1 = DA, Address 2 = BSSID (AP)  
 - To DS = 0, From DS = 1  
 
-![bss_ess_downlink](img/bss_ess_downlink.png)
+![bss_ess_downlink](bss_ess_downlink.png)
 
 **ESS con Wireless Distribution System:**
 
@@ -2159,7 +2159,7 @@ Il BSSID (Basic Service Set Identifier) è un identificatore univoco utilizzato 
 - Address 1 = RA (Ricevitore), Address 2 = TA (Trasmettitore)  
 - To DS = 1, From DS = 1
 
-![ESS_WDS](img/ESS_WDS.png)
+![ESS_WDS](ESS_WDS.png)
 
 ## Interconnessione di LAN
 
@@ -2175,7 +2175,7 @@ Il BSSID (Basic Service Set Identifier) è un identificatore univoco utilizzato 
   - Learning bridge: impara gli indirizzi sorgenti per filtrare le trame.
   - Fa traduzione diretta dato che i due protocolli hanno la stessa semantica.
 
-  ![bridge](img/bridge.PNG)
+  ![bridge](bridge.png)
 
   **Switch:**
 
@@ -2188,6 +2188,6 @@ Il BSSID (Basic Service Set Identifier) è un identificatore univoco utilizzato 
 - **Hub:** bus condiviso, trasmissione broadcast.
 - **Switch:** selettività nella ritrasmissione, maggiore capacità aggregata.
   
-  ![bridge](img/switch.PNG)
+  ![bridge](switch.png)
 
 ****

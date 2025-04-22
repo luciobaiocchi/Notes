@@ -1,0 +1,217 @@
+{
+  "main": {
+    "id": "c002c37116b5def4",
+    "type": "split",
+    "children": [
+      {
+        "id": "170e198fd7299b9d",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "b24e9bad2e15f1aa",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "7ca8e34a52f8596f",
+    "type": "split",
+    "children": [
+      {
+        "id": "7063faaa2187582c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "87b4031352d53cb7",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "5466dc73f3b6366d",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "99f6fa087e446c4c",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "0922391684083671",
+    "type": "split",
+    "children": [
+      {
+        "id": "dbce06c847d61074",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "075166c1206cdf31",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "2025-03-07.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for 2025-03-07"
+            }
+          },
+          {
+            "id": "110b4692318a2f95",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "2025-03-07.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from 2025-03-07"
+            }
+          },
+          {
+            "id": "c4b9f7d352527898",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "1adad6608a197d60",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "2025-03-07.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of 2025-03-07"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "b24e9bad2e15f1aa",
+  "lastOpenFiles": [
+    "Untitled 1.canvas",
+    "2025-04-22.md",
+    "varie/ML/ml.md",
+    "varie/finanza/fiscalità.md",
+    "varie/finanza/Deep Work_ Rules for focused success in a distracted world ( PDFDrive ) (1).pdf",
+    "varie/finanza/DCA.md",
+    "varie/finanza/assets_class.md",
+    "varie/finanza/appunti_vari.md",
+    "create a link.md",
+    "Welcome.md",
+    "Untitled.canvas",
+    "Untitled.md",
+    "2025-03-07.md",
+    "varie/finanza/ratios.md",
+    "2 anno/OOP/opp 78bb37cfa4214c0b92f65055fc8125a0.md",
+    "3 anno/web/Tecnologie Web 10e3dd22936380118b33f49224082430/HTML 10e3dd229363802eba2af9e835494203/Link, tabelle e liste 10e3dd229363802daf24dd4eb4f3c729/Screenshot_2024-09-27_at_11.24.11.png",
+    "3 anno/web/Tecnologie Web 10e3dd22936380118b33f49224082430/HTML 10e3dd229363802eba2af9e835494203/Link, tabelle e liste 10e3dd229363802daf24dd4eb4f3c729/Screenshot_2024-09-27_at_11.50.43.png",
+    "3 anno/web/Tecnologie Web 10e3dd22936380118b33f49224082430/HTML 10e3dd229363802eba2af9e835494203/Link, tabelle e liste 10e3dd229363802daf24dd4eb4f3c729/Screenshot_2024-09-27_at_11.13.44.png",
+    "3 anno/web/Tecnologie Web 10e3dd22936380118b33f49224082430/HTML 10e3dd229363802eba2af9e835494203/Link, tabelle e liste 10e3dd229363802daf24dd4eb4f3c729/Screenshot_2024-09-27_at_11.10.03.png",
+    "3 anno/web/Tecnologie Web 10e3dd22936380118b33f49224082430/HTML 10e3dd229363802eba2af9e835494203/Link, tabelle e liste 10e3dd229363802daf24dd4eb4f3c729/Screenshot_2024-09-27_at_11.09.55.png",
+    "3 anno/web/Tecnologie Web 10e3dd22936380118b33f49224082430/HTML 10e3dd229363802eba2af9e835494203/Link, tabelle e liste 10e3dd229363802daf24dd4eb4f3c729/Screenshot_2024-09-27_at_10.27.59.png",
+    "2 anno/OOP/opp 78bb37cfa4214c0b92f65055fc8125a0/laboratorio df792df80c8a42b6a8258c2615d14734/Screenshot_2023-11-06_alle_12.06.06.png",
+    "2 anno/OOP/opp 78bb37cfa4214c0b92f65055fc8125a0/laboratorio df792df80c8a42b6a8258c2615d14734/Screenshot_2023-11-06_alle_15.56.43.png",
+    "2 anno/OOP/opp 78bb37cfa4214c0b92f65055fc8125a0/laboratorio df792df80c8a42b6a8258c2615d14734/Screenshot_2023-11-06_alle_15.45.47.png",
+    "2 anno/OOP/opp 78bb37cfa4214c0b92f65055fc8125a0/laboratorio df792df80c8a42b6a8258c2615d14734/Screenshot_2023-11-06_alle_11.30.12.png",
+    "3 anno/web/cakePHP/cakePHP.4/general.md",
+    "3 anno/web/Tecnologie Web 10e3dd22936380118b33f49224082430/HTML 10e3dd229363802eba2af9e835494203/Link, tabelle e liste 10e3dd229363802daf24dd4eb4f3c729.md",
+    "3 anno/web/Tecnologie Web 10e3dd22936380118b33f49224082430/HTML 10e3dd229363802eba2af9e835494203/Form 10e3dd22936380099386fd041ac1f6d9.md",
+    "3 anno/web/Tecnologie Web 10e3dd22936380118b33f49224082430/HTML 10e3dd229363802eba2af9e835494203/Link, tabelle e liste 10e3dd229363802daf24dd4eb4f3c729",
+    "2 anno/OOP/opp 78bb37cfa4214c0b92f65055fc8125a0/laboratorio df792df80c8a42b6a8258c2615d14734.md",
+    "2 anno/OOP/opp 78bb37cfa4214c0b92f65055fc8125a0/laboratorio df792df80c8a42b6a8258c2615d14734",
+    "3 anno/web/cakePHP/cakePHP.4",
+    "3 anno/web/Tecnologie Web 10e3dd22936380118b33f49224082430/Web Design 1123dd22936380999826e8c68c348d20.md",
+    "3 anno/web/Tecnologie Web 10e3dd22936380118b33f49224082430/HTML 10e3dd229363802eba2af9e835494203.md",
+    "3 anno/web/Tecnologie Web 10e3dd22936380118b33f49224082430/HTML 10e3dd229363802eba2af9e835494203",
+    "3 anno/Ingegneria_sw/img/UML",
+    "3 anno/Ingegneria_sw/img/Ingegneria_SW",
+    "3 anno/Ingegneria_sw/img/Classi_di_progettazione",
+    "3 anno/Ingegneria_sw/img/Paradigma_a_Oggetti",
+    "varie/finanza/Sistemi di controllo. Analisi economiche per le decisioni aziendali. ( PDFDrive ).pdf",
+    "varie/utility/usefull_links.md",
+    "3 anno/web/Tecnologie Web 10e3dd22936380118b33f49224082430.md",
+    "3 anno/Virtualizzazione/virtualizzazione.md",
+    "3 anno/crittografia/crittografia.md",
+    "3 anno/Virtualizzazione/docker.md",
+    "3 anno/Ricerca_Operativa/ricerca_operativa.md",
+    "3 anno/Reti_di_telecomunicazioni/Secondo_anno.md"
+  ]
+}

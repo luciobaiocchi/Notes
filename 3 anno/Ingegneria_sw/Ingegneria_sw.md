@@ -421,7 +421,7 @@ Possibilità di creare metodi con stesso nome ma implementazioni differenti.
 
 Stesso nome, ma **signature diversa**. Reso possibile grazie al meccanismo di overload.
 
-![Screenshot 2024-09-24 at 16.22.34.png](img/Paradigma_a_Oggetti/Screenshot_2024-09-24_at_16.22.34.png)
+![Screenshot 2024-09-24 at 16.22.34.png](Screenshot_2024-09-24_at_16.22.34.png)
 
 Per permettere il polimorfismo è necessario l’istanziamento dinamico (a run-time). Fino a run-time non si è vincolati a una determinata implementazione.
 
@@ -482,13 +482,13 @@ Sintesi di metodi attualmente utilizzati e fornisce costrutti per le fasi di svi
 
 **ELEMENTO** → in più diagrammi ma in un solo modello, sempre con stessa nomenclatura.
 
-![Screenshot 2024-09-25 at 15.44.43.png](img/UML/Screenshot_2024-09-25_at_15.44.43.png)
+![Screenshot 2024-09-25 at 15.44.43.png](Screenshot_2024-09-25_at_15.44.43.png)
 
 ### Struttura
 
 ### Costituenti fondamentali - ENTITÀ
 
-![Screenshot 2024-09-25 at 15.47.07.png](img/UML/485efe63-b2b4-493d-83a5-ca9263c3dec1.png)
+![Screenshot 2024-09-25 at 15.47.07.png](485efe63-b2b4-493d-83a5-ca9263c3dec1.png)
 
 #### STRUTTURE
 
@@ -513,7 +513,7 @@ Sintesi di metodi attualmente utilizzati e fornisce costrutti per le fasi di svi
 
 ### Costituenti fondamentali - RELAZIONI
 
-![Screenshot 2024-09-25 at 15.47.25.png](img/UML/Screenshot_2024-09-25_at_15.47.25.png)
+![Screenshot 2024-09-25 at 15.47.25.png](Screenshot_2024-09-25_at_15.47.25.png)
 
 - **ASSOCIAZIONE** → astrazione per associazione, relationship delle ER, lega non solo le classi ma anche tipi diversi
 - **PART-OF (aggregazione, composizione)** → rombo dove sta il tutto, il composto e non il componente. La differenza sta nella forza del part of. Aggregazione debole, il tutto non possiede le parti, le parti esistono senza il tutto se distruggo team corse non muoiono gli studenti. Composizione forte, il tutto possiede le parti, se distruggo aula le pareti non esistono.
@@ -528,7 +528,7 @@ Sintesi di metodi attualmente utilizzati e fornisce costrutti per le fasi di svi
 
       Es: Collegare classi di analisi con classi di progetto. (collegato con la stessa freccia di realizzazione).
 
-![Screenshot 2024-09-25 at 16.21.36.png](img/UML/Screenshot_2024-09-25_at_16.21.36.png)
+![Screenshot 2024-09-25 at 16.21.36.png](Screenshot_2024-09-25_at_16.21.36.png)
 
 verde esercizi, giallo anche teoria
 
@@ -561,7 +561,7 @@ Sono la descrizione testuale della semantica di un elemento
 
 Rendono visibili gli aspetti particolari della specifica dell’elemento, non sono indispensabili. Negli esercizi non ci saranno mai ornamenti completi.
 
-![Screenshot 2024-09-25 at 16.22.46.png](img/UML/Screenshot_2024-09-25_at_16.22.46.png)
+![Screenshot 2024-09-25 at 16.22.46.png](Screenshot_2024-09-25_at_16.22.46.png)
 
 ### Distinzioni Comuni
 
@@ -569,13 +569,13 @@ Rendono visibili gli aspetti particolari della specifica dell’elemento, non so
 
 **Istanza** → Stessa cosa di classificatore ma sottolineata
 
-![Screenshot 2024-09-25 at 16.25.02.png](img/UML/Screenshot_2024-09-25_at_16.25.02.png)
+![Screenshot 2024-09-25 at 16.25.02.png](Screenshot_2024-09-25_at_16.25.02.png)
 
 **Interfaccia** → Separa signatura da implementazione di un oggetto  
 
 **Implementazione** → Implementa i metodi di una interfaccia specifica  
 
-![Screenshot 2024-09-25 at 16.24.56.png](img/UML/Screenshot_2024-09-25_at_16.24.56.png)
+![Screenshot 2024-09-25 at 16.24.56.png](Screenshot_2024-09-25_at_16.24.56.png)
 
 ### Estendibilità e personalizzazione
 
@@ -585,7 +585,7 @@ Uno **stereotipo** → variazione di un elemento di modellazione esistente, *ste
 
 Permette quindi di **introdurre nuovi elementi** di modellazione a partire da quelli esistenti. Dico di più rispetto al linguaggio UML.
 
-![Classe utente stereotipata attore](img/UML/Screenshot_2024-09-25_at_16.26.50.png)
+![Classe utente stereotipata attore](Screenshot_2024-09-25_at_16.26.50.png)
 
 Classe utente stereotipata attore
 
@@ -663,9 +663,9 @@ Ruoli di utilizzo del sistema da parte dei vari attori (utilizzatori).
 
 L’unico modo per collegare un attore e un caso d’uso è tramite l’associazione di comunicazione
 
-![Screenshot 2024-10-01 at 09.30.33.png](img/UML/Screenshot_2024-10-01_at_09.30.33.png)
+![Screenshot 2024-10-01 at 09.30.33.png](Screenshot_2024-10-01_at_09.30.33.png)
 
-![Screenshot 2024-10-01 at 09.36.08.png](img/UML/Screenshot_2024-10-01_at_09.36.08.png)
+![Screenshot 2024-10-01 at 09.36.08.png](Screenshot_2024-10-01_at_09.36.08.png)
 
 **TIPI DI RELAZIONI IN CASI D’USO:**
 
@@ -682,11 +682,11 @@ Dipendenza, A→B se una modifica fatta in B comporta una modifica su A
 
 Include deve essere vista come una chiamata a funzione, ogni volta che faccio prelievo bancomat, deve essere fatta una “chiamata a funzione” di verifica identità.
 
-![Screenshot 2024-10-01 at 09.50.48.png](img/UML/Screenshot_2024-10-01_at_09.50.48.png)
+![Screenshot 2024-10-01 at 09.50.48.png](Screenshot_2024-10-01_at_09.50.48.png)
 
 Errore perché Login è una precondizione ma non viene fatto ogni volta che viene fatta una iscrizione.
 
-![Screenshot 2024-10-01 at 09.53.18.png](img/UML/Screenshot_2024-10-01_at_09.53.18.png)
+![Screenshot 2024-10-01 at 09.53.18.png](Screenshot_2024-10-01_at_09.53.18.png)
 
 Versione corretta con precondizione di Login
 
@@ -711,11 +711,11 @@ Successo → termina con esito positivo
 
 Insuccesso → termina con esito negativo
 
-![Screenshot 2024-10-01 at 10.06.58.png](img/UML/Screenshot_2024-10-01_at_10.06.58.png)
+![Screenshot 2024-10-01 at 10.06.58.png](Screenshot_2024-10-01_at_10.06.58.png)
 
-![Screenshot 2024-10-01 at 11.33.20.png](img/UML/Screenshot_2024-10-01_at_11.33.20.png)
+![Screenshot 2024-10-01 at 11.33.20.png](Screenshot_2024-10-01_at_11.33.20.png)
 
-![Screenshot 2024-10-01 at 11.33.37.png](img/UML/Screenshot_2024-10-01_at_11.33.37.png)
+![Screenshot 2024-10-01 at 11.33.37.png](Screenshot_2024-10-01_at_11.33.37.png)
 
 ### DIAGRAMMI - diagramma delle classi
 
@@ -727,7 +727,7 @@ Generalmente alcuni attori rientrano nel diagramma delle classi, i tipici attori
 
 **Comportamento** → elenco delle operazioni
 
-![Screenshot 2024-10-01 at 11.37.15.png](img/UML/3a51c5dd-1fec-4df7-ac83-7d61c496df1c.png)
+![Screenshot 2024-10-01 at 11.37.15.png](3a51c5dd-1fec-4df7-ac83-7d61c496df1c.png)
 
 #### Attributi
 
@@ -738,7 +738,7 @@ Generalmente alcuni attori rientrano nel diagramma delle classi, i tipici attori
 
 #### Operazioni
 
-![Screenshot 2024-10-09 at 14.36.56.png](img/UML/Screenshot_2024-10-09_at_14.36.56.png)
+![Screenshot 2024-10-09 at 14.36.56.png](Screenshot_2024-10-09_at_14.36.56.png)
 
 ##### Parametri
 
@@ -758,7 +758,7 @@ Connessione tra classi, tipicamente bidirezionale.
 
 Le cardinalià vengono lette sulla classe di arrivo.
 
-![Persona possiede una o più case](img/UML/Screenshot_2024-10-02_at_15.21.36.png)
+![Persona possiede una o più case](Screenshot_2024-10-02_at_15.21.36.png)
 
 Persona possiede una o più case
 
@@ -766,43 +766,43 @@ Persona possiede una o più case
 
 Indicare il verso di lettura si può fare ma non è obbligatorio. Si possono anche specificare i ruoli della classe all’interno della associazione
 
-![L’opzionalità in dirigente è obbligatoria perché altrimenti si creerebbe una gerarchia infinita.](img/UML/Screenshot_2024-10-02_at_15.33.38.png)
+![L’opzionalità in dirigente è obbligatoria perché altrimenti si creerebbe una gerarchia infinita.](Screenshot_2024-10-02_at_15.33.38.png)
 
 L’opzionalità in dirigente è obbligatoria perché altrimenti si creerebbe una gerarchia infinita.
 
 ##### VINCOLI E CLASSI ASSOCIATIVE
 
-![Una persona può essere a capo del comitato se ne fa parte, e un comitato ha un solo capo. {Subset} è una property](img/UML/Screenshot_2024-10-02_at_15.38.40.png)
+![Una persona può essere a capo del comitato se ne fa parte, e un comitato ha un solo capo. {Subset} è una property](Screenshot_2024-10-02_at_15.38.40.png)
 
 Una persona può essere a capo del comitato se ne fa parte, e un comitato ha un solo capo. {Subset} è una property
 
-![Proprietà per rappresentare un vincolo, {proprietà} e vincolo or già integrato nella sintassi](img/UML/Screenshot_2024-10-02_at_15.35.32.png)
+![Proprietà per rappresentare un vincolo, {proprietà} e vincolo or già integrato nella sintassi](Screenshot_2024-10-02_at_15.35.32.png)
 
 **Proprietà per rappresentare un vincolo**, {proprietà} e vincolo or già integrato nella sintassi
 
-![Possibilità di inserire una annotazione. Dot notation, data una  persona, percorro l’associazione e trovo il suo capo. Tra graffe quindi è un vincolo. Si possono scrivere in linguaggio naturale. [Va letta al contrario → il datore della persona = persona.datore e il datore del capo della persona = persona.capo.datore]](img/UML/Screenshot_2024-10-02_at_15.41.29.png)
+![Possibilità di inserire una annotazione. Dot notation, data una  persona, percorro l’associazione e trovo il suo capo. Tra graffe quindi è un vincolo. Si possono scrivere in linguaggio naturale. [Va letta al contrario → il datore della persona = persona.datore e il datore del capo della persona = persona.capo.datore]](Screenshot_2024-10-02_at_15.41.29.png)
 
 Possibilità di inserire una **annotazione**. Dot notation, data una  persona, percorro l’associazione e trovo il suo capo. Tra graffe quindi è un vincolo. Si possono scrivere in linguaggio naturale. [Va letta al contrario → il datore della persona = persona.datore e il datore del capo della persona = persona.capo.datore]
 
 **Classe associativa**, per rappresentare attributi di associazione
 
-![Il vincolo della classe associativa rapporto uno uno tra istanze della classe associativa e istanze della associazione, quindi per ogni istanza di persona e azienda si ha una istanza di Posizione. In presenza di classi associative tutte le classi appartenenti all’istanza possono entrare una volta sola, come negli E/R.](img/UML/Screenshot_2024-10-02_at_15.46.02.png)
+![Il vincolo della classe associativa rapporto uno uno tra istanze della classe associativa e istanze della associazione, quindi per ogni istanza di persona e azienda si ha una istanza di Posizione. In presenza di classi associative tutte le classi appartenenti all’istanza possono entrare una volta sola, come negli E/R.](Screenshot_2024-10-02_at_15.46.02.png)
 
 Il **vincolo della classe associativa** rapporto uno uno tra istanze della classe associativa e istanze della associazione, quindi per ogni istanza di persona e azienda si ha una istanza di Posizione. In presenza di classi associative tutte le classi appartenenti all’istanza possono entrare una volta sola, come negli E/R.
 
-![Screenshot 2024-10-02 at 16.19.52.png](img/UML/Screenshot_2024-10-02_at_16.19.52.png)
+![Screenshot 2024-10-02 at 16.19.52.png](Screenshot_2024-10-02_at_16.19.52.png)
 
 ##### ASSOCIAZIONI QUALIFICATE
 
 Servono per ridurre le associazioni molti a molti ad associazioni uno a molti grazie all'aggiunta di un id che permette di selezionare in modo univoco un elemento.
 
-![associazioni_qualificate](img/UML/associazioni_qualificate.png)
+![associazioni_qualificate](associazioni_qualificate.png)
 
 ##### ASSOCIAZIONI N-ARIE
 
 definite tra n classi
 
-![Screenshot 2024-10-02 at 16.13.05.png](img/UML/Screenshot_2024-10-02_at_16.13.05.png)
+![Screenshot 2024-10-02 at 16.13.05.png](Screenshot_2024-10-02_at_16.13.05.png)
 
 Tutte le n-arie devono essere vere n-arie e non false, quindi non devono essere scindibili.
 
@@ -820,7 +820,7 @@ Aula 2.12, mercoledì 14→  1 corso
 
 Rappresentare il fatto che un attributo o una associazione sono derivabili da un’altra.
 
-![/attribute → significa che è derivabile da altri. {} tra graffe vincoli.](img/UML/Screenshot_2024-10-08_at_09.23.28.png)
+![/attribute → significa che è derivabile da altri. {} tra graffe vincoli.](Screenshot_2024-10-08_at_09.23.28.png)
 
 /attribute → significa che è derivabile da altri. {} tra graffe vincoli.
 
@@ -830,7 +830,7 @@ Rappresentare il fatto che un attributo o una associazione sono derivabili da un
 
 Sia il tutto e le parti esistono indipendentemente
 
-![Screenshot 2024-10-08 at 09.45.31.png](img/UML/Screenshot_2024-10-08_at_09.45.31.png)
+![Screenshot 2024-10-08 at 09.45.31.png](Screenshot_2024-10-08_at_09.45.31.png)
 
 Nell’aggregazione il legame è debole, il composto non contiene le parti e le parti esistono indipendentemente dal tutto.
 
@@ -840,15 +840,15 @@ Se io sciolgo una squadra i giocatori esistono ancora indipendentemente dalla sq
 
 Sempre un part-of. Ogni parte appartiene esattamente al tutto.
 
-![Screenshot 2024-10-08 at 09.51.32.png](img/UML/Screenshot_2024-10-08_at_09.51.32.png)
+![Screenshot 2024-10-08 at 09.51.32.png](Screenshot_2024-10-08_at_09.51.32.png)
 
 Sul rombo nero va sempre cardinalità 1.
 
-![Screenshot 2024-10-08 at 09.52.57.png](img/UML/Screenshot_2024-10-08_at_09.52.57.png)
+![Screenshot 2024-10-08 at 09.52.57.png](Screenshot_2024-10-08_at_09.52.57.png)
 
 Non mi interessa mai sapere a che poligono appartiene un punto, viene utilizzata anche una freccia monodirezionale.
 
-![Screenshot 2024-10-08 at 09.55.26.png](img/UML/Screenshot_2024-10-08_at_09.55.26.png)
+![Screenshot 2024-10-08 at 09.55.26.png](Screenshot_2024-10-08_at_09.55.26.png)
 
 **Gerarchia part of** Una finestra è costituita da…
 
@@ -862,13 +862,13 @@ La stanza viene istanziata dentro l’oggetto edificio → **comp**
 
 Tutti attributi e operazioni della superclasse venfonon ereditati dalle sotto-classi
 
-![Screenshot 2024-10-08 at 10.01.51.png](img/UML/Screenshot_2024-10-08_at_10.01.51.png)
+![Screenshot 2024-10-08 at 10.01.51.png](Screenshot_2024-10-08_at_10.01.51.png)
 
 Possibile usare notazione a tridente
 
 **Supportata ereditarietà multipla**, ma possibilità di conflitti tra operazioni.
 
-![Screenshot 2024-10-08 at 10.02.41.png](img/UML/Screenshot_2024-10-08_at_10.02.41.png)
+![Screenshot 2024-10-08 at 10.02.41.png](Screenshot_2024-10-08_at_10.02.41.png)
 
 Possono essere indicati insiemi di generalizzazione e vincoli
 (overlapping, disjoint, complete, incomplete) overlapping → sovrapposto
@@ -878,20 +878,20 @@ Se c’è assenza di vincolo sono overlapping e incomplete.
 #### Classi astratte
 
 Sono implementabili ma non istanziabili.
-![classi_astratte.png](img/UML/classi_astratte.png)
+![classi_astratte.png](classi_astratte.png)
 
 #### Powertype
 
 Tipizzazione potente, le istanze di tipoArticolo sono le classi che specializzano articolo e quindi possono essere solo quelle disponibili.
 
-![Screenshot 2024-10-08 at 10.28.06.png](img/UML/Screenshot_2024-10-08_at_10.28.06.png)
+![Screenshot 2024-10-08 at 10.28.06.png](Screenshot_2024-10-08_at_10.28.06.png)
 
 #### Dipendenza
 
 *A dipende da B quando una variazione in B può
 comportare una variazione in A*
 
-![Screenshot 2024-10-08 at 10.50.58.png](img/UML/e79c266f-3568-459b-acf8-fccb36136b8f.png)
+![Screenshot 2024-10-08 at 10.50.58.png](e79c266f-3568-459b-acf8-fccb36136b8f.png)
 
 #### Template
 
@@ -899,19 +899,19 @@ descrive una classe in cui uno o più parametri formali non sono istanziati, par
 
 Bound element → una classe che istanzia i parametri di un template.
 
-![Screenshot 2024-10-08 at 10.55.56.png](img/UML/Screenshot_2024-10-08_at_10.55.56.png)
+![Screenshot 2024-10-08 at 10.55.56.png](Screenshot_2024-10-08_at_10.55.56.png)
 
 #### Raffinamento
 
 Raffinamento tra un tipo astratto e una classe che lo realizza. Tra classe di analisi e una di progetto, tra una classe semplice e una complessa. IN GENERALE: serve per marcare la distinzione dello stesso concetto sotto due differenti punti di vista.
 
-![Screenshot 2024-10-08 at 10.58.04.png](img/UML/Screenshot_2024-10-08_at_10.58.04.png)
+![Screenshot 2024-10-08 at 10.58.04.png](Screenshot_2024-10-08_at_10.58.04.png)
 
 #### Interfacce
 
 Stereotipo definito e particolare rappresentazione grafica. Meccanismo di astrazione potente, è una classe senta struttura, dotata solo di operazioni. Non tutte le classi astratte sono interfaccie ma una interfaccia è una classe astratta.
 
-![Screenshot 2024-10-08 at 10.59.34.png](img/UML/Screenshot_2024-10-08_at_10.59.34.png)
+![Screenshot 2024-10-08 at 10.59.34.png](Screenshot_2024-10-08_at_10.59.34.png)
 
 la rappresentazione lollipop è migliore perchè è più sintetica delle altre.
 
@@ -958,17 +958,17 @@ Alcuni costrutti come le associazioni o classi associative non sono implementabi
 
 #### Associazione molti-a-uno molti-molti
 
-![Screenshot 2024-10-15 at 09.58.15.png](img/Classi_di_progettazione/Screenshot_2024-10-15_at_09.58.15.png)
+![Screenshot 2024-10-15 at 09.58.15.png](Screenshot_2024-10-15_at_09.58.15.png)
 
 Dipendenza trace. Posso sapere l’azienda di una persona, ma se voglio sapere tutti i dipendenti di una azienda devo guardare tutte le persone. quella sopra è una soluzione completa, efficiente per determinate query. Devo poter accedere a tutti gli oggetti che ho creato (contenitore).
 
-![Screenshot 2024-10-15 at 09.58.22.png](img/Classi_di_progettazione/Screenshot_2024-10-15_at_09.58.22.png)
+![Screenshot 2024-10-15 at 09.58.22.png](Screenshot_2024-10-15_at_09.58.22.png)
 
 Se il carico di lavoro è bilanciato, meglio usare questa soluzione. Può creare ridondanza che è risolta con l’incapsulamento.
 
 #### Associazioni uno-uno
 
-![Screenshot 2024-10-15 at 10.06.23.png](img/Classi_di_progettazione/Screenshot_2024-10-15_at_10.06.23.png)
+![Screenshot 2024-10-15 at 10.06.23.png](Screenshot_2024-10-15_at_10.06.23.png)
 
 rombo bianco → collegamento riferimento
 
@@ -976,7 +976,7 @@ rombo nero → collegamento per valore
 
 #### Associazioni ternarie
 
-![Screenshot 2024-10-15 at 10.08.11.png](img/Classi_di_progettazione/Screenshot_2024-10-15_at_10.08.11.png)
+![Screenshot 2024-10-15 at 10.08.11.png](Screenshot_2024-10-15_at_10.08.11.png)
 
 reificare la relazione con una classe. No legami diretti tra corso e aula o corso e orario. Reificare sempre n-aria
 
@@ -992,17 +992,17 @@ soluzione 1 ottima se so corso e voglio ottenere orario e aula, mentra la second
 
 Rimane così anche nel diagramma di progettazione.
 
-![Screenshot 2024-10-15 at 10.19.31.png](img/Classi_di_progettazione/Screenshot_2024-10-15_at_10.19.31.png)
+![Screenshot 2024-10-15 at 10.19.31.png](Screenshot_2024-10-15_at_10.19.31.png)
 
 ### DIAGRAMMI - diagramma degli oggetti
 
-![Screenshot 2024-10-15 at 11.25.16.png](img/Classi_di_progettazione/Screenshot_2024-10-15_at_11.25.16.png)
+![Screenshot 2024-10-15 at 11.25.16.png](Screenshot_2024-10-15_at_11.25.16.png)
 
 Al centro un oggetto anonimo, a destra una composizione, dove c’è una gerarchia di composizione si possono comunque inserire le istanze.
 
 Serve per mostrare esempi delle strutture dati.
 
-![Screenshot 2024-10-15 at 11.34.14.png](img/Classi_di_progettazione/Screenshot_2024-10-15_at_11.34.14.png)
+![Screenshot 2024-10-15 at 11.34.14.png](Screenshot_2024-10-15_at_11.34.14.png)
 
 Da diagramma degli oggetti a diagramma delle classi
 
@@ -1021,7 +1021,7 @@ GENERALIZZAZIONE
 
 quando un package specifico si deve conformare all’interfaccia del package generale.
 
-![Screenshot 2024-10-16 at 15.54.53.png](img/Classi_di_progettazione/Screenshot_2024-10-16_at_15.54.53.png)
+![Screenshot 2024-10-16 at 15.54.53.png](Screenshot_2024-10-16_at_15.54.53.png)
 
 Non ci sono indicazioni precise su come identificare package. Seguendo gerarchie del diagramma delle classi (gerarchie part-of e gerarchie is-e suddivise). Oppure secondo i casi d’uso. Tra 4 e 10 classi in un package, no dipendenze circolari.
 
@@ -1041,7 +1041,7 @@ Non ci sono indicazioni precise su come identificare package. Seguendo gerarchie
 - **linea di vita** → è un oggetto, istanza di classificatore. Rappresenta come un oggetto partecipa nell’interazione, ma non una particolare istanza.
 - **messaggio** →   tipo specifico di comunicazione istantanea tra due linee di vita in un’interazione, e trasporta informazione nella prospettiva che seguirà una attività
 
-![Screenshot 2024-10-16 at 16.05.57.png](img/Classi_di_progettazione/Screenshot_2024-10-16_at_16.05.57.png)
+![Screenshot 2024-10-16 at 16.05.57.png](Screenshot_2024-10-16_at_16.05.57.png)
 
 **Messaggio di chiamata** → operazione su un altro oggetto
 
@@ -1049,7 +1049,7 @@ Non ci sono indicazioni precise su come identificare package. Seguendo gerarchie
 
 **Messaggio di  distruzione** → cancellano oggetto.
 
-![Screenshot 2024-10-16 at 16.07.52.png](img/Classi_di_progettazione/Screenshot_2024-10-16_at_16.07.52.png)
+![Screenshot 2024-10-16 at 16.07.52.png](Screenshot_2024-10-16_at_16.07.52.png)
 
 ### DIAGRAMMI - diagramma di sequenza
 
@@ -1058,22 +1058,22 @@ Sono la forma più **ricca** e **flessibile** di diagramma di **interazione**
 - **due dimensioni**: verticale → tempo, orizzontale → linee di vita
 - **attivazione** → intervallo in cui linea di vita è attiva
 
-![richiesta_prestito_diagrammi_sequenza](img/UML/richiesta_prestito_diagrammi_sequenza.png)
+![richiesta_prestito_diagrammi_sequenza](richiesta_prestito_diagrammi_sequenza.png)
 
 #### Possibilità di specificare vincoli e visualizzare stati
 
-![vincoli e vizione stato](img/UML/diag_sequenza_stato_vincolo.png)
+![vincoli e vizione stato](diag_sequenza_stato_vincolo.png)
 
 #### Frammenti combinati
 
-![Screenshot 2024-10-16 at 16.29.17.png](img/Classi_di_progettazione/Screenshot_2024-10-16_at_16.29.17.png)
+![Screenshot 2024-10-16 at 16.29.17.png](Screenshot_2024-10-16_at_16.29.17.png)
 
 **iterazione con loop**
 ripeto l’operazione per ogni elemento dell’ordine, se elevato → riguardo altrimenti distibutore qualsiasi,
 
 uscito dal loop → se bisogno conferma la mando altrimenti niente
 
-![Screenshot 2024-10-16 at 16.29.42.png](img/Classi_di_progettazione/Screenshot_2024-10-16_at_16.29.42.png)
+![Screenshot 2024-10-16 at 16.29.42.png](Screenshot_2024-10-16_at_16.29.42.png)
 
 ### DIAGRAMMI -  diagramma degli stati
 
@@ -1101,7 +1101,7 @@ direction LR
     Stato2 --> [*]
 ```
 
-![Screenshot 2024-10-22 at 10.05.22.png](img/Classi_di_progettazione/Screenshot_2024-10-22_at_10.05.22.png)
+![Screenshot 2024-10-22 at 10.05.22.png](Screenshot_2024-10-22_at_10.05.22.png)
 
 Event condition action (**eca** rule), abbinate alle transizioni, quando si verifica questo evento se condizione vera fai l’azione
 
@@ -1115,11 +1115,11 @@ stessa cosa per l’uscita:
 
 - (exit/ azione)
 
-![Screenshot 2024-10-22 at 10.05.31.png](img/Classi_di_progettazione/Screenshot_2024-10-22_at_10.05.31.png)
+![Screenshot 2024-10-22 at 10.05.31.png](Screenshot_2024-10-22_at_10.05.31.png)
 
-![Screenshot 2024-10-22 at 10.23.59.png](img/Classi_di_progettazione/Screenshot_2024-10-22_at_10.23.59.png)
+![Screenshot 2024-10-22 at 10.23.59.png](Screenshot_2024-10-22_at_10.23.59.png)
 
-![pseudo stato di selezione](img/UML/pseudo-stato-selezione.png)
+![pseudo stato di selezione](pseudo-stato-selezione.png)
 permette di dirigere il flusso secondo condizioni specificate
 
 #### Tipi di eventi
@@ -1135,18 +1135,18 @@ permette di dirigere il flusso secondo condizioni specificate
 
 Uno stato che contiene altri stati annidati. Ogni stato annidato eredita tutte le transizioni dello stato che lo contiene.
 
-![Stati annidati](img/UML/stati-annidati.png)
-![Stato composito ortogonale](img/UML/stati-compositi.png)
+![Stati annidati](stati-annidati.png)
+![Stato composito ortogonale](stati-compositi.png)
 
 #### Comunicazione automi
 
-![Comunicazione automi](img/UML/comunicazione_automi.png)
+![Comunicazione automi](comunicazione_automi.png)
 
 ### DIAGRAMMI - diagramma di attività
 
 Modellano un processo come un’attività costituita da un insieme di nodi connessi da archi
 
-![esempio diagramma attività preparazione bevanda](img/UML/diagrammi_di_attività.png)
+![esempio diagramma attività preparazione bevanda](diagrammi_di_attività.png)
 
 #### Attività
 
@@ -1155,11 +1155,11 @@ Modellate come deti di nodi connessi da archi
 Categorie di nodi:
 
 - Nodi azione -> rappresentano compiti atomici nell'attività
-![Nodi azione](img/UML/nodo_azione.png)
+![Nodi azione](nodo_azione.png)
 - Nodi controllo -> controllano il flusso nell'attività
-![Nodi controllo](img/UML/Nodi_controllo.png)
+![Nodi controllo](Nodi_controllo.png)
 - Nodi oggetto -> rappresentano oggetti usati nell'attività
-![Nodi Oggetto](img/UML/Nodi_oggetto.png)
+![Nodi Oggetto](Nodi_oggetto.png)
 
 Categorie Archi:
 
@@ -1170,17 +1170,17 @@ Categorie Archi:
 
 Le attività possono essere partizionate in corsie che raggruppano insiemi di azioni correlate
 
-![Esempio corsie](img/UML/corsie.png)
+![Esempio corsie](corsie.png)
 
 ### DIAGRAMMI - diagramma dei componenti
 
 Rappresenta i componenti e le loro interdipendenze. Un **Componente** è una parte modulare del sistema che incapsula i contenuti (black box), può avere attributi e operazioni e può partecipare a associazioni e generalizzazioni.
 
-![Esempio componenti](img/UML/componenti.png)
+![Esempio componenti](componenti.png)
 
 Possono contenere oggetti e sono interconnessi tramite dipendenze, possibilmente tramite **interfacce** per indicare ch eun componente usa i servizi di un altro.
 
-![esempio componenti e collegamenti tra interfacce](img/UML/componenti_e_interfacce.png)
+![esempio componenti e collegamenti tra interfacce](componenti_e_interfacce.png)
 
 ### DIAGRAMMI - diagramma di deployment
 
@@ -1202,7 +1202,7 @@ Associazione tra nodi significa creare un canale di comunicazione tra essi. Molt
 
 Rappresenta un'entità concreta del mondo reale, esempio: file sorgenti, eseguibili, script, tabelle DB, documenti, UML.
 
-![esempio manufatto](img/UML/manufatto.png)
+![esempio manufatto](manufatto.png)
 
 ### Conclusioni UML
 
@@ -1512,7 +1512,7 @@ caratteristica:
 - molteplicità di siti
 - facilità di modifica
 
-![Conteggio funcion point](img/Ingegneria_SW/conteggio_function_point.png)
+![Conteggio funcion point](conteggio_function_point.png)
 
 ### Numero Ciclomatico
 
@@ -1732,7 +1732,7 @@ Producono programmi documenti e dati, e tutti i modelli comprendono le stesse at
 
 Approccio sistematico e sequenziale lineare
 
-![Screenshot 2024-11-12 at 09.20.34.png](img/Ingegneria_SW/Screenshot_2024-11-12_at_09.20.34.png)
+![Screenshot 2024-11-12 at 09.20.34.png](Screenshot_2024-11-12_at_09.20.34.png)
 
 Output 1 = input 2, questo modello è obsoleto, versione funzionale solo alla fine del progetto, e non sono permesse modifiche alle fasi precedenti.
 
@@ -1740,7 +1740,7 @@ Output 1 = input 2, questo modello è obsoleto, versione funzionale solo alla fi
 
 Modello iterativo che consiste nell’applicare più sequenze lineari che produce uno stadio operativo del SW
 
-![Screenshot 2024-11-12 at 09.22.57.png](img/Ingegneria_SW/Screenshot_2024-11-12_at_09.22.57.png)
+![Screenshot 2024-11-12 at 09.22.57.png](Screenshot_2024-11-12_at_09.22.57.png)
 Prima si sviluppa un prodotto base e poi in seguito sl riscontro del cliente si perfeziona il risultato.
 
 ### RAD
@@ -1753,7 +1753,7 @@ NON si usa quando:
 - il sistema è modularizzabile
 - sono richieste alte prestazioni di ottimizzazione
 
-![Screenshot 2024-11-12 at 09.25.42.png](img/Ingegneria_SW/Screenshot_2024-11-12_at_09.25.42.png)
+![Screenshot 2024-11-12 at 09.25.42.png](Screenshot_2024-11-12_at_09.25.42.png)
 
 ### Incrementale vs iterativo
 
@@ -1783,7 +1783,7 @@ Benefici:
 - Equivoci e funzionalità mancanti possono emergere
 - Un sistema funzionante è subito disponibile e si possono derivare specifiche aggiuntive
 
-![Screenshot 2024-11-12 at 09.33.24.png](img/Ingegneria_SW/Screenshot_2024-11-12_at_09.33.24.png)
+![Screenshot 2024-11-12 at 09.33.24.png](Screenshot_2024-11-12_at_09.33.24.png)
 
 ### Prototipazione evolutiva
 
@@ -1793,17 +1793,17 @@ Sistemi in cui le specifiche non possono essere sviluppate in anticipo,
 
 **Difetti:** I cambiamenti continui corrompono il sistema e il mantenimento è costoso, sono richieste grandi capacità e il tempo di vita è corto.
 
-![Screenshot 2024-11-12 at 09.35.51.png](img/Ingegneria_SW/Screenshot_2024-11-12_at_09.35.51.png)
+![Screenshot 2024-11-12 at 09.35.51.png](Screenshot_2024-11-12_at_09.35.51.png)
 
 ### Prototipazione usa e getta
 
 Non deve essere considerato un sistema finale perchè è creato per sperimentazione poi eliminato, e non è strutturato per essere mantenuto a lungo termine. e aslcune specifiche possono essere state ignorate.
 
-![Screenshot 2024-11-12 at 09.38.14.png](img/Ingegneria_SW/Screenshot_2024-11-12_at_09.38.14.png)
+![Screenshot 2024-11-12 at 09.38.14.png](Screenshot_2024-11-12_at_09.38.14.png)
 
 ### Modello a spirale
 
-![Screenshot 2024-11-12 at 09.40.40.png](img/Ingegneria_SW/Screenshot_2024-11-12_at_09.40.40.png)
+![Screenshot 2024-11-12 at 09.40.40.png](Screenshot_2024-11-12_at_09.40.40.png)
 
 Crescita incrementale del grado di definizione e implementazione del sistema.
 
@@ -1811,7 +1811,7 @@ Crescita incrementale del grado di definizione e implementazione del sistema.
 
 I modelli diventano la guida del processo di sviluppo, si creano modelli formali del sw che vengono fatti evolvere mentre il sw viene progettato e implementato.
 
-![Screenshot 2024-11-12 at 09.45.08.png](img/Ingegneria_SW/Screenshot_2024-11-12_at_09.45.08.png)
+![Screenshot 2024-11-12 at 09.45.08.png](Screenshot_2024-11-12_at_09.45.08.png)
 
 ### Modelli agili
 
@@ -1942,7 +1942,7 @@ Serve per controllare se il sistema corrisponde alle specifiche del progetto. La
 
 parto dalle operazioni più critiche
 
-![Screenshot 2024-11-12 at 10.41.52.png](img/Ingegneria_SW/Screenshot_2024-11-12_at_10.41.52.png)
+![Screenshot 2024-11-12 at 10.41.52.png](Screenshot_2024-11-12_at_10.41.52.png)
 
 - Criterio di copertura dei **programmi** (statement test) garantire che un’operazione viene eseguita almeno una volta.
 - Criterio di copertura delle **decisioni** (branch test), controllare che almeno ogni nodo del grafo di controllo deve essere toccato almeno una volta.
@@ -2027,7 +2027,7 @@ Analizzare il flusso dati di una variabile permette di verificare se ci sono ano
   - **Documenti tecnici**.
   - **Documenti di pianificazione** (es. piano della qualità, piano di gestione del progetto).
 
-![Screenshot 2024-11-13 at 15.46.19.png](img/Ingegneria_SW/Screenshot_2024-11-13_at_15.46.19.png)
+![Screenshot 2024-11-13 at 15.46.19.png](Screenshot_2024-11-13_at_15.46.19.png)
 
 ### Tipi di Manutenzione
 

@@ -48,7 +48,7 @@ informazioni utilizzabili per localizzare(indirizzo di rete).
 permetta una etichettatura permanente e non ripudiabile
 della risorsa
 
-![Screenshot 2024-09-27 at 10.27.59.png](Link,%20tabelle%20e%20liste%2010e3dd229363802daf24dd4eb4f3c729/Screenshot_2024-09-27_at_10.27.59.png)
+![Screenshot 2024-09-27 at 10.27.59.png](Screenshot_2024-09-27_at_10.27.59.png)
 
 ## Tabelle
 
@@ -60,9 +60,9 @@ Composizione delle tabelle grazie a **<table>** e sono organizzate per righe:
 
 **<th> →** table header, intestazione
 
-![Screenshot 2024-09-27 at 11.24.11.png](Link,%20tabelle%20e%20liste%2010e3dd229363802daf24dd4eb4f3c729/Screenshot_2024-09-27_at_11.24.11.png)
+![Screenshot 2024-09-27 at 11.24.11.png](Screenshot_2024-09-27_at_11.24.11.png)
 
-![Screenshot 2024-09-27 at 11.50.43.png](Link,%20tabelle%20e%20liste%2010e3dd229363802daf24dd4eb4f3c729/Screenshot_2024-09-27_at_11.50.43.png)
+![Screenshot 2024-09-27 at 11.50.43.png](Screenshot_2024-09-27_at_11.50.43.png)
 
 righe senza ripetizioni
 
@@ -78,7 +78,7 @@ Tre tipologie:
 
 Nelle liste ordinate e non ordinate ogni item è definito da **<li></li>**
 
-![Screenshot 2024-09-27 at 11.10.03.png](Link,%20tabelle%20e%20liste%2010e3dd229363802daf24dd4eb4f3c729/Screenshot_2024-09-27_at_11.10.03.png)
+![Screenshot 2024-09-27 at 11.10.03.png](Screenshot_2024-09-27_at_11.10.03.png)
 
 Per le liste di definizioni si usano due elementi che specificano termine e definizione **<dt>** e **<dd>**.
 
@@ -86,8 +86,8 @@ dt → termine
 
 dd → descrizione che possono essere multiple per un termine.
 
-![Screenshot 2024-09-27 at 11.09.55.png](Link,%20tabelle%20e%20liste%2010e3dd229363802daf24dd4eb4f3c729/Screenshot_2024-09-27_at_11.09.55.png)
+![Screenshot 2024-09-27 at 11.09.55.png](Screenshot_2024-09-27_at_11.09.55.png)
 
 ### Liste annidate
 
-![Screenshot 2024-09-27 at 11.13.44.png](Link,%20tabelle%20e%20liste%2010e3dd229363802daf24dd4eb4f3c729/Screenshot_2024-09-27_at_11.13.44.png)
+![Screenshot 2024-09-27 at 11.13.44.png](Screenshot_2024-09-27_at_11.13.44.png)

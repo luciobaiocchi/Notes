@@ -131,7 +131,7 @@ Embedded systems are computing systems designed to perform a specific function w
   - No flexibility after manufacturing.
   - High initial development cost.
 
-![difference cpu](img/difference_cpu.png)
+![difference cpu](difference_cpu.png)
 
 
 ## Embedded Systems: Interaction with the Environment via Sensors and Actuators
@@ -176,7 +176,7 @@ Signals represent physical quantities and can be classified as:
 ### Example: Arduino Uno
 - MCU: **ATMega328P** (8-bit, 16 MHz, 32 KB Flash, 2 KB SRAM, 1 KB EEPROM)
   - Based on the von Neumann architecture:
-    ![Von Neumann Machine](img/Vonn%20Neumann%20machine.png)
+    ![Von Neumann Machine](Vonn%20Neumann%20machine.png)
 - **14** digital pins, **6** PWM pins, **6** analog inputs
 - **Power Supply:** 5V, recommended input voltage 7-12V
 

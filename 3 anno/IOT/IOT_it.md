@@ -133,7 +133,7 @@ Embedded systems are computing systems designed to perform a specific function w
   - No flexibility after manufacturing.
   - High initial development cost.
 
-![difference cpu](img/difference_cpu.png)
+![difference cpu](difference_cpu.png)
 
 
 ## Embedded Systems: Interaction with the Environment via Sensors and Actuators
@@ -162,7 +162,7 @@ Embedded systems are computing systems designed to perform a specific function w
      - clock 
      - bidirectional data line
 
-![](img/i2c.png)
+![](i2c.png)
 
 1. **SPI**:
    - A faster, synchronous protocol requiring more wires, ideal for high-speed communication with peripherals.
@@ -197,7 +197,7 @@ The information associated to physical quantities are called signals:
 ### Esempio: Arduino Uno
 - MCU: **ATMega328P** (8-bit, 16 MHz, 32 KB Flash, 2 KB SRAM, 1 KB EEPROM)
   - based on von neumann machine
-    ![](img/Vonn%20Neumann%20machine.png)
+    ![](Vonn%20Neumann%20machine.png)
 - **14** pin digitali, **6** pin PWM, **6** ingressi analogici
 - **Alimentazione:** 5V, input consigliato 7-12V
 

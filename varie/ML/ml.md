@@ -10,8 +10,7 @@ Despite the hope that one day we could have machines that think and learn the wa
 >
 >The outcome of a machine learning algorithm is called machine learning model, which can be considered as a `function` $F$, which outputs certain results, when given the input. 
 >
->Rather than a predefined and fixed function, a machine learning model i
-is derived from historical data. Therefore, when fed with different data, the output of machine learning algorithm changes, i.e. the machine learning model changes.
+>Rather than a predefined and fixed function, a machine learning model is derived from historical data. Therefore, when fed with different data, the output of machine learning algorithm changes, i.e. the machine learning model changes.
 
 For example, in the scenario of image recognition, one might train a machine learning model to recognize the object in the photos. In one case, one might feed thousands of images with and without cats to a machine learning algorithm, in order to obtain a model that is capable to tell whether there is a cat in a photo. As a result, the input of the generated model would be a digital photo, and the output is a boolean value indicating the existence of a cat on the photo.
 
@@ -55,6 +54,4 @@ In a scenario where the data set is massive but the labeled sample are few, one 
 In many scenarios, it is prohibitively time-consuming and expensive to collect a large amount of labeled data, which often involves manual efforts. It takes two and a half years for a research team from Stanford to curate the famous ImageNet which contains millions of images with thousands of manually labeled categories. As a result, it is often the case that one has a large amount of data, yet few of them are accurately "labeled", e.g. videos without category or even a title.
 
 >
-
-
 

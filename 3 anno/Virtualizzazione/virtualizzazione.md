@@ -20,7 +20,7 @@ All'interno di grandi aziende è sempre più importante interagire con dati forn
 
 Diversamente da quanto abbiamo sempre visto gli applicativi sono generalmente conmposti da molti componenti diversi, su stessa rete o anche collocati in zone diverse che interagiscono tra loro scamnìbiando messaggi tramite interfacce standard. Questo approccio permette il riuso del software.
 
-![](img/microservizi_vs_monolitico.png)
+![](microservizi_vs_monolitico.png)
 
 **Vantaggi dei miscroservizi:**
 
@@ -44,9 +44,9 @@ Molto spesso un requisito è centralizzare il servizio di autenticazione, per li
 ### Directory Service
 
 Sistema centralizzato che deve gestire utenti macchine ecc. 
-![](img/directory_service.png)
+![](directory_service.png)
 
 
 Le macchine possono essere riconosciute anche al boot, e cambiando la configurazione in un server cambiano le informazioni automaticamente in tutte le macchine. Nella fase iniziale di installazione, ad ogni macchina viene dato un certificato digitale che serve per rendere sicure le comunicazioni tra macchina e server. Questo processo si chaima Join con dominio.
 
-![](img/log_centralizzato.png)
+![](log_centralizzato.png)
