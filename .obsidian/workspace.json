@@ -4,17 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "170e198fd7299b9d",
+        "id": "17b667bd3a5cf79c",
         "type": "tabs",
         "children": [
           {
-            "id": "b24e9bad2e15f1aa",
+            "id": "bceb56ff8a3bee21",
             "type": "leaf",
             "state": {
-              "type": "graph",
-              "state": {},
-              "icon": "lucide-git-fork",
-              "title": "Graph view"
+              "type": "markdown",
+              "state": {
+                "file": "tesi/Bozza tesi.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Bozza tesi"
             }
           }
         ]
@@ -164,21 +168,23 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "b24e9bad2e15f1aa",
+  "active": "bceb56ff8a3bee21",
   "lastOpenFiles": [
-    "Untitled 1.canvas",
+    "Welcome.md",
+    "tesi/Bozza tesi.md",
+    "create a link.md",
     "2025-04-22.md",
+    "tesi",
+    "Untitled",
+    "Untitled 1.canvas",
+    "Untitled.canvas",
+    "2025-03-07.md",
     "varie/ML/ml.md",
     "varie/finanza/fiscalità.md",
     "varie/finanza/Deep Work_ Rules for focused success in a distracted world ( PDFDrive ) (1).pdf",
     "varie/finanza/DCA.md",
     "varie/finanza/assets_class.md",
     "varie/finanza/appunti_vari.md",
-    "create a link.md",
-    "Welcome.md",
-    "Untitled.canvas",
-    "Untitled.md",
-    "2025-03-07.md",
     "varie/finanza/ratios.md",
     "2 anno/OOP/opp 78bb37cfa4214c0b92f65055fc8125a0.md",
     "3 anno/web/Tecnologie Web 10e3dd22936380118b33f49224082430/HTML 10e3dd229363802eba2af9e835494203/Link, tabelle e liste 10e3dd229363802daf24dd4eb4f3c729/Screenshot_2024-09-27_at_11.24.11.png",
@@ -204,8 +210,6 @@
     "3 anno/Ingegneria_sw/img/UML",
     "3 anno/Ingegneria_sw/img/Ingegneria_SW",
     "3 anno/Ingegneria_sw/img/Classi_di_progettazione",
-    "3 anno/Ingegneria_sw/img/Paradigma_a_Oggetti",
-    "varie/finanza/Sistemi di controllo. Analisi economiche per le decisioni aziendali. ( PDFDrive ).pdf",
     "varie/utility/usefull_links.md",
     "3 anno/web/Tecnologie Web 10e3dd22936380118b33f49224082430.md",
     "3 anno/Virtualizzazione/virtualizzazione.md",
