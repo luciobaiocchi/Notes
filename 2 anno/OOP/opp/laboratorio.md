@@ -1,0 +1,116 @@
+# laboratorio
+
+java -cp bin HelloWorld  (cambia il path delle classi java, come il path generale)
+
+rm -r file (rimuove ricorsivamente )
+
+git log 
+
+git log —oneline 
+
+## **GIT - basic**
+
+### COMMIT
+
+![Screenshot 2023-11-06 alle 11.28.50.png](Screenshot_2023-11-06_alle_11.28.50.png)
+
+### BRANCH
+
+**A named sequence of commits**
+
+![Screenshot 2023-11-06 alle 11.30.12.png](Screenshot_2023-11-06_alle_11.30.12.png)
+
+**If no branch has been created at the first commit, a default name is used.**
+
+### CHECKOUT
+
+The operation of **moving to another commit**
+
+- Moving to *another branch*
+- Moving *back in time*
+
+Moves the **HEAD** to the specified *target tree-ish*
+
+## GIT - configuration (add, commit, checkout)
+
+Configuration in Git happens at two level
+
+- **global**: the default options, valid system-wide
+- **repository**: the options specific to a repository. They have *precedence* over the global settings
+
+**git config**
+
+The **config** subcommand sets the configuration options
+
+when operated with the - - **global** option, configures the tool globallyotherwise, it sets the option for the *current repository* (there must be a valid repository)
+
+```jsx
+Usage: **git config [--global] category.option value**
+```
+
+### **Initializing a repository**
+
+**git init**
+
+- **Initializes a new repository *inside the current directory***
+- **Reified in the .git folder**
+- The location of the **.git** folder marks the root of the repositoryDo not nest repositories inside repositories, it is fragileNested projects are realized via (not discussed in this course)
+
+![Screenshot 2023-11-06 alle 12.06.06.png](Screenshot_2023-11-06_alle_12.06.06.png)
+
+```jsx
+# ignore the bin folder and all its contents
+bin/
+# ignore every pdf file
+*.pdf
+# rule exception (beginning with a !): pdf files named 'myImportantFile.pdf' should be tracked
+!myImportantFile.pdf
+```
+
+A sensible strategy is to use **LF** everywhere, but for Windows scripts (**bat**, **cmd**, **ps1**)Git can be configured through a **.gitattributes** file in the repository rootIt can do , 
+
+actuallyExample:
+
+```jsx
+text=auto eol=lf
+*.[cC][mM][dD] text eol=crlf
+*.[bB][aA][tT] text eol=crlf
+*.[pP][sS]1 text eol=crlf
+```
+
+Of course, it is useful to visualize the history of commits. Git provides a dedicated sub-command:
+
+### DELETING RENAMING files
+
+**git add someDeletedFile
+ is a correct command, that will stage the fact that someDeletedFile
+ does not exist anymore, and its deletion must be registered at the next commit.**
+
+**File *renaming* is *equivalent to file deletion and file creation*
+rinomination of file foo into bar**
+
+```jsx
+**git add foo bar**
+```
+
+### **git log**
+
+opens a *navigable interactive view* of the history from the **HEAD** commit (the current commit) backwards Press Q
+
+*compact* visualization: **git log --oneline**
+
+visualization of *all branches*: **git log --all**
+
+visualization of a lateral *graph*: **git log --graph**
+
+compact visualization of all branches with a graph: **git log --oneline --all --graph**
+
+![Screenshot 2023-11-06 alle 15.45.47.png](Screenshot_2023-11-06_alle_15.45.47.png)
+
+![Screenshot 2023-11-06 alle 15.56.43.png](Screenshot_2023-11-06_alle_15.56.43.png)
+
+## GIT - branches and merging
+
+errore DS_Store 
+
+[https://gist.github.com/lohenyumnam/2b127b9c3d1435dc12a33613c44e6308](https://gist.github.com/lohenyumnam/2b127b9c3d1435dc12a33613c44e6308)

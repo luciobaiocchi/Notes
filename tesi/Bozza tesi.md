@@ -40,7 +40,9 @@ Da valutare la possibilità di interagire con il dispositivo figlio della person
 
 ## definizione dell’architettura
 
+![[WhatsApp Image 2025-02-22 at 10.12.27.jpeg]]
 
+![[WhatsApp Image 2025-02-22 at 10.12.15.jpeg]]
 ## Idee per espansioni
 - aggiungere sport (per esempio per comunicare tra gruppi di sciatori)
 - aggiungere feature per caricare percorsi su un'app e incentivare la condivisione di nuovi tracciati
