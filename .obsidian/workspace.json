@@ -4,39 +4,24 @@
     "type": "split",
     "children": [
       {
-        "id": "c15f33398cc27e81",
+        "id": "2a9e210da1d1ff3f",
         "type": "tabs",
         "children": [
           {
-            "id": "cc824d15c582e5a7",
+            "id": "8ad2cdc75a48f2fc",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "varie/finanza/010_Studio mercati finanziari.md",
+                "file": "varie/finanza/021_value investing.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "010_Studio mercati finanziari"
-            }
-          },
-          {
-            "id": "031b1db494ce90c7",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "varie/finanza/040_Analisi tecnica.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "040_Analisi tecnica"
+              "title": "021_value investing"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -93,7 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 231.50271224975586
   },
   "right": {
     "id": "0922391684083671",
@@ -183,10 +168,18 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "031b1db494ce90c7",
+  "active": "8ad2cdc75a48f2fc",
   "lastOpenFiles": [
+    "varie/finanza/022_Warren Buffet.md",
+    "varie/finanza/021_value investing.md",
+    "varie/finanza/020_Analisi fondamentale.md",
     "varie/finanza/010_Studio mercati finanziari.md",
+    "varie/finanza/000_index_finanza.md",
+    "tesi/collegamenti.canvas",
+    "tesi/Bozza tesi.md",
+    "Untitled.canvas",
     "varie/finanza/040_Analisi tecnica.md",
+    "varie/finanza/030_Random walk theory.md",
     "varie/finanza/041_bid ask.md",
     "varie/finanza/042_market maker.md",
     "varie/utility/usefull_links.md",
@@ -196,10 +189,6 @@
     "varie/finanza/600_DCA.md",
     "varie/finanza/200_appunti_vari.md",
     "varie/finanza/050_assets_class.md",
-    "varie/finanza/020_Analisi fondamentale.md",
-    "varie/finanza/030_Random walk theory.md",
-    "varie/finanza/000_index_finanza.md",
-    "tesi/collegamenti.canvas",
     "3 anno/Reti_di_telecomunicazioni/README.md",
     "tesi/WhatsApp Image 2025-02-22 at 10.12.27.jpeg",
     "tesi/WhatsApp Image 2025-02-22 at 10.12.15.jpeg",
@@ -212,12 +201,9 @@
     "varie/finanza/Deep Work_ Rules for focused success in a distracted world ( PDFDrive ) (1).pdf",
     "Untitled",
     "Untitled.md",
-    "tesi/Bozza tesi.md",
     "WhatsApp Image 2025-02-22 at 10.12.15.jpeg",
     "WhatsApp Image 2025-02-22 at 10.12.27.jpeg",
     "3 anno/Reti_di_telecomunicazioni/IP e internet.md",
-    "3 anno/Reti_di_telecomunicazioni/appunti_reti.md",
-    "3 anno/Ingegneria_sw/Ingegneria_sw.md",
     "3 anno/Ingegneria_sw/Ingegneria_sw.pdf",
     "tesi",
     "Untitled 1.canvas",
