@@ -1,6 +1,8 @@
-# Crittografia 
+
 
 crittografia significa "scrittur nascosta"
+
+https://unibo.cloud.panopto.eu/Panopto/Pages/Sessions/List.aspx#folderID=%22f152579b-a330-49e8-a363-acd30095105a%22&maxResults=150&sortColumn=1&sortAscending=true
 
 ##  Introduzione
 
