@@ -832,3 +832,105 @@ Dove $r$ è il grado di $Gr(x)$, quindi il numero di **bit di ridondanza**.
 
 
 ### ARQ automatic repeated request
+
+Protocolli che servono per rendere affidabile la comunicazione in rete. Lavorano su due livelli: strato di linea (tra due nodi direttamente collegati) e strato di trasporto (tra due dispositivi finali, anche molto distanti tra loro).
+
+Ogni messaggio trasmesso viene verificato tramite codici a rilevazione di errore (es. CRC). Se si rileva un errore, oppure se un messaggio non arriva entro un certo tempo, viene chiesta la ritrasmissione automatica. In questo modo si possono affrontare problemi come:
+
+- errori nei bit trasmessi,
+
+- perdita di informazioni,
+
+- fuori sequenza dei pacchetti.
+
+#### Finestra scorrevole
+
+È una tecnica usata nei protocolli di comunicazione per gestire in modo efficiente e coordinato tre aspetti fondamentali:
+
+- Controllo dell’errore – assicurarsi che i dati arrivino correttamente.
+- Controllo di flusso – evitare di sovraccaricare il ricevitore con troppi dati troppo velocemente.
+- Controllo di sequenza – mantenere l’ordine corretto dei pacchetti ricevuti.
+
+Per fare questo, si usano insieme:
+- Codici di rivelazione d’errore (es. CRC), per capire se un pacchetto è corrotto;
+- Numerazione dei pacchetti, per tenerne traccia e ordinarli;
+- Conferme di ricezione (ACK), per far sapere al mittente che certi pacchetti sono arrivati correttamente.
+
+##### Cos’è la finestra?
+Immagina una "finestra" che si muove lungo una sequenza di pacchetti numerati.
+
+Il mittente può inviare solo i pacchetti che stanno all’interno della finestra, evitando che il mittente mandi troppi dati a un ricevitore lento.
+
+Quando riceve una conferma (ACK) per il primo pacchetto, la finestra scorre avanti e il mittente può inviare un nuovo pacchetto.
+
+Permette di inviare più pacchetti senza aspettare ogni singola conferma, trasferimento più veloce e rende possibile la ritrasmissione selettiva dei soli pacchetti persi o errati.
+
+**Esempio**
+I protocolli ARQ numerano sequenzialmente le unità informative (UI) da
+consegnare ai protocolli superiori
+
+- S conta unità inviate **“posizionamento” nel flusso**
+- R conta unità ricevute in modo corretto **confermare di ricezione**
+  
+![[./img/Screenshot 2025-06-02 at 10.15.51.png]]
+
+**Nel caso di errore o Time-out**
+Il trasmettitore invia nuovamente il pacchetto.
+
+![[./img/Screenshot 2025-06-02 at 10.20.26.png]]
+
+**ACK**
+ACK parte dal ricevitore inviando al trasmettitore il proprio valore di R.
+- Le PDU ricevute in modo corretto fanno aumentare R
+- Quando una PDU viene ricevuta in modo non corretto viene ignorata ed R non viene modificato
+
+**TIPOLOGIA ACK**
+- **Esplicita**: ogni PDU ricevuta correttamente genera una conferma
+- **Implicita** (cumulativa): una PDU di conferma con R = n conferma la ricezione fino a n-1
+- In **piggybacking**: viaggia inserita (a “cavalluccio”) in una PDU contenente dati utili
+
+##### Approfondimento
+Gli acknowledge o ACK
+- non portano dati di utente ma solo informazioni di controllo per il protocollo
+
+Servono qualora
+- Il protocollo ARQ non possa usare il piggybacking
+- Il ricevitore non abbia dati da trasmettere
+
+**Non è necessario numerare gli ACK**
+- I protocolli ARQ tipicamente confermano la ricezione delle PDU che portano dati d’utente e non confermano la ricezione degli ACK (conferma della conferma)
+- Non si ritiene necessario controllare la sequenza degli ACK
+---
+**WT** = numero massimo di trame che il trasmettitore può inviare
+senza ricevere alcuna conferma
+
+La numerazione delle trame viene effettuata modulo M
+- M = 2n dove n è il numero di bit utilizzati per la numerazione
+  - Si può procedere con la trasmissione di nuove trame solo al
+ricevimento delle conferme
+- La numerazione delle trame trasmesse scorre nel tempo (sliding window)
+
+![[./img/Screenshot 2025-06-02 at 10.53.32.png]]
+
+Per quale motivo imporre W finito e sospendere la
+trasmissione delle trame?
+
+**Garantire unicità di numerazione delle trame**
+
+Lo spazio di numerazione dipende dal numero di bit dedicati alla numerazione nell’intestazione e ha dimensioni limitate.
+
+Se si continuasse a trasmettere all’infinito non si avrebbe più
+una corrispondenza biunivoca trame-numero
+• Le trame con uguale numerazione sono indistinguibili
+
+![[./img/Screenshot 2025-06-02 at 11.04.35.png]]
+
+Due situazioni nel caso di errore:
+- **A** Il mittente invia nuovamente tutte le trame partendo da quella errata dopo un time-out
+  - È molto inefficiente se ci sono errori frequentemente
+  - bisongna attendere timeout
+- **B** Quando destinatario riceve 6 dopo 4 capisce che 5 non c'è e invia un ACK negativo dicendo che manca 5
+  
+![[./img/Screenshot 2025-06-02 at 11.08.13.png]]
+
+**La finestra deve essere strettamente minore dello spazio di numerazione, altrimenti non si riesce a capire in maniera precisa di quale messaggio si sta facendo riferimento**
