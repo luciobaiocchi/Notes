@@ -1,10 +1,10 @@
-
+# Programmazione di reti
 ---
 ## Comunicazione
 
 Condividere un'informazione, l'informazione è una risposta a una domanda.
 
-![[Screenshot 2025-05-08 at 14.28.35.png]]
+![[./img/Screenshot 2025-05-08 at 14.28.35.png]]
 
 La comunicazione ha dei limiti: 
 - temporale
@@ -34,7 +34,7 @@ Il canale è l'entità che trasporta il flusso informativo tra i vari utenti. Le
 ### Rete
 È il sistema che permette ad una grande popolazione di condividere un insieme di canali per comunicare a richiesta.
 
-![[Screenshot 2025-05-09 at 10.07.01.png]]
+![[./img/Screenshot 2025-05-09 at 10.07.01.png]]
 
 #### Componenti reti 
 **Terminali** → Fungono da interfaccia con l’utente finale,Codificano l’informazione in modo consono ad essere trasferita in rete
@@ -50,14 +50,14 @@ La rete è descrivibile attraverso un **grafo**
 #### Esempi di tipologie reti
 ##### Maglia completa  
 
-![[Screenshot 2025-05-09 at 10.16.18.png]]
+![[./img/Screenshot 2025-05-09 at 10.16.18.png]]
 ##### A stella 
-![[Screenshot 2025-05-09 at 10.15.47.png]]
+![[./img/Screenshot 2025-05-09 at 10.15.47.png]]
 
 ##### Anello 
-![[Screenshot 2025-05-09 at 10.17.13.png]]
+![[./img/Screenshot 2025-05-09 at 10.17.13.png]]
 ##### Bus
-![[Screenshot 2025-05-09 at 10.17.34.png]]
+![[./img/Screenshot 2025-05-09 at 10.17.34.png]]
 
 Le reti si suddividono anche in :
 - **Reti di accesso** 
@@ -67,13 +67,13 @@ Le reti si suddividono anche in :
 Nel mondo reale i segnali sono analogici, anche se per trasmetterli tramite un canale talvolta è necessario ridurli in formato digitale.
 
 #### Esempio sinusoide
-![[Screenshot 2025-05-09 at 12.05.39.png|{width=50%}]]
+![[./img/Screenshot 2025-05-09 at 12.05.39.png|{width=50%}]]
 Le tre grandezze fondamentali sono sufficienti per descrivere questo segnale, e focalizzandosi solo su queste tre è facile semplificare il segnale, anche in caso di segnali complessi.
 
 #### Larghezza di banda
 La larghezza di banda è definita come la differenza tra frequenza massima e frequenza minima di un segnale: $B = f_M-f_m$ in generale identifica la complessità, maggiore lo spettro maggiore complessità segnale.
 
-![[Screenshot 2025-05-09 at 12.10.15.png]]
+![[./img/Screenshot 2025-05-09 at 12.10.15.png]]
 
 Nasce però un problema nel caso in cui la larghezza di banda del canale è minore del segnale, e in questo caso bisogna determinare se la perdita di segnale è accettabile o meno, ovviamente facendo scelte ponderate in base al contesto di utilizzo (nella linea telefonica non è importante che si senta tutto il suono, ma solo che arrivi il messaggio e che sia comprensibile).
 
@@ -82,34 +82,34 @@ Nasce però un problema nel caso in cui la larghezza di banda del canale è mino
 Ci sono vari modi:
 
 
-![[Screenshot 2025-05-09 at 15.51.48.png]]
+![[./img/Screenshot 2025-05-09 at 15.51.48.png]]
 ##### CDM code division multiplexing
 Vengono divise in base ad operazioni difficili fatte su bit
 
 La costante per ognuna di queste caratteristiche è il costo computazionale che serve per determinare di quale canale è l'informazione inviata. 
 Con lo sviluppo sempre maggiore delle CPU e dei computer in generale è diventato sempre più conveniente utilizzare TDM o CDM. In questo corso vedremo particolarmente TDM.
 
-![[Screenshot 2025-05-09 at 15.51.26.png ]]
+![[./img/Screenshot 2025-05-09 at 15.51.26.png ]]
 ##### FDM Multiplazione a divisione di frequenza  (freuquency division multiplexing)
 In cui tanti segnali coesistono contemporaneamente nello stesso mezzo trasmissivo ma su frequenze diverse, in mood tale da fare si che si possano scomporre all'arrivo.
 
 ##### TDM time division multiplexing
 Per un certo tempo una informazione di un flusso e per un altro tempo un altro flusso. Possibile grazie alle nuove tecnologie, usando anche buffer e altre tecnologie
 
-![[Screenshot 2025-05-09 at 15.56.53.png]]
+![[./img/Screenshot 2025-05-09 at 15.56.53.png]]
 
 ###### TDM slotted
 - l'asse dei tempi è suddiviso in intervalli di durata prefissata (slot)
 - le unità informative hanno tutte la stessa lunghezza commisurata al singolo slot
-![[Screenshot 2025-05-09 at 15.58.32.png]]
+![[./img/Screenshot 2025-05-09 at 15.58.32.png]]
 
 **Framed**
-![[Screenshot 2025-05-09 at 16.34.11.png]]
+![[./img/Screenshot 2025-05-09 at 16.34.11.png]]
 gli slot vengono strutturati in trame (frame)
 Si sincronizza la trama
 	・ non è necessaria la sincronizzazione a livello del singolo slot)
 **Unframed**
-![[Screenshot 2025-05-09 at 16.34.38.png]]
+![[./img/Screenshot 2025-05-09 at 16.34.38.png]]
 In uno schema di multiplazione TDM slotted unframed
 - gli slot si susseguono senza una struttura predefinita
 - occorre un sistema di sincronizzazione di slot
@@ -117,16 +117,16 @@ In uno schema di multiplazione TDM slotted unframed
 - l’asse dei tempi non è suddiviso a priori
 - si possono adottare unità informative di lunghezza variabile
 - è necessario un sistema esplicito di delimitazione delle unità informative
-![[Screenshot 2025-05-09 at 15.59.39.png]]
+![[./img/Screenshot 2025-05-09 at 15.59.39.png]]
 
 ##### Assegnazione della banda
 ###### Statica 
-![[Screenshot 2025-05-09 at 16.37.40.png]]
+![[./img/Screenshot 2025-05-09 at 16.37.40.png]]
 Flusso informativo = banda dedicata (bit/sec)
 - La banda non può cambiare a comunicazione in corso
 - La richiesta complessiva di banda è ben controllabile se si controlla il numero di flussi attivi
 ###### Dinamica
-![[Screenshot 2025-05-09 at 16.37.20.png]]
+![[./img/Screenshot 2025-05-09 at 16.37.20.png]]
 Molti flussi informativi condividono liberamente la banda in base alle necessità
 - La banda può cambiare a comunicazione in corso
 - La richiesta complessiva di banda può diventare intollerabile (congestione)
@@ -142,7 +142,7 @@ Un canale telefonico Banda 300 Hz - 4 KHz a campionamento, ogni 125 us (8000 cam
 La rete ha l'obbiettivo di consentire la comunicazione, tra un insieme di terminali e con un livello accettabile di QoS. La rete moderna è un **Ipercubo**, e lutilizzo che ne fa l'utente finale è solo una faccia rispetto al totale del solido. Ci sono altre informazioni che servono alla rete stessa dato è un **sistema distribuito**.
 Tra i vari compiti che devono essere svolti sono garantire il corretto comportamento della rete,  gestire riconfigurazioni e malfunzionamenti, gestire gli aspetti economici legati alla rete (tariffazione ecc.).
 
-![[Screenshot 2025-05-09 at 17.05.15.png]]
+![[./img/Screenshot 2025-05-09 at 17.05.15.png]]
 
 #### funzioni di rete
 Funzioni di rete
@@ -198,7 +198,7 @@ Definizione dei servizi:
 Specifiche di protocolli ed interfacce:
 ・descrizione di come viene fornito un servizio da uno strato.
 
-![[Screenshot 2025-05-14 at 11.17.11.png]]
+![[./img/Screenshot 2025-05-14 at 11.17.11.png]]
 
 **1, 2, 3**  sono detti lower o network oriented layers
 **5, 6, 7**  sono detti upper o application oriented layers
@@ -253,7 +253,7 @@ Vengono poi definiti 3 elementi:
 **Protocollo** regole di dialogo fra entità dello stesso livello
 **Interfaccia** regole di dialogo fra entità di livelli adiacenti
 
-![[Screenshot 2025-05-14 at 11.22.11.png]]
+![[./img/Screenshot 2025-05-14 at 11.22.11.png]]
 
 ### Terminologia
 - **N-Protocol Data Unit (PDU)**: dati trasferiti fra entità di strato N
@@ -268,7 +268,7 @@ Vengono poi definiti 3 elementi:
 **Confermato** → Prevede esplicita conferma da parte del destinatario
 **Non confermato** → Non prevede alcuna conferma
 **Parzialmente confermato** → La richiesta viene confermata dal service-provider
-![[Screenshot 2025-05-25 at 11.32.38.png]]
+![[./img/Screenshot 2025-05-25 at 11.32.38.png]]
 #### Segmentazione e riassemblamento
 Vengono effettuati per permettere il passaggio del messaggio se necessaria una conformazione.
 
@@ -282,7 +282,7 @@ splitting → splittare le connessioni in 2 livelli
 - Non è permesso connettere più (N)-user allo stesso (N)-SAP
 	-  Si genererebbe ambiguità sulla provenienza/destinazione dei dati
 	- Ad ogni indirizzo deve essere univocamente associato un nome
-![[Screenshot 2025-05-14 at 11.31.15.png]]
+![[./img/Screenshot 2025-05-14 at 11.31.15.png]]
 
 
 ## Internet 
@@ -321,7 +321,6 @@ Mantiene i database dei numeri che hanno significati convenzionali nei protocoll
 
 
 ### Indirizzamento
-
 come fa il chiamante a specificare il chiamato? → diversi modi di indirizzare:
 
 - esseri umani → nomi simbolici
@@ -426,7 +425,7 @@ Esistono vari metodi per soddisfare una richiesta a un dns:
 **Iterativa**: iterativamente ti ritornano il successivo a cui chiedere fino a che non si arriva a trovare quello specifico
 Nella realtà si usa un mix di entrambi i metodi.
 
-![[pdr/img/Screenshot 2025-05-28 at 09.59.45.png]]
+![[./img/Screenshot 2025-05-28 at 09.59.45.png]]
 PDU del dns, contiene un ID specifico che serve per matchare request e response
 #### Flags di DNS
 QR -> 0 query, 1 response
@@ -446,9 +445,9 @@ il protocollo ha 2 tipi di PDU:
     - authoritative records
     - additional records
 #### Formato domanda
-![[pdr/img/Screenshot 2025-05-28 at 10.37.34.png]]
+![[./img/Screenshot 2025-05-28 at 10.37.34.png]]
 #### Formato risposta
-![[pdr/img/Screenshot 2025-05-28 at 10.38.12.png]]
+![[./img/Screenshot 2025-05-28 at 10.38.12.png]]
 ### PDU
 Protocol data unit 
 la PDU è l'unità di dati che viene scambiata tra due entità di pari livello in un modello di comunicazione, wrappa sdu
@@ -470,7 +469,7 @@ Sono protocolli usati da applicazioni per scambiare informazioni e devono defini
 
 ### architettura generale protocolli applicativi
  
-![[pdr/img/Screenshot 2025-05-29 at 10.43.44.png]]
+![[./img/Screenshot 2025-05-29 at 10.43.44.png]]
 ### HTTP
 HTTP è il protocollo usato dal World Wide Web, ha reso popolare Internet al di fuori degli ambienti accademici. Le sue versioni principali sono:
 - **HTTP/1.0** (1996, obsoleto)
@@ -488,9 +487,9 @@ I **server HTTP** includono Apache, Nginx, IIS, Caddy, ecc.
 	- **Corpo**, contiene i dati (es. HTML, immagini, ecc.).
 
 **Esempio richiesta:**
-![[pdr/img/Screenshot 2025-05-29 at 11.34.44.png]]
+![[./img/Screenshot 2025-05-29 at 11.34.44.png]]
 **Esempio risposta:**
-![[pdr/img/Screenshot 2025-05-29 at 11.37.05.png]]
+![[./img/Screenshot 2025-05-29 at 11.37.05.png]]
 La consultazione del web avviene tramite richieste di oggetti identificati da **URL** (Uniform Resource Locator).
 ### FTP file transport protocol
 Uno dei più vecchi protocolli di internet, e standard per condivisione di file prima di http.
@@ -508,7 +507,7 @@ Apertura connessione **Command**:
 Apertura connessione **Data**:
 - **Attiva**: Server apre connessione
 - **Passiva**: Client apre connessione, su porta comunicata da server
-![[pdr/img/Screenshot 2025-05-29 at 14.14.25.png]]
+![[./img/Screenshot 2025-05-29 at 14.14.25.png]]
 Active ha il problema che se c'è un nat il server non riesce a ricomunicare al client.
 
 ### Posta elettronica: 
@@ -540,7 +539,7 @@ Mantiene tutti i messaggi  solo nel server
 
 ### HTTPS
 Riassunto di tutti i problemi che possono accadere per colpa di terzi ad un flusso informativo:
-![[pdr/img/Screenshot 2025-05-29 at 14.37.08.png]]
+![[./img/Screenshot 2025-05-29 at 14.37.08.png]]
 Perciò per **difendere l'informazione** bisogna garantire:
 - Integrità (integrity): impedire la modifica non autorizzata (accidentale o deliberata) delle informazioni
 - Riservatezza (privacy): impedire lʼaccesso alle informazioni da parte di utenti non autorizzati
@@ -565,7 +564,7 @@ principio di sicurezza minimo:
 - proteggersi dagli attacchi passivi
 - accorgersi degli attacchi attivi
 #### Crittografia 
-![[pdr/img/Screenshot 2025-05-29 at 14.53.43.png]]
+![[./img/Screenshot 2025-05-29 at 14.53.43.png]]
 
 #### Algoritmi di cifratura 
 Lʼalgoritmo di cifratura è la funzione matematica usata per cifrare e decifrare il messaggio
@@ -586,13 +585,12 @@ oltre a definire lʼalgoritmo, si usa una chiave per cifrare/decifrare in questo
 Viene usata la stessa chiave sia per criptare che per decifrare. Più efficiente ma meno sicuro
 
 $$D( E(P,K) , K ) = P$$
-$$E( D(C,K) , K ) = C
-$$
+$$E( D(C,K) , K ) = C$$
 
 #### Cifratura asimmetrica
 Viene usata $K_1$ per criptare e $K_2$ per decifrare. Una delle due è **pubblica** e l'altra **privata**.
 
-![[pdr/img/Screenshot 2025-05-30 at 09.39.22.png]]
+![[./img/Screenshot 2025-05-30 at 09.39.22.png]]
 
 #### Firma digitale
 Per garantire la cifratura di M da parte di utente A devo fare:
@@ -610,7 +608,7 @@ Interfaccia che le applicazioni usano per interagire con i protocolli dello stra
 
 tramite queste api sono disponibili diverse funzioni:
 ##### Esempio di stream socket : comunicazione affidabile
-![[pdr/img/Screenshot 2025-05-29 at 10.51.59.png]]
+![[./img/Screenshot 2025-05-29 at 10.51.59.png]]
 **server**:
 - socket: crea una nuova entità T-SAP (simile all’apertura di un file)
 - bind: associa l’indirizzo (< indirizzo host : T-SAP >) alla socket creata
@@ -624,7 +622,7 @@ tramite queste api sono disponibili diverse funzioni:
 - send/receive: trasmette/riceve dati sulla connessione
 - close: chiude la connessione e rilascia l’indirizzo della socket
 ##### Esempio di datagram socket: comunicazione non affidabile
-![[pdr/img/Screenshot 2025-05-29 at 11.05.55.png]]
+![[./img/Screenshot 2025-05-29 at 11.05.55.png]]
 
 **Server**
 - socket: crea una nuova entità T-SAP (simile all’apertura di un file)
@@ -637,9 +635,9 @@ tramite queste api sono disponibili diverse funzioni:
 - sendto/recvfrom: trasmette/riceve dati a/da una socket remota specificata
 - close: chiude la comunicazione e rilascia l’indirizzo della socket
 #### Server iterativo 
-![[pdr/img/Screenshot 2025-05-29 at 11.21.33.png]]
+![[./img/Screenshot 2025-05-29 at 11.21.33.png]]
 #### Server concorrente
-![[pdr/img/Screenshot 2025-05-29 at 11.21.57.png]]
+![[./img/Screenshot 2025-05-29 at 11.21.57.png]]
 
 ## VoIP voice over ip
 protocollo che serve per effettuare chiamate telefoniche tramite Internet. Maggiore è il bitrate e migliore è la qualità del segnale.
@@ -656,10 +654,10 @@ PSTN → public switched telephone network
 PBX → private branch exchange
 telephone line → collegamento alla rete di un terminale telefonico
 trunk → collegamento che trasporta numerose linee telefoniche in parallelo.
-![[2 anno/PDR/img/Untitled.png]]
+![[./img/Untitled.png]]
 #### SIP session initiation protocol
 SIP gestisce la "gestione" della chiamata: avvia, mantiene e termina la sessione di comunicazione.
-![[pdr/img/Screenshot 2025-05-30 at 11.25.52.png]]![[pdr/img/Screenshot 2025-05-30 at 11.27.54.png]]
+![[./img/Screenshot 2025-05-30 at 11.25.52.png]]![[./img/Screenshot 2025-05-30 at 11.27.54.png]]
 
 Gli URI SIP
 - Definiscono nominalmente un utente (Naming):
@@ -691,13 +689,14 @@ la prima cifra definisce la classe di risposta XX sono cifre numeriche proprie d
 - 5xx → server error
 - 6xx → global failure
 #### Scenari applicativi del sip
-![[pdr/img/Screenshot 2025-05-30 at 11.41.51.png]]![[pdr/img/Screenshot 2025-05-30 at 11.42.01.png]]
-![[Screenshot 2025-05-30 at 11.45.09.png]]
+![[./img/Screenshot 2025-05-30 at 11.41.51.png]]
+![[./img/Screenshot 2025-05-30 at 11.42.01.png]]
+![[./img/Screenshot 2025-05-30 at 11.45.09.png]]
 Location server: usato per accedere al db e chiedere lista di indirizzi da parte di SIP server
-![[Screenshot 2025-05-30 at 11.48.55.png]]
+![[./img/Screenshot 2025-05-30 at 11.48.55.png]]
 
 Si crea quindi una situazione multidominio in cui diversi provider devono dialogare poer collegare vari utenti finali
-![[pdr/img/Screenshot 2025-05-30 at 11.54.40.png]]
+![[./img/Screenshot 2025-05-30 at 11.54.40.png]]
 
 ## Controllo di canale 
 Il canale non è ideale e introduce errori di propagazione, specialmente di carattere semantico.
@@ -830,3 +829,6 @@ Un **burst** di lunghezza $k$ viene rappresentato con un polinomio di grado $k -
 |`k - 1 > r`|Errore rilevato con **probabilità 1 - 1/2^r** (cioè può sfuggire)|
 
 Dove $r$ è il grado di $Gr(x)$, quindi il numero di **bit di ridondanza**.
+
+
+### ARQ automatic repeated request
