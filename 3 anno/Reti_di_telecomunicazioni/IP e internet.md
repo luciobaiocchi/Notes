@@ -857,13 +857,13 @@ Funzionamento
 
 GRE è semplice e flessibile, ma non offre crittografia o meccanismi di sicurezza avanzati. Per proteggere i dati, può essere combinato con protocolli come IPsec.
 
-![gre](gre.png)
+![[./img/gre.png]]
 
 ### VXLAN
 
 **VXLAN (Virtual eXtensible LAN)**: VXLAN, ampiamente usato nel cloud computing, consente l'incapsulamento di traffico Layer 2 in pacchetti UDP, garantendo un isolamento scalabile con identificatori unici per ciascun segmento. Creado un tunnel VXLAN ottengo la fusione di 2 LAN distinte dato che grazie al tunnel esse **risponderanno alla stessa ARP request**. Il tunnel VXLAN funziona incapsulando i frame Ethernet in pacchetti UDP, che vengono poi trasmessi attraverso una rete IP. Ogni segmento VXLAN è identificato da un **VXLAN Network Identifier (VNI)**, che consente di isolare il traffico tra diversi segmenti. I dispositivi che terminano i tunnel VXLAN, noti come **VXLAN Tunnel Endpoints (VTEP)**, aggiungono e rimuovono l'incapsulamento VXLAN. Quando un frame Ethernet entra in un VTEP, viene incapsulato in un pacchetto UDP con un header VXLAN e inviato attraverso la rete IP. Il VTEP di destinazione rimuove l'incapsulamento e inoltra il frame Ethernet alla rete locale.
 
-![vxlan](vxlan.png)
+![[./img/vxlan.png]]
 
 Nonostante i vantaggi, l'uso di VXLAN può introdurre alcuni problemi di prestazione:
 
@@ -947,7 +947,7 @@ informativo criptato) incapsulati in pacchetti tradizionali - diverse tecnologie
 - Diversi protocolli di tunnelling
   - livello 2: PPTP, L2TP ・livello 3: IPsec
 
-  ![pn-vs-vpn.png](pn-vs-vpn.png)
+  ![[./img/pn-vs-vpn.png]]
 
 #### Road warrior
 
@@ -964,7 +964,7 @@ Vantaggi:
 
 TOPOLOGIA : a stella
 
-![roadwarrior](roadwarrior.png)
+![[./img/roadwarrior]]
 
 #### VPN rete a rete
 
@@ -980,8 +980,7 @@ mascherato
 
 Viene utilizzato
 
-![net to net](net-to-net.png)
-
+![[./img/net to net]]
 ##### IPsec
 
 IPsec (Internet Protocol Security) è un insieme di protocolli utilizzati per garantire la sicurezza delle comunicazioni su reti IP. Fornisce cifratura, autenticazione e integrità dei dati, rendendolo ideale per proteggere le connessioni VPN.

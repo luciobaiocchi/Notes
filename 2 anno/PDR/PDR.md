@@ -1,3 +1,122 @@
+- [Programmazione di reti](#programmazione-di-reti)
+  - [Comunicazione](#comunicazione)
+    - [Telecomunicazione](#telecomunicazione)
+    - [Canale](#canale)
+    - [Rete](#rete)
+      - [Componenti reti](#componenti-reti)
+      - [Topologia di rete](#topologia-di-rete)
+      - [Esempi di tipologie reti](#esempi-di-tipologie-reti)
+        - [Maglia completa](#maglia-completa)
+        - [A stella](#a-stella)
+        - [Anello](#anello)
+        - [Bus](#bus)
+    - [Informazioni segnali e digitalizzazione](#informazioni-segnali-e-digitalizzazione)
+      - [Esempio sinusoide](#esempio-sinusoide)
+      - [Larghezza di banda](#larghezza-di-banda)
+      - [Come fare passare più canali nello stesso mezzo trasmissivo?](#come-fare-passare-più-canali-nello-stesso-mezzo-trasmissivo)
+        - [CDM code division multiplexing](#cdm-code-division-multiplexing)
+        - [FDM Multiplazione a divisione di frequenza  (freuquency division multiplexing)](#fdm-multiplazione-a-divisione-di-frequenza--freuquency-division-multiplexing)
+        - [TDM time division multiplexing](#tdm-time-division-multiplexing)
+          - [TDM slotted](#tdm-slotted)
+          - [TDM unslotted](#tdm-unslotted)
+        - [Assegnazione della banda](#assegnazione-della-banda)
+          - [Statica](#statica)
+          - [Dinamica](#dinamica)
+        - [PCM pulse code modulation](#pcm-pulse-code-modulation)
+    - [funzioni di rete e commutazione](#funzioni-di-rete-e-commutazione)
+      - [funzioni di rete](#funzioni-di-rete)
+        - [Tecniche di commutazione](#tecniche-di-commutazione)
+        - [Fasi della comunicazione a Commutazione di circuito](#fasi-della-comunicazione-a-commutazione-di-circuito)
+  - [Reti a pacchetto](#reti-a-pacchetto)
+      - [ISO-OSI (open system interconnection)](#iso-osi-open-system-interconnection)
+    - [Terminologia](#terminologia)
+      - [Modalità di servizio](#modalità-di-servizio)
+      - [Modalità di dialogo](#modalità-di-dialogo)
+      - [Segmentazione e riassemblamento](#segmentazione-e-riassemblamento)
+      - [Multiplazione e splitting](#multiplazione-e-splitting)
+        - [Uso dei SAP](#uso-dei-sap)
+  - [Internet](#internet)
+      - [Arpanet](#arpanet)
+      - [Timeline](#timeline)
+      - [Enti di gestione di internet](#enti-di-gestione-di-internet)
+      - [RFC](#rfc)
+      - [InterNIC (Network Information Center)](#internic-network-information-center)
+      - [IANA Internet Assigned Number Authority](#iana-internet-assigned-number-authority)
+    - [Indirizzamento](#indirizzamento)
+    - [Indirizzo globale e locale](#indirizzo-globale-e-locale)
+  - [URL](#url)
+    - [COOKIES](#cookies)
+    - [Rete Locale](#rete-locale)
+    - [MAC address](#mac-address)
+    - [Indirizzo IP](#indirizzo-ip)
+    - [Numero di porta](#numero-di-porta)
+  - [Implementazione dei servizi e modelli di interazione](#implementazione-dei-servizi-e-modelli-di-interazione)
+    - [Nomenclatura](#nomenclatura)
+    - [Vari modelli](#vari-modelli)
+      - [Uno a molti](#uno-a-molti)
+      - [Peer to peer](#peer-to-peer)
+  - [Ricerca destinazione](#ricerca-destinazione)
+  - [Domain Name System](#domain-name-system)
+      - [Flags di DNS](#flags-di-dns)
+      - [PDU DNS](#pdu-dns)
+      - [Formato domanda](#formato-domanda)
+      - [Formato risposta](#formato-risposta)
+    - [PDU](#pdu)
+    - [SDU](#sdu)
+    - [PCI](#pci)
+- [Protocolli applicativi](#protocolli-applicativi)
+    - [architettura generale protocolli applicativi](#architettura-generale-protocolli-applicativi)
+    - [HTTP](#http)
+      - [Formato messaggi](#formato-messaggi)
+    - [FTP file transport protocol](#ftp-file-transport-protocol)
+      - [Funzionamento](#funzionamento)
+    - [Posta elettronica:](#posta-elettronica)
+      - [SMTP simple mail transform protocol](#smtp-simple-mail-transform-protocol)
+        - [3 fasi:](#3-fasi)
+      - [POP3 Post Office Protocol](#pop3-post-office-protocol)
+      - [IMAP](#imap)
+    - [HTTPS](#https)
+      - [Fattori di identificazione:](#fattori-di-identificazione)
+      - [Tipologie attacchi](#tipologie-attacchi)
+      - [Strategie di sicurezza](#strategie-di-sicurezza)
+      - [Crittografia](#crittografia)
+      - [Algoritmi di cifratura](#algoritmi-di-cifratura)
+      - [Cifratura simmetrica](#cifratura-simmetrica)
+      - [Cifratura asimmetrica](#cifratura-asimmetrica)
+      - [Firma digitale](#firma-digitale)
+    - [SSH](#ssh)
+    - [Socket](#socket)
+        - [Esempio di stream socket : comunicazione affidabile](#esempio-di-stream-socket--comunicazione-affidabile)
+        - [Esempio di datagram socket: comunicazione non affidabile](#esempio-di-datagram-socket-comunicazione-non-affidabile)
+      - [Server iterativo](#server-iterativo)
+      - [Server concorrente](#server-concorrente)
+  - [VoIP voice over ip](#voip-voice-over-ip)
+      - [SIP session initiation protocol](#sip-session-initiation-protocol)
+      - [Richieste](#richieste)
+      - [Risposta](#risposta)
+      - [Scenari applicativi del sip](#scenari-applicativi-del-sip)
+  - [Controllo di canale](#controllo-di-canale)
+    - [Controllo errore](#controllo-errore)
+      - [Codice a blocco sistematico](#codice-a-blocco-sistematico)
+      - [Bit di parità](#bit-di-parità)
+      - [Internet checksum](#internet-checksum)
+      - [Codici polinomiali](#codici-polinomiali)
+        - [INVIO](#invio)
+        - [RICEZIONE](#ricezione)
+      - [Rivelazione dell’errore](#rivelazione-dellerrore)
+        - [Capacità del codice e scelta di Gr(x)](#capacità-del-codice-e-scelta-di-grx)
+          - [Errore singolo](#errore-singolo)
+          - [Numero dispari di errori](#numero-dispari-di-errori)
+          - [Due errori](#due-errori)
+      - [Errori a burst (a raffica)](#errori-a-burst-a-raffica)
+        - [Possibili scenari:](#possibili-scenari)
+    - [ARQ automatic repeated request](#arq-automatic-repeated-request)
+      - [Finestra scorrevole](#finestra-scorrevole)
+        - [Cos’è la finestra?](#cosè-la-finestra)
+        - [Approfondimento](#approfondimento)
+        - [Selective repeat ARQ](#selective-repeat-arq)
+        - [Dimensione Time out](#dimensione-time-out)
+  - [Prestazioni delle reti e protocolli](#prestazioni-delle-reti-e-protocolli)
 # Programmazione di reti
 ---
 ## Comunicazione
@@ -512,7 +631,7 @@ Active ha il problema che se c'è un nat il server non riesce a ricomunicare al 
 
 ### Posta elettronica: 
 #### SMTP simple mail transform protocol
-Sa client a server e tra server a server, e usa TCP per trasferire in maniera sicura i messaggi su porta 25.
+Da client a server e tra server a server, e usa TCP per trasferire in maniera sicura i messaggi su porta 25.
 Solitamente **trasferimento diretto**, il server contatta direttamente il server ricevente.
 ##### 3 fasi:
 - handshaking
@@ -929,8 +1048,98 @@ Due situazioni nel caso di errore:
 - **A** Il mittente invia nuovamente tutte le trame partendo da quella errata dopo un time-out
   - È molto inefficiente se ci sono errori frequentemente
   - bisongna attendere timeout
-- **B** Quando destinatario riceve 6 dopo 4 capisce che 5 non c'è e invia un ACK negativo dicendo che manca 5
+- **B** Quando destinatario riceve 6 dopo 4 capisce che 5 non c'è e invia un ACK negativo dicendo che manca 5 e il mittente invia nuovamente tutto 
   
 ![[./img/Screenshot 2025-06-02 at 11.08.13.png]]
 
 **La finestra deve essere strettamente minore dello spazio di numerazione, altrimenti non si riesce a capire in maniera precisa di quale messaggio si sta facendo riferimento**
+
+##### Selective repeat ARQ
+
+Diversamente dagli altri il selective, nel caso di errore, invia esclusivamente il pacchetto errato.
+
+##### Dimensione Time out
+troppo breve: invio trame prima di ricevere ACK
+troppo lungo: troppo tempo perso 
+
+Va commisurato in base al RTT (round trip time)
+tempo necessario per effettuare un’andata e ritorno sul canale. Nello strato 2 è prevedibile ed è abbastanza standard.
+
+## Prestazioni delle reti e protocolli
+
+I protocolli sono progettati per garantire:
+- Funzionalità
+- Prestazioni
+
+Un sistema deve smaltire del lavoro che gli viene
+offerto dall’esterno
+• Esempio nel caso specifico delle reti di tlc
+- Livello N+1 invia PDU al livello N tramite la relativa
+interfaccia (e un opportuno SAP)
+- Livello N impiega un certo tempo per soddisfare la richiesta
+
+**Terminologia**
+- $k(t)$ Numero di richieste accettate in attesa di essere soddisfatte
+- $a(t)$ Numero di richieste di servizio giunte al tempo t
+- $s(t)$ Numero di richieste accettate al tempo t
+- $p(t)$ Numero di partenze dal sistema al tempo t
+
+![[./img/Screenshot 2025-06-02 at 16.10.29.png]]
+
+Frequenza media delle richieste offerte
+$$\lambda=\lim_{t\to \infty}\frac{a(t)}{t}$$
+Frequenza media delle richieste smaltite
+$$\lambda_s=\lim_{t\to \infty}\frac{p(t)}{t}$$
+
+Se il sistema in oggetto non produce lavoro ma lo
+riceve solamente dall’esterno
+$$\lambda_s\le\lambda$$
+questo implica che 
+$$r(t)=a(t)-s(t)$$
+$r(t)$ = richieste non accettate e rifiutate o perdute
+$$\lambda_p=\lim_{t\to \infty}\frac{r(t)}{t}$$
+ovvero la frequenza di perdita e quindi
+$$\lambda=\lambda_s+\lambda_p$$
+
+**Problema**
+
+Oltre ad aver definito dei valori standard bisogna scegliere un'unità di misura sempre uguale:
+> Il riferimento è il tempo di servizio dell’intero pacchetto
+che solo se completato produce un risultato «utile» per
+l’utente
+
+può essere **aleatorio** o **deterministico**
+identificato da $\theta$
+
+**esempio deterministico**
+- L lunghezza del pacchetto in bit
+- C capacità del canale in bit per secondo
+
+$$\overline{\theta}=\frac{L}{C}$$
+
+l'inverso del tempo medio di servizio viene detto frequenza media di servizio 
+
+$$\mu = \frac{1}{\overline{\theta}}$$
+
+esempio:
+
+se $\overline\theta = 0.5s$ il servitore smaltisce al massimo $\mu = 2\ pacchetti/s$.
+
+![[./img/Screenshot 2025-06-03 at 17.43.41.png]]
+
+
+$\overline{\sigma}$ = tempo medio totale speso dal singolo utente nel sistema a coda che è composto da:
+- $\overline{\theta}$ = tempo di setvizio
+- $T_a$ = tempo speso in coda
+
+$$\overline{\sigma}=\overline{\theta}+T_a$$
+
+Si definisce **traffico** il numero medio di utenti presenti nel sistema
+
+$$A=\lambda\overline{\delta}$$
+
+- $A_0 = \lambda\overline{\delta}$ -> Traffico offerto
+
+- $A_s = \lambda_s\overline{\delta}$ -> Traffico smaltito
+
+- $A_p = \lambda_p\overline{\delta}$ -> Traffico perduto
