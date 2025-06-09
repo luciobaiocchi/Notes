@@ -117,13 +117,21 @@
         - [Selective repeat ARQ](#selective-repeat-arq)
         - [Dimensione Time out](#dimensione-time-out)
   - [Prestazioni delle reti e protocolli](#prestazioni-delle-reti-e-protocolli)
+    - [Prestazioni stop and wait](#prestazioni-stop-and-wait)
+    - [Protocolli a finestra scorevole](#protocolli-a-finestra-scorevole)
+    - [Analisi con errori](#analisi-con-errori)
+    - [Finestra e go back N](#finestra-e-go-back-n)
+  - [Protocolli di trasporto](#protocolli-di-trasporto)
+    - [UDP](#udp)
+    - [TCP](#tcp)
+      - [Three ways handshake](#three-ways-handshake)
 # Programmazione di reti
 ---
 ## Comunicazione
 
 Condividere un'informazione, l'informazione è una risposta a una domanda.
 
-![[.\img\Screenshot 2025-05-08 at 14.28.35.png]]
+![[..\img\Screenshot 2025-05-08 at 14.28.35.png]]
 
 La comunicazione ha dei limiti: 
 - temporale
@@ -1136,10 +1144,136 @@ $$\overline{\sigma}=\overline{\theta}+T_a$$
 
 Si definisce **traffico** il numero medio di utenti presenti nel sistema
 
-$$A=\lambda\overline{\delta}$$
+$$A=\lambda\overline{\delta}$$ il traffico ha l'unità di misura fittizzia Erlang. In realtà vale in base alla tipologia di rete e comunicazione.
 
 - $A_0 = \lambda\overline{\delta}$ -> Traffico offerto
 
-- $A_s = \lambda_s\overline{\delta}$ -> Traffico smaltito
+- $A_s = \lambda_s\overline{\delta}$ -> Traffico smaltito o **throughput**
 
 - $A_p = \lambda_p\overline{\delta}$ -> Traffico perduto
+
+$m$ è il numero di servitori:
+
+$$0\le A_s \le m$$
+
+**Richieste offerte in sistema ideale**
+![[.\img\Screenshot 2025-06-05 at 15.12.14.png]]
+**Richieste offerte in sistema reale**
+![[.\img\Screenshot 2025-06-05 at 15.13.15.png]]
+
+### Prestazioni stop and wait
+Altri valori per valutare la Capacità massima
+
+- $C$ Capacità max canale
+- $\overline{\sigma}=\frac{L}{C}=\frac{1}{\mu}$ tempo medio di servizio minimo
+- $\overline{\sigma_e}=\frac{L}{C_e}=\frac{1}{\mu}$ nel caso in cui il protocollo necessiti di maggior tempo per trasmettere la trama
+
+![[.\img\Screenshot 2025-06-05 at 15.39.49.png]]
+
+Dall'immagine sopra si evince che gran parte del tempo sprecato è il vuoto a sinistra, motivo per cui viene implementata la finestra scorrevole. Si possono inviare altri bit prima che si rieceva ACK.
+
+Di seguito vengono elencate alcune formule per ottenere efficienza:
+
+Tempo intercorso fra l’invio di due frame successivi:
+
+$$T_0=\frac{F}{C}+I+\frac{A}{C'}+I'$$
+
+Mentre il tempo necessario per trasmettere solo dati utente, senza nessun protocollo è sempre 
+$$T_d=\frac{D}{C}$$
+
+Definiamo poi l'efficienza come:
+
+![[.\img\Screenshot 2025-06-05 at 15.49.49.png]]
+
+**IMPORTANTE**
+Ovviamente bisogna minimizzare overhead. Ovviamente come immaginabile Header deve essere minimo come I (distanza fisica tra terminali che non si può controllare). Controintuitivamente se C è troppo alto si rischia di avere una perdita di efficienza.
+
+### Protocolli a finestra scorevole
+
+Come si sceglie la finestra?
+
+![[.\img\Screenshot 2025-06-05 at 15.57.52.png]]
+
+Per avere efficienza massima devo avere la finestra più lunga di $T_0$
+
+### Analisi con errori
+
+![[.\img\Screenshot 2025-06-05 at 18.08.32.png]]
+
+### Finestra e go back N
+![[.\img\Screenshot 2025-06-06 at 10.19.05.png]]
+
+## Protocolli di trasporto
+
+In Internet, lo strato di **trasporto** ha il compito di **gestire la comunicazione** tra applicazioni che girano su dispositivi diversi. È tra IP e Applicazione.
+I due protocolli principali sono:
+- **TCP** connessione affidabile.
+- **UDP** più veloce ma meno sicuro, non controlla errori.
+
+Con l’arrivo delle applicazioni multimediali (come streaming e videochiamate), si sono rese necessarie soluzioni per il trasporto real-time, portando alla definizione di nuovi protocolli come RTP e RTCP.
+
+Una funzione chiave dello strato di trasporto è la **multiplazione**, cioè la possibilità di far comunicare più applicazioni contemporaneamente, distinguendo i dati grazie ai numeri di porta. Inoltre, questo strato cerca di assicurare che la **qualità della trasmissione sia adatta** alle esigenze dell'applicazione che lo utilizza.
+
+### UDP
+
+È un protocollo **connectionless**. Ogni messaggio viaggia in modo indipendente, senza garanzie di ordine o consegna.
+
+Per **piccoli blocchi** di dati, dove non è necessario un controllo accurato della qualità del trasporto.
+Viene spesso usato in applicazioni come **DNS** o **e-mail**, dove la perdita o il ritardo di un singolo pacchetto non compromette gravemente la comunicazione.
+
+**Formato messaggio**
+![[.\img\Screenshot 2025-06-06 at 10.57.11.png]]
+
+### TCP
+
+Nel protocollo TCP, i dati dell'applicazione vengono suddivisi in unità chiamate segmenti. Ogni segmento è composto da:
+
+- **header standard** di 20 byte,
+
+- **header opzionale**  usato per opzioni avanzate,
+
+- **payload** dati veri e propri dell'applicazione.
+
+La dimensione massima dei dati che possono essere trasportati in un singolo segmento è chiamata MSS (Maximum Segment Size). L’MSS indica quindi la quantità massima di dati applicativi contenibili in un segmento, escludendo l’header.
+
+**Formato header TCP**
+
+![[.\img\Screenshot 2025-06-06 at 11.03.55.png]]
+
+- **Source\Destination port**: numero della porta sorgente\destinazione
+- **Sequence number**: numero di sequenza del primo byte del
+pacchetto; se è presente il bit SYN questo è il numero di
+sequenza iniziale su cui sincronizzarsi
+- **Acknowledge number**: se il bit ACK è a 1 allora questo
+numero contiene il numero di sequenza del blocco di dati
+che il ricevitore si aspetta di ricevere
+- **TCP Header Length (4 bit)**: numero di parole di 32 bit
+dell’intestazione TCP; indica dove iniziano i dati
+- **Reserved**: sei bit riservati per uso futuro
+- **Control bit** sono 6 bit di controllo
+  - URG posto a 1 se si deve considerare il campo
+  Urgent Pointer
+  - ACK posto a 1 se si deve considerare il campo
+  Acknowledge
+  - PSH posto a 1 serve per la funzione di push
+  - RST posto a 1 per resettare la connessione
+  - SYN posto a 1 per sincronizzare i numeri di
+  sequenza
+  - FIN posto a 1 per indicare la fine dei dati
+- **Window**: finestra del ricevitore, cioè il numero di
+byte che il ricevitore è disposto a ricevere,
+partendo dal numero di sequenza di quello
+contenuto nel campo acknowledge
+- **Checksum**: controllo dell’errore sul segmento
+- **Urgent Pointer**: contiene puntatore a dati urgenti
+eventualmente presenti nel pacchetto (es. per
+abortire programma remoto in esecuzione), ha
+senso se il bit URG è posto ad 1
+- **Options**: contiene opzioni per la connessione
+- **Padding**: bit aggiuntivi per fare in modo che
+l’intestazione sia multipla di 32 bit
+
+#### Three ways handshake
+
+Procedura usata dal protocollo TCP per stabilire una connessione affidabile tra due dispositivi (tipicamente un client e un server).
+Garantisce che entrambe le parti siano pronte a comunicare e che abbiano sincronizzato correttamente i numeri di sequenza, necessari per tenere traccia dei dati inviati e ricevuti.
