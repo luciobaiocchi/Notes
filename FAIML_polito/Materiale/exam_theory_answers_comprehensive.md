@@ -17,9 +17,9 @@
 5. **Q:** Describe what a classification problem is, and make a simple binary classification example.  
    **A:** Classification assigns discrete labels to inputs. Binary example: classify emails as spam vs. not spam.
 6. **Q:** Describe Bayes' Rule, its elements, and why it is useful. Name a classification algorithm whose formulation exploits Bayes' Rule.  
-   **A:** Bayes' Rule: \(P(y|x)=\frac{P(x|y)P(y)}{P(x)}\). It combines likelihood and prior to compute posterior class probabilities. Naïve Bayes uses it directly.
-7. **Q:** Illustrate the Naïve Bayes Classifier and its main assumption.  
-   **A:** Naïve Bayes assumes conditional independence of features given the class, so \(P(x|y)=\prod_i P(x_i|y)\). It predicts the class with maximum posterior.
+   **A:** Bayes' Rule: \(P(y|x)=\frac{P(x|y)P(y)}{P(x)}\). It combines likelihood and prior to compute posterior class probabilities. Naive Bayes uses it directly.
+7. **Q:** Illustrate the Naive Bayes Classifier and its main assumption.  
+   **A:** Naive Bayes assumes conditional independence of features given the class, so \(P(x|y)=\prod_i P(x_i|y)\). It predicts the class with maximum posterior.
 8. **Q:** Explain the Bias/Variance Decomposition Theorem seen during the course. No proof required.  
    **A:** Expected error decomposes into **bias²** (systematic error), **variance** (sensitivity to data), and **noise**. High bias underfits; high variance overfits.
 
@@ -59,7 +59,7 @@
 5. **Q:** Describe overfitting and underfitting.  
    **A:** Overfitting: low training error but high test error due to memorization. Underfitting: high errors on both due to an overly simple model.
 6. **Q:** Explain K-fold Cross Validation and when it is useful.  
-   **A:** Split data into k folds; train on k−1, validate on 1; average results. Especially useful for small datasets.
+   **A:** Split data into k folds; train on k-1, validate on 1; average results. Especially useful for small datasets.
 7. **Q:** Illustrate the Linear Regression algorithm.  
    **A:** Model \(y=w^T x+b\), minimize MSE, solve via normal equation \((X^T X)^{-1} X^T y\) or gradient descent.
 8. **Q:** Illustrate the k-Means clustering algorithm.  
@@ -216,7 +216,7 @@
 9. **Q:** Explain the ELBO and its terms.  
    **A:** \(\text{ELBO}=E_{q(z|x)}[\log p(x|z)]-KL(q(z|x)\|p(z))\). Reconstruction fits data; KL regularizes toward prior. Maximizing ELBO approximates log-likelihood.
 10. **Q:** Explain the reparameterization trick.  
-    **A:** Sample \(z=\mu+\sigma\odot\epsilon\), \(\epsilon\sim\mathcal{N}(0,1)\), to make sampling differentiable for backprop.
+    **A:** Sample \(z=\mu+\sigma\odot\epsilon\), \(\epsilon\sim\mathcal{N}(0,1)\), to make sampling differentiable for backpropagation.
 
 ### Generative Adversarial Networks (GANs)
 
