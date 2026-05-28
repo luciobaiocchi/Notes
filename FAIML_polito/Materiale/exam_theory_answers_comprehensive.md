@@ -238,7 +238,7 @@
 17. **Q:** Describe Rectified Flow formulation.  
     **A:** Sample \(t\in[0,1]\), \(x_t=(1-t)x_0+t x_1\); train velocity \(v_\theta(x_t,t)\) to match \(x_1-x_0\) with MSE. Sampling integrates the ODE from noise to data.
 18. **Q:** Explain Latent Diffusion Models (LDM).  
-    **A:** LDMs first train an autoencoder to map images into a latent space (optionally with an adversarial loss using a discriminator). The diffusion model is then trained and sampled in that latent space with the autoencoder frozen; the discriminator, if used, is only part of the autoencoder pretraining and not part of the diffusion model itself.
+    **A:** LDMs first train an autoencoder to map images into a latent space, optionally using an adversarial loss with a discriminator. The diffusion model is then trained and sampled in that latent space with the autoencoder frozen. The discriminator, if used, is only part of the autoencoder pretraining and not part of the diffusion model itself.
 19. **Q:** Describe Classifier-Free Guidance (CFG).  
     **A:** Train with conditional and unconditional data by dropping the condition. At inference, combine predictions: \(\hat{\epsilon}=(1+w)\epsilon_{\text{cond}}-w\epsilon_{\text{uncond}}\); requires two forward passes per step.
 20. **Q:** Why is the noise schedule important?  
@@ -345,7 +345,14 @@
 18. **Q:** Define advantage function and its role.  
     **A:** \(A^\pi(s,a)=Q^\pi(s,a)-V^\pi(s)\); subtracting the baseline reduces variance without changing expectation.
 19. **Q:** List main equivalent forms of the policy gradient.  
-    **A:** REINFORCE (returns), Q Actor-Critic (Q), Advantage Actor-Critic (A), TD Actor-Critic (TD error), TD(λ) (eligibility traces), Natural Actor-Critic (natural gradient). More bootstrapping typically increases bias while reducing variance.
+    **A:** Forms include:
+    - REINFORCE (returns)
+    - Q Actor-Critic (Q)
+    - Advantage Actor-Critic (A)
+    - TD Actor-Critic (TD error)
+    - TD(λ) Actor-Critic (eligibility traces)
+    - Natural Actor-Critic (natural gradient)  
+    More bootstrapping typically increases bias while reducing variance.
 20. **Q:** Practical characteristics of policy gradients.  
     **A:** On-policy by default; off-policy via importance sampling. Gradients are noisy, so small steps, entropy regularization, and careful tuning are needed.
 
