@@ -53,7 +53,7 @@
 2. **Q:** Explain True Risk and Empirical Risk. What is the goal of a learning algorithm?  
    **A:** True risk is expected loss over the data distribution; empirical risk is average loss on training data. Learning aims to minimize true risk (often via empirical risk + regularization).
 3. **Q:** Describe PAC learning and the role of ε and δ.  
-   **A:** PAC guarantees that with probability ≥ \(1-δ\), the learned hypothesis has error ≤ \(ε\). \(ε\) is accuracy, \(δ\) is confidence.
+   **A:** PAC guarantees that with probability ≥ \(1-δ\), the learned hypothesis has error ≤ \(ε\). \(ε\) is the error tolerance (approximation bound), and \(δ\) is the confidence level.
 4. **Q:** Describe VC dimension and the concept of shattering.  
    **A:** VC dimension is the largest number of points that can be labeled in all possible ways by a hypothesis class. Shattering those points indicates its capacity.
 5. **Q:** Describe overfitting and underfitting.  
@@ -192,7 +192,7 @@
 ### Self-Supervised Learning
 
 1. **Q:** What is self-supervised learning and why important?  
-   **A:** It creates supervision from the data itself (e.g., predicting masked parts). It differs from supervised (human labels) and unsupervised (no explicit prediction target) and scales well with abundant unlabeled data.
+   **A:** It creates supervision from the data itself (e.g., predicting masked parts). Unlike general unsupervised learning (often density estimation or clustering), self-supervised learning builds auxiliary supervised tasks from unlabeled data and scales well with abundant data.
 2. **Q:** What is a pretext task? Give examples.  
    **A:** A pretext task is an artificial prediction task to learn representations. Examples: rotation prediction, jigsaw/patch order, colorization, masked patch prediction—forcing invariance to transformations and learning semantic structure.
 3. **Q:** Explain contrastive learning.  
@@ -223,7 +223,7 @@
 11. **Q:** Describe GAN architecture.  
     **A:** A generator maps noise to samples; a discriminator distinguishes real vs fake. They train adversarially.
 12. **Q:** Write and explain the minimax objective.  
-    **A:** \(\min_G\max_D E_{x}[\log D(x)] + E_{z}[\log(1-D(G(z)))]\). At equilibrium, \(G\) matches the data distribution and \(D=1/2\).
+    **A:** \(\min_G\max_D E_{x}[\log D(x)] + E_{z}[\log(1-D(G(z)))]\). At equilibrium, \(G\) matches the data distribution and the optimal discriminator satisfies \(D(x)=1/2\) for all \(x\).
 13. **Q:** Describe the practical GAN training procedure.  
     **A:** Alternate discriminator and generator updates; use non-saturating generator loss (maximize \(\log D(G(z))\)) to avoid vanishing gradients.
 14. **Q:** Main pros and cons of GANs.  
@@ -238,7 +238,7 @@
 17. **Q:** Describe Rectified Flow formulation.  
     **A:** Sample \(t\in[0,1]\), \(x_t=(1-t)x_0+t x_1\); train velocity \(v_\theta(x_t,t)\) to match \(x_1-x_0\) with MSE. Sampling integrates the ODE from noise to data.
 18. **Q:** Explain Latent Diffusion Models (LDM).  
-    **A:** Diffusion occurs in a compressed latent space learned by an autoencoder, reducing computation. The encoder/decoder are trained as VAE or with perceptual/adversarial losses; a discriminator can improve sharpness.
+    **A:** Diffusion occurs in a compressed latent space learned by an autoencoder, reducing computation. The encoder/decoder are trained as a VAE or with perceptual losses; a discriminator is optional and only used for autoencoder training, not for the diffusion process itself.
 19. **Q:** Describe Classifier-Free Guidance (CFG).  
     **A:** Train with conditional and unconditional data by dropping the condition. At inference, combine predictions: \(\hat{\epsilon}=(1+w)\epsilon_{\text{cond}}-w\epsilon_{\text{uncond}}\); requires two forward passes per step.
 20. **Q:** Why is the noise schedule important?  
