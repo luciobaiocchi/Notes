@@ -52,8 +52,8 @@
    **A:** It quantifies prediction error and defines the optimization objective. The choice affects convergence, robustness, and alignment with task goals.
 2. **Q:** Explain True Risk and Empirical Risk. What is the goal of a learning algorithm?  
    **A:** True risk is expected loss over the data distribution; empirical risk is average loss on training data. Learning aims to minimize true risk (often via empirical risk + regularization).
-3. **Q:** Describe PAC learning and the role of ε and δ.  
-   **A:** PAC guarantees that with probability ≥ \(1-δ\), the learned hypothesis has error ≤ \(ε\). \(ε\) is the error tolerance (approximation bound); \(δ\) is the failure probability, so \(1-δ\) is the confidence level.
+3. **Q:** Describe PAC learning and the role of \(\epsilon\) and \(\delta\).  
+   **A:** PAC guarantees that with probability ≥ \(1-\delta\), the learned hypothesis has error ≤ \(\epsilon\). \(\epsilon\) is the error tolerance (approximation bound); \(\delta\) is the failure probability, so \(1-\delta\) is the confidence level.
 4. **Q:** Describe VC dimension and the concept of shattering.  
    **A:** VC dimension is the largest number of points that can be labeled in all possible ways by a hypothesis class. Shattering those points indicates its capacity.
 5. **Q:** Describe overfitting and underfitting.  
@@ -192,7 +192,7 @@
 ### Self-Supervised Learning
 
 1. **Q:** What is self-supervised learning and why important?  
-   **A:** It creates supervision from the data itself (e.g., predicting masked parts). Unlike general unsupervised learning (often density estimation or clustering), self-supervised learning builds auxiliary supervised tasks from unlabeled data and scales well with abundant data.
+   **A:** It creates supervision from the data itself (e.g., predicting masked parts). It differs from unsupervised learning by using pretext supervised tasks, enabling scalable representation learning from abundant unlabeled data.
 2. **Q:** What is a pretext task? Give examples.  
    **A:** A pretext task is an artificial prediction task to learn representations. Examples: rotation prediction, jigsaw/patch order, colorization, masked patch prediction—forcing invariance to transformations and learning semantic structure.
 3. **Q:** Explain contrastive learning.  
@@ -238,7 +238,7 @@
 17. **Q:** Describe Rectified Flow formulation.  
     **A:** Sample \(t\in[0,1]\), \(x_t=(1-t)x_0+t x_1\); train velocity \(v_\theta(x_t,t)\) to match \(x_1-x_0\) with MSE. Sampling integrates the ODE from noise to data.
 18. **Q:** Explain Latent Diffusion Models (LDM).  
-    **A:** LDMs first train an autoencoder to map images into a latent space, optionally using an adversarial loss with a discriminator. The diffusion model is then trained and sampled in that latent space with the autoencoder frozen. The discriminator, if used, is only part of the autoencoder pretraining and not part of the diffusion model itself.
+    **A:** LDMs train an autoencoder to map images into a latent space, sometimes with perceptual or adversarial losses. The diffusion model then operates in the frozen latent space; any discriminator is only used during autoencoder pretraining.
 19. **Q:** Describe Classifier-Free Guidance (CFG).  
     **A:** Train with conditional and unconditional data by dropping the condition. At inference, combine predictions: \(\hat{\epsilon}=(1+w)\epsilon_{\text{cond}}-w\epsilon_{\text{uncond}}\); requires two forward passes per step.
 20. **Q:** Why is the noise schedule important?  
