@@ -223,7 +223,7 @@
 11. **Q:** Describe GAN architecture.  
     **A:** A generator maps noise to samples; a discriminator distinguishes real vs fake. They train adversarially.
 12. **Q:** Write and explain the minimax objective.  
-    **A:** \(\min_G\max_D E_{x}[\log D(x)] + E_{z}[\log(1-D(G(z)))]\). At equilibrium, \(G\) matches the data distribution and the optimal discriminator outputs \(D(x)=1/2\) on samples drawn from that distribution.
+    **A:** \(\min_G\max_D E_{x}[\log D(x)] + E_{z}[\log(1-D(G(z)))]\). At equilibrium, \(G\) matches the data distribution and the optimal discriminator is \(D^*(x)=1/2\) for all \(x\).
 13. **Q:** Describe the practical GAN training procedure.  
     **A:** Alternate discriminator and generator updates; use non-saturating generator loss (maximize \(\log D(G(z))\)) to avoid vanishing gradients.
 14. **Q:** Main pros and cons of GANs.  
@@ -238,7 +238,7 @@
 17. **Q:** Describe Rectified Flow formulation.  
     **A:** Sample \(t\in[0,1]\), \(x_t=(1-t)x_0+t x_1\); train velocity \(v_\theta(x_t,t)\) to match \(x_1-x_0\) with MSE. Sampling integrates the ODE from noise to data.
 18. **Q:** Explain Latent Diffusion Models (LDM).  
-    **A:** Diffusion occurs in a compressed latent space learned by an autoencoder, reducing computation. The autoencoder is trained in a separate, preliminary step (e.g., VAE or perceptual losses); a discriminator is optional and only used during that autoencoder training, not in the diffusion denoising process.
+    **A:** LDMs first train an autoencoder to map images into a latent space (optionally with an adversarial loss using a discriminator). The diffusion model is then trained and sampled in that latent space with the autoencoder frozen; the discriminator, if used, is only part of the autoencoder pretraining and not part of the diffusion model itself.
 19. **Q:** Describe Classifier-Free Guidance (CFG).  
     **A:** Train with conditional and unconditional data by dropping the condition. At inference, combine predictions: \(\hat{\epsilon}=(1+w)\epsilon_{\text{cond}}-w\epsilon_{\text{uncond}}\); requires two forward passes per step.
 20. **Q:** Why is the noise schedule important?  
